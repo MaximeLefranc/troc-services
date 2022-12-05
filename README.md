@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# Troc'Services project
+
+![Title of project](./src/assets/logo/troc-services.png?raw=true "Troc'Services")
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Technologies used
+
+- React
+- TypeScript
+- Eslint config Airbnb
+- Redux
+- React-router-dom
+- sass
+- Axios
 
 ## Available Scripts
 

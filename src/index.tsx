@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './styles/index.scss';
 import TrocServices from './components/TrocServices/index';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/index';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <TrocServices />
+    <Provider store={store}>
+      <BrowserRouter>
+        <TrocServices />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
