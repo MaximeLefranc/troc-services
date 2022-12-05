@@ -1,0 +1,6 @@
+node_modules/
+dist/
+config/
+postcss.config.js
+.eslintrc.js
+.eslintrc.cjs
