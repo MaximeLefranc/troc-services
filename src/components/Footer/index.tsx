@@ -4,7 +4,9 @@ import './styles.scss';
 function Footer(): JSX.Element {
   return (
     <div className="footer">
-      <Link to="/a-propos">A propos</Link>
+      <Link className="footer__link" to="/a-propos">
+        A propos
+      </Link>
     </div>
   );
 }

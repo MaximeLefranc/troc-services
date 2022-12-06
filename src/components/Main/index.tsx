@@ -1,4 +1,5 @@
 import AdvertsCards from '../AdvertsCards';
+import Footer from '../Footer';
 import './styles.scss';
 
 function Main() {
@@ -7,6 +8,7 @@ function Main() {
       {/* <Header /> */}
       <h2 className="main__title">Les dernières annonces</h2>
       <AdvertsCards />
+      <Footer />
     </section>
   );
 }

@@ -1,0 +1,30 @@
+@use './../../styles/vars';
+
+.footer {
+  background-color: vars.$font-card-color;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 2.5em;
+  &__link {
+    display: block;
+    text-align: center;
+    color: vars.$main-color;
+    font-size: 1.3em;
+    padding-top: .4em;
+    &:hover {
+      color: vars.$font-color;
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .footer {
+    height: 4em;
+    &__link {
+      font-size: 1.5em;
+      padding-top: .7em;
+    }
+  }
+}
