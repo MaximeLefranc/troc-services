@@ -13,7 +13,7 @@ function TrocServices(): JSX.Element {
   const isWelcomePage: boolean = pathname === '/';
   return (
     <div className="TrocServices">
-      {/* !isWelcomePage && <Header /> */}
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/accueil" element={<Main />} />
