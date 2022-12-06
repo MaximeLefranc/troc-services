@@ -1,8 +1,14 @@
+import Card from './Card';
 import './styles.scss';
 
-function AdvertsCards() {
+function AdvertsCards(): JSX.Element {
   return (
     <section className="cards">
+      <Card
+        image="https://static.photoweb.fr/photoweb.web.catalog.frontoffice/menu/toile-photo-2col-2020-02.jpg"
+        title="Test"
+        description="Ici viendra la description"
+      />
       <div className="card">
         <picture className="card__container">
           <img
