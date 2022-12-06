@@ -6,13 +6,16 @@
   &__logo {
     display: block;
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
   }
   &__video {
     display: none;
   }
-  &__link {
-    display: block;
+  &__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 20%;
     text-align: center;
     margin: 0 auto 1.5rem auto;
     font-size: 1rem;
@@ -25,13 +28,6 @@
   display: block;
   margin: 0 auto 2rem auto;
   text-align: center;
-  &:before{
-    display: block;
-    content: "";
-    border-bottom: 1px solid black;
-    position: absolute;
-    width: 50%;
-  }
  }
 
  .form {
@@ -40,10 +36,12 @@
   &__input--service {
     width: 70%;
     padding: 0.5rem;
+    font-family: 'Josefin Sans', sans-serif;
   }
   &__input--zip {
     width: 30%;
     padding: 0.5rem;
+    font-family: 'Josefin Sans', sans-serif;
   }
   &__button {
     width: 30%;
@@ -54,5 +52,49 @@
     border: none;
     border-radius: 5px;
     background-color: vars.$main-color;
+    font-family: 'Josefin Sans', sans-serif;
   }
+ }
+
+ @media screen and (min-width: 1450px) {
+  .welcome {
+    &__logo {
+      position: absolute;
+      width: 15%;
+      top: -6%;
+      left: -2%;
+    }
+    &__video {
+      position: relative;
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+    &__links {
+      position: absolute;
+      bottom: 0;
+      flex-direction: row;
+      height: auto;
+      width: 50%;
+      left: 25%;
+      font-size: 1.5rem;
+      color: vars.$font-color;      
+    }
+  }
+  .presentation {
+    position: absolute;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    top: 40%;
+    font-size: 2rem;
+    color: vars.$font-color;
+    text-shadow: 3px 3px 3px vars.$main-color;
+  }
+  .form {
+    position: absolute;
+    width: 30%;
+    left: calc(50% - (30% / 2));
+    top: 75%;
+  }
+
  }

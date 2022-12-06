@@ -8,24 +8,26 @@ import './styles.scss';
 function Welcome() {
   return (
     <section className="welcome">
-      <img src={logo} className="welcome__logo" alt="logo troc'services" />
       <video autoPlay loop muted className="welcome__video">
         <source src={backgroundVideo} type="video/mp4" />
       </video>
+      <img src={logo} className="welcome__logo" alt="logo troc'services" />
       <Presentation />
       <FormFilters />
-      <Link className="welcome__link" to="#">
-        Inscription
-      </Link>
-      <Link className="welcome__link" to="#">
-        Connexion
-      </Link>
-      <Link className="welcome__link" to="#">
-        Annonces
-      </Link>
-      <Link className="welcome__link" to="#">
-        Profils
-      </Link>
+      <div className="welcome__links">
+        <Link className="welcome__links--link" to="#">
+          Inscription
+        </Link>
+        <Link className="welcome__links--link" to="#">
+          Connexion
+        </Link>
+        <Link className="welcome__links--link" to="#">
+          Annonces
+        </Link>
+        <Link className="welcome__links--link" to="#">
+          Profils
+        </Link>
+      </div>
     </section>
   );
 }
