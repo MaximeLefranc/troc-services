@@ -1,0 +1,48 @@
+@use './../../../../styles/vars';
+
+li {
+  float: left;
+}
+
+li .nav__dropdown--link, .nav__dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li .nav__dropdown--link:hover, .nav__dropdown:hover .nav__dropbtn {
+  background-color: vars.$soft-color;
+}
+
+li.nav__dropdown {
+  display: inline-block;
+}
+
+.nav__dropdown--content {
+  display: none;
+  position: absolute;
+  background-color: vars.$main-color;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.nav__dropdown--content a {
+  color: vars.$font-color;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav__dropdown--content .nav__dropdown--link:hover {background-color: vars.$soft-color;}
+
+.nav__dropdown:hover .nav__dropdown--content {
+  display: block;
+}
+
+.Nav__logo{
+  width: 10em;
+}

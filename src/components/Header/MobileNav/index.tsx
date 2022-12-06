@@ -21,15 +21,26 @@ function MobileNav({ logo }: { logo: string }) {
         <Link className="mobileNav__links--link" to="#">
           Profils
         </Link>
-        <Link className="mobileNav__links--link" to="#">
-          Three
-        </Link>
-        <Link className="mobileNav__links--link" to="#">
-          Four
-        </Link>
-        <Link className="mobileNav__links--link" to="#">
-          Five
-        </Link>
+        <label
+          htmlFor="touch"
+          className="mobileNav__label mobileNav__links--link"
+        >
+          <span className="mobileNav__span mobileNav__links--link">
+            Catégorie
+          </span>
+        </label>
+        <input type="checkbox" id="touch"></input>
+        <ul className="mobileNav__links__categorie--links slide">
+          <Link className="mobileNav__links--link" to="#">
+            sous-categorie
+          </Link>
+          <Link className="mobileNav__links--link" to="#">
+            sous-categorie
+          </Link>
+          <Link className="mobileNav__links--link" to="#">
+            sous-categorie
+          </Link>
+        </ul>
       </div>
     </section>
   );

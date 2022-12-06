@@ -10,11 +10,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: vars.$main-color;
-  background: linear-gradient(to left, vars.$main-color, vars.$dark-color);
+  background-color: vars.$font-color;
+  /* background: linear-gradient(to left, vars.$main-color, vars.$dark-color); */
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: #FFF;
-  height: 50px;
+  height: 5em;
   padding: 1em;
 }
 
@@ -34,7 +34,7 @@
 .mobileNav__links-button-container {
   display: none;
   height: 100%;
-  width: 30px;
+  width: 3em;
   cursor: pointer;
   flex-direction: column;
   justify-content: center;
@@ -49,12 +49,12 @@
 .mobileNav__links-button::before,
 .mobileNav__links-button::after {
   display: block;
-  background-color: #fff;
+  background-color: vars.$main-color;
   position: absolute;
-  height: 4px;
-  width: 30px;
+  height: .4em;
+  width: 3em;
   transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
-  border-radius: 2px;
+  border-radius: .2em;
 }
 
 .mobileNav__links-button::before {
@@ -88,7 +88,7 @@
   .mobileNav__links {
     position: absolute;
     top: 0;
-    margin-top: 50px;
+    margin-top: 5em;
     left: 0;
     flex-direction: column;
     width: 100%;
@@ -103,10 +103,11 @@
     transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
   }
   #mobileNav__links-toggle:checked ~ .mobileNav__links .mobileNav__links--link {
-    border: 1px solid #333;
-    height: 2.5em;
+    border: .1em solid vars.$main-color;
+    height: 3em;
     padding: 0.5em;
     transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    background-color: vars.$main-color;
   }
   .mobileNav__links > .mobileNav__links--link {
     display: flex;
@@ -115,9 +116,45 @@
     padding: 0.5em 0;
     width: 100%;
     color: white;
-    background-color: #222;
+    background-color: vars.$main-color;
   }
   .mobileNav__links > .mobileNav__links--link:not(:last-child) {
-    border-bottom: 1px solid #444;
+    border-bottom: .1em solid #444;
   }
 }
+
+.mobileNav__links__categorie--links {
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+.mobileNav__label {
+  width: 100%;
+  text-align: center;
+  background-color: vars.$main-color;
+  align-items: center;
+}
+
+.mobileNav__label::after {
+  float: left;
+  right: 10%;
+  content: "+";
+}
+
+
+.slide {
+  clear:both;
+  width:100%;
+  height:0px;
+  overflow: hidden;
+  text-align: center;
+  transition: height .4s ease;
+}
+
+.slide .categorie--link {padding : 3em;}
+
+#touch {position: absolute; opacity: 0; height: 0px;}    
+
+#touch:checked + .slide {height: 30em;} 

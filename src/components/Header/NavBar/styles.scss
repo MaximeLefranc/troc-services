@@ -1,0 +1,14 @@
+@use './../../../styles/vars';
+
+ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: vars.$main-color;
+  justify-content: space-between;
+  font-size: large;
+}
+
+
