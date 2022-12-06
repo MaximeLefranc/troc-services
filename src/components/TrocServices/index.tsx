@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import Header from '../Header';
 import Welcome from '../Welcome';
 import './styles.scss';
 
@@ -7,6 +8,7 @@ function TrocServices() {
     <div className="TrocServices">
       <Routes>
         <Route path="/" element={<Welcome />} />
+        <Route path="/Header" element={<Header />} />
       </Routes>
     </div>
   );
