@@ -5,14 +5,14 @@ function AdvertDetail(): JSX.Element {
   return (
     <section className="advert">
       <div className="advert__picture">
-        <h2 className="advert__picture__title"></h2>
+        <h2 className="advert__picture__title">Titre de l'annonce</h2>
         <img
-          className="advert__picture__detail"
+          className="advert__picture__image"
           src="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
           alt="advert picture"
         />
         <img
-          className="advert__picture__profil"
+          className="advert__picture__profile"
           src="https://static.photoweb.fr/photoweb.web.catalog.frontoffice/menu/toile-photo-2col-2020-02.jpg"
           alt="profile picture"
         />
