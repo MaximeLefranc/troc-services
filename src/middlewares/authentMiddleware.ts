@@ -1,4 +1,6 @@
-const authentMiddleware = (store: any) => (next: any) => (action: any) => {
+import { Middleware } from 'redux';
+
+const authentMiddleware: Middleware = (store) => (next) => (action) => {
   next(action);
 };
 

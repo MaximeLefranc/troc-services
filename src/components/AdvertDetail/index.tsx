@@ -11,14 +11,16 @@ function AdvertDetail(): JSX.Element {
           src="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
           alt="advert picture"
         />
-        <img
-          className="advert__picture__profile"
-          src="https://static.photoweb.fr/photoweb.web.catalog.frontoffice/menu/toile-photo-2col-2020-02.jpg"
-          alt="profile picture"
-        />
+        <Link to="#">
+          <img
+            className="advert__picture__profile"
+            src="https://static.photoweb.fr/photoweb.web.catalog.frontoffice/menu/toile-photo-2col-2020-02.jpg"
+            alt="profile picture"
+          />
+        </Link>
       </div>
-      <Link className="advert__contact" to="/annonces/[id]/envoyer-message">
-        <button className="advert__contact__button" type="button">
+      <Link to="/annonces/[id]/envoyer-message">
+        <button className="advert__button" type="button">
           Echangeons nos services !
         </button>
       </Link>
