@@ -1,23 +1,18 @@
 import { AnyAction } from 'redux';
 import { CHANGE_INPUT_VALUE, TOGGLE_LOGIN_FORM } from '../actions/user';
 
-// interface Action {
-//   type: string;
-//   payload?;
-// }
-
 export interface UserState {
   modalLogInForm: boolean;
-  inputEmail: string;
-  inputPassword: string;
+  email: string;
+  password: string;
   isLoggedIn: boolean;
   pseudo: string;
 }
 
 export const initialState: UserState = {
   modalLogInForm: false,
-  inputEmail: '',
-  inputPassword: '',
+  email: '',
+  password: '',
   isLoggedIn: false,
   pseudo: '',
 };
@@ -31,9 +26,6 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         modalLogInForm: !state.modalLogInForm,
       };
     case CHANGE_INPUT_VALUE:
-      console.log(
-        `Je suis ici ${action.payload.input} ${action.payload.newValue}`
-      );
       return {
         ...state,
         [action.payload.input]: action.payload.newValue,

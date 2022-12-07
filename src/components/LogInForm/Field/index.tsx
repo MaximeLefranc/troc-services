@@ -5,7 +5,7 @@ interface PropLogInForm {
   type: string;
   name: string;
   placeholder: string;
-  onChange: (value: string, nameSateInput: string) => void;
+  onChangeHandle: (value: string, nameStateInput: string) => void;
 }
 
 function Field({
@@ -13,13 +13,13 @@ function Field({
   type,
   name,
   placeholder,
-  onChange,
+  onChangeHandle,
 }: PropLogInForm): JSX.Element {
   const handleChange = (evt: ChangeEvent): void => {
     const valueInput = (evt.target as HTMLInputElement).value;
-    onChange(valueInput, name);
+    onChangeHandle(valueInput, name);
   };
-  const inputId = `field-${name}`;
+  const inputId = `field__${name}`;
   return (
     <div className={value.length > 0 ? 'field field--has-content' : 'field'}>
       <input
@@ -29,12 +29,12 @@ function Field({
         // infos de base
         id={inputId}
         type={type}
-        className="field-input"
+        className="field__input"
         placeholder={placeholder}
         name={name}
       />
 
-      <label htmlFor={inputId} className="field-label">
+      <label htmlFor={inputId} className="field__label">
         {placeholder}
       </label>
     </div>
