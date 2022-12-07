@@ -6,5 +6,16 @@ body {
   font-size: 62.5%;
   background-color: vars.$font-color;
   color: vars.$dark-color;
+  background-image: url('../assets/images/drop-paint-background.svg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 350%;
+  background-position: bottom -280% right 60%;
 }
 
+@media screen and (min-width: 800px) {
+  body {
+    background-position: -30% 35%;
+    background-size: 150%;
+  }
+}

@@ -1,6 +1,9 @@
+@use "sass:color";
+
 /* COLORS */
 
 $font-color: #FFFBFE;
+$font-card-color: color.scale($font-color, $blackness: +15%);
 $main-color: #6667AB;
 $soft-color: #838E83;
 $dark-color: #2A2E45;
