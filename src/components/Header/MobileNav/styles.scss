@@ -147,7 +147,7 @@
 .slide {
   clear:both;
   width:100%;
-  height:0px;
+  height:0em;
   overflow: hidden;
   text-align: center;
   transition: height .4s ease;
@@ -157,4 +157,4 @@
 
 #touch {position: absolute; opacity: 0; height: 0px;}    
 
-#touch:checked + .slide {height: 30em;} 
+#touch:checked + .slide {height: auto;} 

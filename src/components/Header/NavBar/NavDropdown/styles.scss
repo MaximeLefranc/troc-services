@@ -16,33 +16,39 @@ li .nav__dropdown--link:hover, .nav__dropdown:hover .nav__dropbtn {
   background-color: vars.$soft-color;
 }
 
-li.nav__dropdown {
+.nav__dropdown {
   display: inline-block;
+  margin: auto;
+}
+
+.nav__dropbtn {
+  width: 11em;
+  border-radius: .2em;
+  &:hover{
+  background-color: vars.$soft-color;
+  }
 }
 
 .nav__dropdown--content {
   display: none;
   position: absolute;
   background-color: vars.$main-color;
-  min-width: 160px;
+  width: 11em;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
 .nav__dropdown--content a {
   color: vars.$font-color;
-  padding: 12px 16px;
+  padding: .5em 1em;
   text-decoration: none;
   display: block;
   text-align: left;
+  box-shadow: .1em .1em .1em black;
 }
 
 .nav__dropdown--content .nav__dropdown--link:hover {background-color: vars.$soft-color;}
 
 .nav__dropdown:hover .nav__dropdown--content {
   display: block;
-}
-
-.Nav__logo{
-  width: 10em;
 }

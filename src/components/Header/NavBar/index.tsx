@@ -1,14 +1,10 @@
-import { Link } from 'react-router-dom';
 import NavDropdown from './NavDropdown';
 import './styles.scss';
 
-function NavBar({ logo }: { logo: string }) {
+function NavBar() {
   return (
     <section className="topNav">
-      <Link className="Nav__logo--link" to={'/'}>
-        <img src={logo} className="Nav__logo" alt="logo troc'services" />
-      </Link>
-      <ul>
+      <ul className="topNave__NaveDropdown">
         <NavDropdown categoryName="Bricolage" />
         <NavDropdown categoryName="Aide a la personne" />
         <NavDropdown categoryName="Auto/Moto" />

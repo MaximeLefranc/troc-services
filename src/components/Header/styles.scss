@@ -1,26 +1,73 @@
 @use './../../styles/vars';
 
+.Nav__logo {
+  width: 16em;
+  margin-bottom: -3em;
+  margin-top: -3em;
+}
+
+.Nav__logo--link {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.topHeader {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.topNav {
+  width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .header {
+    flex-direction: column-reverse;
+  }
+
+  .header__form {
+    width: 100%;
+
+    &__input--service {
+      width: 50%;
+    }
+
+    &__input--zip {
+      width: 25%;
+    }
+
+    &__button {
+      width: 25%;
+    }
+
+  }
+
+  .topHeader {
+    display: block;
+  }
+}
 
 .header__form {
-  display: flex;
   height: 4.5em;
+  display: flex;
   font-family: vars.$main-font;
-  
+
 
   &__input--service {
-    width: 50%;
     font-family: vars.$main-font;
     border: none;
   }
 
   &__input--zip {
-    width: 25%;
     font-family: vars.$main-font;
     border: none;
   }
 
   &__button {
-    width: 25%;
     border: .1em solid vars.$main-color;
     color: vars.$main-color;
     background-color: vars.$font-color;
@@ -33,17 +80,27 @@
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  .header--button {
+    width: 100%;
+    height: 4.5em;
+  }
+}
+
 .header--button {
-  width: 100%;
-  height: 4.5em;
+  min-width: 10%;
+  min-height: 3em;
   color: vars.$font-color;
   background-color: vars.$main-color;
   font-family: vars.$main-font;
   border-radius: .2em;
   border: none;
-  border-top: 0.1em solid black;
 
   &:active {
     transform: scale(0.99);
+  }
+
+  &:hover {
+    box-shadow: .1em .1em .5em black;
   }
 }
