@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import AdvertDetail from '../AdvertDetail';
 import Footer from '../Footer';
+import LogInForm from '../LogInForm';
 import Main from '../Main';
 import Welcome from '../Welcome';
 
@@ -13,6 +14,7 @@ function TrocServices(): JSX.Element {
   const isWelcomePage: boolean = pathname === '/';
   return (
     <div className="TrocServices">
+      <LogInForm />
       {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Welcome />} />

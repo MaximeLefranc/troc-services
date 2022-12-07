@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 
-import userReducer from './user';
+import userReducer, { UserState } from './user';
 import advertisementsReducer from './advertisements';
+
+export interface GlobalState {
+  user: UserState;
+}
 
 const rootReducer = combineReducers({
   advertisements: advertisementsReducer,
