@@ -4,6 +4,7 @@ import AdvertsCards from '../Cards/AdvertsCards';
 import ProfilesCards from '../Cards/ProfilesCards';
 import Footer from '../Footer';
 import LogInForm from '../LogInForm';
+import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
 
 interface Location {
@@ -21,7 +22,8 @@ function TrocServices(): JSX.Element {
         <Route path="/" element={<Welcome />} />
         <Route path="/accueil" element={<AdvertsCards />} />
         <Route path="/profils" element={<ProfilesCards />} />
-        <Route path="/annonces/1" element={<AdvertDetail />} />
+        <Route path="/annonces/[id]" element={<AdvertDetail />} />
+        <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />
       </Routes>
       {!isWelcomePage && <Footer />}
     </div>

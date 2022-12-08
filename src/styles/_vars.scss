@@ -3,7 +3,9 @@
 /* COLORS */
 
 $font-color: #FFFBFE;
+$font-transparent-color: #fffbfebb;
 $font-card-color: color.scale($font-color, $blackness: +15%);
+$font-transparent-card-color: color.adjust($font-card-color, $alpha: -0.2);
 $main-color: #6667AB;
 $dark-main-color: color.scale($main-color, $lightness: -40%);
 $soft-color: #838E83;
