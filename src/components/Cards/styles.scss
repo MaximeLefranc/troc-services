@@ -20,7 +20,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  background-color: vars.$font-card-color;
+  background-color: vars.$font-transparent-card-color;
   border-radius: 5px;
   margin-bottom: 1rem;
   max-height: 12rem;
@@ -122,6 +122,12 @@
         text-align: center;
         max-height: 6.9rem;
         
+      }
+    }
+    &__skills {
+      justify-content:center;
+      &__skill {
+        margin: .2rem;
       }
     }
   }
