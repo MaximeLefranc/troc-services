@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { actionFetchAdvertsementsForMainPage } from '../../actions/advertisements';
 import AdvertDetail from '../AdvertDetail';
 import AdvertsCards from '../Cards/AdvertsCards';
 import ProfilesCards from '../Cards/ProfilesCards';
@@ -11,8 +14,12 @@ interface Location {
 }
 
 function TrocServices(): JSX.Element {
+  const dispatch = useDispatch();
   const { pathname } = useLocation() as Location;
   const isWelcomePage: boolean = pathname === '/';
+  useEffect(() => {
+    dispatch(actionFetchAdvertsementsForMainPage());
+  }, []);
   return (
     <div className="TrocServices">
       <LogInForm />
