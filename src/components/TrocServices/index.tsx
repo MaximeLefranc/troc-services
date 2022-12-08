@@ -1,4 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
+import About from '../About/About';
 import AdvertDetail from '../AdvertDetail';
 import AdvertsCards from '../Cards/AdvertsCards';
 import ProfilesCards from '../Cards/ProfilesCards';
@@ -17,13 +18,14 @@ function TrocServices(): JSX.Element {
   return (
     <div className="TrocServices">
       <LogInForm />
-      {/* <Header /> */}
+      {/* !isWelcomePage && <Header /> */}
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/accueil" element={<AdvertsCards />} />
         <Route path="/profils" element={<ProfilesCards />} />
         <Route path="/annonces/[id]" element={<AdvertDetail />} />
         <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />
+        <Route path="/a-propos" element={<About />} />
       </Routes>
       {!isWelcomePage && <Footer />}
     </div>

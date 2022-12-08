@@ -1,0 +1,99 @@
+@use './../../styles/vars';
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0 3rem 0;
+  background-color: vars.$font-transparent-color;
+  &__description {
+    &__title {
+      width: 40%;
+      text-align: center;
+      display: block;
+      font-size: 1.6rem;
+      color: vars.$main-color;
+      margin:0 auto 2rem auto;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid vars.$dark-main-color;
+    }
+    &__history {
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    &__link {
+      text-align: center;
+      font-size: 1.2rem;
+      margin: 1rem;
+      padding: .5rem;
+      border: 1px solid vars.$main-color;
+      border-radius: 5px;
+      color: vars.$main-color;
+      background-color: vars.$font-transparent-card-color;
+      &:hover {
+        background-color: vars.$main-color;
+        color: vars.$font-color;
+      }
+    }
+  }
+}
+.team {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  &__member {
+    width: 15rem;
+    &__name {
+      text-align: center;
+      color: vars.$main-color;
+      font-size: 1.2rem;
+      margin: 0rem 1rem 1rem 1rem;
+    }
+    &__picture {
+      display: block;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      margin: 0 auto 2rem auto;
+    }
+  }
+}
+
+@media screen and (min-width: 1350px) {
+  .about {
+    margin: 2rem 10rem 0 10rem;
+    border: 1px solid vars.$main-color;
+    padding: 2rem;
+    border-radius: 5px;
+    &__description {
+      &__title {
+        padding-bottom: 1.5rem;
+        margin-bottom: 3rem;
+      }
+      &__history {
+        padding: 0 8rem;
+      }
+    }
+    &__links {
+      flex-direction: row;
+    }
+  }
+  .team {
+    &__member {
+      margin: 5rem 0;
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .about {
+    background-color: transparent;
+  }
+}
