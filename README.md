@@ -14,11 +14,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - sass
 - Axios
 
-## Available Scripts
-
 ## First thing to do when you are going to clone the repo for install the dependencies 
 
 ### `yarn`
+
+## Available Scripts
 
 In the project directory, you can run:
 
