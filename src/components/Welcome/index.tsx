@@ -34,7 +34,7 @@ function Welcome() {
         <Link className="welcome__links--link" to="/accueil">
           Annonces
         </Link>
-        <Link className="welcome__links--link" to="#">
+        <Link className="welcome__links--link" to="/profils">
           Profils
         </Link>
       </div>

@@ -2,9 +2,10 @@ interface CardProps {
   image: string;
   title: string;
   description: string;
+  skills: string[];
 }
 
-function Card({ image, title, description }: CardProps): JSX.Element {
+function Card({ image, title, description, skills }: CardProps): JSX.Element {
   return (
     <div className="card">
       <picture className="card__container">
@@ -17,6 +18,11 @@ function Card({ image, title, description }: CardProps): JSX.Element {
       <div className="card__description">
         <h3 className="card__description__title">{title}</h3>
         <p className="card__description__resume">{description}</p>
+      </div>
+      <div className="card__skills">
+        {skills.map((skill) => (
+          <p className="card__skills__skill">{skill}</p>
+        ))}
       </div>
     </div>
   );

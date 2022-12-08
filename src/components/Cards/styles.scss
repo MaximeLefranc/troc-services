@@ -1,5 +1,15 @@
 @use './../../styles/vars';
 
+.main {
+  padding: 0 .5rem;
+  &__title {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    padding-left: .7rem;
+    color: vars.$main-color;
+  }
+}
+
 .cards {
   display: flex;
   flex-direction: column;
@@ -8,15 +18,16 @@
 
 .card {
   display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
   background-color: vars.$font-card-color;
   border-radius: 5px;
   margin-bottom: 1rem;
-  height: 8rem;
+  max-height: 12rem;
   overflow: hidden;
   &__container {
-    flex-basis: 9rem;
-    flex-grow: 0;
-    flex-shrink: 0;
+    width: 30%;
+    height: 6.5rem;
     &__image {
       width: 100%;
       height: 100%;
@@ -25,14 +36,41 @@
     }
   }
   &__description {
+    width: 70%;
     padding: .5rem;
+    height: 6rem;    
     &__title {
       font-size: 1.3rem;
       margin-bottom: .5rem;
     }
     &__resume {
+      max-height: 3.9rem;
       font-size: .8rem;
+      overflow: hidden
     }
+  }
+  &__skills {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: .3rem;
+    &__skill {
+      font-size: .8rem;
+      margin-top: .3rem;
+      display: block;
+      background-color: vars.$main-color;
+      color: vars.$font-color ;
+      border-radius: 5px;
+      padding: .2rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .main {
+    padding-left: 11rem;
+    padding-right: 11rem;
   }
 }
 
@@ -46,18 +84,18 @@
   .card {
     margin: 0 3rem 2rem 3rem;
     flex-direction: column;
+    flex-wrap: nowrap;
     width: 15%;
-    height: 20rem;
+    max-height: 22rem;
     position: relative;
-    transition-duration: .5s;
-    border: 1px solid vars.$dark-color;
+    transition-duration: 1s;
     &:hover {
       box-shadow: 5px 5px 5px vars.$font-card-color;
       transform: scale(1.02);
       transition-duration: .3s;
     }
     &__container {
-      max-width: none;
+      width: 100%;
       height: 50%;
       &__image {
         height: 9rem;
@@ -67,7 +105,8 @@
     }
     &__description {
       object-fit: contain;
-      
+      width: 100%;
+      height: 8rem;
       &__title {
         position: absolute;
         width: 100%;
@@ -81,8 +120,8 @@
       &__resume {
         font-size: 1rem;
         text-align: center;
-        padding-top: 1rem;
-        text-overflow: ellipsis;
+        max-height: 6.9rem;
+        
       }
     }
   }

@@ -1,8 +1,9 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import AdvertDetail from '../AdvertDetail';
+import AdvertsCards from '../Cards/AdvertsCards';
+import ProfilesCards from '../Cards/ProfilesCards';
 import Footer from '../Footer';
 import LogInForm from '../LogInForm';
-import Main from '../Main';
 import Welcome from '../Welcome';
 
 interface Location {
@@ -18,7 +19,8 @@ function TrocServices(): JSX.Element {
       {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/accueil" element={<Main />} />
+        <Route path="/accueil" element={<AdvertsCards />} />
+        <Route path="/profils" element={<ProfilesCards />} />
         <Route path="/annonces/1" element={<AdvertDetail />} />
       </Routes>
       {!isWelcomePage && <Footer />}
