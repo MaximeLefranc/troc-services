@@ -21,7 +21,7 @@ function Welcome() {
       <Presentation />
       <FormFilters />
       <div className="welcome__links">
-        <Link className="welcome__links--link" to="#">
+        <Link className="welcome__links--link" to="/inscription">
           Inscription
         </Link>
         <Link

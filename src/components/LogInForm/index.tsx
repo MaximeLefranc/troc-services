@@ -5,7 +5,7 @@ import {
   actionToggleLogInForm,
 } from '../../actions/user';
 import { GlobalState } from '../../reducers';
-import Field from './Field';
+import FieldLogIn from './FieldLogIn';
 import './styles.scss';
 
 function LogInForm(): JSX.Element {
@@ -39,14 +39,14 @@ function LogInForm(): JSX.Element {
       </button>
       {!isLoggedIn && (
         <form className="login__form__element" onSubmit={handleSubmit}>
-          <Field
+          <FieldLogIn
             name="email"
             type="email"
             placeholder="Adresse Email"
             onChangeHandle={changeField}
             value={email}
           />
-          <Field
+          <FieldLogIn
             name="password"
             type="password"
             placeholder="Mot de passe"
