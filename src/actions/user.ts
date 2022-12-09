@@ -4,6 +4,7 @@
 
 export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
+export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -26,12 +27,21 @@ export function actionToggleLogInForm() {
  * @returns Object Action
  */
 export function actionChangeInputValue(value: string, nameStateInput: string) {
-  console.log(value);
   return {
     type: CHANGE_INPUT_VALUE,
     payload: {
       newValue: value,
       input: nameStateInput,
     },
+  };
+}
+
+/**
+ * Turn in true or false the state isLoading in state.user
+ * @returns Object Action
+ */
+export function actionToggleLoader() {
+  return {
+    type: TOGGLE_LOADER,
   };
 }
