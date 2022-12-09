@@ -1,7 +1,12 @@
 import { AnyAction } from 'redux';
-import { CHANGE_INPUT_VALUE, TOGGLE_LOGIN_FORM } from '../actions/user';
+import {
+  CHANGE_INPUT_VALUE,
+  TOGGLE_LOADER,
+  TOGGLE_LOGIN_FORM,
+} from '../actions/user';
 
 export interface UserState {
+  isLoading: boolean;
   modalLogInForm: boolean;
   email: string;
   password: string;
@@ -10,6 +15,7 @@ export interface UserState {
 }
 
 export const initialState: UserState = {
+  isLoading: false,
   modalLogInForm: false,
   email: '',
   password: '',
@@ -29,6 +35,11 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
       return {
         ...state,
         [action.payload.input]: action.payload.newValue,
+      };
+    case TOGGLE_LOADER:
+      return {
+        ...state,
+        isLoading: !state.isLoading,
       };
     default:
       return state;
