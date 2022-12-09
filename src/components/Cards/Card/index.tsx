@@ -21,7 +21,9 @@ function Card({ image, title, description, skills }: CardProps): JSX.Element {
       </div>
       <div className="card__skills">
         {skills.map((skill) => (
-          <p className="card__skills__skill">{skill}</p>
+          <p className="card__skills__skill" key={skill}>
+            {skill}
+          </p>
         ))}
       </div>
     </div>
