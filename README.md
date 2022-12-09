@@ -4,6 +4,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## objective of the project
+
+> The purpose of the site is to connect two individuals who have a need but do not have the skills, and the money necessary to achieve it. A user declares to need a service in a specific area, by placing an ad.
+> If another member with the necessary skills sees the ad, they can get in touch with the service requester.
+> Once these two people are in contact, and after they have agreed, they exchange their services for free.
+
+
 ## Technologies used
 
 - React
@@ -13,6 +20,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - React-router-dom
 - sass
 - Axios
+
+## First thing to do when you are going to clone the repo for install the dependencies 
+
+### `yarn`
 
 ## Available Scripts
 

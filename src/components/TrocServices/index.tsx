@@ -2,11 +2,14 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { actionFetchAdvertsementsForMainPage } from '../../actions/advertisements';
+
+import About from '../About/About';
 import AdvertDetail from '../AdvertDetail';
 import AdvertsCards from '../Cards/AdvertsCards';
 import ProfilesCards from '../Cards/ProfilesCards';
 import Footer from '../Footer';
 import LogInForm from '../LogInForm';
+import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
 
 interface Location {
@@ -23,12 +26,14 @@ function TrocServices(): JSX.Element {
   return (
     <div className="TrocServices">
       <LogInForm />
-      {/* <Header /> */}
+      {/* !isWelcomePage && <Header /> */}
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/accueil" element={<AdvertsCards />} />
         <Route path="/profils" element={<ProfilesCards />} />
-        <Route path="/annonces/1" element={<AdvertDetail />} />
+        <Route path="/annonces/[id]" element={<AdvertDetail />} />
+        <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />
+        <Route path="/a-propos" element={<About />} />
       </Routes>
       {!isWelcomePage && <Footer />}
     </div>
