@@ -11,7 +11,7 @@ interface FieldPropsInscription {
   classNameLabel?: string;
   accept?: string;
   pattern?: string;
-  onChange: (value: string, nameInput: string) => void;
+  onChange: (value: string | File, nameInput: string) => void;
 }
 
 function FieldInscription({
@@ -28,8 +28,20 @@ function FieldInscription({
   onChange,
 }: FieldPropsInscription): JSX.Element {
   const handleChangeValueInState = (evt: ChangeEvent): void => {
-    const value = (evt.target as HTMLInputElement).value;
-    onChange(value, name);
+    if (name === 'picture') {
+      const picture = (evt.target as HTMLInputElement).files;
+      if (picture instanceof FileList) {
+        if (picture[0]) {
+          console.log(picture[0]);
+          onChange(picture[0], name);
+        } else {
+          onChange('', name);
+        }
+      }
+    } else {
+      const value = (evt.target as HTMLInputElement).value;
+      onChange(value, name);
+    }
   };
   return (
     <label className={classNameLabel}>

@@ -3,7 +3,7 @@
 =======================================*/
 
 export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
-export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
+export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -25,10 +25,13 @@ export function actionToggleLogInForm() {
  * @param nameStateInput name of input in state (email or password)
  * @returns Object Action
  */
-export function actionChangeInputValue(value: string, nameStateInput: string) {
+export function actionChangeInputValueConnection(
+  value: string,
+  nameStateInput: string
+) {
   console.log(value);
   return {
-    type: CHANGE_INPUT_VALUE,
+    type: CHANGE_INPUT_VALUE_CONNECTION,
     payload: {
       newValue: value,
       input: nameStateInput,

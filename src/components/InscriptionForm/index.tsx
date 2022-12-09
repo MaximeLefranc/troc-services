@@ -1,13 +1,38 @@
+import { SyntheticEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  actionChangeInputValueInscription,
+  actionErrorMessageInscription,
+  actionSubmitInscriptionForm,
+} from '../../actions/inscription';
+import { GlobalState } from '../../reducers';
+import { checkPassword } from '../../utils/utils';
 import FieldInscription from './FieldInscription';
 import './styles.scss';
 
 function InscriptionForm(): JSX.Element {
-  const changeField = (value: string, nameInput: string): void => {
-    console.log(value, nameInput);
+  const dispatch = useDispatch();
+  const password = useSelector(
+    (state: GlobalState) => state.inscription.password
+  );
+  const passwordConfirmation = useSelector(
+    (state: GlobalState) => state.inscription.passwordConfirmation
+  );
+  const changeField = (value: string | File, nameInput: string): void => {
+    dispatch(actionChangeInputValueInscription(value, nameInput));
+  };
+  const handleSubmitInscription = (evt: SyntheticEvent): void => {
+    evt.preventDefault();
+    const verifPassword = checkPassword(password, passwordConfirmation);
+    if (!verifPassword && typeof verifPassword === 'string') {
+      dispatch(actionErrorMessageInscription(verifPassword));
+    } else {
+      dispatch(actionSubmitInscriptionForm());
+    }
   };
   return (
     <section className="inscription">
-      <form className="inscription__form">
+      <form className="inscription__form" onSubmit={handleSubmitInscription}>
         <FieldInscription
           label="Pseudo"
           type="text"
@@ -57,7 +82,7 @@ function InscriptionForm(): JSX.Element {
           name="picture"
           placeholder="Choisir une photo"
           className="inscription__form__input--photo"
-          accept="image/jpeg"
+          accept="image/jpeg jpg png "
           onChange={changeField}
         />
         <FieldInscription
@@ -75,7 +100,7 @@ function InscriptionForm(): JSX.Element {
           required={false}
           id="adress"
           type="text"
-          name="email"
+          name="adress"
           placeholder="Adresse"
           className="inscription__form__input"
           onChange={changeField}
@@ -114,14 +139,14 @@ function InscriptionForm(): JSX.Element {
         <FieldInscription
           label="Confirmation du mot de passe"
           required={true}
-          id="password"
+          id="confirmPassword"
           type="password"
-          name="password"
+          name="passwordConfirmation"
           placeholder="Mot de passe"
           className="inscription__form__input"
           onChange={changeField}
         />
-        <button className="inscription__form__button" type="button">
+        <button className="inscription__form__button" type="submit">
           Inscription
         </button>
       </form>

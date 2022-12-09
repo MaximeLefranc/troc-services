@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  actionChangeInputValue,
+  actionChangeInputValueConnection,
   actionToggleLogInForm,
 } from '../../actions/user';
 import { GlobalState } from '../../reducers';
@@ -18,7 +18,7 @@ function LogInForm(): JSX.Element {
     (state: GlobalState) => state.user.modalLogInForm
   );
   const changeField = (value: string, nameStateInput: string) => {
-    dispatch(actionChangeInputValue(value, nameStateInput));
+    dispatch(actionChangeInputValueConnection(value, nameStateInput));
   };
   const handleSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault();

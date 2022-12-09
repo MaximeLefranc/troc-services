@@ -1,5 +1,8 @@
 import { AnyAction } from 'redux';
-import { CHANGE_INPUT_VALUE, TOGGLE_LOGIN_FORM } from '../actions/user';
+import {
+  CHANGE_INPUT_VALUE_CONNECTION,
+  TOGGLE_LOGIN_FORM,
+} from '../actions/user';
 
 export interface UserState {
   modalLogInForm: boolean;
@@ -25,7 +28,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         ...state,
         modalLogInForm: !state.modalLogInForm,
       };
-    case CHANGE_INPUT_VALUE:
+    case CHANGE_INPUT_VALUE_CONNECTION:
       return {
         ...state,
         [action.payload.input]: action.payload.newValue,
