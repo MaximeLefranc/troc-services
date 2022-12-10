@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { GlobalState } from '../../../reducers';
 import Spinner from '../../Spinner';
 import Card from '../Card';
@@ -15,6 +16,17 @@ export interface Adverts {
       name: string;
     }
   ];
+  user: {
+    id: number;
+    imageName: string;
+    nickname: string;
+    skill: [
+      {
+        id: number;
+        name: string;
+      }
+    ];
+  };
 }
 
 function AdvertsCards(): JSX.Element {
@@ -30,13 +42,19 @@ function AdvertsCards(): JSX.Element {
       ) : (
         <section className="cards">
           {advertList.map((advert: Adverts) => (
-            <Card
+            <Link
               key={advert.id}
-              image={advert.imageName}
-              title={advert.title}
-              description={advert.content}
-              skills={advert.skills.map((skill) => skill.name)}
-            />
+              className="cards__link"
+              to={`/annonces/${advert.id}`}
+            >
+              <Card
+                key={advert.id}
+                image={advert.imageName}
+                title={advert.title}
+                description={advert.content}
+                skills={advert.skills}
+              />
+            </Link>
           ))}
         </section>
       )}

@@ -31,7 +31,7 @@ function TrocServices(): JSX.Element {
         <Route path="/" element={<Welcome />} />
         <Route path="/accueil" element={<AdvertsCards />} />
         <Route path="/profils" element={<ProfilesCards />} />
-        <Route path="/annonces/[id]" element={<AdvertDetail />} />
+        <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />
         <Route path="/a-propos" element={<About />} />
       </Routes>
