@@ -1,0 +1,64 @@
+@use './../../../../styles/vars';
+
+.mobileNav__categorie--dropdown, .mobileNav__links__categorie--links {
+  flex-direction: column;
+  display: flex;
+}
+
+.mobileNav__categorie--span{
+  margin-left: 3%;
+  vertical-align: top;
+}
+
+/* ---------------------------------- */
+
+.navMobile__dropdown {
+  float: left;
+  background-color: vars.$main-color;
+  width: 100%;
+}
+
+
+.navMobile__dropdown--link {
+  width: 100%;
+}
+
+.navMobile__dropdown .navMobile__dropdown--link, .navMobile__dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 1em .2em;
+  text-decoration: none;
+}
+
+.navMobile__dropdown .navMobile__dropdown--link:hover, .navMobile__dropdown:hover .navMobile__dropbtn {
+  background-color: vars.$font-color;
+  color: vars.$main-color;
+  border: none;
+}
+
+.navMobile__dropdown {
+  display: inline-block;
+  margin: auto;
+}
+
+.navMobile__dropbtn {
+  width: 100%;
+  border-radius: .2em;
+}
+
+.navMobile__dropdown--content {
+  display: none;
+  background-color: vars.$dark-main-color;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.navMobile__dropdown--content .navMobile__dropdown--link:hover {  background-color: vars.$font-color;
+  color: vars.$main-color;
+;}
+
+.navMobile__dropdown:hover .navMobile__dropdown--content {
+  display: block;
+}

@@ -1,15 +1,44 @@
 @use './../../../styles/vars';
 
+// On desktop
+@media only screen and (max-width: 1200px) {
+
+  .action .profile {
+    max-width: 4em;
+    max-height: 4em;
+    top: 1.4rem;
+    left: 0.5rem;
+  }
+}
+
+// On mobile
+@media only screen and (min-width: 1200px) {
+  .action {
+    top: 2em;
+    right: 3em;
+  }
+  .action .profiles__menu {
+    right: -10px;
+  }
+
+  .action .profiles__menu::before {
+    right: 28px;
+  }
+  .profile:hover {
+      transform: scale(1.10);
+      box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
+  }
+}
+
 .action {
   position: fixed;
-  top: 2em;
-  right: 3em;
+  z-index: 1;
 }
 
 .action .profile {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 6em;
+  height: 6em;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
@@ -27,7 +56,6 @@
 .action .profiles__menu {
   position: absolute;
   top: 120px;
-  right: -10px;
   padding: 10px 20px;
   background: vars.$soft-color;
   width: 200px;
@@ -48,7 +76,6 @@
   content: "";
   position: absolute;
   top: -5px;
-  right: 28px;
   width: 20px;
   height: 20px;
   background: vars.$main-color;
@@ -100,10 +127,10 @@
 }
 
 .action .profiles__menu .profiles__menu__links .profiles__menu--link:hover .profiles__menu__link--span {
-  color: vars.$main-color;
+  color: vars.$dark-main-color;
 }
 
-.profile:active {
+.isActive {
   transform: scale(1.10);
   box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
 }

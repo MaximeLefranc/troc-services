@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 function Profiles() {
   const menuToggle = () => {
     const toggleMenu: any = document.querySelector('.profiles__menu');
+    const toggleProfile: any = document.querySelector('.profile');
+    toggleProfile.classList.toggle('isActive');
     toggleMenu.classList.toggle('active');
   };
   return (
