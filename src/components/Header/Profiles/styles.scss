@@ -1,0 +1,136 @@
+@use './../../../styles/vars';
+
+// On desktop
+@media only screen and (max-width: 1200px) {
+
+  .action .profile {
+    max-width: 4em;
+    max-height: 4em;
+    top: 1.4rem;
+    left: 0.5rem;
+  }
+}
+
+// On mobile
+@media only screen and (min-width: 1200px) {
+  .action {
+    top: 2em;
+    right: 3em;
+  }
+  .action .profiles__menu {
+    right: -10px;
+  }
+
+  .action .profiles__menu::before {
+    right: 28px;
+  }
+  .profile:hover {
+      transform: scale(1.10);
+      box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
+  }
+}
+
+.action {
+  position: fixed;
+  z-index: 1;
+}
+
+.action .profile {
+  position: relative;
+  width: 6em;
+  height: 6em;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.action .profile img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.action .profiles__menu {
+  position: absolute;
+  top: 120px;
+  padding: 10px 20px;
+  background: vars.$soft-color;
+  width: 200px;
+  box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.action .profiles__menu.active {
+  top: 80px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.action .profiles__menu::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  width: 20px;
+  height: 20px;
+  background: vars.$main-color;
+  transform: rotate(45deg);
+}
+
+.action .profiles__menu h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.5em;
+}
+
+.action .profiles__menu h3 span {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.action .profiles__menu .profiles__menu__links .profiles__menu--link {
+  list-style: none;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.action .profiles__menu .profiles__menu__links .profiles__menu--link img {
+  max-width: 20px;
+  margin-right: 10px;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.action .profiles__menu .profiles__menu__links .profiles__menu--link:hover img {
+  opacity: 1;
+}
+
+.action .profiles__menu .profiles__menu__links .profiles__menu--link .profiles__menu__link--span {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.5s;
+  font-size: large;
+}
+
+.action .profiles__menu .profiles__menu__links .profiles__menu--link:hover .profiles__menu__link--span {
+  color: vars.$dark-main-color;
+}
+
+.isActive {
+  transform: scale(1.10);
+  box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
+}

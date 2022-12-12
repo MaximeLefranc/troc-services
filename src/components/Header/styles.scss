@@ -1,0 +1,143 @@
+@use './../../styles/vars';
+
+.Nav__logo {
+  width: 13em;
+  margin-left: 3em;
+}
+
+.Nav__logo--link {
+  margin-right: 85%;
+}
+
+@media only screen and (min-width: 1200px) {
+  .header {
+    background-image: url('./../../assets/images/roselyn-tirado-GDWmu0bFfS4-unsplash.png');
+    background-size: 100%;
+    background-position: 0rem -20em;
+  }
+}
+
+.header {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.topHeader {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.topNav {
+  width: 100%;
+}
+
+.header__btn--subscribe,
+.header__link--profils,
+.header__btn--advert,
+.header__form__button {
+  color: vars.$font-color;
+  background-color: vars.$main-color;
+  font-family: vars.$main-font;
+  border-radius: .2em;
+  border: none;
+
+  &:active {
+    transform: scale(0.95);
+    color: vars.$main-color;
+    background-color: vars.$font-color;
+  }
+
+  &:hover {
+    box-shadow: .1em .1em .5em black;
+  }
+}
+
+.header__btn--subscribe {
+  min-width: 7rem;
+  max-height: 3em;
+  margin-top: 1%;
+}
+
+.header__link--profils {
+  min-width: 7rem;
+  max-height: 2rem;
+  margin: 1.6% 1% auto 0%;
+  text-align: center;
+  font-size: large;
+  padding-top: 0.2%;
+}
+
+@media only screen and (max-width: 1200px) {
+
+  .header__link--profils,
+  .header__link--subscribe {
+    display: none;
+  }
+
+  .header__form {
+    width: 100%;
+    margin-top: 5rem;
+
+    &__input--service {
+      width: 50%;
+    }
+
+    &__input--zip {
+      width: 25%;
+    }
+
+    &__button {
+      width: 25%;
+    }
+
+  }
+
+  .topHeader {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .header__form {
+    margin: 0% 60.2% 0% 1.2%;
+  }
+}
+
+.header__form {
+  height: 4.5em;
+  display: flex;
+  font-family: vars.$main-font;
+
+
+  &__input--service,
+  &__input--zip {
+    font-family: vars.$main-font;
+    border: none;
+
+    &:hover,
+    &:focus {
+      box-shadow: .9em .0em 0.8em rgb(97, 97, 97);
+    }
+  }
+
+  &__button {
+    border: .1em solid vars.$main-color;
+    color: vars.$font-color;
+    background-color: vars.$main-color;
+    font-family: vars.$main-font;
+    border-radius: .5em;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .header__btn--advert {
+    width: 100%;
+    height: 4.5em;
+  }
+}
+
+.header__btn--advert {
+  min-height: 3em;
+  margin-bottom: .2%;
+  font-size: large;
+}
