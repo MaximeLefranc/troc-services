@@ -2,7 +2,8 @@ import axios from 'axios';
 import { Middleware } from 'redux';
 import {
   actionAddAdvertsInState,
-  FETCH_ADVERTISEMENTS_FOR_MAIN_PAGE,
+  actionAddSkillsInState,
+  FETCH_ADVERTISEMENTS_AND_SKILLS_FOR_MAIN_PAGE,
 } from '../actions/advertisements';
 import { actionToggleLoader } from '../actions/user';
 
@@ -19,12 +20,20 @@ if (process.env.NODE_ENV === 'development') {
 
 const advertsMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case FETCH_ADVERTISEMENTS_FOR_MAIN_PAGE:
+    case FETCH_ADVERTISEMENTS_AND_SKILLS_FOR_MAIN_PAGE:
       store.dispatch(actionToggleLoader());
-      axios(`${urlAPI}api/advertisements`)
-        .then((response) => {
-          store.dispatch(actionAddAdvertsInState(response.data));
-        })
+      const requestAdverts = axios.get(`${urlAPI}api/advertisements`);
+      const requestSkills = axios.get(`${urlAPI}api/categories`);
+      axios
+        .all([requestAdverts, requestSkills])
+        .then(
+          axios.spread((...responses) => {
+            const adverts = responses[0];
+            const skills = responses[1];
+            store.dispatch(actionAddAdvertsInState(adverts.data));
+            store.dispatch(actionAddSkillsInState(skills.data));
+          })
+        )
         .catch((error) => {
           console.error(error);
         })
