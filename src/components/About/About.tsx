@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import maxPhoto from '../../assets/images/max-lefranc.svg';
+import nicoPhoto from '../../assets/images/nicolas-mahieux.png';
 import './styles.scss';
 
 function About(): JSX.Element {
@@ -43,7 +44,7 @@ function About(): JSX.Element {
           <h3 className="team__member__name">Nicolas Mahieu</h3>
           <img
             className="team__member__picture"
-            src="https://static-cse.canva.com/blob/189288/article_canva_le_guide_pour_creer_de_superbes_photos_de_profil_9-1.jpg"
+            src={nicoPhoto}
             alt="picture of dev"
           ></img>
         </div>

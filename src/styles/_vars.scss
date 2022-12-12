@@ -1,5 +1,4 @@
 @use "sass:color";
-
 /* COLORS */
 
 $font-color: #FFFBFE;
@@ -10,7 +9,7 @@ $main-color: #6667AB;
 $dark-main-color: color.scale($main-color, $lightness: -40%);
 $soft-color: #838E83;
 $dark-color: #2A2E45;
+$dark-main-color: color.scale($main-color, $lightness: -40%);
 
-/* POLICE */
-
+// Police
 $main-font: 'Josefin Sans', sans-serif;

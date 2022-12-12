@@ -3,11 +3,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from '../reducers/index';
 import authentMiddleware from '../middlewares/authentMiddleware';
 import inscriptionMiddleware from '../middlewares/inscriptionMiddleware';
+import advertsMiddleware from '../middlewares/advertsMiddleware';
 
 const composeEnhancers = composeWithDevTools;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(authentMiddleware, inscriptionMiddleware)
+  applyMiddleware(inscriptionMiddleware, authentMiddleware, advertsMiddleware)
 );
 
 const store = createStore(reducer, enhancers);

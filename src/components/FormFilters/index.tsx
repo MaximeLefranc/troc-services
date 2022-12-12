@@ -1,9 +1,20 @@
+import '../Welcome/styles.scss';
+import { useLocation } from 'react-router-dom';
+
 function FormFilters() {
+  const location = useLocation();
+  const classNameVariant: string = location.pathname !== '/' ? 'header__' : '';
   return (
-    <form className="form">
-      <input className="form__input--service" placeholder="Un service ..." />
-      <input className="form__input--zip" placeholder="Où ..." />
-      <button className="form__button" type="button">
+    <form className={`${classNameVariant}form`}>
+      <input
+        className={`${classNameVariant}form__input--service`}
+        placeholder="Un service ..."
+      />
+      <input
+        className={`${classNameVariant}form__input--zip`}
+        placeholder="Où ..."
+      />
+      <button className={`${classNameVariant}form__button`} type="button">
         Rechercher
       </button>
     </form>

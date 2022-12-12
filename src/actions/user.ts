@@ -4,6 +4,8 @@
 
 export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
 export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
+export const TOGGLE_LOADER = 'TOGGLE_LOADER';
+
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -25,6 +27,7 @@ export function actionToggleLogInForm() {
  * @param nameStateInput name of input in state (email or password)
  * @returns Object Action
  */
+
 export function actionChangeInputValueConnection(
   value: string,
   nameStateInput: string
@@ -36,5 +39,15 @@ export function actionChangeInputValueConnection(
       newValue: value,
       input: nameStateInput,
     },
+  };
+}
+
+/**
+ * Turn in true or false the state isLoading in state.user
+ * @returns Object Action
+ */
+export function actionToggleLoader() {
+  return {
+    type: TOGGLE_LOADER,
   };
 }

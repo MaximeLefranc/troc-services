@@ -1,71 +1,61 @@
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { GlobalState } from '../../../reducers';
+import Spinner from '../../Spinner';
 import Card from '../Card';
 import './../styles.scss';
 
+export interface Adverts {
+  id: number;
+  imageName: string;
+  title: string;
+  content: string;
+  skills: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+  user: {
+    id: number;
+    imageName: string;
+    nickname: string;
+    skill: [
+      {
+        id: number;
+        name: string;
+      }
+    ];
+  };
+}
+
 function AdvertsCards(): JSX.Element {
+  const advertList = useSelector(
+    (state: GlobalState) => state.advertisements.listOfAdverts
+  );
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <section className="main">
       <h2 className="main__title">Les dernières annonces</h2>
       <section className="cards">
-        <Card
-          image="https://static.photoweb.fr/photoweb.web.catalog.frontoffice/menu/toile-photo-2col-2020-02.jpg"
-          title="Test"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim neque at sapien consequat placerat. Cras nunc lectus, gravida consequat diam vel, laoreet pellentesque nunc. Proin aliquet neque non cursus viverra. Aenean nec vestibulum dui. Vivamus gravida nunc et est scelerisque faucibus. Sed vehicula, justo condimentum aliquam interdum, nisi tortor posuere libero, id pulvinar libero nulla in sapien. Donec non velit eleifend, semper purus ac, lobortis elit. Nullam rutrum nisl vitae sapien vulputate, sit amet ultrices risus sagittis. Cras eu ipsum urna. Fusce pellentesque ac nisl eu feugiat. Sed suscipit, ante vitae molestie imperdiet, diam massa tempor odio, in euismod mi metus a erat. Phasellus faucibus lacus vel vehicula finibus. Proin laoreet enim at ornare tempor. Curabitur feugiat vestibulum felis sed commodo."
-          skills={[
-            'jardinage',
-            'ménage',
-            'electricité',
-            'plomberie',
-            'aide à la personne',
-          ]}
-        />
-        <Card
-          image="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
-          title="Test"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim neque at sapien consequat placerat. Cras nunc lectus, gravida consequat diam vel, laoreet pellentesque nunc. Proin aliquet neque non cursus viverra. Aenean nec vestibulum dui. Vivamus gravida nunc et est scelerisque faucibus. Sed vehicula, justo condimentum aliquam interdum, nisi tortor posuere libero, id pulvinar libero nulla in sapien. Donec non velit eleifend, semper purus ac, lobortis elit. Nullam rutrum nisl vitae sapien vulputate, sit amet ultrices risus sagittis. Cras eu ipsum urna. Fusce pellentesque ac nisl eu feugiat. Sed suscipit, ante vitae molestie imperdiet, diam massa tempor odio, in euismod mi metus a erat. Phasellus faucibus lacus vel vehicula finibus. Proin laoreet enim at ornare tempor. Curabitur feugiat vestibulum felis sed commodo."
-          skills={[
-            'jardinage',
-            'ménage',
-            'electricité',
-            'plomberie',
-            'aide à la personne',
-          ]}
-        />
-        <Card
-          image="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
-          title="Test"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim neque at sapien consequat placerat. Cras nunc lectus, gravida consequat diam vel, laoreet pellentesque nunc. Proin aliquet neque non cursus viverra. Aenean nec vestibulum dui. Vivamus gravida nunc et est scelerisque faucibus. Sed vehicula, justo condimentum aliquam interdum, nisi tortor posuere libero, id pulvinar libero nulla in sapien. Donec non velit eleifend, semper purus ac, lobortis elit. Nullam rutrum nisl vitae sapien vulputate, sit amet ultrices risus sagittis. Cras eu ipsum urna. Fusce pellentesque ac nisl eu feugiat. Sed suscipit, ante vitae molestie imperdiet, diam massa tempor odio, in euismod mi metus a erat. Phasellus faucibus lacus vel vehicula finibus. Proin laoreet enim at ornare tempor. Curabitur feugiat vestibulum felis sed commodo."
-          skills={[
-            'jardinage',
-            'ménage',
-            'electricité',
-            'plomberie',
-            'aide à la personne',
-          ]}
-        />
-        <Card
-          image="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
-          title="Test"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim neque at sapien consequat placerat. Cras nunc lectus, gravida consequat diam vel, laoreet pellentesque nunc. Proin aliquet neque non cursus viverra. Aenean nec vestibulum dui. Vivamus gravida nunc et est scelerisque faucibus. Sed vehicula, justo condimentum aliquam interdum, nisi tortor posuere libero, id pulvinar libero nulla in sapien. Donec non velit eleifend, semper purus ac, lobortis elit. Nullam rutrum nisl vitae sapien vulputate, sit amet ultrices risus sagittis. Cras eu ipsum urna. Fusce pellentesque ac nisl eu feugiat. Sed suscipit, ante vitae molestie imperdiet, diam massa tempor odio, in euismod mi metus a erat. Phasellus faucibus lacus vel vehicula finibus. Proin laoreet enim at ornare tempor. Curabitur feugiat vestibulum felis sed commodo."
-          skills={[
-            'jardinage',
-            'ménage',
-            'electricité',
-            'plomberie',
-            'aide à la personne',
-          ]}
-        />
-        <Card
-          image="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
-          title="Test"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim neque at sapien consequat placerat. Cras nunc lectus, gravida consequat diam vel, laoreet pellentesque nunc. Proin aliquet neque non cursus viverra. Aenean nec vestibulum dui. Vivamus gravida nunc et est scelerisque faucibus. Sed vehicula, justo condimentum aliquam interdum, nisi tortor posuere libero, id pulvinar libero nulla in sapien. Donec non velit eleifend, semper purus ac, lobortis elit. Nullam rutrum nisl vitae sapien vulputate, sit amet ultrices risus sagittis. Cras eu ipsum urna. Fusce pellentesque ac nisl eu feugiat. Sed suscipit, ante vitae molestie imperdiet, diam massa tempor odio, in euismod mi metus a erat. Phasellus faucibus lacus vel vehicula finibus. Proin laoreet enim at ornare tempor. Curabitur feugiat vestibulum felis sed commodo."
-          skills={[
-            'jardinage',
-            'ménage',
-            'electricité',
-            'plomberie',
-            'aide à la personne',
-          ]}
-        />
+        {advertList.map((advert: Adverts) => (
+          <Link
+            key={advert.id}
+            className="cards__link"
+            to={`/annonces/${advert.id}`}
+          >
+            <Card
+              key={advert.id}
+              image={advert.imageName}
+              title={advert.title}
+              description={advert.content}
+              skills={advert.skills}
+            />
+          </Link>
+        ))}
       </section>
     </section>
   );
