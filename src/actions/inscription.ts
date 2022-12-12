@@ -3,6 +3,8 @@
 =======================================*/
 
 export const CHANGE_INPUT_VALUE_INSCRIPTION = 'CHANGE_INPUT_VALUE_INSCRIPTION';
+export const ADD_INSCRIPTION_SKILLS_IN_STATE =
+  'ADD_INSCRIPTION_SKILLS_IN_STATE';
 export const SUBMIT_INSCRIPTION_FORM = 'SUBMIT_INSCRIPTION_FORM';
 export const ERROR_MESSAGE_INSCIPTION = 'ERROR_MESSAGE_INSCIPTION';
 
@@ -48,5 +50,18 @@ export function actionErrorMessageInscription(message: string) {
   return {
     type: ERROR_MESSAGE_INSCIPTION,
     payload: message,
+  };
+}
+
+/**
+ * Set an array of skills in state for user inscription
+ * @param {Array} skills of user inscription
+ * @returns Object Action
+ */
+export function actionAddInscriptionSkills(skills: number[]) {
+  console.log(skills);
+  return {
+    type: ADD_INSCRIPTION_SKILLS_IN_STATE,
+    payload: skills,
   };
 }

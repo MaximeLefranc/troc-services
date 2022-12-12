@@ -71,6 +71,13 @@
   border-radius: 5px;
   padding: 1rem;
  }
+ .select {
+  &__skills {
+    margin-top: 2rem;
+    width: 90%;
+    font-size: 1rem;
+  }
+ }
 
  @media screen and (min-width: 1300px) {
   .inscription {
@@ -98,4 +105,11 @@
     width: 50%;
     padding: .7rem;
   }
+  .select {
+    &__skills {
+      margin-top: 2rem;
+      width: 70%;
+      font-size: 1.1rem;
+    }
+   }
  }

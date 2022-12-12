@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import {
+  ADD_INSCRIPTION_SKILLS_IN_STATE,
   CHANGE_INPUT_VALUE_INSCRIPTION,
   ERROR_MESSAGE_INSCIPTION,
 } from '../actions/inscription';
@@ -15,6 +16,7 @@ export interface InscriptionState {
   town: string;
   zip: string;
   description: string;
+  skills: number[];
   password: string;
   passwordConfirmation: string;
   message: string;
@@ -31,6 +33,7 @@ export const initialState: InscriptionState = {
   town: '',
   zip: '',
   description: '',
+  skills: [],
   password: '',
   passwordConfirmation: '',
   message: '',
@@ -51,6 +54,11 @@ const inscriptionReducer = (
       return {
         ...state,
         message: action.payload,
+      };
+    case ADD_INSCRIPTION_SKILLS_IN_STATE:
+      return {
+        ...state,
+        skills: action.payload,
       };
     default:
       return state;

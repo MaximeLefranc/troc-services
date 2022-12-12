@@ -7,11 +7,13 @@ import {
 } from '../../actions/inscription';
 import { GlobalState } from '../../reducers';
 import { checkPassword } from '../../utils/utils';
+import SkillsSelect from '../SkillsSelect';
 import FieldInscription from './FieldInscription';
 import './styles.scss';
 
 function InscriptionForm(): JSX.Element {
   const dispatch = useDispatch();
+  const skills = useSelector((state: GlobalState) => state.inscription.skills);
   const password = useSelector(
     (state: GlobalState) => state.inscription.password
   );
@@ -26,6 +28,12 @@ function InscriptionForm(): JSX.Element {
     const verifPassword = checkPassword(password, passwordConfirmation);
     if (!verifPassword && typeof verifPassword === 'string') {
       dispatch(actionErrorMessageInscription(verifPassword));
+    } else if (skills.length === 0) {
+      dispatch(
+        actionErrorMessageInscription(
+          'Veuillez sélectionner au moins une compétence'
+        )
+      );
     } else {
       dispatch(actionSubmitInscriptionForm());
     }
@@ -139,6 +147,7 @@ function InscriptionForm(): JSX.Element {
           onChange={changeField}
           isTextArea={true}
         />
+        <SkillsSelect />
         <FieldInscription
           label="Mot de passe"
           required={true}

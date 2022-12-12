@@ -6,7 +6,6 @@ export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
 export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 
-
 /*=====================================
 ===========ACTIONS CREATORS============
 =======================================*/
