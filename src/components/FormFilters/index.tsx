@@ -1,4 +1,4 @@
-import './styles.scss';
+import '../Welcome/styles.scss';
 import { useLocation } from 'react-router-dom';
 
 function FormFilters() {

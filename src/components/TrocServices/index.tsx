@@ -8,6 +8,7 @@ import AdvertDetail from '../AdvertDetail';
 import AdvertsCards from '../Cards/AdvertsCards';
 import ProfilesCards from '../Cards/ProfilesCards';
 import Footer from '../Footer';
+import Header from '../Header';
 import LogInForm from '../LogInForm';
 import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
@@ -26,7 +27,7 @@ function TrocServices(): JSX.Element {
   return (
     <div className="TrocServices">
       <LogInForm />
-      {/* !isWelcomePage && <Header /> */}
+      {!isWelcomePage && <Header />}
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/accueil" element={<AdvertsCards />} />
