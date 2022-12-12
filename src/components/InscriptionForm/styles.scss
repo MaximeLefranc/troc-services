@@ -1,0 +1,101 @@
+@use './../../styles/vars';
+
+.inscription {
+  margin: 1rem 0 3rem 0;
+  padding: 1rem;
+  border: 1px solid vars.$main-color;
+  border-radius: 8px;
+  background-color: vars.$font-transparent-color;
+  &__info {
+    color: vars.$main-color;
+    font-size: .8rem;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__label {
+      width: 20rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.3rem;
+      margin-top: 1rem;
+    }
+    &__input {
+      text-align: center;
+      font-family: vars.$main-font;
+      font-size: 1.1rem;
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid vars.$font-card-color;
+      border-radius: 5px;
+      height: 3rem;
+      margin-top: .5rem;
+      &:focus {
+        border: 1px solid vars.$main-color;
+      }
+      &.description {
+        height: 10rem;
+        padding: .5rem;
+        resize: none;
+        &:focus {
+          outline: none;
+          border: 1px solid vars.$main-color;
+        }
+      }
+      &--photo {
+        display: none;
+      }
+    }
+    &__button {
+      width: 40%;
+      margin-top: 2rem;
+      border: 1px solid vars.$main-color;
+      border-radius: 5px;
+      background-color: transparent;
+      color: vars.$main-color;
+      font-size: 1.3rem;
+      font-weight: bold;
+      height: 4rem;
+      &:hover {
+        background-color: vars.$main-color;
+        color: vars.$font-color;
+      }
+    }
+  }
+}
+ .label-photo {
+  background-color: vars.$main-color;
+  color: vars.$font-color;
+  border-radius: 5px;
+  padding: 1rem;
+ }
+
+ @media screen and (min-width: 1300px) {
+  .inscription {
+    margin: 2rem 20rem 5rem 20rem;
+    &__form {
+      &__label {
+        margin-top: 3rem;
+        width: 70%;
+      }
+      &__input {
+        height: 2.5rem;
+        font-size: 1rem;
+      }
+      &__button {
+        margin-top: 4rem;
+        margin-bottom: 3rem;
+        width: 60%;
+      }
+    }
+    &__info {
+      font-size: 1rem;
+    }
+  }
+  .label-photo {
+    width: 50%;
+    padding: .7rem;
+  }
+ }

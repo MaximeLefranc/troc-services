@@ -8,7 +8,9 @@ import AdvertDetail from '../AdvertDetail';
 import AdvertsCards from '../Cards/AdvertsCards';
 import ProfilesCards from '../Cards/ProfilesCards';
 import Footer from '../Footer';
+import InscriptionForm from '../InscriptionForm';
 import Header from '../Header';
+
 import LogInForm from '../LogInForm';
 import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
@@ -31,6 +33,7 @@ function TrocServices(): JSX.Element {
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/accueil" element={<AdvertsCards />} />
+        <Route path="/inscription" element={<InscriptionForm />} />
         <Route path="/profils" element={<ProfilesCards />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />

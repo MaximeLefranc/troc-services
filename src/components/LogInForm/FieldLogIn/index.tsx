@@ -8,7 +8,7 @@ interface PropLogInForm {
   onChangeHandle: (value: string, nameStateInput: string) => void;
 }
 
-function Field({
+function FieldLogIn({
   value,
   type,
   name,
@@ -41,4 +41,4 @@ function Field({
   );
 }
 
-export default Field;
+export default FieldLogIn;
