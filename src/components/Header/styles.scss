@@ -20,6 +20,7 @@
 .header {
   display: flex;
   flex-flow: wrap;
+  justify-content: space-between;
 }
 
 .topHeader {
@@ -97,19 +98,25 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
-  .header__form {
-    margin: 0% 59.2% 0% 1.2%;
-  }
-}
-
 .header__form {
   height: 4.5em;
+  width: 80%;
   display: flex;
   font-family: vars.$main-font;
+  margin-left: 1%;
 
+  &__input--service {
+    border-top-left-radius: .5em;
+    border-bottom-left-radius: .5em;
+    font-family: vars.$main-font;
+    border: none;
 
-  &__input--service,
+    &:hover,
+    &:focus {
+      box-shadow: .9em .0em 0.8em rgb(97, 97, 97);
+    }
+  }
+
   &__input--zip {
     font-family: vars.$main-font;
     border: none;
@@ -125,7 +132,8 @@
     color: vars.$font-color;
     background-color: vars.$main-color;
     font-family: vars.$main-font;
-    border-radius: .5em;
+    border-top-right-radius: .5em;
+    border-bottom-right-radius: .5em;
   }
 }
 
@@ -140,4 +148,5 @@
   min-height: 3em;
   margin-bottom: .2%;
   font-size: large;
+  margin-right: 1%;
 }
