@@ -34,30 +34,29 @@ function AdvertsCards(): JSX.Element {
     (state: GlobalState) => state.advertisements.listOfAdverts
   );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <section className="main">
       <h2 className="main__title">Les dernières annonces</h2>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <section className="cards">
-          {advertList.map((advert: Adverts) => (
-            <Link
+      <section className="cards">
+        {advertList.map((advert: Adverts) => (
+          <Link
+            key={advert.id}
+            className="cards__link"
+            to={`/annonces/${advert.id}`}
+          >
+            <Card
               key={advert.id}
-              className="cards__link"
-              to={`/annonces/${advert.id}`}
-            >
-              <Card
-                key={advert.id}
-                image={advert.imageName}
-                title={advert.title}
-                description={advert.content}
-                skills={advert.skills}
-              />
-            </Link>
-          ))}
-        </section>
-      )}
+              image={advert.imageName}
+              title={advert.title}
+              description={advert.content}
+              skills={advert.skills}
+            />
+          </Link>
+        ))}
+      </section>
     </section>
   );
 }
