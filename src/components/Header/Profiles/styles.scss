@@ -1,40 +1,13 @@
 @use './../../../styles/vars';
 
-// On desktop
-@media only screen and (max-width: 1200px) {
-
-  .action .profile {
-    max-width: 4em;
-    max-height: 4em;
-    top: 1.4rem;
-    left: 0.5rem;
-  }
-}
-
-// On mobile
-@media only screen and (min-width: 1200px) {
-  .action {
-    top: 2em;
-    right: 3em;
-  }
-  .action .profiles__menu {
-    right: -10px;
-  }
-
-  .action .profiles__menu::before {
-    right: 28px;
-  }
-  .profile:hover {
-      transform: scale(1.10);
-      box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
-  }
-}
-
 .action {
-  position: relative;
+  position: fixed;
   z-index: 22;
   width: 3.9rem;
   height: 5rem;
+  top: .5rem;
+  left: .5rem;
+
 }
 
 .action .profile {
@@ -134,4 +107,35 @@
 .isActive {
   transform: scale(1.10);
   box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
+}
+
+// On mobile
+@media only screen and (min-width: 1200px) {
+  .action {
+    top: 2em;
+    right: 3em;
+    position: relative;
+  }
+  .action .profiles__menu {
+    right: -10px;
+  }
+
+  .action .profiles__menu::before {
+    right: 28px;
+  }
+  .profile:hover {
+      transform: scale(1.10);
+      box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
+  }
+}
+
+// On desktop
+@media only screen and (max-width: 1200px) {
+
+  .action .profile {
+    max-width: 4em;
+    max-height: 4em;
+    top: 1.4rem;
+    left: 0.5rem;
+  }
 }

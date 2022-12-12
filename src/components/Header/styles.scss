@@ -68,35 +68,7 @@
   padding-top: 0.2%;
 }
 
-@media only screen and (max-width: 1200px) {
 
-  .header__link--profils,
-  .header__link--subscribe {
-    display: none;
-  }
-
-  .header__form {
-    width: 100%;
-    margin-top: 5rem;
-
-    &__input--service {
-      width: 50%;
-    }
-
-    &__input--zip {
-      width: 25%;
-    }
-
-    &__button {
-      width: 25%;
-    }
-
-  }
-
-  .topHeader {
-    display: block;
-  }
-}
 
 .header__form {
   height: 4.5em;
@@ -149,4 +121,34 @@
   margin-bottom: .2%;
   font-size: large;
   margin-right: 1%;
+}
+
+@media only screen and (max-width: 1200px) {
+
+  .header__link--profils,
+  .header__link--subscribe {
+    display: none;
+  }
+
+  .header__form {
+    width: 100%;
+    margin-top: 5rem;
+
+    &__input--service {
+      width: 50%;
+    }
+
+    &__input--zip {
+      width: 25%;
+    }
+
+    &__button {
+      width: 25%;
+    }
+
+  }
+
+  .topHeader {
+    display: block;
+  }
 }
