@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { actionFetchAdvertsementsForMainPage } from '../../actions/advertisements';
+import { actionFetchAdvertsementsAndSkillsForMainPage } from '../../actions/advertisements';
 
 import About from '../About/About';
 import AdvertDetail from '../AdvertDetail';
@@ -22,7 +22,7 @@ function TrocServices(): JSX.Element {
   const { pathname } = useLocation() as Location;
   const isWelcomePage: boolean = pathname === '/';
   useEffect(() => {
-    dispatch(actionFetchAdvertsementsForMainPage());
+    dispatch(actionFetchAdvertsementsAndSkillsForMainPage());
   }, []);
   return (
     <div className="TrocServices">
