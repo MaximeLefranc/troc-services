@@ -6,6 +6,10 @@
   border: 1px solid vars.$main-color;
   border-radius: 8px;
   background-color: vars.$font-transparent-color;
+  &__info {
+    color: vars.$main-color;
+    font-size: .8rem;
+  }
   &__form {
     display: flex;
     flex-direction: column;
@@ -28,6 +32,18 @@
       border-radius: 5px;
       height: 3rem;
       margin-top: .5rem;
+      &:focus {
+        border: 1px solid vars.$main-color;
+      }
+      &.description {
+        height: 10rem;
+        padding: .5rem;
+        resize: none;
+        &:focus {
+          outline: none;
+          border: 1px solid vars.$main-color;
+        }
+      }
       &--photo {
         display: none;
       }
@@ -73,6 +89,9 @@
         margin-bottom: 3rem;
         width: 60%;
       }
+    }
+    &__info {
+      font-size: 1rem;
     }
   }
   .label-photo {

@@ -4,13 +4,14 @@ interface FieldPropsInscription {
   label: string;
   required: boolean;
   id: string;
-  type: string;
   name: string;
   placeholder: string;
   className: string;
+  type?: string;
   classNameLabel?: string;
   accept?: string;
   pattern?: string;
+  isTextArea?: boolean;
   onChange: (value: string | File, nameInput: string) => void;
 }
 
@@ -26,6 +27,7 @@ function FieldInscription({
   accept,
   pattern,
   onChange,
+  isTextArea = false,
 }: FieldPropsInscription): JSX.Element {
   const handleChangeValueInState = (evt: ChangeEvent): void => {
     if (name === 'picture') {
@@ -43,6 +45,25 @@ function FieldInscription({
       onChange(value, name);
     }
   };
+  if (required) {
+    label = `${label} *`;
+  }
+  if (isTextArea) {
+    return (
+      <label className={classNameLabel}>
+        {label}
+        <textarea
+          required={required}
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          className={className}
+          onChange={handleChangeValueInState}
+          rows={4}
+        />
+      </label>
+    );
+  }
   return (
     <label className={classNameLabel}>
       {label}

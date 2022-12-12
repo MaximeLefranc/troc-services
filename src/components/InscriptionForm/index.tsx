@@ -32,6 +32,9 @@ function InscriptionForm(): JSX.Element {
   };
   return (
     <section className="inscription">
+      <p className="inscription__info">
+        Les champs marqués d'une * sont obligatoire
+      </p>
       <form className="inscription__form" onSubmit={handleSubmitInscription}>
         <FieldInscription
           label="Pseudo"
@@ -82,7 +85,7 @@ function InscriptionForm(): JSX.Element {
           name="picture"
           placeholder="Choisir une photo"
           className="inscription__form__input--photo"
-          accept="image/jpeg jpg png "
+          accept="image/jpeg, image/jpg, image/png"
           onChange={changeField}
         />
         <FieldInscription
@@ -125,6 +128,16 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           pattern="[0-9]*"
           onChange={changeField}
+        />
+        <FieldInscription
+          label="Description"
+          required={true}
+          id="description"
+          name="description"
+          placeholder="Votre desccription ici"
+          className="inscription__form__input description"
+          onChange={changeField}
+          isTextArea={true}
         />
         <FieldInscription
           label="Mot de passe"

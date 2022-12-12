@@ -14,6 +14,7 @@ export interface InscriptionState {
   adress: string;
   town: string;
   zip: string;
+  description: string;
   password: string;
   passwordConfirmation: string;
   message: string;
@@ -29,6 +30,7 @@ export const initialState: InscriptionState = {
   adress: '',
   town: '',
   zip: '',
+  description: '',
   password: '',
   passwordConfirmation: '',
   message: '',
