@@ -1,0 +1,144 @@
+@use './../../styles/vars';
+
+.main {
+  padding: 0 .5rem 2rem .5rem;
+  &__title {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    padding-left: .7rem;
+    color: vars.$main-color;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  background-color: vars.$font-transparent-card-color;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  min-height: 6.5rem;
+  max-height: 12rem;
+  overflow: hidden;
+  &__container {
+    width: 30%;
+    height: 6.5rem;
+    margin-bottom: .3rem;
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+  }
+  &__description {
+    width: 70%;
+    padding: .5rem;
+    height: 6rem;   
+    &__title {
+      font-size: 1.2rem;
+      margin-bottom: .2rem;
+      height: 1.15rem;
+      overflow: hidden;
+      color: vars.$dark-main-color;
+    }
+    &__resume {
+      max-height: 4.7rem;
+      font-size: .8rem;
+      overflow: hidden
+    }
+  }
+  &__skills {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    &__skill {
+      text-align: center;
+      font-size: .8rem;
+      margin: 0rem .3rem .3rem .3rem;
+      display: block;
+      background-color: vars.$main-color;
+      color: vars.$font-color ;
+      border-radius: 5px;
+      padding: .2rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .main {
+    padding-left: 11rem;
+    padding-right: 11rem;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .cards {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    &__link {
+      display: flex;
+      width: 17%;
+      margin: 1rem 2rem 1rem 2rem;
+    }
+  }
+  .card {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-height: 22rem;
+    position: relative;
+    transition-duration: 1s;
+    &:hover {
+      box-shadow: 5px 5px 5px vars.$font-card-color;
+      transform: scale(1.02);
+      transition-duration: .3s;
+    }
+    &__container {
+      width: 100%;
+      height: 50%;
+      &__image {
+        height: 9rem;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 5px;
+      }
+    }
+    &__description {
+      object-fit: contain;
+      width: 100%;
+      height: 8rem;
+      &__title {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        top: 1%;
+        color: vars.$font-color;
+        text-shadow: 1px 1px 2px vars.$dark-color;
+        font-size: 1.2rem;
+        padding: 0 1rem;
+      }
+      &__resume {
+        font-size: 1rem;
+        text-align: center;
+        max-height: 6.95rem;
+        
+      }
+    }
+    &__skills {
+      margin-bottom: .9rem;
+      &__skill {
+        margin: .2rem;
+      }
+    }
+  }
+}

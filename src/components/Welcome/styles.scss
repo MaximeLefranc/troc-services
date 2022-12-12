@@ -5,8 +5,9 @@
   width: 100vw;
   &__logo {
     display: block;
-    margin: 0 auto;
-    width: 90%;
+    margin: 0 auto 1rem auto;
+    width: 50%;
+    object-fit: cover;
   }
   &__video {
     display: none;
@@ -26,7 +27,7 @@
   padding-right: 1rem;
   font-size: 1rem;
   display: block;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto 7rem auto;
   text-align: center;
  }
 
@@ -44,9 +45,9 @@
     font-family: 'Josefin Sans', sans-serif;
   }
   &__button {
-    width: 30%;
+    width: 120px;
     display: block;
-    margin: 1rem auto 2em auto;
+    margin: 1rem auto 3rem auto;
     padding: 1rem;
     color: vars.$font-color;
     border: none;
@@ -56,19 +57,20 @@
   }
  }
 
- @media screen and (min-width: 1450px) {
+ @media screen and (min-width: 800px) {
   .welcome {
     &__logo {
       position: absolute;
-      width: 15%;
-      top: -6%;
-      left: -2%;
+      width: 12%;
+      top: 0;
+      left: 0;
     }
     &__video {
       position: relative;
       display: block;
-      height: auto;
+      height: 100%;
       width: 100%;
+      object-fit: cover;
     }
     &__links {
       position: absolute;
@@ -86,9 +88,9 @@
     padding-left: 2rem;
     padding-right: 2rem;
     top: 40%;
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: vars.$font-color;
-    text-shadow: 3px 3px 3px vars.$main-color;
+    text-shadow: 2px 2px 3px vars.$dark-color;
   }
   .form {
     position: absolute;

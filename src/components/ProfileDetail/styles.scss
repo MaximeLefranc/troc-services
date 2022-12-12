@@ -1,0 +1,122 @@
+@use './../../styles/vars';
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 3rem;
+  &__picture {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px vars.$dark-color;
+    margin-bottom: 1rem;
+  }
+  &__pseudo {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  &__contact {
+    background-color: vars.$main-color;
+    padding: .5rem;
+    width: 10rem;
+    color: vars.$font-color;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-family: vars.$main-font ;
+    &:hover {
+      background-color: transparent;
+      color: vars.$main-color;
+      border: 1px solid vars.$main-color;
+    }
+  }
+  &__description {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  &__title {
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: vars.$dark-main-color;
+    border-top: 1px solid vars.$dark-main-color;
+    border-bottom: 1px solid vars.$dark-main-color;
+  }
+  &__skills{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
+    &__skill {
+      padding: .5rem;
+      background-color: vars.$main-color;
+      margin: .1rem;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      color: vars.$font-color;
+    }
+  }
+  &__adverts {
+    border: 1px solid vars.$dark-main-color;
+    padding: .5rem;
+    margin-bottom: .5rem;
+    box-shadow: 1px 1px 3px vars.$dark-color;
+    border-radius: 5px;
+    background-color: vars.$font-transparent-color;
+    &__picture {
+      width: 8rem;
+      height: 7rem;
+      float: left;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      margin-right: .5rem;
+      
+    }
+    &__title {
+      font-size: 1.1rem;
+      margin-bottom: .5rem;
+    }
+    &__description {
+      font-size: 1rem;
+      height: calc(6.5rem - (1.1rem + .5rem));
+      overflow: hidden;
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .profile {
+    padding: 5rem 8rem;
+    border: 1px solid vars.$dark-main-color;
+    border-radius: 5px;
+    &__picture {
+      margin-bottom: 2rem;
+      height: 12rem;
+      width: 12rem;
+    }
+    &__pseudo {
+      margin-bottom: 2rem;
+    }
+    &__contact {
+      margin-bottom: 2rem;
+    }
+    &__description {
+      margin-bottom: 2rem;
+    }
+    &__title {
+      margin-bottom: 2rem;
+    }
+    &__skills {
+      margin-bottom: 2rem;
+    }
+    &__adverts {
+      margin-bottom: 1rem;
+    }
+  }
+}
