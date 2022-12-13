@@ -38,7 +38,8 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         name = picture.name;
       }
       const formData = new FormData();
-      formData.append('image_file', picture);
+      formData.append('file', picture);
+      console.log(picture);
       const requestPicture = axios.post(
         `${urlAPI}api/user/registerfile`,
         formData
@@ -53,7 +54,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         birth_date: birthday,
         nickname: nickname,
         biography: description,
-        image_file: JSON.stringify(picture),
+        imageFile: formData,
         address: adress,
         skill: skills,
         city: town,
