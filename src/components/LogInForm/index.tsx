@@ -2,6 +2,7 @@ import { SyntheticEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   actionChangeInputValueConnection,
+  actionFetchAuthentUser,
   actionToggleLogInForm,
 } from '../../actions/user';
 import { GlobalState } from '../../reducers';
@@ -22,6 +23,7 @@ function LogInForm(): JSX.Element {
   };
   const handleSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault();
+    dispatch(actionFetchAuthentUser());
   };
   const handleCloseModal = (): void => {
     dispatch(actionToggleLogInForm());

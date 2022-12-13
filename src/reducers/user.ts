@@ -1,6 +1,5 @@
 import { AnyAction } from 'redux';
 import {
-
   CHANGE_INPUT_VALUE_CONNECTION,
   TOGGLE_LOADER,
   TOGGLE_LOGIN_FORM,
@@ -18,8 +17,8 @@ export interface UserState {
 export const initialState: UserState = {
   isLoading: false,
   modalLogInForm: false,
-  email: '',
-  password: '',
+  email: 'max@test.fr',
+  password: 'maxime',
   isLoggedIn: false,
   pseudo: '',
 };

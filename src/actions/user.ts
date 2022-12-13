@@ -5,6 +5,7 @@
 export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
 export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
+export const FETCH_AUTHENT_USER = 'FETCH_AUTHENT_USER';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -48,5 +49,15 @@ export function actionChangeInputValueConnection(
 export function actionToggleLoader() {
   return {
     type: TOGGLE_LOADER,
+  };
+}
+
+/**
+ * Look if this user is registred in DB
+ * @returns Object Action
+ */
+export function actionFetchAuthentUser() {
+  return {
+    type: FETCH_AUTHENT_USER,
   };
 }
