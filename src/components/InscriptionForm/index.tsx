@@ -8,21 +8,51 @@ import {
 import { GlobalState } from '../../reducers';
 import { checkPassword } from '../../utils/utils';
 import SkillsSelect from '../SkillsSelect';
+import Spinner from '../Spinner';
 import FieldInscription from './FieldInscription';
 import './styles.scss';
 
 function InscriptionForm(): JSX.Element {
   const dispatch = useDispatch();
+
   const skills = useSelector((state: GlobalState) => state.inscription.skills);
+  const nickName = useSelector(
+    (state: GlobalState) => state.inscription.nickname
+  );
+  const lastName = useSelector(
+    (state: GlobalState) => state.inscription.lastname
+  );
+  const firstName = useSelector(
+    (state: GlobalState) => state.inscription.firstname
+  );
+  const town = useSelector((state: GlobalState) => state.inscription.town);
+  const birthDay = useSelector(
+    (state: GlobalState) => state.inscription.birthday
+  );
+  const adress = useSelector((state: GlobalState) => state.inscription.adress);
+  const zip = useSelector((state: GlobalState) => state.inscription.zip);
+  const email = useSelector((state: GlobalState) => state.inscription.email);
+  const description = useSelector(
+    (state: GlobalState) => state.inscription.description
+  );
   const password = useSelector(
     (state: GlobalState) => state.inscription.password
   );
   const passwordConfirmation = useSelector(
     (state: GlobalState) => state.inscription.passwordConfirmation
   );
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  const inscriptionCompleted = useSelector(
+    (state: GlobalState) => state.inscription.inscriptionCompleted
+  );
+  const message = useSelector(
+    (state: GlobalState) => state.inscription.message
+  );
+
   const changeField = (value: string | File, nameInput: string): void => {
     dispatch(actionChangeInputValueInscription(value, nameInput));
   };
+
   const handleSubmitInscription = (evt: SyntheticEvent): void => {
     evt.preventDefault();
     const verifPassword = checkPassword(password, passwordConfirmation);
@@ -38,14 +68,27 @@ function InscriptionForm(): JSX.Element {
       dispatch(actionSubmitInscriptionForm());
     }
   };
+
+  let classNameInfo = 'inscription__info';
+  if (message !== '' && inscriptionCompleted) {
+    classNameInfo = 'inscription__info success';
+  } else if (message !== '' && !inscriptionCompleted) {
+    classNameInfo = 'inscription__info danger';
+  }
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <section className="inscription">
-      <p className="inscription__info">
-        Les champs marqués d'une * sont obligatoire
+      <p className={classNameInfo}>
+        {!message ? "Les champs marqués d'une * sont obligatoire" : message}
       </p>
       <form className="inscription__form" onSubmit={handleSubmitInscription}>
         <FieldInscription
           label="Pseudo"
+          valueInState={nickName}
           type="text"
           required={true}
           id="nickname"
@@ -56,6 +99,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Nom"
+          valueInState={lastName}
           required={true}
           id="lastname"
           type="text"
@@ -66,6 +110,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Prénom"
+          valueInState={firstName}
           required={true}
           id="firstname"
           type="text"
@@ -76,6 +121,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Date de naissance"
+          valueInState={birthDay}
           required={true}
           id="birthday"
           type="date"
@@ -98,6 +144,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Email"
+          valueInState={email}
           required={true}
           id="email"
           type="email"
@@ -108,6 +155,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Adresse"
+          valueInState={adress}
           required={false}
           id="adress"
           type="text"
@@ -118,6 +166,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Ville"
+          valueInState={town}
           required={true}
           id="town"
           type="text"
@@ -128,6 +177,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Code postal"
+          valueInState={zip}
           required={true}
           id="zip"
           type="text"
@@ -139,6 +189,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Description"
+          valueInState={description}
           required={true}
           id="description"
           name="description"
@@ -150,6 +201,7 @@ function InscriptionForm(): JSX.Element {
         <SkillsSelect />
         <FieldInscription
           label="Mot de passe"
+          valueInState={password}
           required={true}
           id="password"
           type="password"
@@ -160,6 +212,7 @@ function InscriptionForm(): JSX.Element {
         />
         <FieldInscription
           label="Confirmation du mot de passe"
+          valueInState={passwordConfirmation}
           required={true}
           id="confirmPassword"
           type="password"

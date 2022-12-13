@@ -20,23 +20,25 @@ export interface InscriptionState {
   password: string;
   passwordConfirmation: string;
   message: string;
+  inscriptionCompleted: boolean;
 }
 
 export const initialState: InscriptionState = {
-  nickname: '',
-  lastname: '',
-  firstname: '',
+  nickname: 'Toto34',
+  lastname: 'Lefranc',
+  firstname: 'Maxime',
   birthday: '',
   picture: '',
-  email: '',
+  email: 'maxilefranc@gmail.com',
   adress: '',
-  town: '',
-  zip: '',
-  description: '',
+  town: 'COLOMBIERS',
+  zip: '34440',
+  description: 'fdgertgre',
   skills: [],
-  password: '',
-  passwordConfirmation: '',
+  password: '@1Trocservices',
+  passwordConfirmation: '@1Trocservices',
   message: '',
+  inscriptionCompleted: false,
 };
 
 const inscriptionReducer = (

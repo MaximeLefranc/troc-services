@@ -21,6 +21,7 @@ function SkillsSelect(): JSX.Element {
   const skillsFromState = useSelector(
     (state: GlobalState) => state.advertisements.listOfSkills
   );
+
   const optionList: Skills[] = [];
   skillsFromState.map((category: Category) => {
     optionList.push({
@@ -35,10 +36,12 @@ function SkillsSelect(): JSX.Element {
       });
     });
   });
+
   const handleChange = (newValue: MultiValue<Skills>) => {
     const idSkills = newValue.map((element) => element.value);
     dispatch(actionAddInscriptionSkills(idSkills));
   };
+
   return (
     <Select
       isMulti
