@@ -14,6 +14,7 @@ import Header from '../Header';
 import LogInForm from '../LogInForm';
 import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
+import { actionHaveTokenInLocalstorage } from '../../actions/user';
 
 interface Location {
   pathname: string;
@@ -25,6 +26,7 @@ function TrocServices(): JSX.Element {
   const isWelcomePage: boolean = pathname === '/';
   useEffect(() => {
     dispatch(actionFetchAdvertsementsAndSkillsForMainPage());
+    dispatch(actionHaveTokenInLocalstorage());
   }, []);
   return (
     <div className="TrocServices">

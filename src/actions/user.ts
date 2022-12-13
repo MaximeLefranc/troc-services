@@ -6,6 +6,9 @@ export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
 export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 export const FETCH_AUTHENT_USER = 'FETCH_AUTHENT_USER';
+export const ATHENT_SUCCESS = 'ATHENT_SUCCESS';
+export const HAVE_TOKEN_IN_LOCALSTORAGE = 'HAVE_TOKEN_IN_LOCALSTORAGE';
+export const LOG_OUT = 'LOG_OUT';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -59,5 +62,41 @@ export function actionToggleLoader() {
 export function actionFetchAuthentUser() {
   return {
     type: FETCH_AUTHENT_USER,
+  };
+}
+
+/**
+ * Action that will save user information in state and local storage
+ * @param pseudo pseudo of user in DB
+ * @param token token of user in DB
+ * @returns Object Action
+ */
+export function actionAuthentSuccess(pseudo: string, token: string) {
+  return {
+    type: ATHENT_SUCCESS,
+    payload: {
+      pseudo: pseudo,
+      token: token,
+    },
+  };
+}
+
+/**
+ * Check in localStorage if token exist
+ * @returns Object Action
+ */
+export function actionHaveTokenInLocalstorage() {
+  return {
+    type: HAVE_TOKEN_IN_LOCALSTORAGE,
+  };
+}
+
+/**
+ * Disconnects a user and deletes his token in localstorage
+ * @returns Object Action
+ */
+export function actionLogOut() {
+  return {
+    type: LOG_OUT,
   };
 }

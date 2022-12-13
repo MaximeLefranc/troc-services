@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
-import { FETCH_AUTHENT_USER } from '../actions/user';
+import { actionAuthentSuccess, FETCH_AUTHENT_USER } from '../actions/user';
 
 let urlAPI: string;
 if (process.env.NODE_ENV === 'development') {
@@ -19,12 +19,17 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
       const { email, password } = store.getState().user;
       console.log(email, password);
       axios
-        .post(`${urlAPI}api/login`, {
-          email: email,
+        .post(`${urlAPI}api/login_check`, {
+          username: email,
           password: password,
         })
         .then((response) => {
-          console.log(response);
+          if (response.status === 200) {
+            console.log(response);
+            store.dispatch(
+              actionAuthentSuccess(response.data.pseudo, response.data.token)
+            );
+          }
         })
         .catch((error) => {
           console.error(error);
