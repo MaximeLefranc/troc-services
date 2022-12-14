@@ -18,6 +18,7 @@ import {
   actionFetchAllMembers,
   actionHaveTokenInLocalstorage,
 } from '../../actions/user';
+import ProfileMessages from '../ProfileMessages';
 
 interface Location {
   pathname: string;
@@ -42,6 +43,7 @@ function TrocServices(): JSX.Element {
         <Route path="/inscription" element={<InscriptionForm />} />
         <Route path="/profils" element={<ProfilesCards />} />
         <Route path="/profils/:slug" element={<ProfileDetail />} />
+        <Route path="/profils/messages" element={<ProfileMessages />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />
         <Route path="/a-propos" element={<About />} />
