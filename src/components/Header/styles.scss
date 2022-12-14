@@ -9,14 +9,6 @@
   margin-right: 85%;
 }
 
-@media only screen and (min-width: 1200px) {
-  .header {
-    background-image: url('./../../assets/images/roselyn-tirado-GDWmu0bFfS4-unsplash.png');
-    background-size: 100%;
-    background-position: 0rem -20em;
-  }
-}
-
 .header {
   display: flex;
   flex-flow: wrap;
@@ -114,6 +106,14 @@
   margin-bottom: .2%;
   font-size: large;
   margin-right: 1%;
+}
+
+@media only screen and (min-width: 1200px) {
+  .header {
+    background-image: url('./../../assets/images/roselyn-tirado-GDWmu0bFfS4-unsplash.png');
+    background-size: 100%;
+    background-position: 0rem -20em;
+  }
 }
 
 @media only screen and (max-width: 1200px) {

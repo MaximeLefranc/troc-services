@@ -1,6 +1,5 @@
 import { AnyAction } from 'redux';
 import {
-
   CHANGE_INPUT_VALUE_CONNECTION,
   TOGGLE_LOADER,
   TOGGLE_LOGIN_FORM,
