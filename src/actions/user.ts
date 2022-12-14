@@ -6,6 +6,7 @@ export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
 export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 export const FETCH_ALL_MEMBERS = 'FETCH_ALL_MEMBERS';
+export const SAVE_ALL_MEMBERS_IN_STATE = 'SAVE_ALL_MEMBERS_IN_STATE';
 export const FETCH_AUTHENT_USER = 'FETCH_AUTHENT_USER';
 export const ATHENT_SUCCESS = 'ATHENT_SUCCESS';
 export const HAVE_TOKEN_IN_LOCALSTORAGE = 'HAVE_TOKEN_IN_LOCALSTORAGE';
@@ -104,10 +105,22 @@ export function actionLogOut() {
 
 /**
  * Fetch in DB a list of members
- * @returns Object ACtion
+ * @returns Object Action
  */
 export function actionFetchAllMembers() {
   return {
     type: FETCH_ALL_MEMBERS,
+  };
+}
+
+/**
+ * Save in state a list of members from API
+ * @param listOfMembers Array of members from API
+ * @returns Object Action
+ */
+export function actionSaveAllMemebersInState(listOfMembers: []) {
+  return {
+    type: SAVE_ALL_MEMBERS_IN_STATE,
+    payload: listOfMembers,
   };
 }
