@@ -14,7 +14,10 @@ import Header from '../Header';
 import LogInForm from '../LogInForm';
 import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
-import { actionHaveTokenInLocalstorage } from '../../actions/user';
+import {
+  actionFetchAllMembers,
+  actionHaveTokenInLocalstorage,
+} from '../../actions/user';
 
 interface Location {
   pathname: string;
@@ -27,6 +30,7 @@ function TrocServices(): JSX.Element {
   useEffect(() => {
     dispatch(actionFetchAdvertsementsAndSkillsForMainPage());
     dispatch(actionHaveTokenInLocalstorage());
+    dispatch(actionFetchAllMembers());
   }, []);
   return (
     <div className="TrocServices">
@@ -37,6 +41,7 @@ function TrocServices(): JSX.Element {
         <Route path="/accueil" element={<AdvertsCards />} />
         <Route path="/inscription" element={<InscriptionForm />} />
         <Route path="/profils" element={<ProfilesCards />} />
+        <Route path="/profils/:slug" element={<ProfileDetail />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />
         <Route path="/a-propos" element={<About />} />
