@@ -1,0 +1,55 @@
+@use './../../../styles/vars';
+
+.message {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: vars.$font-transparent-color;
+  padding: 1rem 1rem 4rem 1rem;
+  border-radius: 1rem;
+  &__img {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    box-shadow: 2px 2px 3px vars.$main-color;
+    margin-bottom: .5rem;
+  }
+  &__pseudo {
+    font-size: 1rem;
+    color: vars.$main-color;
+    margin-bottom: 2rem;
+  }
+  &__subject {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  &__content {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  &__button {
+    padding: 1rem;
+    border-radius: .5rem;
+    border: none;
+    color: vars.$font-color;
+    background-color: vars.$main-color;
+    font-family: vars.$main-font;
+    font-size: 1rem;
+    &:hover {
+      background-color: vars.$font-color;
+      color: vars.$main-color;
+      border: 1px solid vars.$main-color;
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .message {
+    margin: 1rem 15rem 1rem 15rem;
+    padding: 5rem;
+    border: 1px solid vars.$dark-color;
+    border-radius: 1rem;
+  }
+}
