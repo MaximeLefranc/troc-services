@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === 'development') {
     urlAPI = process.env.REACT_APP_API_URL_PROD; //! mettre la bonne url de PORD dans le fichier .env
   }
 }
+console.log(process.env);
 
 const advertsMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {

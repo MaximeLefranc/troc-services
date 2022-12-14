@@ -14,6 +14,8 @@ import Header from '../Header';
 import LogInForm from '../LogInForm';
 import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
+import AdvertList from '../AdvertList';
+
 import {
   actionFetchAllMembers,
   actionHaveTokenInLocalstorage,
@@ -43,6 +45,7 @@ function TrocServices(): JSX.Element {
         <Route path="/profils" element={<ProfilesCards />} />
         <Route path="/profils/:slug" element={<ProfileDetail />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
+        <Route path="/annonces/categorie/:slug" element={<AdvertList />} />
         <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />
         <Route path="/a-propos" element={<About />} />
       </Routes>
