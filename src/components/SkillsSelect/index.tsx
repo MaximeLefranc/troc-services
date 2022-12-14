@@ -18,12 +18,15 @@ export interface Skills {
 
 function SkillsSelect(): JSX.Element {
   const dispatch = useDispatch();
-  const skillsFromState = useSelector(
+  const skillsFromAPI = useSelector(
     (state: GlobalState) => state.advertisements.listOfSkills
   );
+  // const skillsFromState = useSelector(
+  //   (state: GlobalState) => state.inscription.skills
+  // );
 
   const optionList: Skills[] = [];
-  skillsFromState.map((category: Category) => {
+  skillsFromAPI.map((category: Category) => {
     optionList.push({
       value: category.id,
       label: category.name,
@@ -36,6 +39,17 @@ function SkillsSelect(): JSX.Element {
       });
     });
   });
+
+  // let test = [];
+  // optionList.forEach((skill) => {
+  //   skillsFromState.forEach((skillToSearched) => {
+  //     if (skill.value === skillToSearched) {
+  //       test.push(skill);
+  //     }
+  //   });
+  // });
+
+  // console.log(test);
 
   const handleChange = (newValue: MultiValue<Skills>) => {
     const idSkills = newValue.map((element) => element.value);

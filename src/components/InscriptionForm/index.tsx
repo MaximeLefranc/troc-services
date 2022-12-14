@@ -85,7 +85,11 @@ function InscriptionForm(): JSX.Element {
       <p className={classNameInfo}>
         {!message ? "Les champs marqués d'une * sont obligatoire" : message}
       </p>
-      <form className="inscription__form" onSubmit={handleSubmitInscription}>
+      <form
+        className="inscription__form"
+        onSubmit={handleSubmitInscription}
+        encType="multipart/form-data"
+      >
         <FieldInscription
           label="Pseudo"
           valueInState={nickName}
