@@ -5,6 +5,7 @@ import {
   SUBMIT_INSCRIPTION_FORM,
 } from '../actions/inscription';
 import { actionToggleLoader } from '../actions/user';
+import { arrayIdsSkills } from '../selectors/members';
 // import { getBase64 } from '../utils/utils';
 
 let urlAPI: string;
@@ -45,7 +46,8 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
       // console.log(picture);
       // const requestPicture = axios.post(`${urlAPI}api/user/registerfile`);
       // const imageBase64 = getBase64(picture);
-      console.log(picture);
+      // console.log(picture);
+      const skillsIds = arrayIdsSkills(skills);
       const requestInscriptionUser = axios.post(`${urlAPI}api/user/register`, {
         email: email,
         password: password,
@@ -56,7 +58,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         biography: description,
         // target_image_file: formData,
         address: adress,
-        skill: skills,
+        skill: skillsIds,
         city: town,
         zip_code: zip,
       });

@@ -1,3 +1,6 @@
+import { MultiValue } from 'react-select';
+import { Skills } from '../components/SkillsSelect';
+
 /*=====================================
 ============ACTIONS TYPES==============
 =======================================*/
@@ -57,10 +60,10 @@ export function actionErrorMessageInscription(message: string) {
 
 /**
  * Set an array of skills in state for user inscription
- * @param {Array} skills of user inscription
+ * @param skills of user inscription
  * @returns Object Action
  */
-export function actionAddInscriptionSkills(skills: number[]) {
+export function actionAddInscriptionSkills(skills: MultiValue<Skills>) {
   return {
     type: ADD_INSCRIPTION_SKILLS_IN_STATE,
     payload: skills,

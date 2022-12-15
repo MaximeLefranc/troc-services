@@ -21,9 +21,9 @@ function SkillsSelect(): JSX.Element {
   const skillsFromAPI = useSelector(
     (state: GlobalState) => state.advertisements.listOfSkills
   );
-  // const skillsUser = useSelector(
-  //   (state: GlobalState) => state.inscription.skills
-  // );
+  const skillsUser = useSelector(
+    (state: GlobalState) => state.inscription.skills
+  );
 
   const optionList: Skills[] = [];
   skillsFromAPI.map((category: Category) => {
@@ -52,12 +52,13 @@ function SkillsSelect(): JSX.Element {
   // console.log(test);
 
   const handleChange = (newValue: MultiValue<Skills>) => {
-    const idSkills = newValue.map((element) => element.value);
-    dispatch(actionAddInscriptionSkills(idSkills));
+    //const idSkills = newValue.map((element) => element.value);
+    dispatch(actionAddInscriptionSkills(newValue));
   };
 
   return (
     <Select
+      defaultValue={skillsUser}
       isMulti
       name="colors"
       options={optionList}
