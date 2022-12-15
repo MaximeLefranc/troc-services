@@ -9,19 +9,18 @@ import { Adverts } from '../components/Cards/AdvertsCards';
 export function findAdvert(
   listOfAdverts: [],
   searchedSlug: string | undefined
-): Adverts | false {
+): Adverts | string | void {
+  let advertFiltered: Adverts[] | undefined = [];
   if (typeof searchedSlug === 'string') {
     const id = parseInt(searchedSlug);
-    const advert = listOfAdverts.find(
+    advertFiltered = listOfAdverts.find(
       (advertElement: Adverts) => advertElement.id === id
     );
-    if (advert) {
-      return advert;
-    } else {
-      return false;
+    if (typeof advertFiltered === 'undefined') {
+      return 'not found';
     }
+    return advertFiltered;
   }
-  return false;
 }
 
 /**

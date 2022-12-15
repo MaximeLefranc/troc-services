@@ -18,16 +18,20 @@ export function checkPassword(
   return true;
 }
 
-export function getBase64(file: File) {
-  let document;
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    document = reader.result;
-  };
-  reader.onerror = function (error) {
-    console.log('Error: ', error);
-  };
-
-  return document;
+/**
+ * Get url API dev or Prod
+ * @returns string of URL API
+ */
+export function getUrlApi(): string {
+  let urlAPI = '';
+  if (process.env.NODE_ENV === 'development') {
+    if (process.env.REACT_APP_API_URL_DEV) {
+      urlAPI = process.env.REACT_APP_API_URL_DEV;
+    }
+  } else if (process.env.NODE_ENV === 'production') {
+    if (process.env.REACT_APP_API_URL_PROD) {
+      urlAPI = process.env.REACT_APP_API_URL_PROD; //! mettre la bonne url de PORD dans le fichier .env
+    }
+  }
+  return urlAPI;
 }
