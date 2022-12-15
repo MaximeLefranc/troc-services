@@ -26,7 +26,6 @@ import ListMessages from '../ListMessages';
 import DetailMessage from '../ListMessages/DetailMessage';
 import FormMessage from '../ListMessages/FormMessage';
 
-
 interface Location {
   pathname: string;
 }
