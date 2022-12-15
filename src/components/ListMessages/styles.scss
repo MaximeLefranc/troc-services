@@ -1,0 +1,117 @@
+@use './../../styles/vars';
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  &__title {
+    display: block;
+    font-size: 1.3rem;
+    margin: 1rem auto;
+    padding: 1.5rem auto;
+    border-bottom: 1px solid vars.$main-color;
+  }
+  &__button {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1rem;
+    &--received {
+      width: 50%;
+      border: 1px solid vars.$main-color;
+      font-family: vars.$main-font;
+      height: 2rem;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      background-color: vars.$font-color;
+      color: vars.$main-color;
+      font-size: 1.1rem;
+      &:focus {
+        background-color: vars.$main-color;
+        color: vars.$font-color;
+      }
+      &:hover {
+        background-color: vars.$main-color;
+        color: vars.$font-color;
+      }
+    }
+    &--sent {
+      width: 50%;
+      border: 1px solid vars.$main-color;
+      font-family: vars.$main-font;
+      height: 2rem;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      background-color: vars.$font-color;
+      color: vars.$main-color;
+      font-size: 1.1rem;
+      &:focus {
+        background-color: vars.$main-color;
+        color: vars.$font-color;
+      }
+      &:hover {
+        background-color: vars.$main-color;
+        color: vars.$font-color;
+      }
+    }
+  }
+  &__list {
+    &__detail {
+      position: relative;
+      background-color: vars.$font-transparent-card-color;
+      border-radius: 2rem;
+      padding: 1rem;
+      height: 11rem;
+      margin-bottom: 1rem;
+      &--img {
+        float: left;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        margin: 0 .7rem .7rem 0;
+      }
+      &--title {
+        display: inline-block;
+        margin: 0 auto;
+        font-size: 1rem;
+        text-align: center;
+        width: auto;
+      }
+      &--user {
+        font-size: 1rem;
+        color: vars.$main-color;
+        margin-bottom: .5rem;
+      }
+      &--content {
+        font-size: 1rem;
+        justify-items: end;
+        overflow: hidden;
+        height: 6.8rem;
+      }
+      &--delete {
+        float: right;
+        position: absolute;
+        bottom: 1rem;
+        left: 1.5rem;
+        border: none;
+        background-color: transparent;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .messages {
+    margin: 1rem 15rem 1rem 15rem;
+    padding: 2rem 5rem 2rem 5rem;
+    border: 1px solid vars.$dark-color;
+    border-radius: 1rem;
+    &__title {
+      font-size: 1.7rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

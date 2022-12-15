@@ -1,10 +1,17 @@
+import { MultiValue } from 'react-select';
+import { Skills } from '../components/SkillsSelect';
+
 /*=====================================
 ============ACTIONS TYPES==============
 =======================================*/
 
 export const CHANGE_INPUT_VALUE_INSCRIPTION = 'CHANGE_INPUT_VALUE_INSCRIPTION';
+export const ADD_INSCRIPTION_SKILLS_IN_STATE =
+  'ADD_INSCRIPTION_SKILLS_IN_STATE';
 export const SUBMIT_INSCRIPTION_FORM = 'SUBMIT_INSCRIPTION_FORM';
 export const ERROR_MESSAGE_INSCIPTION = 'ERROR_MESSAGE_INSCIPTION';
+export const INSCRIPTION_SUCCESS = 'INSCRIPTION_SUCCESS';
+export const INSCRIPTION_ERROR = 'INSCRIPTION_ERROR';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -48,5 +55,37 @@ export function actionErrorMessageInscription(message: string) {
   return {
     type: ERROR_MESSAGE_INSCIPTION,
     payload: message,
+  };
+}
+
+/**
+ * Set an array of skills in state for user inscription
+ * @param skills of user inscription
+ * @returns Object Action
+ */
+export function actionAddInscriptionSkills(skills: MultiValue<Skills>) {
+  return {
+    type: ADD_INSCRIPTION_SKILLS_IN_STATE,
+    payload: skills,
+  };
+}
+
+/**
+ * Inscription success
+ * @returns Object Action
+ */
+export function actionInscriptionSuccess() {
+  return {
+    type: INSCRIPTION_SUCCESS,
+  };
+}
+
+/**
+ * Inscription failed
+ * @returns Object Action
+ */
+export function actionInscriptionError() {
+  return {
+    type: INSCRIPTION_ERROR,
   };
 }

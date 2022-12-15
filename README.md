@@ -1,8 +1,11 @@
 # Troc'Services project
 
+<div align="center">
+
 ![Title of project](./src/assets/logo/troc-services.png?raw=true "Troc'Services")
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</div>
 
 ## objective of the project
 

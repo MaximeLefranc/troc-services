@@ -12,10 +12,11 @@ interface FieldPropsInscription {
   accept?: string;
   pattern?: string;
   isTextArea?: boolean;
+  valueInState?: string;
   onChange: (value: string | File, nameInput: string) => void;
 }
 
-function FieldInscription({
+function Field({
   label,
   required,
   id,
@@ -26,6 +27,7 @@ function FieldInscription({
   classNameLabel = 'inscription__form__label',
   accept,
   pattern,
+  valueInState = '',
   onChange,
   isTextArea = false,
 }: FieldPropsInscription): JSX.Element {
@@ -34,7 +36,6 @@ function FieldInscription({
       const picture = (evt.target as HTMLInputElement).files;
       if (picture instanceof FileList) {
         if (picture[0]) {
-          console.log(picture[0]);
           onChange(picture[0], name);
         } else {
           onChange('', name);
@@ -53,6 +54,7 @@ function FieldInscription({
       <label className={classNameLabel}>
         {label}
         <textarea
+          value={valueInState}
           required={required}
           id={id}
           name={name}
@@ -68,6 +70,7 @@ function FieldInscription({
     <label className={classNameLabel}>
       {label}
       <input
+        value={valueInState}
         required={required}
         id={id}
         type={type}
@@ -82,4 +85,4 @@ function FieldInscription({
   );
 }
 
-export default FieldInscription;
+export default Field;
