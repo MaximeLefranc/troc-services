@@ -1,9 +1,10 @@
-#<p style="text-align: center;">Troc'Services project</p>
+<div align="center">
+#Troc'Services project
 
-<center>![Title of project](./src/assets/logo/troc-services.png?raw=true "Troc'Services")</center>
+![Title of project](./src/assets/logo/troc-services.png?raw=true "Troc'Services")
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+</div>
 ## objective of the project
 
 > The purpose of the site is to connect two individuals who have a need but do not have the skills, and the money necessary to achieve it. A user declares to need a service in a specific area, by placing an ad.
