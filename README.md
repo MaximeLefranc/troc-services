@@ -1,6 +1,6 @@
 #[color=#6667AB]Troc'Services project[/color] 
 
-![Title of project](./src/assets/logo/troc-services.png?raw=true "Troc'Services")
+<center>![Title of project](./src/assets/logo/troc-services.png?raw=true "Troc'Services")</center>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
