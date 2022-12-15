@@ -1,12 +1,26 @@
+import { SyntheticEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionChangeInputValueMessage } from '../../../actions/messages';
+import { GlobalState } from '../../../reducers';
 import Field from '../../Field';
 import './styles.scss';
 
 function FormMessage(): JSX.Element {
+  const dispatch = useDispatch();
+  const subject = useSelector((state: GlobalState) => state.messages.subject);
+  const message = useSelector((state: GlobalState) => state.messages.message);
+  const recipientid = useSelector(
+    (state: GlobalState) => state.messages.recipientid
+  );
   const handleChangeField = (
     newValue: string | File,
     nameInput: string
   ): void => {
-    console.log('nom de linput ' + nameInput, 'valeur ' + newValue);
+    dispatch(actionChangeInputValueMessage(newValue, nameInput));
+  };
+  const handleSendMessage = (evt: SyntheticEvent): void => {
+    evt.preventDefault();
+    // dispatch action send a message
   };
   return (
     <section className="send-message">
@@ -17,7 +31,7 @@ function FormMessage(): JSX.Element {
         alt="profile-photo"
       />
       <p className="send-message__pseudo">Pseudo</p>
-      <form className="send-message__form">
+      <form className="send-message__form" onSubmit={handleSendMessage}>
         <Field
           label="Objet"
           classNameLabel="send-message__form__label"
@@ -28,6 +42,7 @@ function FormMessage(): JSX.Element {
           name="subject"
           placeholder="Sujet du message"
           onChange={handleChangeField}
+          valueInState={subject}
         />
         <Field
           label="Message"
@@ -39,6 +54,7 @@ function FormMessage(): JSX.Element {
           name="message"
           placeholder="Votre message ici"
           onChange={handleChangeField}
+          valueInState={message}
         />
         <Field
           label=""
@@ -50,6 +66,7 @@ function FormMessage(): JSX.Element {
           name="recipientid"
           placeholder=""
           onChange={handleChangeField}
+          valueInState={recipientid}
         />
         <button className="send-message__form__button" type="submit">
           Envoyer
