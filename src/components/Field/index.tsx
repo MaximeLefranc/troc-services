@@ -16,7 +16,7 @@ interface FieldPropsInscription {
   onChange: (value: string | File, nameInput: string) => void;
 }
 
-function FieldInscription({
+function Field({
   label,
   required,
   id,
@@ -85,4 +85,4 @@ function FieldInscription({
   );
 }
 
-export default FieldInscription;
+export default Field;

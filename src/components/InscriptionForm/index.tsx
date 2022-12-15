@@ -9,7 +9,7 @@ import { GlobalState } from '../../reducers';
 import { checkPassword } from '../../utils/utils';
 import SkillsSelect from '../SkillsSelect';
 import Spinner from '../Spinner';
-import FieldInscription from './FieldInscription';
+import Field from '../Field';
 import './styles.scss';
 
 function InscriptionForm(): JSX.Element {
@@ -90,7 +90,7 @@ function InscriptionForm(): JSX.Element {
         onSubmit={handleSubmitInscription}
         encType="multipart/form-data"
       >
-        <FieldInscription
+        <Field
           label="Pseudo"
           valueInState={nickName}
           type="text"
@@ -101,7 +101,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        <FieldInscription
+        <Field
           label="Nom"
           valueInState={lastName}
           required={true}
@@ -112,7 +112,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        <FieldInscription
+        <Field
           label="Prénom"
           valueInState={firstName}
           required={true}
@@ -123,7 +123,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        <FieldInscription
+        <Field
           label="Date de naissance"
           valueInState={birthDay}
           required={true}
@@ -146,7 +146,7 @@ function InscriptionForm(): JSX.Element {
           accept="image/jpeg, image/jpg, image/png"
           onChange={changeField}
         /> */}
-        <FieldInscription
+        <Field
           label="Email"
           valueInState={email}
           required={true}
@@ -157,7 +157,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        <FieldInscription
+        <Field
           label="Adresse"
           valueInState={adress}
           required={false}
@@ -168,7 +168,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        <FieldInscription
+        <Field
           label="Ville"
           valueInState={town}
           required={true}
@@ -179,7 +179,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        <FieldInscription
+        <Field
           label="Code postal"
           valueInState={zip}
           required={true}
@@ -191,7 +191,7 @@ function InscriptionForm(): JSX.Element {
           pattern="[0-9]*"
           onChange={changeField}
         />
-        <FieldInscription
+        <Field
           label="Description"
           valueInState={description}
           required={true}
@@ -203,7 +203,7 @@ function InscriptionForm(): JSX.Element {
           isTextArea={true}
         />
         <SkillsSelect />
-        <FieldInscription
+        <Field
           label="Mot de passe"
           valueInState={password}
           required={true}
@@ -214,7 +214,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        <FieldInscription
+        <Field
           label="Confirmation du mot de passe"
           valueInState={passwordConfirmation}
           required={true}
