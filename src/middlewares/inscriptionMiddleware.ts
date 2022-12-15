@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
+import { actionFetchAdvertsementsSkillsAndUsers } from '../actions/advertisements';
 import {
   actionInscriptionError,
   actionInscriptionSuccess,
@@ -77,6 +78,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionInscriptionError());
         })
         .finally(() => {
+          store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
           store.dispatch(actionToggleLoader());
         });
       return next(action);

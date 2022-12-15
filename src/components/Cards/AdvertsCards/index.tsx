@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { GlobalState } from '../../../reducers';
 import Spinner from '../../Spinner';
 import Card from '../Card';
@@ -30,12 +30,16 @@ export interface Adverts {
 }
 
 function AdvertsCards(): JSX.Element {
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const advertList = useSelector(
     (state: GlobalState) => state.advertisements.listOfAdverts
   );
-  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+
   if (isLoading) {
     return <Spinner />;
+  }
+  if (advertList.length === 0) {
+    return <div>Page 404</div>; //! Page 404 à faire
   }
   return (
     <section className="main">

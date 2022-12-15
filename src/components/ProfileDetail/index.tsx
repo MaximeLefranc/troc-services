@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { GlobalState } from '../../reducers';
 import { findMember } from '../../selectors/members';
 import { getUrlApi } from '../../utils/utils';
@@ -9,14 +9,15 @@ import './styles.scss';
 function ProfileDetail(): JSX.Element {
   const url = getUrlApi();
   const { slug } = useParams();
-  const listOfMembers = useSelector(
-    (state: GlobalState) => state.user.listOfMembers
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  const member = useSelector((state: GlobalState) =>
+    findMember(state.user.listOfMembers, slug)
   );
-  const member = findMember(listOfMembers, slug);
-  if (listOfMembers.length === 0) {
+  if (isLoading) {
     return <Spinner />;
-  } else if (member === false) {
-    return <Navigate to="/notFound" replace />; //! URL a modifier
+  }
+  if (member === false) {
+    return <div>Page 404</div>; //! Page 404 à faire
   }
   const hasAdverts = member.advertisements ? true : false;
   return (

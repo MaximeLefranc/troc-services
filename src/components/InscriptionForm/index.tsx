@@ -80,7 +80,6 @@ function InscriptionForm(): JSX.Element {
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <section className="inscription">
       <p className={classNameInfo}>

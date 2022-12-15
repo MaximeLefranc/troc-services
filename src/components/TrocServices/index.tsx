@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { actionFetchAdvertsementsAndSkillsForMainPage } from '../../actions/advertisements';
 
 import About from '../About/About';
 import AdvertDetail from '../AdvertDetail';
@@ -16,15 +15,13 @@ import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
 import AdvertList from '../AdvertList';
 
-import {
-  actionFetchAllMembers,
-  actionHaveTokenInLocalstorage,
-} from '../../actions/user';
+import { actionHaveTokenInLocalstorage } from '../../actions/user';
 
 import ProfileFiltered from '../ProfilesFiltered';
 import ListMessages from '../ListMessages';
 import DetailMessage from '../ListMessages/DetailMessage';
 import FormMessage from '../ListMessages/FormMessage';
+import { actionFetchAdvertsementsSkillsAndUsers } from '../../actions/advertisements';
 
 interface Location {
   pathname: string;
@@ -35,9 +32,8 @@ function TrocServices(): JSX.Element {
   const { pathname } = useLocation() as Location;
   const isWelcomePage: boolean = pathname === '/';
   useEffect(() => {
-    dispatch(actionFetchAdvertsementsAndSkillsForMainPage());
+    dispatch(actionFetchAdvertsementsSkillsAndUsers());
     dispatch(actionHaveTokenInLocalstorage());
-    dispatch(actionFetchAllMembers());
   }, []);
   return (
     <div className="TrocServices">

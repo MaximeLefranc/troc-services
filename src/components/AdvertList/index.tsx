@@ -4,21 +4,21 @@ import { GlobalState } from '../../reducers';
 import { findAdvertsBySkills } from '../../selectors/advertisements';
 import { Adverts } from '../Cards/AdvertsCards';
 import Card from '../Cards/Card';
+import Spinner from '../Spinner';
 import './styles.scss';
 
 function AdvertList() {
   const { slug } = useParams();
-  const listOfAdverts = useSelector(
-    (state: GlobalState) => state.advertisements.listOfAdverts
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  const advertList = useSelector((state: GlobalState) =>
+    findAdvertsBySkills(state.advertisements.listOfAdverts, slug)
   );
-  const advertList: Adverts[] | false = findAdvertsBySkills(
-    listOfAdverts,
-    slug
-  );
-  if (advertList === false) {
-    console.log("page 404 si pas d'annonce");
-    return <div>Page 404</div>;
-    //! return "Navigate" to 404
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (!advertList) {
+    return <div>Page 404</div>; //! Page 404 à faire
   }
   return (
     <section className="main">
