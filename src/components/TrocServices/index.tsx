@@ -25,7 +25,7 @@ import ProfileFiltered from '../ProfilesFiltered';
 import ListMessages from '../ListMessages';
 import DetailMessage from '../ListMessages/DetailMessage';
 import FormMessage from '../ListMessages/FormMessage';
-
+import ContactForm from '../ContactForm';
 
 interface Location {
   pathname: string;
@@ -64,6 +64,7 @@ function TrocServices(): JSX.Element {
           element={<FormMessage />}
         />
         <Route path="/a-propos" element={<About />} />
+        <Route path="/a-propos/contact/" element={<ContactForm />} />
       </Routes>
       {!isWelcomePage && <Footer />}
     </div>

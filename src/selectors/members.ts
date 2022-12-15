@@ -51,6 +51,7 @@ export function findMembersBySkills(
     }
   }
   return false;
+}
 /**
  * Transform skills array from state on ids array skill from DB
  * @param arrayOfSkills array of skills user like this [{ value: 1, label: Ménage}]
