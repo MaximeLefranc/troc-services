@@ -11,7 +11,6 @@ import { GlobalState } from '../../reducers';
 function Welcome() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
-  console.log(isLoggedIn);
   const handleToggleLogInForm = (): void => {
     if (!isLoggedIn) {
       dispatch(actionToggleLogInForm());

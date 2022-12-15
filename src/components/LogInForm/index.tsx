@@ -13,10 +13,12 @@ function LogInForm(): JSX.Element {
   const dispatch = useDispatch();
   const email = useSelector((state: GlobalState) => state.user.email);
   const password = useSelector((state: GlobalState) => state.user.password);
-  console.log(email);
   const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
   const modalLogInForm = useSelector(
     (state: GlobalState) => state.user.modalLogInForm
+  );
+  const errorMessage = useSelector(
+    (state: GlobalState) => state.user.messageAuthent
   );
   const changeField = (value: string, nameStateInput: string) => {
     dispatch(actionChangeInputValueConnection(value, nameStateInput));
@@ -60,6 +62,7 @@ function LogInForm(): JSX.Element {
           </button>
         </form>
       )}
+      <p className="login__form__message">{errorMessage}</p>
     </div>
   );
 }

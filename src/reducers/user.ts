@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import {
-  ATHENT_SUCCESS,
+  AUTHENT_ERROR,
+  AUTHENT_SUCCESS,
   CHANGE_INPUT_VALUE_CONNECTION,
   HAVE_TOKEN_IN_LOCALSTORAGE,
   LOG_OUT,
@@ -15,6 +16,7 @@ export interface UserState {
   password: string;
   isLoggedIn: boolean;
   pseudo: string;
+  messageAuthent: string;
 }
 
 export const initialState: UserState = {
@@ -24,6 +26,7 @@ export const initialState: UserState = {
   password: '',
   isLoggedIn: false,
   pseudo: '',
+  messageAuthent: "Message d'érreur",
 };
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
@@ -44,7 +47,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         ...state,
         isLoading: !state.isLoading,
       };
-    case ATHENT_SUCCESS:
+    case AUTHENT_SUCCESS:
       localStorage.setItem('token_troc_services', action.payload.token);
       localStorage.setItem('pseudo_troc_services', action.payload.pseudo);
       return {
@@ -54,6 +57,11 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         password: '',
         isLoggedIn: true,
         pseudo: action.payload.pseudo,
+      };
+    case AUTHENT_ERROR:
+      return {
+        ...state,
+        messageAuthent: action.payload,
       };
     case HAVE_TOKEN_IN_LOCALSTORAGE:
       if (localStorage.getItem('token_troc_services')) {

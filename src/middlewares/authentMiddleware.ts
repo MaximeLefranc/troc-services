@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
-import { actionAuthentSuccess, FETCH_AUTHENT_USER } from '../actions/user';
+import {
+  actionAuthentError,
+  actionAuthentSuccess,
+  FETCH_AUTHENT_USER,
+} from '../actions/user';
 
 let urlAPI: string;
 if (process.env.NODE_ENV === 'development') {
@@ -32,6 +36,7 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
+          store.dispatch(actionAuthentError('message ici'));
           console.error(error);
         });
       return next(action);
