@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select, { MultiValue } from 'react-select';
 import { actionAddInscriptionSkills } from '../../actions/inscription';
 import { GlobalState } from '../../reducers';
-import './styles.scss';
+import './../InscriptionForm/styles.scss';
 
 export interface Category {
   id: number;
