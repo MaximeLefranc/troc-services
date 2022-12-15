@@ -1,4 +1,4 @@
-# Troc'Services project
+#[color=#6667AB]Troc'Services project[/color] 
 
 ![Title of project](./src/assets/logo/troc-services.png?raw=true "Troc'Services")
 
