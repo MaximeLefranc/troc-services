@@ -80,7 +80,7 @@ const inscriptionReducer = (
         skills: [],
         password: '',
         passwordConfirmation: '',
-        message: 'Insciption réussi! Vous pouvez vous connecter',
+        message: 'Insciption réussie! Vous pouvez vous connecter',
         inscriptionCompleted: true,
       };
     case INSCRIPTION_ERROR:

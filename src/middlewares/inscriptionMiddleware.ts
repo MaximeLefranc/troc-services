@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
 import {
+  actionInscriptionError,
   actionInscriptionSuccess,
   SUBMIT_INSCRIPTION_FORM,
 } from '../actions/inscription';
@@ -28,7 +29,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         lastname,
         firstname,
         birthday,
-        picture,
+        // picture,
         email,
         adress,
         town,
@@ -47,6 +48,8 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
       // const requestPicture = axios.post(`${urlAPI}api/user/registerfile`);
       // const imageBase64 = getBase64(picture);
       // console.log(picture);
+      const townToLowerCase = town.toLowerCase();
+      console.log(townToLowerCase);
       const skillsIds = arrayIdsSkills(skills);
       const requestInscriptionUser = axios.post(`${urlAPI}api/user/register`, {
         email: email,
@@ -59,7 +62,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         // target_image_file: formData,
         address: adress,
         skill: skillsIds,
-        city: town,
+        city: townToLowerCase,
         zip_code: zip,
       });
       axios
@@ -68,12 +71,11 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           axios.spread((...responses) => {
             if (responses[0].status === 201) {
               store.dispatch(actionInscriptionSuccess());
-            } else {
-              console.log(responses[0]);
             }
           })
         )
         .catch((error) => {
+          store.dispatch(actionInscriptionError());
           console.error(error);
         })
         .finally(() => {
