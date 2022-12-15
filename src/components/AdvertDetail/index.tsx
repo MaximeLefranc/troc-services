@@ -1,20 +1,23 @@
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { Adverts } from '../Cards/AdvertsCards';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { GlobalState } from '../../reducers';
 import './styles.scss';
 import { findAdvert } from '../../selectors/advertisements';
+import { getUrlApi } from '../../utils/utils';
+import Spinner from '../Spinner';
+import { Adverts } from '../Cards/AdvertsCards';
 
 function AdvertDetail(): JSX.Element {
+  const url = getUrlApi();
   const { slug } = useParams();
-  const listOfAdverts = useSelector(
+  const ListOdAdverts = useSelector(
     (state: GlobalState) => state.advertisements.listOfAdverts
   );
-  const advert: Adverts | false = findAdvert(listOfAdverts, slug);
-  if (advert === false) {
-    console.log("page 404 si pas d'annonce");
-    return <div>Page 404</div>;
-    //! return "Navigate" to 404
+  const advert: Adverts | string | void = findAdvert(ListOdAdverts, slug);
+  if (ListOdAdverts.length === 0) {
+    return <Spinner />;
+  } else if (typeof advert === 'string' || advert === undefined) {
+    return <Navigate to="/Notfound" replace />; //! url à modifier
   }
   return (
     <section className="advert">
@@ -22,13 +25,13 @@ function AdvertDetail(): JSX.Element {
         <h2 className="advert__picture__title">{advert.title}</h2>
         <img
           className="advert__picture__image"
-          src={advert.imageName}
+          src={`${url}/img/${advert.imageName}`}
           alt="advert picture"
         />
         <Link to={`/profils/${advert.user.nickname}`}>
           <img
             className="advert__picture__profile"
-            src={advert.user.imageName}
+            src={`${url}/img/${advert.user.imageName}`}
             alt="profile picture"
           />
         </Link>

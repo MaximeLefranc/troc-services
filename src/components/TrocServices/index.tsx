@@ -63,6 +63,7 @@ function TrocServices(): JSX.Element {
           element={<FormMessage />}
         />
         <Route path="/a-propos" element={<About />} />
+        <Route path="*" element={<div>Page404</div>} />
       </Routes>
       {!isWelcomePage && <Footer />}
     </div>

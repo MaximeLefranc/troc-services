@@ -48,6 +48,7 @@ function InscriptionForm(): JSX.Element {
   const message = useSelector(
     (state: GlobalState) => state.inscription.message
   );
+  const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
 
   const changeField = (value: string | File, nameInput: string): void => {
     dispatch(actionChangeInputValueInscription(value, nameInput));
@@ -134,7 +135,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        {/* <FieldInscription
+        <Field
           label="Choisir une photo"
           classNameLabel="inscription__form__label label-photo"
           required={false}
@@ -145,7 +146,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input--photo"
           accept="image/jpeg, image/jpg, image/png"
           onChange={changeField}
-        /> */}
+        />
         <Field
           label="Email"
           valueInState={email}

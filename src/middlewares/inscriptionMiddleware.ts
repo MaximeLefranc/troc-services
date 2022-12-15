@@ -7,7 +7,6 @@ import {
 } from '../actions/inscription';
 import { actionToggleLoader } from '../actions/user';
 import { arrayIdsSkills } from '../selectors/members';
-// import { getBase64 } from '../utils/utils';
 
 let urlAPI: string;
 if (process.env.NODE_ENV === 'development') {
@@ -29,7 +28,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         lastname,
         firstname,
         birthday,
-        // picture,
+        picture,
         email,
         adress,
         town,
@@ -38,45 +37,44 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         skills,
         password,
       } = store.getState().inscription;
-      // let name = '';
-      // if (picture !== '') {
-      //   name = picture.name;
-      // }
-      // const formData = new FormData();
-      // formData.append('file', picture);
-      // console.log(picture);
-      // const requestPicture = axios.post(`${urlAPI}api/user/registerfile`);
-      // const imageBase64 = getBase64(picture);
-      // console.log(picture);
       const townToLowerCase = town.toLowerCase();
       console.log(townToLowerCase);
       const skillsIds = arrayIdsSkills(skills);
-      const requestInscriptionUser = axios.post(`${urlAPI}api/user/register`, {
-        email: email,
-        password: password,
-        first_name: firstname,
-        last_name: lastname,
-        birth_date: birthday,
-        nickname: nickname,
-        biography: description,
-        // target_image_file: formData,
-        address: adress,
-        skill: skillsIds,
-        city: townToLowerCase,
-        zip_code: zip,
-      });
       axios
-        .all([requestInscriptionUser])
-        .then(
-          axios.spread((...responses) => {
-            if (responses[0].status === 201) {
-              store.dispatch(actionInscriptionSuccess());
-            }
-          })
-        )
-        .catch((error) => {
+        .post(`${urlAPI}api/user/register`, {
+          email: email,
+          password: password,
+          first_name: firstname,
+          last_name: lastname,
+          birth_date: birthday,
+          nickname: nickname.trim(),
+          biography: description,
+          address: adress,
+          skill: skillsIds,
+          city: townToLowerCase,
+          zip_code: zip,
+        })
+        .then((response) => {
+          if (response.status === 200 && picture !== '') {
+            const formData = new FormData();
+            formData.append('file', picture);
+            axios
+              .post(
+                `${urlAPI}api/user/upload/${response.data.newUserId}`,
+                formData
+              )
+              .then(() => {
+                store.dispatch(actionInscriptionSuccess());
+              })
+              .catch(() => {
+                store.dispatch(actionInscriptionError());
+              });
+          } else {
+            store.dispatch(actionInscriptionSuccess());
+          }
+        })
+        .catch(() => {
           store.dispatch(actionInscriptionError());
-          console.error(error);
         })
         .finally(() => {
           store.dispatch(actionToggleLoader());

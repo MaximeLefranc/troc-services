@@ -1,3 +1,5 @@
+import { getUrlApi } from '../../../utils/utils';
+
 interface CardProps {
   image: string;
   title: string;
@@ -6,12 +8,13 @@ interface CardProps {
 }
 
 function Card({ image, title, description, skills }: CardProps): JSX.Element {
+  const url = getUrlApi();
   return (
     <div className="card">
       <picture className="card__container">
         <img
           className="card__container__image"
-          src={image}
+          src={`${url}/img/${image}`}
           alt="image advertisement"
         />
       </picture>
