@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Select, { MultiValue } from 'react-select';
+import makeAnimated from 'react-select/animated';
 import { actionAddInscriptionSkills } from '../../actions/inscription';
 import { GlobalState } from '../../reducers';
 import './../InscriptionForm/styles.scss';
@@ -24,6 +25,8 @@ function SkillsSelect(): JSX.Element {
   const skillsUser = useSelector(
     (state: GlobalState) => state.inscription.skills
   );
+
+  const animatedComponents = makeAnimated();
 
   const optionList: Skills[] = [];
   skillsFromAPI.map((category: Category) => {
@@ -61,6 +64,7 @@ function SkillsSelect(): JSX.Element {
       defaultValue={skillsUser}
       isMulti
       name="colors"
+      components={animatedComponents}
       options={optionList}
       className="select__skills"
       classNamePrefix="select"
