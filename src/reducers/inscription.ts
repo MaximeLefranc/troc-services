@@ -18,7 +18,7 @@ export interface InscriptionState {
   town: string;
   zip: string;
   description: string;
-  skills: number[];
+  skills: { value: number; label: string }[];
   password: string;
   passwordConfirmation: string;
   message: string;
@@ -36,7 +36,7 @@ export const initialState: InscriptionState = {
   town: 'COLOMBIERS',
   zip: '34440',
   description: 'fdgertgre',
-  skills: [1, 2],
+  skills: [],
   password: '@1Trocservices',
   passwordConfirmation: '@1Trocservices',
   message: '',

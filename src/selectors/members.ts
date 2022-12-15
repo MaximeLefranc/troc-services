@@ -1,4 +1,5 @@
 import { User } from '../components/Cards/ProfilesCards';
+import { Skills } from '../components/SkillsSelect';
 
 /**
  * Search in User state one memeber by this ID
@@ -21,4 +22,15 @@ export function findMember(
     }
   }
   return false;
+}
+
+/**
+ * Transform skills array from state on ids array skill from DB
+ * @param arrayOfSkills array of skills user like this [{ value: 1, label: Ménage}]
+ * @returns {Array} of ids skills like this [1, 3, 4]
+ */
+export function arrayIdsSkills(arrayOfSkills: Skills[]): number[] {
+  const id: number[] = [];
+  arrayOfSkills.map((skill: Skills) => id.push(skill.value));
+  return id;
 }
