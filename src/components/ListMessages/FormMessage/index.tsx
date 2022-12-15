@@ -2,8 +2,11 @@ import Field from '../../Field';
 import './styles.scss';
 
 function FormMessage(): JSX.Element {
-  const handleChangeField = (newValue, nameInut) => {
-    console.log('nom de linput ' + nameInut, 'valeur ' + newValue);
+  const handleChangeField = (
+    newValue: string | File,
+    nameInput: string
+  ): void => {
+    console.log('nom de linput ' + nameInput, 'valeur ' + newValue);
   };
   return (
     <section className="send-message">
@@ -13,10 +16,12 @@ function FormMessage(): JSX.Element {
         src="https://static-cse.canva.com/blob/189288/article_canva_le_guide_pour_creer_de_superbes_photos_de_profil_9-1.jpg"
         alt="profile-photo"
       />
+      <p className="send-message__pseudo">Pseudo</p>
       <form className="send-message__form">
         <Field
-          label="Sujet"
-          className="send--message__form__input"
+          label="Objet"
+          classNameLabel="send-message__form__label"
+          className="send-message__form__label__input"
           required={true}
           id="subject"
           type="text"
@@ -26,7 +31,8 @@ function FormMessage(): JSX.Element {
         />
         <Field
           label="Message"
-          className="send--message__form__input-text-area"
+          classNameLabel="send-message__form__label"
+          className="send-message__form__label__input-text-area"
           required={true}
           id="message"
           isTextArea={true}
@@ -34,10 +40,18 @@ function FormMessage(): JSX.Element {
           placeholder="Votre message ici"
           onChange={handleChangeField}
         />
-        {/* <input onChange={handleChangeField} name="receiver" type="hidden">
-          id de la personne qui va recevoir le message
-        </input> */}
-        <button className="send--message__form__button" type="submit">
+        <Field
+          label=""
+          classNameLabel="send-message__form__label__hidden"
+          type="hidden"
+          className="send-message__form__label__hidden__input"
+          required={true}
+          id="recipientid"
+          name="recipientid"
+          placeholder=""
+          onChange={handleChangeField}
+        />
+        <button className="send-message__form__button" type="submit">
           Envoyer
         </button>
       </form>
