@@ -7,6 +7,8 @@ export const ADD_INSCRIPTION_SKILLS_IN_STATE =
   'ADD_INSCRIPTION_SKILLS_IN_STATE';
 export const SUBMIT_INSCRIPTION_FORM = 'SUBMIT_INSCRIPTION_FORM';
 export const ERROR_MESSAGE_INSCIPTION = 'ERROR_MESSAGE_INSCIPTION';
+export const INSCRIPTION_SUCCESS = 'INSCRIPTION_SUCCESS';
+export const INSCRIPTION_ERROR = 'INSCRIPTION_ERROR';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -59,9 +61,28 @@ export function actionErrorMessageInscription(message: string) {
  * @returns Object Action
  */
 export function actionAddInscriptionSkills(skills: number[]) {
-  console.log(skills);
   return {
     type: ADD_INSCRIPTION_SKILLS_IN_STATE,
     payload: skills,
+  };
+}
+
+/**
+ * Inscription success
+ * @returns Object Action
+ */
+export function actionInscriptionSuccess() {
+  return {
+    type: INSCRIPTION_SUCCESS,
+  };
+}
+
+/**
+ * Inscription failed
+ * @returns Object Action
+ */
+export function actionInscriptionError() {
+  return {
+    type: INSCRIPTION_ERROR,
   };
 }

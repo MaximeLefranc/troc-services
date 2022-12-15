@@ -3,6 +3,8 @@ import {
   ADD_INSCRIPTION_SKILLS_IN_STATE,
   CHANGE_INPUT_VALUE_INSCRIPTION,
   ERROR_MESSAGE_INSCIPTION,
+  INSCRIPTION_ERROR,
+  INSCRIPTION_SUCCESS,
 } from '../actions/inscription';
 
 export interface InscriptionState {
@@ -61,6 +63,31 @@ const inscriptionReducer = (
       return {
         ...state,
         skills: action.payload,
+      };
+    case INSCRIPTION_SUCCESS:
+      return {
+        ...state,
+        nickname: '',
+        lastname: '',
+        firstname: '',
+        birthday: '',
+        picture: '',
+        email: '',
+        adress: '',
+        town: '',
+        zip: '',
+        description: '',
+        skills: [],
+        password: '',
+        passwordConfirmation: '',
+        message: 'Insciption réussi! Vous pouvez vous connecter',
+        inscriptionCompleted: true,
+      };
+    case INSCRIPTION_ERROR:
+      return {
+        ...state,
+        message: "Une erreur c'est produite, merci de réessayer",
+        inscriptionCompleted: false,
       };
     default:
       return state;

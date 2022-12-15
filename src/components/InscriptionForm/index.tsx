@@ -134,7 +134,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        <FieldInscription
+        {/* <FieldInscription
           label="Choisir une photo"
           classNameLabel="inscription__form__label label-photo"
           required={false}
@@ -145,7 +145,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input--photo"
           accept="image/jpeg, image/jpg, image/png"
           onChange={changeField}
-        />
+        /> */}
         <FieldInscription
           label="Email"
           valueInState={email}

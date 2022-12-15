@@ -21,7 +21,7 @@ function SkillsSelect(): JSX.Element {
   const skillsFromAPI = useSelector(
     (state: GlobalState) => state.advertisements.listOfSkills
   );
-  // const skillsFromState = useSelector(
+  // const skillsUser = useSelector(
   //   (state: GlobalState) => state.inscription.skills
   // );
 
@@ -42,7 +42,7 @@ function SkillsSelect(): JSX.Element {
 
   // let test = [];
   // optionList.forEach((skill) => {
-  //   skillsFromState.forEach((skillToSearched) => {
+  //   skillsUser.forEach((skillToSearched) => {
   //     if (skill.value === skillToSearched) {
   //       test.push(skill);
   //     }

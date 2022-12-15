@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
-import { SUBMIT_INSCRIPTION_FORM } from '../actions/inscription';
+import {
+  actionInscriptionSuccess,
+  SUBMIT_INSCRIPTION_FORM,
+} from '../actions/inscription';
 import { actionToggleLoader } from '../actions/user';
-import { getBase64 } from '../utils/utils';
+// import { getBase64 } from '../utils/utils';
 
 let urlAPI: string;
 if (process.env.NODE_ENV === 'development') {
@@ -33,15 +36,15 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         skills,
         password,
       } = store.getState().inscription;
-      let name = '';
-      if (picture !== '') {
-        name = picture.name;
-      }
-      const formData = new FormData();
-      formData.append('file', picture);
-      console.log(picture);
-      const requestPicture = axios.post(`${urlAPI}api/user/registerfile`);
-      const imageBase64 = getBase64(picture);
+      // let name = '';
+      // if (picture !== '') {
+      //   name = picture.name;
+      // }
+      // const formData = new FormData();
+      // formData.append('file', picture);
+      // console.log(picture);
+      // const requestPicture = axios.post(`${urlAPI}api/user/registerfile`);
+      // const imageBase64 = getBase64(picture);
       console.log(picture);
       const requestInscriptionUser = axios.post(`${urlAPI}api/user/register`, {
         email: email,
@@ -51,17 +54,21 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         birth_date: birthday,
         nickname: nickname,
         biography: description,
-        file: formData,
+        // target_image_file: formData,
         address: adress,
         skill: skills,
         city: town,
         zip_code: zip,
       });
       axios
-        .all([requestInscriptionUser, requestPicture])
+        .all([requestInscriptionUser])
         .then(
           axios.spread((...responses) => {
-            console.log(responses[0], responses[1]);
+            if (responses[0].status === 201) {
+              store.dispatch(actionInscriptionSuccess());
+            } else {
+              console.log(responses[0]);
+            }
           })
         )
         .catch((error) => {
