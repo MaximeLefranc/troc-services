@@ -9,6 +9,19 @@
   &__info {
     color: vars.$main-color;
     font-size: .8rem;
+    &.success {
+      color: rgba(0, 128, 0, 0.699);
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 2rem auto;
+     }
+    
+     &.danger {
+      color: rgba(255, 0, 0, 0.699);
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 2rem auto;
+     }
   }
   &__form {
     display: flex;
@@ -71,6 +84,13 @@
   border-radius: 5px;
   padding: 1rem;
  }
+ .select {
+  &__skills {
+    margin-top: 2rem;
+    width: 90%;
+    font-size: 1rem;
+  }
+ }
 
  @media screen and (min-width: 1300px) {
   .inscription {
@@ -98,4 +118,11 @@
     width: 50%;
     padding: .7rem;
   }
+  .select {
+    &__skills {
+      margin-top: 2rem;
+      width: 70%;
+      font-size: 1.1rem;
+    }
+   }
  }
