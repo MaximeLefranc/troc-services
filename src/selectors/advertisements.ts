@@ -51,8 +51,3 @@ export function findAdvertsBySkills(
   }
   return false;
 }
-
-// export function findAdvertsBySkills(listOfAdverts: [], searchedSlug: string) {
-//   const advertList = listOfAdverts.filter((el: string) => el === searchedSlug);
-//   return advertList;
-// }
