@@ -1,16 +1,23 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { actionToggleLogInForm } from '../../actions/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionLogOut, actionToggleLogInForm } from '../../actions/user';
 import backgroundVideo from './../../assets/video/trocservices.mp4';
 import logo from './../../assets/logo/troc-services-sansBG.svg';
 import FormFilters from '../FormFilters';
 import Presentation from './Presentation';
 import './styles.scss';
+import { GlobalState } from '../../reducers';
 
 function Welcome() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
+  console.log(isLoggedIn);
   const handleToggleLogInForm = (): void => {
-    dispatch(actionToggleLogInForm());
+    if (!isLoggedIn) {
+      dispatch(actionToggleLogInForm());
+    } else {
+      dispatch(actionLogOut());
+    }
   };
   return (
     <section className="welcome">
@@ -21,15 +28,17 @@ function Welcome() {
       <Presentation />
       <FormFilters />
       <div className="welcome__links">
-        <Link className="welcome__links--link" to="/inscription">
-          Inscription
-        </Link>
+        {!isLoggedIn && (
+          <Link className="welcome__links--link" to="/inscription">
+            Inscription
+          </Link>
+        )}
         <Link
           className="welcome__links--link"
           onClick={handleToggleLogInForm}
           to="#"
         >
-          Connexion
+          {isLoggedIn ? 'Déconnexion' : 'Connexion'}
         </Link>
         <Link className="welcome__links--link" to="/accueil">
           Annonces

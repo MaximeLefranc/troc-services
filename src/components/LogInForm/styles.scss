@@ -2,7 +2,7 @@
 
 .login__form {
   position:fixed;
-  z-index: 1;
+  z-index: 30;
   background-color: vars.$font-color;
   right: -150rem;
   transition: right 1s;

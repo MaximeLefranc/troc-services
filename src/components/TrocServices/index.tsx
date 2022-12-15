@@ -14,6 +14,14 @@ import Header from '../Header';
 import LogInForm from '../LogInForm';
 import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
+import AdvertList from '../AdvertList';
+
+import {
+  actionFetchAllMembers,
+  actionHaveTokenInLocalstorage,
+} from '../../actions/user';
+import ListMessages from '../ListMessages';
+import DetailMessage from '../ListMessages/DetailMessage';
 
 interface Location {
   pathname: string;
@@ -25,6 +33,8 @@ function TrocServices(): JSX.Element {
   const isWelcomePage: boolean = pathname === '/';
   useEffect(() => {
     dispatch(actionFetchAdvertsementsAndSkillsForMainPage());
+    dispatch(actionHaveTokenInLocalstorage());
+    dispatch(actionFetchAllMembers());
   }, []);
   return (
     <div className="TrocServices">
@@ -35,8 +45,11 @@ function TrocServices(): JSX.Element {
         <Route path="/accueil" element={<AdvertsCards />} />
         <Route path="/inscription" element={<InscriptionForm />} />
         <Route path="/profils" element={<ProfilesCards />} />
+        <Route path="/profils/:slug" element={<ProfileDetail />} />
+        <Route path="/profils/messages" element={<ListMessages />} />
+        <Route path="/profils/messages/:slug" element={<DetailMessage />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
-        <Route path="/annonces/[pseudo]" element={<ProfileDetail />} />
+        <Route path="/annonces/categorie/:slug" element={<AdvertList />} />
         <Route path="/a-propos" element={<About />} />
       </Routes>
       {!isWelcomePage && <Footer />}

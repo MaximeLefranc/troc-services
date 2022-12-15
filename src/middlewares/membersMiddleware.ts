@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
-import { actionAuthentSuccess, FETCH_AUTHENT_USER } from '../actions/user';
+import {
+  actionSaveAllMemebersInState,
+  actionToggleLoader,
+  FETCH_ALL_MEMBERS,
+} from '../actions/user';
 
 let urlAPI: string;
 if (process.env.NODE_ENV === 'development') {
@@ -13,26 +17,22 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
-const authentMiddleware: Middleware = (store) => (next) => (action) => {
+const membersMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case FETCH_AUTHENT_USER:
-      const { email, password } = store.getState().user;
-      console.log(email, password);
+    case FETCH_ALL_MEMBERS:
+      store.dispatch(actionToggleLoader());
       axios
-        .post(`${urlAPI}api/login_check`, {
-          username: email,
-          password: password,
-        })
+        .get(`${urlAPI}api/user`)
         .then((response) => {
           if (response.status === 200) {
-            console.log(response);
-            store.dispatch(
-              actionAuthentSuccess(response.data.pseudo, response.data.token)
-            );
+            store.dispatch(actionSaveAllMemebersInState(response.data));
           }
         })
         .catch((error) => {
           console.error(error);
+        })
+        .finally(() => {
+          store.dispatch(actionToggleLoader());
         });
       return next(action);
     default:
@@ -40,4 +40,4 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
   }
 };
 
-export default authentMiddleware;
+export default membersMiddleware;

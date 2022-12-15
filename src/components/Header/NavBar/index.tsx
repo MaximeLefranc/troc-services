@@ -1,18 +1,33 @@
 import NavDropdown from './NavDropdown';
 import './styles.scss';
 
-function NavBar() {
+export interface Category {
+  id: number;
+  name: string;
+  skills: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+}
+
+export interface Advertisements {
+  listOfAdverts: [];
+  listOfSkills: [];
+}
+
+function NavBar({
+  advertisements,
+}: {
+  advertisements: Advertisements;
+}): JSX.Element {
   return (
     <section className="topNav">
       <ul className="topNave__NaveDropdown">
-        <NavDropdown categoryName="Bricolage" />
-        <NavDropdown categoryName="Aide a la personne" />
-        <NavDropdown categoryName="Auto/Moto" />
-        <NavDropdown categoryName="Jardinage" />
-        <NavDropdown categoryName="Informatique" />
-        <NavDropdown categoryName="Maison" />
-        <NavDropdown categoryName="Cours" />
-        <NavDropdown categoryName="Autres categories" />
+        {advertisements.listOfSkills.map((category: Category) => (
+          <NavDropdown category={category} key={category.id} />
+        ))}
       </ul>
     </section>
   );

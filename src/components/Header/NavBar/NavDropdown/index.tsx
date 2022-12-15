@@ -1,20 +1,26 @@
 import { Link } from 'react-router-dom';
+import { Category } from './../index';
 import './styles.scss';
 
-function NavDropdown({ categoryName }: { categoryName: string }) {
+export interface Skills {
+  id: number;
+  name: string;
+}
+
+function NavDropdown({ category }: { category: Category }): JSX.Element {
   return (
     <li className="nav__dropdown">
-      <span className="nav__dropbtn">{categoryName}</span>
+      <span className="nav__dropbtn">{category.name}</span>
       <div className="nav__dropdown--content">
-        <Link className="nav__dropdown--link" to="#">
-          Link 1
-        </Link>
-        <Link className="nav__dropdown--link" to="#">
-          Link 2
-        </Link>
-        <Link className="nav__dropdown--link" to="#">
-          Link 3
-        </Link>
+        {category.skills.map((skills: Skills) => (
+          <Link
+            className="nav__dropdown--link"
+            key={skills.id}
+            to={`/annonces/categorie/${skills.name}`}
+          >
+            {skills.name}
+          </Link>
+        ))}
       </div>
     </li>
   );
