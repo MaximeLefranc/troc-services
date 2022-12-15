@@ -22,6 +22,7 @@ import {
 } from '../../actions/user';
 import ListMessages from '../ListMessages';
 import DetailMessage from '../ListMessages/DetailMessage';
+import FormMessage from '../ListMessages/FormMessage';
 
 interface Location {
   pathname: string;
@@ -50,6 +51,14 @@ function TrocServices(): JSX.Element {
         <Route path="/profils/messages/:slug" element={<DetailMessage />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/categorie/:slug" element={<AdvertList />} />
+        <Route
+          path="/annonces/[id]/envoyer-message"
+          element={<FormMessage />}
+        />
+        <Route
+          path="/profils/[pseudo]/envoyer-message"
+          element={<FormMessage />}
+        />
         <Route path="/a-propos" element={<About />} />
       </Routes>
       {!isWelcomePage && <Footer />}
