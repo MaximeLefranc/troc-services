@@ -1,4 +1,4 @@
-#[color=#6667AB]Troc'Services project[/color] 
+#<p style="text-align: center;">Troc'Services project</p>
 
 <center>![Title of project](./src/assets/logo/troc-services.png?raw=true "Troc'Services")</center>
 
