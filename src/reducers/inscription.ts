@@ -1,7 +1,10 @@
 import { AnyAction } from 'redux';
 import {
+  ADD_INSCRIPTION_SKILLS_IN_STATE,
   CHANGE_INPUT_VALUE_INSCRIPTION,
   ERROR_MESSAGE_INSCIPTION,
+  INSCRIPTION_ERROR,
+  INSCRIPTION_SUCCESS,
 } from '../actions/inscription';
 
 export interface InscriptionState {
@@ -15,25 +18,29 @@ export interface InscriptionState {
   town: string;
   zip: string;
   description: string;
+  skills: number[];
   password: string;
   passwordConfirmation: string;
   message: string;
+  inscriptionCompleted: boolean;
 }
 
 export const initialState: InscriptionState = {
-  nickname: '',
-  lastname: '',
-  firstname: '',
-  birthday: '',
+  nickname: 'Toto34',
+  lastname: 'Lefranc',
+  firstname: 'Maxime',
+  birthday: '2000-12-21',
   picture: '',
-  email: '',
+  email: 'maxilefranc@gmail.com',
   adress: '',
-  town: '',
-  zip: '',
-  description: '',
-  password: '',
-  passwordConfirmation: '',
+  town: 'COLOMBIERS',
+  zip: '34440',
+  description: 'fdgertgre',
+  skills: [1, 2],
+  password: '@1Trocservices',
+  passwordConfirmation: '@1Trocservices',
   message: '',
+  inscriptionCompleted: false,
 };
 
 const inscriptionReducer = (
@@ -51,6 +58,36 @@ const inscriptionReducer = (
       return {
         ...state,
         message: action.payload,
+      };
+    case ADD_INSCRIPTION_SKILLS_IN_STATE:
+      return {
+        ...state,
+        skills: action.payload,
+      };
+    case INSCRIPTION_SUCCESS:
+      return {
+        ...state,
+        nickname: '',
+        lastname: '',
+        firstname: '',
+        birthday: '',
+        picture: '',
+        email: '',
+        adress: '',
+        town: '',
+        zip: '',
+        description: '',
+        skills: [],
+        password: '',
+        passwordConfirmation: '',
+        message: 'Insciption réussi! Vous pouvez vous connecter',
+        inscriptionCompleted: true,
+      };
+    case INSCRIPTION_ERROR:
+      return {
+        ...state,
+        message: "Une erreur c'est produite, merci de réessayer",
+        inscriptionCompleted: false,
       };
     default:
       return state;

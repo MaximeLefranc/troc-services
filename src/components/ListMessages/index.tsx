@@ -27,6 +27,7 @@ function ListMessages(): JSX.Element {
             <img
               src="https://static-cse.canva.com/blob/189288/article_canva_le_guide_pour_creer_de_superbes_photos_de_profil_9-1.jpg"
               className="messages__list__detail--img"
+              alt="profile photo"
             ></img>
             <h3 className="messages__list__detail--title">Sujet du message</h3>
             <h4 className="messages__list__detail--user">Pseudo</h4>
