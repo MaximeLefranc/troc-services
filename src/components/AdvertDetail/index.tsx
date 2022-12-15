@@ -1,23 +1,23 @@
 import { useSelector } from 'react-redux';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { GlobalState } from '../../reducers';
 import './styles.scss';
 import { findAdvert } from '../../selectors/advertisements';
 import { getUrlApi } from '../../utils/utils';
 import Spinner from '../Spinner';
-import { Adverts } from '../Cards/AdvertsCards';
 
 function AdvertDetail(): JSX.Element {
   const url = getUrlApi();
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const { slug } = useParams();
-  const ListOdAdverts = useSelector(
-    (state: GlobalState) => state.advertisements.listOfAdverts
+  const advert = useSelector((state: GlobalState) =>
+    findAdvert(state.advertisements.listOfAdverts, slug)
   );
-  const advert: Adverts | string | void = findAdvert(ListOdAdverts, slug);
-  if (ListOdAdverts.length === 0) {
+  if (isLoading) {
     return <Spinner />;
-  } else if (typeof advert === 'string' || advert === undefined) {
-    return <Navigate to="/Notfound" replace />; //! url à modifier
+  }
+  if (typeof advert === 'string' || advert === undefined) {
+    return <div>Page 404</div>; //! Page 404 à faire
   }
   return (
     <section className="advert">

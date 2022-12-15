@@ -3,9 +3,14 @@ import { useSelector } from 'react-redux';
 import { GlobalState } from '../../reducers';
 import './styles.scss';
 import { Link } from 'react-router-dom';
+import Spinner from '../Spinner';
 
 function ListMessages(): JSX.Element {
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
+  if (isLoading) {
+    return <Spinner />;
+  }
   // if (!isLoggedIn) {
   //   return <div>Page 404</div>;
   //   //! Si pas connecté, pas accès à cette page

@@ -2,8 +2,8 @@
 ============ACTIONS TYPES==============
 =======================================*/
 
-export const FETCH_ADVERTISEMENTS_AND_SKILLS_FOR_MAIN_PAGE =
-  'FETCH_ADVERTISEMENTS_AND_SKILLS_FOR_MAIN_PAGE';
+export const FETCH_ADVERTISEMENTS_SKILLS_AND_USERS =
+  'FETCH_ADVERTISEMENTS_SKILLS_AND_USERS';
 export const ADD_ADVERTS_IN_STATE = 'ADD_ADVERTS_IN_STATE';
 export const ADD_SKILLS_IN_STATE = 'ADD_SKILLS_IN_STATE';
 
@@ -14,9 +14,9 @@ export const ADD_SKILLS_IN_STATE = 'ADD_SKILLS_IN_STATE';
  * Fetch in DB a list of advertisements
  * @returns Object of action
  */
-export function actionFetchAdvertsementsAndSkillsForMainPage() {
+export function actionFetchAdvertsementsSkillsAndUsers() {
   return {
-    type: FETCH_ADVERTISEMENTS_AND_SKILLS_FOR_MAIN_PAGE,
+    type: FETCH_ADVERTISEMENTS_SKILLS_AND_USERS,
   };
 }
 

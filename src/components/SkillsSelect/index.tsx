@@ -43,17 +43,6 @@ function SkillsSelect(): JSX.Element {
     });
   });
 
-  // let test = [];
-  // optionList.forEach((skill) => {
-  //   skillsUser.forEach((skillToSearched) => {
-  //     if (skill.value === skillToSearched) {
-  //       test.push(skill);
-  //     }
-  //   });
-  // });
-
-  // console.log(test);
-
   const handleChange = (newValue: MultiValue<Skills>) => {
     //const idSkills = newValue.map((element) => element.value);
     dispatch(actionAddInscriptionSkills(newValue));

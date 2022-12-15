@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GlobalState } from '../../../reducers';
+import Spinner from '../../Spinner';
 import Card from '../Card';
 
 export interface User {
@@ -21,7 +22,12 @@ function ProfilesCards(): JSX.Element {
   const usersFromSate = useSelector(
     (state: GlobalState) => state.user.listOfMembers
   );
-  console.log(usersFromSate);
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  if (isLoading) {
+    return <Spinner />;
+  } else if (usersFromSate.length === 0) {
+    return <div>Page 404</div>; //! Page 404 à faire
+  }
   return (
     <section className="main">
       <h2 className="main__title">Les derniers membres</h2>
