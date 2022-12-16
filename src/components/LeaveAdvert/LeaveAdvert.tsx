@@ -15,7 +15,6 @@ import './styles.scss';
 function LeaveAdvert(): JSX.Element {
   const dispatch = useDispatch();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
-  const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
   const submitOK = useSelector(
     (state: GlobalState) => state.advertisements.submitSuccess
   );
@@ -50,7 +49,7 @@ function LeaveAdvert(): JSX.Element {
     classNameInfo = 'leaveadvert__info danger';
   }
 
-  if (!isLoggedIn || submitOK) {
+  if (!localStorage.getItem('token_troc_services') || submitOK) {
     return <Navigate to="/accueil" replace />;
   }
   if (isLoading) {
