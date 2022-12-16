@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import Select, { MultiValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { actionAddSkillsNewAdvert } from '../../actions/advertisements';
 import { actionAddInscriptionSkills } from '../../actions/inscription';
 import { GlobalState } from '../../reducers';
 import './../InscriptionForm/styles.scss';
@@ -19,6 +21,7 @@ export interface Skills {
 
 function SkillsSelect(): JSX.Element {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const skillsFromAPI = useSelector(
     (state: GlobalState) => state.advertisements.listOfSkills
   );
@@ -44,9 +47,19 @@ function SkillsSelect(): JSX.Element {
   });
 
   const handleChange = (newValue: MultiValue<Skills>) => {
-    //const idSkills = newValue.map((element) => element.value);
-    dispatch(actionAddInscriptionSkills(newValue));
+    if (pathname === '/nouvelle-annonce') {
+      dispatch(actionAddSkillsNewAdvert(newValue));
+    } else {
+      dispatch(actionAddInscriptionSkills(newValue));
+    }
   };
+
+  let placeholder;
+  if (pathname === '/nouvelle-annonce') {
+    placeholder = 'Compétence nécéssaire *';
+  } else {
+    placeholder = 'Mes Compétences *';
+  }
 
   return (
     <Select
@@ -57,7 +70,7 @@ function SkillsSelect(): JSX.Element {
       options={optionList}
       className="select__skills"
       classNamePrefix="select"
-      placeholder="Mes Compétences *"
+      placeholder={placeholder}
       onChange={handleChange}
     />
   );

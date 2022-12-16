@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import About from '../About/About';
@@ -22,6 +22,7 @@ import ListMessages from '../ListMessages';
 import DetailMessage from '../ListMessages/DetailMessage';
 import FormMessage from '../ListMessages/FormMessage';
 import { actionFetchAdvertsementsSkillsAndUsers } from '../../actions/advertisements';
+import LeaveAdvert from '../LeaveAdvert/LeaveAdvert';
 
 interface Location {
   pathname: string;
@@ -50,6 +51,7 @@ function TrocServices(): JSX.Element {
         <Route path="/profils/messages/:slug" element={<DetailMessage />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/categorie/:slug" element={<AdvertList />} />
+        <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
         <Route
           path="/annonces/[id]/envoyer-message"
           element={<FormMessage />}
