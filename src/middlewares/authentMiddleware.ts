@@ -35,11 +35,15 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          store.dispatch(
-            actionAuthentError(
-              "une erreur inattendue s'est produite, veullez réessayer plus tard."
-            )
-          );
+          if (error.response.data.code === 401) {
+            store.dispatch(actionAuthentError(error.response.data.message));
+          } else {
+            store.dispatch(
+              actionAuthentError(
+                "une erreur inattendue s'est produite, veullez réessayer plus tard."
+              )
+            );
+          }
         });
       return next(action);
     default:
