@@ -8,6 +8,15 @@ import { GlobalState } from '../../reducers';
 import Field from '../Field';
 import './styles.scss';
 
+interface EmailData {
+  send: any;
+  SecureToken: string;
+  To: string | string[];
+  From: string;
+  Subject: string;
+  Body: string;
+}
+
 function ContactForm() {
   const dispatch = useDispatch();
   const changeField = (value: string | File, nameInput: string): void => {
@@ -40,8 +49,25 @@ function ContactForm() {
     classNameInfo = 'inscription__info danger';
   }
 
+  const sendEmail = (Email: EmailData) => {
+    Email.send({
+      SecureToken: '<paste security token that we just generated>',
+      To: 'them@website.com',
+      From: '<your google email>',
+      Subject: 'This is the subject',
+      Body: 'And this is the body',
+    }).then((messageSend: any) => alert(messageSend));
+  };
+
+  const handleSendContactForm = (evt: SyntheticEvent): void => {
+    evt.preventDefault();
+    let Email: any;
+    sendEmail(Email);
+  };
+
   return (
     <section className="contact">
+      <script src="https://smtpjs.com/v3/smtp.js"></script>
       <p className="contact__title">Contactez-nous</p>
       <p className={classNameInfo}>
         {!messageSystem
@@ -104,7 +130,12 @@ function ContactForm() {
           onChange={changeField}
           isTextArea={true}
         />
-        <button className="contact__form__button" type="submit">
+        <button
+          className="contact__form__button"
+          value="Send Email"
+          type="submit"
+          onClick={handleSendContactForm}
+        >
           Envoyer
         </button>
       </form>
