@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
 import {
+  actionAuthentError,
   actionAuthentSuccess,
-  actionToggleLoader,
   FETCH_AUTHENT_USER,
+  actionToggleLoader,
 } from '../actions/user';
 import { getUrlApi } from '../utils/utils';
 
@@ -28,7 +29,15 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.error(error);
+          if (error.response.data.code === 401) {
+            store.dispatch(actionAuthentError(error.response.data.message));
+          } else {
+            store.dispatch(
+              actionAuthentError(
+                "une erreur inattendue s'est produite, veullez réessayer plus tard."
+              )
+            );
+          }
         })
         .finally(() => {
           store.dispatch(actionToggleLoader());

@@ -6,6 +6,7 @@ interface PropLogInForm {
   name: string;
   placeholder: string;
   onChangeHandle: (value: string, nameStateInput: string) => void;
+  autocomplete?: string;
 }
 
 function FieldLogIn({
@@ -14,6 +15,7 @@ function FieldLogIn({
   name,
   placeholder,
   onChangeHandle,
+  autocomplete = '',
 }: PropLogInForm): JSX.Element {
   const handleChange = (evt: ChangeEvent): void => {
     const valueInput = (evt.target as HTMLInputElement).value;
@@ -32,6 +34,7 @@ function FieldLogIn({
         className="field__input"
         placeholder={placeholder}
         name={name}
+        autoComplete={autocomplete}
       />
 
       <label htmlFor={inputId} className="field__label">

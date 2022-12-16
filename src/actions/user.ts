@@ -7,7 +7,8 @@ export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 export const SAVE_ALL_MEMBERS_IN_STATE = 'SAVE_ALL_MEMBERS_IN_STATE';
 export const FETCH_AUTHENT_USER = 'FETCH_AUTHENT_USER';
-export const ATHENT_SUCCESS = 'ATHENT_SUCCESS';
+export const AUTHENT_SUCCESS = 'AUTHENT_SUCCESS';
+export const AUTHENT_ERROR = 'AUTHENT_ERROR';
 export const HAVE_TOKEN_IN_LOCALSTORAGE = 'HAVE_TOKEN_IN_LOCALSTORAGE';
 export const LOG_OUT = 'LOG_OUT';
 
@@ -36,7 +37,6 @@ export function actionChangeInputValueConnection(
   value: string,
   nameStateInput: string
 ) {
-  console.log(value);
   return {
     type: CHANGE_INPUT_VALUE_CONNECTION,
     payload: {
@@ -74,11 +74,23 @@ export function actionFetchAuthentUser() {
  */
 export function actionAuthentSuccess(pseudo: string, token: string) {
   return {
-    type: ATHENT_SUCCESS,
+    type: AUTHENT_SUCCESS,
     payload: {
       pseudo: pseudo,
       token: token,
     },
+  };
+}
+
+/**
+ * Message error connection invalid email or wrong password
+ * @param message string, detail of error connection
+ * @returns Object Action
+ */
+export function actionAuthentError(message: string) {
+  return {
+    type: AUTHENT_ERROR,
+    payload: message,
   };
 }
 
