@@ -36,7 +36,6 @@ export function actionChangeInputValueConnection(
   value: string,
   nameStateInput: string
 ) {
-  console.log(value);
   return {
     type: CHANGE_INPUT_VALUE_CONNECTION,
     payload: {

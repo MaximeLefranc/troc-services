@@ -26,7 +26,7 @@ export const initialState: UserState = {
   password: '',
   isLoggedIn: false,
   pseudo: '',
-  messageAuthent: "Message d'érreur",
+  messageAuthent: '',
 };
 
 // eslint-disable-next-line @typescript-eslint/default-param-last

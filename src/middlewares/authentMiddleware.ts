@@ -21,7 +21,6 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_AUTHENT_USER:
       const { email, password } = store.getState().user;
-      console.log(email, password);
       axios
         .post(`${urlAPI}api/login_check`, {
           username: email,
@@ -36,8 +35,11 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          store.dispatch(actionAuthentError('message ici'));
-          console.error(error);
+          store.dispatch(
+            actionAuthentError(
+              "une erreur inattendue s'est produite, veullez réessayer plus tard."
+            )
+          );
         });
       return next(action);
     default:

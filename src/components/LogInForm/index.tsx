@@ -53,6 +53,7 @@ function LogInForm(): JSX.Element {
           <FieldLogIn
             name="password"
             type="password"
+            autocomplete="current-password"
             placeholder="Mot de passe"
             onChangeHandle={changeField}
             value={password}
