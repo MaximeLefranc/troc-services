@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { actionToggleSubmitSuccess } from '../../../actions/advertisements';
 import { GlobalState } from '../../../reducers';
 import Spinner from '../../Spinner';
 import Card from '../Card';
@@ -30,6 +32,10 @@ export interface Adverts {
 }
 
 function AdvertsCards(): JSX.Element {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actionToggleSubmitSuccess(false));
+  });
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const advertList = useSelector(
     (state: GlobalState) => state.advertisements.listOfAdverts

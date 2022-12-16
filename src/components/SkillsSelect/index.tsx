@@ -28,6 +28,9 @@ function SkillsSelect(): JSX.Element {
   const skillsUser = useSelector(
     (state: GlobalState) => state.inscription.skills
   );
+  const skillsAdvert = useSelector(
+    (state: GlobalState) => state.advertisements.skills
+  );
 
   const animatedComponents = makeAnimated();
 
@@ -54,16 +57,19 @@ function SkillsSelect(): JSX.Element {
     }
   };
 
+  let defaultValue;
   let placeholder;
   if (pathname === '/nouvelle-annonce') {
     placeholder = 'Compétence nécéssaire *';
+    defaultValue = skillsAdvert;
   } else {
     placeholder = 'Mes Compétences *';
+    defaultValue = skillsUser;
   }
 
   return (
     <Select
-      defaultValue={skillsUser}
+      defaultValue={defaultValue}
       isMulti
       name="colors"
       components={animatedComponents}

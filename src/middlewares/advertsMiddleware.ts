@@ -5,6 +5,7 @@ import {
   actionAddSkillsInState,
   actionFetchAdvertsementsSkillsAndUsers,
   actionSubmitNewAdvertError,
+  actionToggleSubmitSuccess,
   FETCH_ADVERTISEMENTS_SKILLS_AND_USERS,
   SUBMIT_NEW_ADVERT,
 } from '../actions/advertisements';
@@ -58,36 +59,33 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const formData = new FormData();
-      formData.append('file', picture);
       const bodyParameters = {
         title: titleInput,
         content: descriptionInput,
         skills: skillsIds,
-        file: formData,
       };
 
       axios
         .post(`${urlAPI}api/advertisements/add`, bodyParameters, config)
         .then((response) => {
-          console.log(response);
-          // if (response.status === 201 && picture !== '') {
-          //   const formData = new FormData();
-          //   formData.append('file', picture);
-          //   axios
-          //     .post(
-          //       `${urlAPI}api/advertisements/upload/${response.data.newAdvertId}`,
-          //       formData
-          //     )
-          //     .then((responsePicture) => {
-          //       console.log(responsePicture);
-          //     })
-          //     .catch((error) => {
-          //       console.error(error);
-          //     });
-          // }
+          if (response.status === 201 && picture !== '') {
+            const formData = new FormData();
+            formData.append('file', picture);
+            axios
+              .post(
+                `${urlAPI}api/advertisements/upload/${response.data.newAdvertId}`,
+                formData
+              )
+              .then(() => {
+                store.dispatch(actionToggleSubmitSuccess(true));
+              })
+              .catch(() => {
+                store.dispatch(actionSubmitNewAdvertError());
+              });
+          }
+          store.dispatch(actionToggleSubmitSuccess(true));
         })
-        .catch((error) => {
+        .catch(() => {
           store.dispatch(actionSubmitNewAdvertError());
         })
         .finally(() => {

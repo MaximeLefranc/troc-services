@@ -6,6 +6,7 @@ import {
   ADD_SKILLS_NEW_ADVERT,
   CHANGE_INPUT_VALUE_NEW_ADVERT,
   SUBMIT_NEW_ADVERT_ERROR,
+  TOGGLE_SUBMIT_SUCCESS,
 } from '../actions/advertisements';
 
 export interface AdvertsState {
@@ -16,6 +17,7 @@ export interface AdvertsState {
   descriptionInput: string;
   skills: { value: number; label: string }[];
   message: string;
+  submitSuccess: boolean;
 }
 
 export const initialState: AdvertsState = {
@@ -26,6 +28,7 @@ export const initialState: AdvertsState = {
   descriptionInput: '',
   skills: [],
   message: '',
+  submitSuccess: false,
 };
 
 const advertisementsReducer = (
@@ -63,6 +66,16 @@ const advertisementsReducer = (
       return {
         ...state,
         message: "Une erreur s'est produite, merci de réessayer ultérieurement",
+      };
+    case TOGGLE_SUBMIT_SUCCESS:
+      return {
+        ...state,
+        titleInput: '',
+        picture: '',
+        descriptionInput: '',
+        skills: [],
+        message: '',
+        submitSuccess: action.payload,
       };
     default:
       return state;

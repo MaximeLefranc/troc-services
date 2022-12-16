@@ -14,6 +14,7 @@ export const ADD_SKILLS_NEW_ADVERT = 'ADD_SKILLS_NEW_ADVERT';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const SUBMIT_NEW_ADVERT = 'SUBMIT_NEW_ADVERT';
 export const SUBMIT_NEW_ADVERT_ERROR = 'SUBMIT_NEW_ADVERT_ERROR';
+export const TOGGLE_SUBMIT_SUCCESS = 'TOGGLE_SUBMIT_SUCCESS';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -112,5 +113,17 @@ export function actionSubmitNewAdvert() {
 export function actionSubmitNewAdvertError() {
   return {
     type: SUBMIT_NEW_ADVERT_ERROR,
+  };
+}
+
+/**
+ * Advert submit success can navigate from home
+ * @param trueOrFalse true for redirect, false after
+ * @returns Object action
+ */
+export function actionToggleSubmitSuccess(trueOrFalse: boolean) {
+  return {
+    type: TOGGLE_SUBMIT_SUCCESS,
+    payload: trueOrFalse,
   };
 }

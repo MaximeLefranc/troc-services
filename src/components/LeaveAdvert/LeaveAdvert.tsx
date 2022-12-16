@@ -1,5 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import {
   actionAddMessage,
   actionChangeInputValueNewAdvert,
@@ -15,6 +16,9 @@ function LeaveAdvert(): JSX.Element {
   const dispatch = useDispatch();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
+  const submitOK = useSelector(
+    (state: GlobalState) => state.advertisements.submitSuccess
+  );
   const message = useSelector(
     (state: GlobalState) => state.advertisements.message
   );
@@ -46,6 +50,9 @@ function LeaveAdvert(): JSX.Element {
     classNameInfo = 'leaveadvert__info danger';
   }
 
+  if (!isLoggedIn || submitOK) {
+    return <Navigate to="/accueil" replace />;
+  }
   if (isLoading) {
     return <Spinner />;
   }
