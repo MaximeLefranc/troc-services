@@ -13,7 +13,6 @@ import Header from '../Header';
 import LogInForm from '../LogInForm';
 import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
-import AdvertList from '../AdvertList';
 
 import { actionHaveTokenInLocalstorage } from '../../actions/user';
 
@@ -23,6 +22,7 @@ import DetailMessage from '../ListMessages/DetailMessage';
 import FormMessage from '../ListMessages/FormMessage';
 import { actionFetchAdvertsementsSkillsAndUsers } from '../../actions/advertisements';
 import LeaveAdvert from '../LeaveAdvert/LeaveAdvert';
+import AdvertFiltered from '../AdvertFiltered';
 
 interface Location {
   pathname: string;
@@ -50,7 +50,7 @@ function TrocServices(): JSX.Element {
         <Route path="/profils/messages" element={<ListMessages />} />
         <Route path="/profils/messages/:slug" element={<DetailMessage />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
-        <Route path="/annonces/categorie/:slug" element={<AdvertList />} />
+        <Route path="/annonces/categorie/:slug" element={<AdvertFiltered />} />
         <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
         <Route
           path="/annonces/[id]/envoyer-message"

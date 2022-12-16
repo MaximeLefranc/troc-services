@@ -7,7 +7,7 @@ import Card from '../Cards/Card';
 import Spinner from '../Spinner';
 import './styles.scss';
 
-function AdvertList() {
+function AdvertFiltered() {
   const { slug } = useParams();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const advertList = useSelector((state: GlobalState) =>
@@ -43,4 +43,4 @@ function AdvertList() {
     </section>
   );
 }
-export default AdvertList;
+export default AdvertFiltered;
