@@ -1,49 +1,28 @@
 import { useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
-import { GlobalState } from '../../../reducers';
-import Spinner from '../../Spinner';
-import Card from '../Card';
-import './../styles.scss';
+import { Link, useParams } from 'react-router-dom';
+import { GlobalState } from '../../reducers';
+import { findAdvertsBySkills } from '../../selectors/advertisements';
+import { Adverts } from '../Cards/AdvertsCards';
+import Card from '../Cards/Card';
+import Spinner from '../Spinner';
+import './styles.scss';
 
-export interface Adverts {
-  id: number;
-  imageName: string;
-  title: string;
-  content: string;
-  skills: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
-  user: {
-    id: number;
-    imageName: string;
-    nickname: string;
-    skill: [
-      {
-        id: number;
-        name: string;
-      }
-    ];
-  };
-}
-
-function AdvertsCards(): JSX.Element {
+function AdvertList() {
+  const { slug } = useParams();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
-  const advertList = useSelector(
-    (state: GlobalState) => state.advertisements.listOfAdverts
+  const advertList = useSelector((state: GlobalState) =>
+    findAdvertsBySkills(state.advertisements.listOfAdverts, slug)
   );
 
   if (isLoading) {
     return <Spinner />;
   }
-  if (advertList.length === 0) {
+  if (!advertList) {
     return <div>Page 404</div>; //! Page 404 à faire
   }
   return (
     <section className="main">
-      <h2 className="main__title">Les dernières annonces</h2>
+      <h2 className="main__title">Annonces pour {slug}</h2>
       <section className="cards">
         {advertList.map((advert: Adverts) => (
           <Link
@@ -64,5 +43,4 @@ function AdvertsCards(): JSX.Element {
     </section>
   );
 }
-
-export default AdvertsCards;
+export default AdvertList;

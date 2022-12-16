@@ -1,11 +1,40 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import MobileDropdown from './MobileDropdown';
+import { actionToggleLogInForm } from '../../../actions/user';
+import { Advertisements } from '../NavBar';
+import NavDropdown from '../NavBar/NavDropdown';
 import './styles.scss';
 
-function MobileNav({ logo }: { logo: string }) {
+export interface Category {
+  id: number;
+  name: string;
+  skills: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+}
+
+function MobileNav({
+  logo,
+  isLogged,
+  advertisements,
+  mobileScreen,
+}: {
+  mobileScreen: boolean;
+  logo: string;
+  isLogged: boolean;
+  advertisements: Advertisements;
+}): JSX.Element {
+  const dispatch = useDispatch();
+  const handleToggleLogInForm = (): void => {
+    dispatch(actionToggleLogInForm());
+  };
+
   return (
     <div className="top-nav">
-      <Link className="mobileNav__logo--link" to={'/'}>
+      <Link className="mobileNav__logo--link" to="/accueil">
         <img src={logo} className="mobileNav__logo" alt="logo troc'services" />
       </Link>
       <input id="mobileNav__links-toggle" type="checkbox" />
@@ -16,17 +45,36 @@ function MobileNav({ logo }: { logo: string }) {
         <div className="mobileNav__links-button"></div>
       </label>
       <div className="mobileNav__links">
-        <Link className="mobileNav__links--link" to="#">
-          Connexion
-        </Link>
-        <Link className="mobileNav__links--link" to="#">
-          Inscritpion
-        </Link>
-        <Link className="mobileNav__links--link" to="#">
+        {isLogged ? (
+          ''
+        ) : (
+          <Link
+            className="mobileNav__links--link"
+            onClick={handleToggleLogInForm}
+            to="#"
+          >
+            Connexion
+          </Link>
+        )}
+
+        {isLogged ? (
+          ''
+        ) : (
+          <Link className="mobileNav__links--link" to="/inscription">
+            Inscritpion
+          </Link>
+        )}
+
+        <Link className="mobileNav__links--link" to="/profils">
           Profils
         </Link>
-        <MobileDropdown />
-        <MobileDropdown />
+        {advertisements.listOfSkills.map((category: Category) => (
+          <NavDropdown
+            category={category}
+            key={category.id}
+            mobileScreen={mobileScreen}
+          />
+        ))}
       </div>
     </div>
   );

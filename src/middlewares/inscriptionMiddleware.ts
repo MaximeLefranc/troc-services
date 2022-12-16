@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
-import { SUBMIT_INSCRIPTION_FORM } from '../actions/inscription';
+import { actionFetchAdvertsementsSkillsAndUsers } from '../actions/advertisements';
+import {
+  actionInscriptionError,
+  actionInscriptionSuccess,
+  SUBMIT_INSCRIPTION_FORM,
+} from '../actions/inscription';
+import { actionToggleLoader } from '../actions/user';
+import { arrayIdsSkills } from '../selectors/members';
 
 let urlAPI: string;
 if (process.env.NODE_ENV === 'development') {
@@ -16,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
 const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SUBMIT_INSCRIPTION_FORM:
+      store.dispatch(actionToggleLoader());
       const {
         nickname,
         lastname,
@@ -27,24 +35,51 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         town,
         zip,
         description,
+        skills,
         password,
       } = store.getState().inscription;
+      const townToLowerCase = town.toLowerCase();
+      console.log(townToLowerCase);
+      const skillsIds = arrayIdsSkills(skills);
       axios
-        .post(`${urlAPI}/api/subscription`, {
+        .post(`${urlAPI}api/user/register`, {
           email: email,
           password: password,
-          firstName: firstname,
-          lastName: lastname,
-          birthDate: birthday,
-          nickname: nickname,
+          first_name: firstname,
+          last_name: lastname,
+          birth_date: birthday,
+          nickname: nickname.trim(),
           biography: description,
-          imageFile: picture,
           address: adress,
-          city: town,
-          zipCode: zip,
+          skill: skillsIds,
+          city: townToLowerCase,
+          zip_code: zip,
         })
         .then((response) => {
-          console.log(response);
+          if (response.status === 200 && picture !== '') {
+            const formData = new FormData();
+            formData.append('file', picture);
+            axios
+              .post(
+                `${urlAPI}api/user/upload/${response.data.newUserId}`,
+                formData
+              )
+              .then(() => {
+                store.dispatch(actionInscriptionSuccess());
+              })
+              .catch(() => {
+                store.dispatch(actionInscriptionError());
+              });
+          } else {
+            store.dispatch(actionInscriptionSuccess());
+          }
+        })
+        .catch(() => {
+          store.dispatch(actionInscriptionError());
+        })
+        .finally(() => {
+          store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
+          store.dispatch(actionToggleLoader());
         });
       return next(action);
     default:

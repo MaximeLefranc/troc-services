@@ -4,22 +4,16 @@ import {
   actionAuthentError,
   actionAuthentSuccess,
   FETCH_AUTHENT_USER,
+  actionToggleLoader,
 } from '../actions/user';
+import { getUrlApi } from '../utils/utils';
 
-let urlAPI: string;
-if (process.env.NODE_ENV === 'development') {
-  if (process.env.REACT_APP_API_URL_DEV) {
-    urlAPI = process.env.REACT_APP_API_URL_DEV;
-  }
-} else if (process.env.NODE_ENV === 'production') {
-  if (process.env.REACT_APP_API_URL_PROD) {
-    urlAPI = process.env.REACT_APP_API_URL_PROD; //! mettre la bonne url de PORD dans le fichier .env
-  }
-}
+const urlAPI = getUrlApi();
 
 const authentMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_AUTHENT_USER:
+      store.dispatch(actionToggleLoader());
       const { email, password } = store.getState().user;
       axios
         .post(`${urlAPI}api/login_check`, {
@@ -44,6 +38,9 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
               )
             );
           }
+        })
+        .finally(() => {
+          store.dispatch(actionToggleLoader());
         });
       return next(action);
     default:

@@ -5,6 +5,7 @@ import {
   CHANGE_INPUT_VALUE_CONNECTION,
   HAVE_TOKEN_IN_LOCALSTORAGE,
   LOG_OUT,
+  SAVE_ALL_MEMBERS_IN_STATE,
   TOGGLE_LOADER,
   TOGGLE_LOGIN_FORM,
 } from '../actions/user';
@@ -17,6 +18,7 @@ export interface UserState {
   isLoggedIn: boolean;
   pseudo: string;
   messageAuthent: string;
+  listOfMembers: [];
 }
 
 export const initialState: UserState = {
@@ -27,6 +29,7 @@ export const initialState: UserState = {
   isLoggedIn: false,
   pseudo: '',
   messageAuthent: '',
+  listOfMembers: [],
 };
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
@@ -83,6 +86,11 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         ...state,
         isLoggedIn: false,
         pseudo: '',
+      };
+    case SAVE_ALL_MEMBERS_IN_STATE:
+      return {
+        ...state,
+        listOfMembers: action.payload,
       };
     default:
       return state;

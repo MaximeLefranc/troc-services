@@ -1,0 +1,106 @@
+@use './../../../styles/vars';
+
+.send-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  &__title {
+    color: vars.$main-color;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  &__img {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    box-shadow: 2px 2px 3px vars.$main-color;
+    margin-bottom: .5rem;
+  }
+  &__pseudo {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__label {
+      width: 150%;
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: .8rem;
+      &__input {
+        margin-top: .5rem;
+        height: 2rem;
+        width: 100%;
+        border: none;
+        background-color: vars.$font-card-color;
+        font-family: vars.$main-font;
+        border-radius: .5rem;
+        font-size: .9rem;
+        &:focus {
+          border: 1px solid vars.$main-color;
+        }
+        &-text-area {
+          border-radius: .5rem;
+          margin-top: .5rem;
+          width: 100%;
+          resize: none;
+          border: none;
+          background-color: vars.$font-card-color;
+          font-family: vars.$main-font;
+          font-size: .9rem;
+          &:focus {
+            outline: none;
+            border: 1px solid vars.$main-color;
+            height: 10rem;
+          }
+        }
+      }
+
+    }
+    &__button {
+      padding: 1rem;
+      border: none;
+      background-color: vars.$main-color;
+      border-radius: .5rem;
+      color: vars.$font-color;
+      font-family: vars.$main-font;
+      font-size: 1rem;
+      &:hover {
+        background-color: vars.$font-color;
+        color: vars.$main-color;
+        border: 1px solid vars.$main-color;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .send-message {
+    margin: 2rem 20rem 5rem 20rem;
+    border-radius: .5rem;
+    border: 1px solid vars.$dark-color;
+    &__title {
+      font-size: 1.5rem;
+    }
+    &__pseudo {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    &__form {
+      &__label {
+        width: 200%;
+        font-size: 1rem;
+        &__input {
+          font-size: 1rem;
+          &-text-area {
+            font-size: 1rem;
+          }
+        }
+  
+      }
+    }
+  }
+}

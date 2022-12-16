@@ -5,11 +5,23 @@ import FormFilters from '../FormFilters';
 import NavBar from './NavBar';
 import { Link } from 'react-router-dom';
 import Profiles from './Profiles';
+import { GlobalState } from '../../reducers';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionToggleLogInForm } from '../../actions/user';
 
-function Header() {
+function Header(): JSX.Element {
+  const advertisements = useSelector(
+    (state: GlobalState) => state.advertisements
+  );
+
   const mobileScreen: boolean = window.matchMedia(
     '(max-width: 1200px)'
   ).matches;
+
+  const dispatch = useDispatch();
+  const handleToggleLogInForm = (): void => {
+    dispatch(actionToggleLogInForm());
+  };
 
   const logged = true;
 
@@ -20,27 +32,41 @@ function Header() {
       {mobileScreen ? (
         ''
       ) : (
-        <Link className="Nav__logo--link" to={'/'}>
+        <Link className="Nav__logo--link" to="/accueil">
           <img src={logo} className="Nav__logo" alt="logo troc'services" />
         </Link>
       )}
       {logged ? (
         <Profiles />
       ) : (
-        <button className="header__btn--subscribe">
+        <button
+          className="header__btn--subscribe"
+          onClick={handleToggleLogInForm}
+        >
           <Link className="header___btn__link--subscribe" to="#">
-            inscription
+            Connexion
           </Link>
         </button>
       )}
       <FormFilters />
-      <Link className="header__link--profils" to="#">
+      <Link className="header__link--profils" to="/profils">
         Membres
       </Link>
       <button className="header__btn--advert" type="button">
-        <Link to="#">Déposez votre annonce</Link>
+        <Link to={logged ? '/nouvelle-anonce' : '/inscription'}>
+          {logged ? 'Déposez votre annonce' : 'Inscription'}
+        </Link>
       </button>
-      {mobileScreen ? <MobileNav logo={logo} /> : <NavBar />}
+      {mobileScreen ? (
+        <MobileNav
+          logo={logo}
+          isLogged={logged}
+          advertisements={advertisements}
+          mobileScreen={mobileScreen}
+        />
+      ) : (
+        <NavBar advertisements={advertisements} mobileScreen={mobileScreen} />
+      )}
     </header>
   );
 }

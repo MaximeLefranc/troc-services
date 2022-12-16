@@ -1,94 +1,67 @@
+import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { GlobalState } from '../../reducers';
+import { findMember } from '../../selectors/members';
+import { getUrlApi } from '../../utils/utils';
+import Spinner from '../Spinner';
 import './styles.scss';
 
 function ProfileDetail(): JSX.Element {
+  const url = getUrlApi();
+  const { slug } = useParams();
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  const member = useSelector((state: GlobalState) =>
+    findMember(state.user.listOfMembers, slug)
+  );
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (member === false) {
+    return <div>Page 404</div>; //! Page 404 à faire
+  }
+  const hasAdverts = member.advertisements ? true : false;
   return (
     <section className="main">
-      <section className="profile">
+      <section className="profile-detail">
         <img
-          className="profile__picture"
-          src="https://img.freepik.com/photos-gratuite/portrait-profil-magnifique-beau-jeune-homme-traits-parfaits-poils-cheveux-rougeatres-posant-au-mur-fond-blanc-cavalier-regardant-expression-faciale-reveuse_343059-2574.jpg?w=2000"
+          className="profile-detail__picture"
+          src={`${url}/img/${member.imageName}`}
           alt="profile picture of member"
         />
-        <h2 className="profile__pseudo">Pseudo du membre</h2>
-        <button className="profile__contact" type="button">
-          {/* ou modifier ! */}
-          Me contacter
-        </button>
-        <p className="profile__description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu
-          mollis ipsum, ut vehicula leo. Sed sit amet dignissim erat, a
-          vestibulum ipsum. Aenean vulputate sapien vitae lacus consectetur
-          feugiat.sit amet, consectetur adipiscing elit. Quisque eu mollis
-          mollis mollis ipsum, ut vehicula leo. Sed sit amet dignissim erat, a
-          vestibulum ipsum. ipsum. ipsum. Aenean vulputate sapien vitae lacus
-          consectetur feugiat.
-        </p>
-        <h3 className="profile__title">Ce que je sais faire</h3>
-        <div className="profile__skills">
-          <p className="profile__skills__skill">Jardinage</p>
-          <p className="profile__skills__skill">Jardinage</p>
-          <p className="profile__skills__skill">Jardinage</p>
-          <p className="profile__skills__skill">Jardinage</p>
-          <p className="profile__skills__skill">Jardinage</p>
-          <p className="profile__skills__skill">Jardinage</p>
-          <p className="profile__skills__skill">Jardinage</p>
-          <p className="profile__skills__skill">Jardinage</p>
+        <h2 className="profile-detail__pseudo">{member.nickname}</h2>
+        <Link to={`/profils/${member.nickname}/envoyer-message`}>
+          <button className="profile-detail__contact" type="button">
+            {/* ou modifier ! */}
+            Me contacter
+          </button>
+        </Link>
+        <p className="profile-detail__description">{member.biography}</p>
+        <h3 className="profile-detail__title">Ce que je sais faire</h3>
+        <div className="profile-detail__skills">
+          {member.skill.map((skill) => (
+            <p key={skill.id} className="profile-detail__skills__skill">
+              {skill.name}
+            </p>
+          ))}
         </div>
-        <h3 className="profile__title">Mes annonces</h3>
-        <div className="profile__adverts">
-          <img
-            className="profile__adverts__picture"
-            src="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
-          ></img>
-          <h4 className="profile__adverts__title">Titre de l'annonce</h4>
-          <p className="profile__adverts__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu
-            mollis ipsum, ut vehicula leo. Sed sit amet dignissim erat, a
-            vestibulum ipsum. Aenean vulputate sapien vitae lacus consectetur
-            feugiat.sit amet, consectetur adipiscing elit. Quisque eu mollis
-            mollis mollis ipsum, ut vehicula leo. Sed sit amet dignissim erat, a
-            vestibulum ipsum. ipsum. ipsum. Aenean vulputate sapien vitae lacus
-            consectetur feugiat. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Quisque eu mollis ipsum, ut vehicula leo. Sed sit
-            amet dignissim erat, a vestibulum ipsum. Aenean vulputate sapien
-            vitae lacus consectetur feugiat.sit amet, consectetur adipiscing
-            elit. Quisque eu mollis mollis mollis ipsum, ut vehicula leo. Sed
-            sit amet dignissim erat, a vestibulum ipsum. ipsum. ipsum. Aenean
-            vulputate sapien vitae lacus consectetur feugiat.
-          </p>
-        </div>
-        <div className="profile__adverts">
-          <img
-            className="profile__adverts__picture"
-            src="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
-          ></img>
-          <h4 className="profile__adverts__title">Titre de l'annonce</h4>
-          <p className="profile__adverts__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu
-            mollis ipsum, ut vehicula leo. Sed sit amet dignissim erat, a
-            vestibulum ipsum. Aenean vulputate sapien vitae lacus consectetur
-            feugiat.sit amet, consectetur adipiscing elit. Quisque eu mollis
-            mollis mollis ipsum, ut vehicula leo. Sed sit amet dignissim erat, a
-            vestibulum ipsum. ipsum. ipsum. Aenean vulputate sapien vitae lacus
-            consectetur feugiat.
-          </p>
-        </div>
-        <div className="profile__adverts">
-          <img
-            className="profile__adverts__picture"
-            src="https://www.istockphoto.com/resources/images/PhotoFTLP/FR/NatureLandscapes-508488398.jpg"
-          ></img>
-          <h4 className="profile__adverts__title">Titre de l'annonce</h4>
-          <p className="profile__adverts__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu
-            mollis ipsum, ut vehicula leo. Sed sit amet dignissim erat, a
-            vestibulum ipsum. Aenean vulputate sapien vitae lacus consectetur
-            feugiat.sit amet, consectetur adipiscing elit. Quisque eu mollis
-            mollis mollis ipsum, ut vehicula leo. Sed sit amet dignissim erat, a
-            vestibulum ipsum. ipsum. ipsum. Aenean vulputate sapien vitae lacus
-            consectetur feugiat.
-          </p>
-        </div>
+        {hasAdverts && <h3 className="profile-detail__title">Mes annonces</h3>}
+        {hasAdverts &&
+          member.advertisements.map((advertisement) => (
+            <Link key={advertisement.id} to={`/annonces/${advertisement.id}`}>
+              <div key={advertisement.id} className="profile-detail__adverts">
+                <img
+                  className="profile-detail__adverts__picture"
+                  src={advertisement.imageName}
+                ></img>
+                <h4 className="profile-detail__adverts__title">
+                  {advertisement.title}
+                </h4>
+                <p className="profile-detail__adverts__description">
+                  {advertisement.content}
+                </p>
+              </div>
+            </Link>
+          ))}
       </section>
     </section>
   );
