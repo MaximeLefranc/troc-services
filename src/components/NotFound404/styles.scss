@@ -1,0 +1,26 @@
+@use './../../styles/vars';
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  &__title {
+    color: vars.$main-color;
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 2rem;
+  }
+  &__container {
+    width: 10rem;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    &__img {
+      width: 200%;
+      transition: transform .1s;
+    }
+  }
+}
