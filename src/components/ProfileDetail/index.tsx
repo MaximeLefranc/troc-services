@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { GlobalState } from '../../reducers';
 import { findMember } from '../../selectors/members';
 import { getUrlApi } from '../../utils/utils';
+import NotFound404 from '../NotFound404';
 import Spinner from '../Spinner';
 import './styles.scss';
 
@@ -17,7 +18,7 @@ function ProfileDetail(): JSX.Element {
     return <Spinner />;
   }
   if (member === false) {
-    return <div>Page 404</div>; //! Page 404 à faire
+    return <NotFound404 />;
   }
   const hasAdverts = member.advertisements ? true : false;
   return (

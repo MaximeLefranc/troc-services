@@ -4,6 +4,7 @@ import { GlobalState } from '../../reducers';
 import { findAdvertsBySkills } from '../../selectors/advertisements';
 import { Adverts } from '../Cards/AdvertsCards';
 import Card from '../Cards/Card';
+import NotFound404 from '../NotFound404';
 import Spinner from '../Spinner';
 import './styles.scss';
 
@@ -18,7 +19,7 @@ function AdvertFiltered() {
     return <Spinner />;
   }
   if (!advertList) {
-    return <div>Page 404</div>; //! Page 404 à faire
+    return <NotFound404 />;
   }
   return (
     <section className="main">

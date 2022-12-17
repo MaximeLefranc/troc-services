@@ -5,6 +5,7 @@ import './styles.scss';
 import { findAdvert } from '../../selectors/advertisements';
 import { getUrlApi } from '../../utils/utils';
 import Spinner from '../Spinner';
+import NotFound404 from '../NotFound404';
 
 function AdvertDetail(): JSX.Element {
   const url = getUrlApi();
@@ -17,7 +18,7 @@ function AdvertDetail(): JSX.Element {
     return <Spinner />;
   }
   if (typeof advert === 'string' || advert === undefined) {
-    return <div>Page 404</div>; //! Page 404 à faire
+    return <NotFound404 />;
   }
   return (
     <section className="advert">

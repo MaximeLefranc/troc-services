@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GlobalState } from '../../../reducers';
+import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import Card from '../Card';
 
@@ -26,7 +27,7 @@ function ProfilesCards(): JSX.Element {
   if (isLoading) {
     return <Spinner />;
   } else if (usersFromSate.length === 0) {
-    return <div>Page 404</div>; //! Page 404 à faire
+    return <NotFound404 />;
   }
   return (
     <section className="main">

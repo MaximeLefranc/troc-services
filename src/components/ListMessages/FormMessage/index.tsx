@@ -1,5 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import { actionChangeInputValueMessage } from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
 import Field from '../../Field';
@@ -22,6 +23,9 @@ function FormMessage(): JSX.Element {
     evt.preventDefault();
     // dispatch action send a message
   };
+  if (!localStorage.getItem('token_troc_services')) {
+    return <Navigate to="/accueil" replace />;
+  }
   return (
     <section className="send-message">
       <h2 className="send-message__title">Envoyer un message à</h2>

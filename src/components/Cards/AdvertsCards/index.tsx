@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionToggleSubmitSuccess } from '../../../actions/advertisements';
 import { GlobalState } from '../../../reducers';
+import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import Card from '../Card';
 import './../styles.scss';
@@ -45,7 +46,7 @@ function AdvertsCards(): JSX.Element {
     return <Spinner />;
   }
   if (advertList.length === 0) {
-    return <div>Page 404</div>; //! Page 404 à faire
+    return <NotFound404 />;
   }
   return (
     <section className="main">
