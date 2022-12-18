@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import image404 from './../../assets/images/404.svg';
+import image404 from './../../assets/gif/page-not-found.gif';
 import './styles.scss';
 
 function NotFound404() {

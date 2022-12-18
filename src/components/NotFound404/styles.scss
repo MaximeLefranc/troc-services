@@ -10,7 +10,6 @@
   margin: 1rem 0 3rem 0;
   background-color: vars.$font-transparent-color;
   border: 1px solid vars.$main-color;
-  height: 80vh;
   &__title {
     color: vars.$main-color;
     font-size: 2rem;
@@ -18,14 +17,14 @@
     margin-bottom: 2rem;
   }
   &__container {
-    width: 25rem;
-    border-radius: 50%;
+    width: 20rem;
+    height: 19rem;
+    border-radius: 10%;
     overflow: hidden;
     display: flex;
     justify-content: center;
     margin-bottom: 2rem;
     &__img {
-      width: 100%;
       object-fit: fill;
     }
   }
