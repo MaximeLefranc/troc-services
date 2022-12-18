@@ -1,11 +1,14 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { GlobalState } from '../../../reducers';
 import Spinner from '../../Spinner';
 import './styles.scss';
 
 function DetailMessage(): JSX.Element {
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  if (!localStorage.getItem('token_troc_services')) {
+    return <Navigate to="/accueil" replace />;
+  }
   if (isLoading) {
     return <Spinner />;
   }

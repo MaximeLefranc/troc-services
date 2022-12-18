@@ -23,6 +23,7 @@ import FormMessage from '../ListMessages/FormMessage';
 import { actionFetchAdvertsementsSkillsAndUsers } from '../../actions/advertisements';
 import LeaveAdvert from '../LeaveAdvert/LeaveAdvert';
 import AdvertFiltered from '../AdvertFiltered';
+import NotFound404 from '../NotFound404';
 
 interface Location {
   pathname: string;
@@ -61,7 +62,7 @@ function TrocServices(): JSX.Element {
           element={<FormMessage />}
         />
         <Route path="/a-propos" element={<About />} />
-        <Route path="*" element={<div>Page404</div>} />
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
       {!isWelcomePage && <Footer />}
     </div>

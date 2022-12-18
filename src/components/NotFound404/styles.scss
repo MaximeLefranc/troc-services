@@ -1,0 +1,50 @@
+@use './../../styles/vars';
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  border-radius: .5rem;
+  margin: 1rem 0 3rem 0;
+  background-color: vars.$font-transparent-color;
+  border: 1px solid vars.$main-color;
+  height: 80vh;
+  &__title {
+    color: vars.$main-color;
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 2rem;
+  }
+  &__container {
+    width: 25rem;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    &__img {
+      width: 100%;
+      object-fit: fill;
+    }
+  }
+  &__text {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .notFound {
+    margin: 1rem 15rem 1rem 15rem;
+    padding: 2rem 5rem 2rem 5rem;
+    height: 65vh;
+    &__title {
+      font-size: 2.5rem;
+    }
+    &__container {
+      width: 30rem;
+    }
+  }
+}
