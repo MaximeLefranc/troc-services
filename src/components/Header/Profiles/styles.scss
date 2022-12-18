@@ -3,7 +3,7 @@
 .action {
   position: fixed;
   z-index: 22;
-  width: 3.9rem;
+  width: 10%;
   height: 5rem;
   top: .5rem;
   left: .5rem;
@@ -22,7 +22,7 @@
 .action .profile img {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   object-fit: cover;
 }
 

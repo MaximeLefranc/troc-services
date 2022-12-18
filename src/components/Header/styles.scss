@@ -6,13 +6,13 @@
 }
 
 .Nav__logo--link {
-  margin-right: 85%;
+  width: 90%;
 }
 
 .header {
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .topHeader {
@@ -52,22 +52,21 @@
 }
 
 .header__link--profils {
-  min-width: 7rem;
-  max-height: 2rem;
-  margin: 1.6% 1% auto 0%;
+  display: block;
+  align-self: center;
+  width: 6.5%;
+  padding: .5rem;
   text-align: center;
-  font-size: large;
-  padding-top: 0.2%;
+  font-size: 1rem;  
 }
 
 
 
 .header__form {
   height: 4.5em;
-  width: 80%;
+  width: 75%;
   display: flex;
   font-family: vars.$main-font;
-  margin-left: 1%;
 
   &__input--service {
     border-top-left-radius: .5em;
@@ -105,14 +104,16 @@
   min-height: 3em;
   margin-bottom: .2%;
   font-size: large;
-  margin-right: 1%;
+  width: 13.5%;
 }
 
 @media only screen and (min-width: 1200px) {
   .header {
     background-image: url('./../../assets/images/roselyn-tirado-GDWmu0bFfS4-unsplash.png');
     background-size: 100%;
-    background-position: 0rem -20em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0rem -12em;
   }
 }
 
