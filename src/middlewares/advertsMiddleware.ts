@@ -4,9 +4,12 @@ import {
   actionAddAdvertsInState,
   actionAddSkillsInState,
   actionFetchAdvertsementsSkillsAndUsers,
+  actionSetInfoAdvertInInputsState,
   actionSubmitNewAdvertError,
   actionToggleSubmitSuccess,
+  EDIT_IN_DB_THIS_ADVERT,
   FETCH_ADVERTISEMENTS_SKILLS_AND_USERS,
+  FETCH_ADVERT_FOR_MODIFICATION,
   SUBMIT_NEW_ADVERT,
 } from '../actions/advertisements';
 import {
@@ -19,8 +22,19 @@ import { getUrlApi } from '../utils/utils';
 const urlAPI = getUrlApi();
 
 const advertsMiddleware: Middleware = (store) => (next) => (action) => {
+  const { titleInput, picture, descriptionInput, skills } =
+    store.getState().advertisements;
+  const skillsIds = arrayIdsSkills(skills);
+  const bodyParameters = {
+    title: titleInput,
+    content: descriptionInput,
+    skills: skillsIds,
+    approved: false,
+  };
+  const formData = new FormData();
+  formData.append('file', picture);
   switch (action.type) {
-    case FETCH_ADVERTISEMENTS_SKILLS_AND_USERS:
+    case FETCH_ADVERTISEMENTS_SKILLS_AND_USERS: {
       store.dispatch(actionToggleLoader());
 
       const requestAdverts = axios.get(`${urlAPI}api/advertisements`);
@@ -32,10 +46,10 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
         .then(
           axios.spread((...responses) => {
             const adverts = responses[0].data;
-            const skills = responses[1].data;
+            const skillsOfAdverts = responses[1].data;
             const members = responses[2].data;
             store.dispatch(actionAddAdvertsInState(adverts));
-            store.dispatch(actionAddSkillsInState(skills));
+            store.dispatch(actionAddSkillsInState(skillsOfAdverts));
             store.dispatch(actionSaveAllMemebersInState(members));
           })
         )
@@ -46,31 +60,20 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionToggleLoader());
         });
       return next(action);
-
-    case SUBMIT_NEW_ADVERT:
+    }
+    case SUBMIT_NEW_ADVERT: {
       store.dispatch(actionToggleLoader());
-
-      const { titleInput, picture, descriptionInput, skills } =
-        store.getState().advertisements;
       const token = localStorage.getItem('token_troc_services');
-      const skillsIds = arrayIdsSkills(skills);
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      };
-      const bodyParameters = {
-        title: titleInput,
-        content: descriptionInput,
-        skills: skillsIds,
       };
 
       axios
         .post(`${urlAPI}api/advertisements/add`, bodyParameters, config)
         .then((response) => {
           if (response.status === 201 && picture !== '') {
-            const formData = new FormData();
-            formData.append('file', picture);
             axios
               .post(
                 `${urlAPI}api/advertisements/upload/${response.data.newAdvertId}`,
@@ -93,7 +96,62 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionToggleLoader());
         });
       return next(action);
-
+    }
+    case FETCH_ADVERT_FOR_MODIFICATION: {
+      store.dispatch(actionToggleLoader());
+      axios
+        .get(`${urlAPI}api/advertisements/${action.payload}`)
+        .then((response) => {
+          store.dispatch(
+            actionSetInfoAdvertInInputsState(response.data.advertisements)
+          );
+        })
+        .catch(() => {
+          store.dispatch(actionSubmitNewAdvertError());
+        })
+        .finally(() => {
+          store.dispatch(actionToggleLoader());
+        });
+      return next(action);
+    }
+    case EDIT_IN_DB_THIS_ADVERT: {
+      store.dispatch(actionToggleLoader());
+      const token = localStorage.getItem('token_troc_services');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      axios
+        .put(
+          `${urlAPI}api/advertisements/${action.payload}/edit`,
+          bodyParameters,
+          config
+        )
+        .then((response) => {
+          if (response.status === 206 && picture !== '') {
+            axios
+              .post(
+                `${urlAPI}api/advertisements/upload/${action.payload}`,
+                formData
+              )
+              .then(() => {
+                store.dispatch(actionToggleSubmitSuccess(true));
+              })
+              .catch(() => {
+                store.dispatch(actionSubmitNewAdvertError());
+              });
+          }
+        })
+        .catch(() => {
+          store.dispatch(actionSubmitNewAdvertError());
+        })
+        .finally(() => {
+          store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
+          store.dispatch(actionToggleLoader());
+        });
+      return next(action);
+    }
     default:
       return next(action);
   }

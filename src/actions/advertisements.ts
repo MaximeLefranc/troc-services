@@ -1,4 +1,5 @@
 import { MultiValue } from 'react-select';
+import { Adverts } from '../components/Cards/AdvertsCards';
 import { Skills } from '../components/SkillsSelect';
 
 /*=====================================
@@ -15,6 +16,10 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const SUBMIT_NEW_ADVERT = 'SUBMIT_NEW_ADVERT';
 export const SUBMIT_NEW_ADVERT_ERROR = 'SUBMIT_NEW_ADVERT_ERROR';
 export const TOGGLE_SUBMIT_SUCCESS = 'TOGGLE_SUBMIT_SUCCESS';
+export const FETCH_ADVERT_FOR_MODIFICATION = 'FETCH_ADVERT_FOR_MODIFICATION';
+export const SET_INFO_ADVERT_IN_INPUTS_STATE =
+  'SET_INFO_ADVERT_IN_INPUTS_STATE';
+export const EDIT_IN_DB_THIS_ADVERT = 'EDIT_IN_DB_THIS_ADVERT';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -125,5 +130,41 @@ export function actionToggleSubmitSuccess(trueOrFalse: boolean) {
   return {
     type: TOGGLE_SUBMIT_SUCCESS,
     payload: trueOrFalse,
+  };
+}
+
+/**
+ * Search advert info in DB with this id for set input informations
+ * @param advertId advert id to searched
+ * @returns Object Action
+ */
+export function actionFetchAdvertForModification(advertId: number) {
+  return {
+    type: FETCH_ADVERT_FOR_MODIFICATION,
+    payload: advertId,
+  };
+}
+
+/**
+ * Save in inputs advertisements state the advert info, ready for modification
+ * @param advert info of advert
+ * @returns Object Action
+ */
+export function actionSetInfoAdvertInInputsState(advert: Adverts) {
+  return {
+    type: SET_INFO_ADVERT_IN_INPUTS_STATE,
+    payload: advert,
+  };
+}
+
+/**
+ * Edit in DB this advert
+ * @param idAdvert id advert to modify
+ * @returns Object Action
+ */
+export function actionEditInDbThisAdvert(idAdvert: number) {
+  return {
+    type: EDIT_IN_DB_THIS_ADVERT,
+    payload: idAdvert,
   };
 }

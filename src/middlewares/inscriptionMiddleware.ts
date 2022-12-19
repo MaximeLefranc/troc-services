@@ -10,7 +10,7 @@ import {
   FETCH_PROFILE_USER_FOR_MODIFICATION,
   SUBMIT_INSCRIPTION_FORM,
 } from '../actions/inscription';
-import { actionToggleLoader } from '../actions/user';
+import { actionLogOut, actionToggleLoader } from '../actions/user';
 import { arrayIdsSkills } from '../selectors/members';
 
 let urlAPI: string;
@@ -154,7 +154,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
               .then(() => {
                 store.dispatch(
                   actionInscriptionSuccess(
-                    'Les modifications de votre profil on étaient réalisées avec succès'
+                    'Les modifications de votre profil on étaient réalisées avec succès, merci de vous reconnecter'
                   )
                 );
               })
@@ -168,7 +168,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           } else {
             store.dispatch(
               actionInscriptionSuccess(
-                'Les modifications de votre profil on étaient réalisées avec succès'
+                'Les modifications de votre profil on étaient réalisées avec succès, merci de vous reconnecter'
               )
             );
           }
@@ -183,6 +183,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
           store.dispatch(actionToggleLoader());
+          store.dispatch(actionLogOut());
         });
       return next(action);
     }
