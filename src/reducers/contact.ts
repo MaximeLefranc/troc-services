@@ -12,11 +12,11 @@ export interface ContactState {
 }
 
 export const initialState: ContactState = {
-  lastname: 'Lepen',
-  firstname: 'Marine',
+  lastname: '',
+  firstname: '',
   subject: '',
-  email: 'MarineLepen@gmail.com',
-  message: 'bonjour, je vous contact pour ....',
+  email: '',
+  message: '',
   messageSystem: '',
   contactFormCompleted: false,
 };

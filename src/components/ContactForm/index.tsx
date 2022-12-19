@@ -8,15 +8,6 @@ import { GlobalState } from '../../reducers';
 import Field from '../Field';
 import './styles.scss';
 
-interface EmailData {
-  send: any;
-  SecureToken: string;
-  To: string | string[];
-  From: string;
-  Subject: string;
-  Body: string;
-}
-
 function ContactForm() {
   const dispatch = useDispatch();
   const changeField = (value: string | File, nameInput: string): void => {
@@ -49,20 +40,8 @@ function ContactForm() {
     classNameInfo = 'inscription__info danger';
   }
 
-  const sendEmail = (Email: EmailData) => {
-    Email.send({
-      SecureToken: '<paste security token that we just generated>',
-      To: 'them@website.com',
-      From: '<your google email>',
-      Subject: 'This is the subject',
-      Body: 'And this is the body',
-    }).then((messageSend: any) => alert(messageSend));
-  };
-
   const handleSendContactForm = (evt: SyntheticEvent): void => {
     evt.preventDefault();
-    let Email: any;
-    sendEmail(Email);
   };
 
   return (
@@ -115,7 +94,7 @@ function ContactForm() {
           required={true}
           id="subject"
           name="subject"
-          placeholder="Ex: Problème d'uploade d'image ;-)"
+          placeholder="Ex: Problème d'uploade d'image "
           className="contact__form__input"
           onChange={changeField}
         />
