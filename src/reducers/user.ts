@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import {
-  ATHENT_SUCCESS,
+  AUTHENT_ERROR,
+  AUTHENT_SUCCESS,
   CHANGE_INPUT_VALUE_CONNECTION,
   HAVE_TOKEN_IN_LOCALSTORAGE,
   LOG_OUT,
@@ -16,6 +17,7 @@ export interface UserState {
   password: string;
   isLoggedIn: boolean;
   pseudo: string;
+  messageAuthent: string;
   listOfMembers: [];
 }
 
@@ -26,6 +28,7 @@ export const initialState: UserState = {
   password: '',
   isLoggedIn: false,
   pseudo: '',
+  messageAuthent: '',
   listOfMembers: [],
 };
 
@@ -47,9 +50,10 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         ...state,
         isLoading: !state.isLoading,
       };
-    case ATHENT_SUCCESS:
+    case AUTHENT_SUCCESS:
       localStorage.setItem('token_troc_services', action.payload.token);
       localStorage.setItem('pseudo_troc_services', action.payload.pseudo);
+      localStorage.setItem('id_troc_services', action.payload.id);
       return {
         ...state,
         modalLogInForm: false,
@@ -57,6 +61,11 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         password: '',
         isLoggedIn: true,
         pseudo: action.payload.pseudo,
+      };
+    case AUTHENT_ERROR:
+      return {
+        ...state,
+        messageAuthent: action.payload,
       };
     case HAVE_TOKEN_IN_LOCALSTORAGE:
       if (localStorage.getItem('token_troc_services')) {
@@ -74,6 +83,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
     case LOG_OUT:
       localStorage.removeItem('token_troc_services');
       localStorage.removeItem('pseudo_troc_services');
+      localStorage.removeItem('id_troc_services');
       return {
         ...state,
         isLoggedIn: false,

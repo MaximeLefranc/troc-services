@@ -1,6 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actionToggleSubmitSuccess } from '../../../actions/advertisements';
 import { GlobalState } from '../../../reducers';
+import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import Card from '../Card';
 import './../styles.scss';
@@ -30,12 +33,20 @@ export interface Adverts {
 }
 
 function AdvertsCards(): JSX.Element {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actionToggleSubmitSuccess(false));
+  });
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const advertList = useSelector(
     (state: GlobalState) => state.advertisements.listOfAdverts
   );
-  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+
   if (isLoading) {
     return <Spinner />;
+  }
+  if (advertList.length === 0) {
+    return <NotFound404 />;
   }
   return (
     <section className="main">

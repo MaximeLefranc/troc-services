@@ -1,8 +1,10 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   actionChangeInputValueInscription,
+  actionEditInDbThisProfileUser,
   actionErrorMessageInscription,
+  actionFetchProfileForModification,
   actionSubmitInscriptionForm,
 } from '../../actions/inscription';
 import { GlobalState } from '../../reducers';
@@ -48,6 +50,7 @@ function InscriptionForm(): JSX.Element {
   const message = useSelector(
     (state: GlobalState) => state.inscription.message
   );
+  const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
 
   const changeField = (value: string | File, nameInput: string): void => {
     dispatch(actionChangeInputValueInscription(value, nameInput));
@@ -56,7 +59,7 @@ function InscriptionForm(): JSX.Element {
   const handleSubmitInscription = (evt: SyntheticEvent): void => {
     evt.preventDefault();
     const verifPassword = checkPassword(password, passwordConfirmation);
-    if (!verifPassword && typeof verifPassword === 'string') {
+    if (!verifPassword && typeof verifPassword === 'string' && !isLoggedIn) {
       dispatch(actionErrorMessageInscription(verifPassword));
     } else if (skills.length === 0) {
       dispatch(
@@ -65,7 +68,11 @@ function InscriptionForm(): JSX.Element {
         )
       );
     } else {
-      dispatch(actionSubmitInscriptionForm());
+      if (isLoggedIn) {
+        dispatch(actionEditInDbThisProfileUser());
+      } else {
+        dispatch(actionSubmitInscriptionForm());
+      }
     }
   };
 
@@ -76,10 +83,15 @@ function InscriptionForm(): JSX.Element {
     classNameInfo = 'inscription__info danger';
   }
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(actionFetchProfileForModification());
+    }
+  }, [isLoggedIn]);
+
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <section className="inscription">
       <p className={classNameInfo}>
@@ -134,7 +146,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input"
           onChange={changeField}
         />
-        {/* <FieldInscription
+        <Field
           label="Choisir une photo"
           classNameLabel="inscription__form__label label-photo"
           required={false}
@@ -145,7 +157,7 @@ function InscriptionForm(): JSX.Element {
           className="inscription__form__input--photo"
           accept="image/jpeg, image/jpg, image/png"
           onChange={changeField}
-        /> */}
+        />
         <Field
           label="Email"
           valueInState={email}
@@ -203,30 +215,34 @@ function InscriptionForm(): JSX.Element {
           isTextArea={true}
         />
         <SkillsSelect />
-        <Field
-          label="Mot de passe"
-          valueInState={password}
-          required={true}
-          id="password"
-          type="password"
-          name="password"
-          placeholder="Mot de passe"
-          className="inscription__form__input"
-          onChange={changeField}
-        />
-        <Field
-          label="Confirmation du mot de passe"
-          valueInState={passwordConfirmation}
-          required={true}
-          id="confirmPassword"
-          type="password"
-          name="passwordConfirmation"
-          placeholder="Mot de passe"
-          className="inscription__form__input"
-          onChange={changeField}
-        />
+        {!isLoggedIn && (
+          <>
+            <Field
+              label="Mot de passe"
+              valueInState={password}
+              required={true}
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Mot de passe"
+              className="inscription__form__input"
+              onChange={changeField}
+            />
+            <Field
+              label="Confirmation du mot de passe"
+              valueInState={passwordConfirmation}
+              required={true}
+              id="confirmPassword"
+              type="password"
+              name="passwordConfirmation"
+              placeholder="Mot de passe"
+              className="inscription__form__input"
+              onChange={changeField}
+            />
+          </>
+        )}
         <button className="inscription__form__button" type="submit">
-          Inscription
+          {isLoggedIn ? 'Modifier mon profil' : 'Inscription'}
         </button>
       </form>
     </section>

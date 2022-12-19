@@ -1,43 +1,57 @@
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { Adverts } from '../Cards/AdvertsCards';
 import { GlobalState } from '../../reducers';
 import './styles.scss';
 import { findAdvert } from '../../selectors/advertisements';
+import { getUrlApi } from '../../utils/utils';
+import Spinner from '../Spinner';
+import NotFound404 from '../NotFound404';
 
 function AdvertDetail(): JSX.Element {
+  const url = getUrlApi();
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  const pseudo = useSelector((state: GlobalState) => state.user.pseudo);
   const { slug } = useParams();
-  const listOfAdverts = useSelector(
-    (state: GlobalState) => state.advertisements.listOfAdverts
+  const advert = useSelector((state: GlobalState) =>
+    findAdvert(state.advertisements.listOfAdverts, slug)
   );
-  const advert: Adverts | false = findAdvert(listOfAdverts, slug);
-  if (advert === false) {
-    console.log("page 404 si pas d'annonce");
-    return <div>Page 404</div>;
-    //! return "Navigate" to 404
+  if (isLoading) {
+    return <Spinner />;
   }
+  if (typeof advert === 'string' || advert === undefined) {
+    return <NotFound404 />;
+  }
+  const isMineAdvert = advert.user.nickname === pseudo ? true : false;
   return (
     <section className="advert">
       <div className="advert__picture">
         <h2 className="advert__picture__title">{advert.title}</h2>
         <img
           className="advert__picture__image"
-          src={advert.imageName}
+          src={`${url}/img/${advert.imageName}`}
           alt="advert picture"
         />
         <Link to={`/profils/${advert.user.nickname}`}>
           <img
             className="advert__picture__profile"
-            src={advert.user.imageName}
+            src={`${url}/img/${advert.user.imageName}`}
             alt="profile picture"
           />
         </Link>
       </div>
-      <Link to={`/annonces/${advert.id}/envoyer-message`}>
-        <button className="advert__button" type="button">
-          Echangeons nos services !
-        </button>
-      </Link>
+      {isMineAdvert ? (
+        <Link to={`/annonces/${advert.id}/modifier`}>
+          <button className="advert__button" type="button">
+            Modifier mon annonce
+          </button>
+        </Link>
+      ) : (
+        <Link to={`/annonces/${advert.id}/envoyer-message`}>
+          <button className="advert__button" type="button">
+            Echangeons nos services !
+          </button>
+        </Link>
+      )}
       <p className="advert__description">{advert.content}</p>
       <h3 className="advert__title__skills">Ce que je sais faire</h3>
       <div className="advert__skill">

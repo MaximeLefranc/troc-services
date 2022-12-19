@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import Select, { MultiValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { actionAddSkillsNewAdvert } from '../../actions/advertisements';
 import { actionAddInscriptionSkills } from '../../actions/inscription';
 import { GlobalState } from '../../reducers';
 import './../InscriptionForm/styles.scss';
@@ -19,11 +21,15 @@ export interface Skills {
 
 function SkillsSelect(): JSX.Element {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const skillsFromAPI = useSelector(
     (state: GlobalState) => state.advertisements.listOfSkills
   );
   const skillsUser = useSelector(
     (state: GlobalState) => state.inscription.skills
+  );
+  const skillsAdvert = useSelector(
+    (state: GlobalState) => state.advertisements.skills
   );
 
   const animatedComponents = makeAnimated();
@@ -43,32 +49,37 @@ function SkillsSelect(): JSX.Element {
     });
   });
 
-  // let test = [];
-  // optionList.forEach((skill) => {
-  //   skillsUser.forEach((skillToSearched) => {
-  //     if (skill.value === skillToSearched) {
-  //       test.push(skill);
-  //     }
-  //   });
-  // });
-
-  // console.log(test);
-
   const handleChange = (newValue: MultiValue<Skills>) => {
-    //const idSkills = newValue.map((element) => element.value);
-    dispatch(actionAddInscriptionSkills(newValue));
+    if (pathname === '/nouvelle-annonce') {
+      dispatch(actionAddSkillsNewAdvert(newValue));
+    } else {
+      dispatch(actionAddInscriptionSkills(newValue));
+    }
   };
+
+  let defaultValue;
+  let placeholder;
+  if (
+    pathname === '/nouvelle-annonce' ||
+    pathname.split('/')[1] === 'annonces'
+  ) {
+    placeholder = 'Compétence nécéssaire *';
+    defaultValue = skillsAdvert;
+  } else {
+    placeholder = 'Mes Compétences *';
+    defaultValue = skillsUser;
+  }
 
   return (
     <Select
-      defaultValue={skillsUser}
+      defaultValue={defaultValue}
       isMulti
       name="colors"
       components={animatedComponents}
       options={optionList}
       className="select__skills"
       classNamePrefix="select"
-      placeholder="Mes Compétences *"
+      placeholder={placeholder}
       onChange={handleChange}
     />
   );

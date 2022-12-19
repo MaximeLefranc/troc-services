@@ -1,23 +1,20 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
-import { actionAuthentSuccess, FETCH_AUTHENT_USER } from '../actions/user';
+import {
+  actionAuthentError,
+  actionAuthentSuccess,
+  FETCH_AUTHENT_USER,
+  actionToggleLoader,
+} from '../actions/user';
+import { getUrlApi } from '../utils/utils';
 
-let urlAPI: string;
-if (process.env.NODE_ENV === 'development') {
-  if (process.env.REACT_APP_API_URL_DEV) {
-    urlAPI = process.env.REACT_APP_API_URL_DEV;
-  }
-} else if (process.env.NODE_ENV === 'production') {
-  if (process.env.REACT_APP_API_URL_PROD) {
-    urlAPI = process.env.REACT_APP_API_URL_PROD; //! mettre la bonne url de PORD dans le fichier .env
-  }
-}
+const urlAPI = getUrlApi();
 
 const authentMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_AUTHENT_USER:
+      store.dispatch(actionToggleLoader());
       const { email, password } = store.getState().user;
-      console.log(email, password);
       axios
         .post(`${urlAPI}api/login_check`, {
           username: email,
@@ -27,12 +24,27 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
           if (response.status === 200) {
             console.log(response);
             store.dispatch(
-              actionAuthentSuccess(response.data.pseudo, response.data.token)
+              actionAuthentSuccess(
+                response.data.data.pseudo,
+                response.data.token,
+                response.data.data.id
+              )
             );
           }
         })
         .catch((error) => {
-          console.error(error);
+          if (error.response.data.code === 401) {
+            store.dispatch(actionAuthentError(error.response.data.message));
+          } else {
+            store.dispatch(
+              actionAuthentError(
+                "une erreur inattendue s'est produite, veullez réessayer plus tard."
+              )
+            );
+          }
+        })
+        .finally(() => {
+          store.dispatch(actionToggleLoader());
         });
       return next(action);
     default:

@@ -4,8 +4,10 @@ import { GlobalState } from '../../reducers';
 import { findMembersBySkills } from '../../selectors/members';
 import Card from '../Cards/Card';
 import { User } from '../Cards/ProfilesCards';
+import Spinner from '../Spinner';
 
 function ProfileFiltered(): JSX.Element {
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const { slug } = useParams();
   const memberList = useSelector(
     (state: GlobalState) => state.user.listOfMembers
@@ -17,10 +19,11 @@ function ProfileFiltered(): JSX.Element {
     slug
   );
   console.log('la liste des membre est : ', memberListFiltered);
+  if (isLoading) {
+    return <Spinner />;
+  }
   if (memberListFiltered === false) {
-    console.log("page 404 si pas d'annonce");
-    return <div>Page 404</div>;
-    //! return "Navigate" to 404
+    return <div>Page 404</div>; //! Page 404 à faire
   }
   return (
     <section className="main">

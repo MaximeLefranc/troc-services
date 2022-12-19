@@ -5,10 +5,10 @@
 export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
 export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
-export const FETCH_ALL_MEMBERS = 'FETCH_ALL_MEMBERS';
 export const SAVE_ALL_MEMBERS_IN_STATE = 'SAVE_ALL_MEMBERS_IN_STATE';
 export const FETCH_AUTHENT_USER = 'FETCH_AUTHENT_USER';
-export const ATHENT_SUCCESS = 'ATHENT_SUCCESS';
+export const AUTHENT_SUCCESS = 'AUTHENT_SUCCESS';
+export const AUTHENT_ERROR = 'AUTHENT_ERROR';
 export const HAVE_TOKEN_IN_LOCALSTORAGE = 'HAVE_TOKEN_IN_LOCALSTORAGE';
 export const LOG_OUT = 'LOG_OUT';
 
@@ -37,7 +37,6 @@ export function actionChangeInputValueConnection(
   value: string,
   nameStateInput: string
 ) {
-  console.log(value);
   return {
     type: CHANGE_INPUT_VALUE_CONNECTION,
     payload: {
@@ -71,15 +70,33 @@ export function actionFetchAuthentUser() {
  * Action that will save user information in state and local storage
  * @param pseudo pseudo of user in DB
  * @param token token of user in DB
+ * @param id id of user
  * @returns Object Action
  */
-export function actionAuthentSuccess(pseudo: string, token: string) {
+export function actionAuthentSuccess(
+  pseudo: string,
+  token: string,
+  id: number
+) {
   return {
-    type: ATHENT_SUCCESS,
+    type: AUTHENT_SUCCESS,
     payload: {
       pseudo: pseudo,
       token: token,
+      id: id,
     },
+  };
+}
+
+/**
+ * Message error connection invalid email or wrong password
+ * @param message string, detail of error connection
+ * @returns Object Action
+ */
+export function actionAuthentError(message: string) {
+  return {
+    type: AUTHENT_ERROR,
+    payload: message,
   };
 }
 
@@ -100,16 +117,6 @@ export function actionHaveTokenInLocalstorage() {
 export function actionLogOut() {
   return {
     type: LOG_OUT,
-  };
-}
-
-/**
- * Fetch in DB a list of members
- * @returns Object Action
- */
-export function actionFetchAllMembers() {
-  return {
-    type: FETCH_ALL_MEMBERS,
   };
 }
 

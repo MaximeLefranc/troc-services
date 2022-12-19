@@ -63,6 +63,12 @@
     right: 0;
     transform: right 1s;
   }
+  &__message {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
 }
 
 .field {
@@ -140,6 +146,11 @@
     &__close {
       height: 2.15rem;
       border-radius: 0;
+    }
+    &__message {
+      margin-top: .5rem;
+      font-size: 1.3rem;
+      text-shadow: 1px 1px 1px vars.$font-color;
     }
   }
   .field {

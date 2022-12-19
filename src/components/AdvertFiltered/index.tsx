@@ -4,21 +4,22 @@ import { GlobalState } from '../../reducers';
 import { findAdvertsBySkills } from '../../selectors/advertisements';
 import { Adverts } from '../Cards/AdvertsCards';
 import Card from '../Cards/Card';
+import NotFound404 from '../NotFound404';
+import Spinner from '../Spinner';
 import './styles.scss';
 
-function AdvertList() {
+function AdvertFiltered() {
   const { slug } = useParams();
-  const listOfAdverts = useSelector(
-    (state: GlobalState) => state.advertisements.listOfAdverts
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  const advertList = useSelector((state: GlobalState) =>
+    findAdvertsBySkills(state.advertisements.listOfAdverts, slug)
   );
-  const advertList: Adverts[] | false = findAdvertsBySkills(
-    listOfAdverts,
-    slug
-  );
-  if (advertList === false) {
-    console.log("page 404 si pas d'annonce");
-    return <div>Page 404</div>;
-    //! return "Navigate" to 404
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (!advertList) {
+    return <NotFound404 />;
   }
   return (
     <section className="main">
@@ -43,4 +44,4 @@ function AdvertList() {
     </section>
   );
 }
-export default AdvertList;
+export default AdvertFiltered;

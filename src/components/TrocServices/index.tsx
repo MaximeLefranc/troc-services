@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { actionFetchAdvertsementsAndSkillsForMainPage } from '../../actions/advertisements';
 
 import About from '../About/About';
 import AdvertDetail from '../AdvertDetail';
@@ -14,18 +13,19 @@ import Header from '../Header';
 import LogInForm from '../LogInForm';
 import ProfileDetail from '../ProfileDetail';
 import Welcome from '../Welcome';
-import AdvertList from '../AdvertList';
 
-import {
-  actionFetchAllMembers,
-  actionHaveTokenInLocalstorage,
-} from '../../actions/user';
+import { actionHaveTokenInLocalstorage } from '../../actions/user';
 
 import ProfileFiltered from '../ProfilesFiltered';
 import ListMessages from '../ListMessages';
 import DetailMessage from '../ListMessages/DetailMessage';
 import FormMessage from '../ListMessages/FormMessage';
 import ContactForm from '../ContactForm';
+import { actionFetchAdvertsementsSkillsAndUsers } from '../../actions/advertisements';
+import LeaveAdvert from '../LeaveAdvert/LeaveAdvert';
+import AdvertFiltered from '../AdvertFiltered';
+import NotFound404 from '../NotFound404';
+
 
 interface Location {
   pathname: string;
@@ -36,9 +36,8 @@ function TrocServices(): JSX.Element {
   const { pathname } = useLocation() as Location;
   const isWelcomePage: boolean = pathname === '/';
   useEffect(() => {
-    dispatch(actionFetchAdvertsementsAndSkillsForMainPage());
+    dispatch(actionFetchAdvertsementsSkillsAndUsers());
     dispatch(actionHaveTokenInLocalstorage());
-    dispatch(actionFetchAllMembers());
   }, []);
   return (
     <div className="TrocServices">
@@ -50,11 +49,14 @@ function TrocServices(): JSX.Element {
         <Route path="/inscription" element={<InscriptionForm />} />
         <Route path="/profils" element={<ProfilesCards />} />
         <Route path="/profils/:slug" element={<ProfileDetail />} />
+        <Route path="/profils/:slug/modifier" element={<InscriptionForm />} />
         <Route path="/profils/competence/:slug" element={<ProfileFiltered />} />
         <Route path="/profils/messages" element={<ListMessages />} />
         <Route path="/profils/messages/:slug" element={<DetailMessage />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
-        <Route path="/annonces/categorie/:slug" element={<AdvertList />} />
+        <Route path="/annonces/:slug/modifier" element={<LeaveAdvert />} />
+        <Route path="/annonces/categorie/:slug" element={<AdvertFiltered />} />
+        <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
         <Route
           path="/annonces/[id]/envoyer-message"
           element={<FormMessage />}
@@ -65,6 +67,7 @@ function TrocServices(): JSX.Element {
         />
         <Route path="/a-propos" element={<About />} />
         <Route path="/a-propos/contact/" element={<ContactForm />} />
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
       {!isWelcomePage && <Footer />}
     </div>

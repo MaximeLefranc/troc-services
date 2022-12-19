@@ -23,7 +23,7 @@ function Header(): JSX.Element {
     dispatch(actionToggleLogInForm());
   };
 
-  const logged = true;
+  const logged = useSelector((state: GlobalState) => state.user.isLoggedIn);
 
   /* mettre le logo en 1er et en dessous le button deposer l'annonce puis la nav*/
 
@@ -49,14 +49,17 @@ function Header(): JSX.Element {
         </button>
       )}
       <FormFilters />
-      <Link className="header__link--profils" to="/profils">
+      <Link className="header__link--profils" to={`/profils/{pseudo}`}>
         Membres
       </Link>
-      <button className="header__btn--advert" type="button">
-        <Link to={logged ? '/nouvelle-anonce' : '/inscription'}>
+      <Link
+        className="header__links--advert"
+        to={logged ? '/nouvelle-annonce' : '/inscription'}
+      >
+        <button className="header__btn--advert" type="button">
           {logged ? 'Déposez votre annonce' : 'Inscription'}
-        </Link>
-      </button>
+        </button>
+      </Link>
       {mobileScreen ? (
         <MobileNav
           logo={logo}
