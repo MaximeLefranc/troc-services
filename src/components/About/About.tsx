@@ -50,7 +50,7 @@ function About(): JSX.Element {
         </div>
       </div>
       <div className="about__links">
-        <Link className="about__links__link" to="#">
+        <Link className="about__links__link" to="/a-propos/contact/">
           Contact
         </Link>
         <Link className="about__links__link" to="#">
