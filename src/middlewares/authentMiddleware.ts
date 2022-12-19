@@ -24,7 +24,10 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
           if (response.status === 200) {
             console.log(response);
             store.dispatch(
-              actionAuthentSuccess(response.data.pseudo, response.data.token)
+              actionAuthentSuccess(
+                response.data.data.pseudo,
+                response.data.token
+              )
             );
           }
         })
