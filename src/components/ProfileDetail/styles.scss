@@ -66,13 +66,14 @@
   &__adverts {
     border: 1px solid vars.$dark-main-color;
     padding: .5rem;
+    width: 24rem;
     margin-bottom: .5rem;
     box-shadow: 1px 1px 3px vars.$dark-color;
     border-radius: 5px;
     background-color: vars.$font-transparent-color;
     &__picture {
       width: 8rem;
-      height: 7rem;
+      height: 6.5rem;
       float: left;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
@@ -122,6 +123,7 @@
     }
     &__adverts {
       margin-bottom: 1rem;
+      width: 60rem;
     }
   }
 }

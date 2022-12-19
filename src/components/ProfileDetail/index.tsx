@@ -52,7 +52,7 @@ function ProfileDetail(): JSX.Element {
               <div key={advertisement.id} className="profile-detail__adverts">
                 <img
                   className="profile-detail__adverts__picture"
-                  src={advertisement.imageName}
+                  src={`${url}/img/${advertisement.imageName}`}
                 ></img>
                 <h4 className="profile-detail__adverts__title">
                   {advertisement.title}
