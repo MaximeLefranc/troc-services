@@ -47,6 +47,7 @@ function TrocServices(): JSX.Element {
         <Route path="/inscription" element={<InscriptionForm />} />
         <Route path="/profils" element={<ProfilesCards />} />
         <Route path="/profils/:slug" element={<ProfileDetail />} />
+        <Route path="/profils/:slug/modifier" element={<InscriptionForm />} />
         <Route path="/profils/competence/:slug" element={<ProfileFiltered />} />
         <Route path="/profils/messages" element={<ListMessages />} />
         <Route path="/profils/messages/:slug" element={<DetailMessage />} />
