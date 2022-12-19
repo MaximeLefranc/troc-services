@@ -4,11 +4,18 @@ import logoUser from './../../../assets/icons/user.png';
 import logoEnvelopet from './../../../assets/icons/envelope.png';
 import logoLogout from './../../../assets/icons/log-out.png';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { GlobalState } from '../../../reducers';
 
 function Profiles() {
+  const pseudo: string = useSelector((state: GlobalState) => state.user.pseudo);
+  const list: any = useSelector(
+    (state: GlobalState) => state.user.listOfMembers
+  );
+  console.log(list);
   const menuToggle = () => {
     const toggleMenu: any = document.querySelector('.profiles__menu');
-    const toggleProfile: any = document.querySelector('.profile');
+    const toggleProfile: any = document.querySelector('.profile img');
     toggleProfile.classList.toggle('isActive');
     toggleMenu.classList.toggle('active');
   };
@@ -19,7 +26,7 @@ function Profiles() {
       </div>
       <div className="profiles__menu">
         <h3>
-          Jean Paul Gaultiers
+          {pseudo}
           <br />
           <span>Mon compte</span>
         </h3>

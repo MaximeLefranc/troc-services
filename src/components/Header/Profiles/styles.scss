@@ -105,7 +105,8 @@
 
 .isActive {
   transform: scale(1.10);
-  box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
+  border-radius: 6rem;
+  box-shadow: .1em -.1em 1em vars.$dark-main-color, .2em .1em 1em vars.$dark-main-color;
 }
 
 // On mobile
