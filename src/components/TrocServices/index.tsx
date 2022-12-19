@@ -26,7 +26,6 @@ import LeaveAdvert from '../LeaveAdvert/LeaveAdvert';
 import AdvertFiltered from '../AdvertFiltered';
 import NotFound404 from '../NotFound404';
 
-
 interface Location {
   pathname: string;
 }

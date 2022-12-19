@@ -49,7 +49,7 @@ function Header(): JSX.Element {
         </button>
       )}
       <FormFilters />
-      <Link className="header__link--profils" to={`/profils/{pseudo}`}>
+      <Link className="header__link--profils" to="/profils">
         Membres
       </Link>
       <Link
