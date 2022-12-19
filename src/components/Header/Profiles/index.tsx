@@ -4,15 +4,22 @@ import logoUser from './../../../assets/icons/user.png';
 import logoEnvelopet from './../../../assets/icons/envelope.png';
 import logoLogout from './../../../assets/icons/log-out.png';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { GlobalState } from '../../../reducers';
+import { actionLogOut } from '../../../actions/user';
+import { findMember } from '../../../selectors/members';
+import { getUrlApi } from '../../../utils/utils';
 
-function Profiles() {
-  const pseudo: string = useSelector((state: GlobalState) => state.user.pseudo);
-  const list: any = useSelector(
-    (state: GlobalState) => state.user.listOfMembers
+function Profiles(): JSX.Element {
+  const user: any = useSelector((state: GlobalState) =>
+    findMember(state.user.listOfMembers, state.user.pseudo)
   );
-  console.log(list);
+  console.log(user);
+  const dispatch = useDispatch();
+  const logOut = () => {
+    dispatch(actionLogOut());
+  };
+  const url = getUrlApi();
   const menuToggle = () => {
     const toggleMenu: any = document.querySelector('.profiles__menu');
     const toggleProfile: any = document.querySelector('.profile img');
@@ -22,26 +29,34 @@ function Profiles() {
   return (
     <div className="action">
       <div className="profile" onClick={menuToggle}>
-        <img src={logoUser} />
+        <img className="profile__img" src={`${url}/img/${user.imageName}`} />
       </div>
       <div className="profiles__menu">
         <h3>
-          {pseudo}
+          {user.nickname}
           <br />
           <span>Mon compte</span>
         </h3>
         <ul className="profiles__menu__links">
-          <Link to={'#'} className="profiles__menu--link">
+          <Link
+            to={`/profils/${user.nickname}`}
+            className="profiles__menu--link"
+          >
             <img src={logoUser} />
             <span className="profiles__menu__link--span">Mon profil</span>
           </Link>
-          <Link to={'#'} className="profiles__menu--link">
+          <Link
+            to={`/profils/messages/${user.nickname}`}
+            className="profiles__menu--link"
+          >
             <img src={logoEnvelopet} />
             <span className="profiles__menu__link--span">Mes messages</span>
           </Link>
           <Link to={'#'} className="profiles__menu--link">
             <img src={logoLogout} />
-            <span className="profiles__menu__link--span">Déconnexion</span>
+            <span className="profiles__menu__link--span" onClick={logOut}>
+              Déconnexion
+            </span>
           </Link>
         </ul>
       </div>

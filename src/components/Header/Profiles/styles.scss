@@ -9,6 +9,11 @@
   left: .5rem;
 }
 
+.profile__img {
+
+  border-radius: 6rem;
+}
+
 .action .profile {
   position: relative;
   width: 6em;
@@ -21,19 +26,20 @@
 
 .action .profile img {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: .8rem;
+  left: .4rem;
   object-fit: cover;
+  width: 120%;
 }
 
 .action .profiles__menu {
   position: absolute;
-  top: 120px;
-  padding: 10px 20px;
+  top: 12em;
+  padding: 1em 2em;
   background: vars.$soft-color;
-  width: 200px;
-  box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
+  width: 20em;
+  box-sizing: 0 .5em 2.5em rgba(0, 0, 0, 0.1);
+  border-radius: 1.5em;
   transition: 0.5s;
   visibility: hidden;
   opacity: 0;
@@ -105,7 +111,6 @@
 
 .isActive {
   transform: scale(1.10);
-  border-radius: 6rem;
   box-shadow: .1em -.1em 1em vars.$dark-main-color, .2em .1em 1em vars.$dark-main-color;
 }
 
@@ -115,26 +120,24 @@
     left: -2em;
     position: relative;
   }
+
   .action .profiles__menu {
-    right: -10px;
+    right: -1em;
   }
 
   .action .profiles__menu::before {
-    right: 28px;
+    right: 2.8em;
   }
+
   .profile:hover {
-      transform: scale(1.10);
-      box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
+    transform: scale(1.10);
+    box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
   }
-}
 
-// On desktop
-@media only screen and (max-width: 1200px) {
-
-  .action .profile {
-    max-width: 4em;
-    max-height: 4em;
-    top: 1.4rem;
-    left: 0.5rem;
+  .action .profile img {
+    width: 30%;
+    left: 13.4em;
+    top: .5em;
   }
+
 }
