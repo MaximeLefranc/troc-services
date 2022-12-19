@@ -75,7 +75,11 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
                 );
               })
               .catch(() => {
-                store.dispatch(actionInscriptionError());
+                store.dispatch(
+                  actionInscriptionError(
+                    "Une erreur c'est produite, merci de réessayer"
+                  )
+                );
               });
           } else {
             store.dispatch(
@@ -85,8 +89,9 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
             );
           }
         })
-        .catch(() => {
-          store.dispatch(actionInscriptionError());
+        .catch((error) => {
+          console.log(error);
+          store.dispatch(actionInscriptionError(error.response.data));
         })
         .finally(() => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
@@ -154,7 +159,11 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
                 );
               })
               .catch(() => {
-                store.dispatch(actionInscriptionError());
+                store.dispatch(
+                  actionInscriptionError(
+                    "Une erreur c'est produite, merci de réessayer"
+                  )
+                );
               });
           } else {
             store.dispatch(
@@ -165,7 +174,11 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           }
         })
         .catch(() => {
-          store.dispatch(actionInscriptionError());
+          store.dispatch(
+            actionInscriptionError(
+              "Une erreur c'est produite, merci de réessayer"
+            )
+          );
         })
         .finally(() => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());

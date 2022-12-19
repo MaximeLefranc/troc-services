@@ -15,14 +15,14 @@ function ProfileDetail(): JSX.Element {
   const member = useSelector((state: GlobalState) =>
     findMember(state.user.listOfMembers, slug)
   );
+  if (isLoading) {
+    return <Spinner />;
+  }
   if (member === false) {
     return <NotFound404 />;
   }
   const isMineProfile = member.nickname === pseudo ? true : false;
   const hasAdverts = member.advertisements.length > 0 ? true : false;
-  if (isLoading) {
-    return <Spinner />;
-  }
   return (
     <section className="main">
       <section className="profile-detail">

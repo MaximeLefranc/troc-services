@@ -88,7 +88,7 @@ const inscriptionReducer = (
     case INSCRIPTION_ERROR:
       return {
         ...state,
-        message: "Une erreur c'est produite, merci de réessayer",
+        message: action.payload,
         inscriptionCompleted: false,
       };
     case SET_INFO_PROFILE_IN_INPUTS_STATE:

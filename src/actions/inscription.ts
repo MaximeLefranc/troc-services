@@ -90,11 +90,13 @@ export function actionInscriptionSuccess(message: string) {
 
 /**
  * Inscription failed
+ * @param message message of error
  * @returns Object Action
  */
-export function actionInscriptionError() {
+export function actionInscriptionError(message: string) {
   return {
     type: INSCRIPTION_ERROR,
+    payload: message,
   };
 }
 
