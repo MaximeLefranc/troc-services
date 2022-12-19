@@ -4,6 +4,7 @@ import { GlobalState } from '../../reducers';
 import { findMembersBySkills } from '../../selectors/members';
 import Card from '../Cards/Card';
 import { User } from '../Cards/ProfilesCards';
+import NotFound404 from '../NotFound404';
 import Spinner from '../Spinner';
 
 function ProfileFiltered(): JSX.Element {
@@ -13,17 +14,16 @@ function ProfileFiltered(): JSX.Element {
     (state: GlobalState) => state.user.listOfMembers
   );
 
-  console.log('Skills list : ', memberList);
   const memberListFiltered: User[] | false = findMembersBySkills(
     memberList,
     slug
   );
-  console.log('la liste des membre est : ', memberListFiltered);
+
   if (isLoading) {
     return <Spinner />;
   }
   if (memberListFiltered === false) {
-    return <div>Page 404</div>; //! Page 404 à faire
+    return <NotFound404 />;
   }
   return (
     <section className="main">
