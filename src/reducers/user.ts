@@ -53,6 +53,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
     case AUTHENT_SUCCESS:
       localStorage.setItem('token_troc_services', action.payload.token);
       localStorage.setItem('pseudo_troc_services', action.payload.pseudo);
+      localStorage.setItem('id_troc_services', action.payload.id);
       return {
         ...state,
         modalLogInForm: false,
@@ -82,6 +83,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
     case LOG_OUT:
       localStorage.removeItem('token_troc_services');
       localStorage.removeItem('pseudo_troc_services');
+      localStorage.removeItem('id_troc_services');
       return {
         ...state,
         isLoggedIn: false,

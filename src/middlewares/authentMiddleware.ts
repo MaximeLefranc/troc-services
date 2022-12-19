@@ -26,7 +26,8 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
             store.dispatch(
               actionAuthentSuccess(
                 response.data.data.pseudo,
-                response.data.token
+                response.data.token,
+                response.data.data.id
               )
             );
           }

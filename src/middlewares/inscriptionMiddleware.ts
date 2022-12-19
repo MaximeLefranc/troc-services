@@ -96,7 +96,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
     }
     case FETCH_PROFILE_USER_FOR_MODIFICATION: {
       axios
-        .get(`${urlAPI}api/user/58`)
+        .get(`${urlAPI}api/user/${localStorage.getItem('id_troc_services')}`)
         .then((response) => {
           store.dispatch(actionSetInfoProfileInInputsState(response.data));
         })
@@ -106,7 +106,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
               'Problème lors de la récupération de vos informations, Merci de réessayer plus ultérieurement'
             )
           );
-        }); //! Id à mofifier
+        });
       return next(action);
     }
     case EDIT_IN_DB_THIS_PROFILE_USER: {
@@ -132,11 +132,20 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         zip_code: zip,
       };
       axios
-        .put(`${urlAPI}api/user/58/edit`, bodyParameters, config)
+        .put(
+          `${urlAPI}api/user/${localStorage.getItem('id_troc_services')}/edit`,
+          bodyParameters,
+          config
+        )
         .then((response) => {
           if (response.status === 206 && picture !== '') {
             axios
-              .post(`${urlAPI}api/user/upload/58`, formData)
+              .post(
+                `${urlAPI}api/user/upload/${localStorage.getItem(
+                  'id_troc_services'
+                )}`,
+                formData
+              )
               .then(() => {
                 store.dispatch(
                   actionInscriptionSuccess(

@@ -19,7 +19,7 @@ function ProfileDetail(): JSX.Element {
     return <NotFound404 />;
   }
   const isMineProfile = member.nickname === pseudo ? true : false;
-  const hasAdverts = member.advertisements ? true : false;
+  const hasAdverts = member.advertisements.length > 0 ? true : false;
   if (isLoading) {
     return <Spinner />;
   }

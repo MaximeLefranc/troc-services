@@ -70,14 +70,20 @@ export function actionFetchAuthentUser() {
  * Action that will save user information in state and local storage
  * @param pseudo pseudo of user in DB
  * @param token token of user in DB
+ * @param id id of user
  * @returns Object Action
  */
-export function actionAuthentSuccess(pseudo: string, token: string) {
+export function actionAuthentSuccess(
+  pseudo: string,
+  token: string,
+  id: number
+) {
   return {
     type: AUTHENT_SUCCESS,
     payload: {
       pseudo: pseudo,
       token: token,
+      id: id,
     },
   };
 }
