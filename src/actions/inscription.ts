@@ -12,6 +12,8 @@ export const SUBMIT_INSCRIPTION_FORM = 'SUBMIT_INSCRIPTION_FORM';
 export const ERROR_MESSAGE_INSCIPTION = 'ERROR_MESSAGE_INSCIPTION';
 export const INSCRIPTION_SUCCESS = 'INSCRIPTION_SUCCESS';
 export const INSCRIPTION_ERROR = 'INSCRIPTION_ERROR';
+export const FETCH_PROFILE_USER_FOR_MODIFICATION =
+  'FETCH_PROFILE_USER_FOR_MODIFICATION';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -87,5 +89,15 @@ export function actionInscriptionSuccess() {
 export function actionInscriptionError() {
   return {
     type: INSCRIPTION_ERROR,
+  };
+}
+
+/**
+ * Fetch in DB
+ * @returns Object Action
+ */
+export function actionFetchProfileForModification() {
+  return {
+    type: FETCH_PROFILE_USER_FOR_MODIFICATION,
   };
 }

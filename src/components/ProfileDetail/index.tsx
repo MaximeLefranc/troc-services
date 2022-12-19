@@ -10,17 +10,19 @@ import './styles.scss';
 function ProfileDetail(): JSX.Element {
   const url = getUrlApi();
   const { slug } = useParams();
+  const pseudo = useSelector((state: GlobalState) => state.user.pseudo);
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const member = useSelector((state: GlobalState) =>
     findMember(state.user.listOfMembers, slug)
   );
-  if (isLoading) {
-    return <Spinner />;
-  }
   if (member === false) {
     return <NotFound404 />;
   }
+  const isMineProfile = member.nickname === pseudo ? true : false;
   const hasAdverts = member.advertisements ? true : false;
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <section className="main">
       <section className="profile-detail">
@@ -30,12 +32,19 @@ function ProfileDetail(): JSX.Element {
           alt="profile picture of member"
         />
         <h2 className="profile-detail__pseudo">{member.nickname}</h2>
-        <Link to={`/profils/${member.nickname}/envoyer-message`}>
-          <button className="profile-detail__contact" type="button">
-            {/* ou modifier ! */}
-            Me contacter
-          </button>
-        </Link>
+        {isMineProfile ? (
+          <Link to={`/profils/${member.nickname}/modifier`}>
+            <button className="profile-detail__contact" type="button">
+              Modifier mon profil
+            </button>
+          </Link>
+        ) : (
+          <Link to={`/profils/${member.nickname}/envoyer-message`}>
+            <button className="profile-detail__contact" type="button">
+              Me contacter
+            </button>
+          </Link>
+        )}
         <p className="profile-detail__description">{member.biography}</p>
         <h3 className="profile-detail__title">Ce que je sais faire</h3>
         <div className="profile-detail__skills">
