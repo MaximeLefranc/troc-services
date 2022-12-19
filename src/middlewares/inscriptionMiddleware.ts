@@ -2,8 +2,12 @@ import axios from 'axios';
 import { Middleware } from 'redux';
 import { actionFetchAdvertsementsSkillsAndUsers } from '../actions/advertisements';
 import {
+  actionErrorMessageInscription,
   actionInscriptionError,
   actionInscriptionSuccess,
+  actionSetInfoProfileInInputsState,
+  EDIT_IN_DB_THIS_PROFILE_USER,
+  FETCH_PROFILE_USER_FOR_MODIFICATION,
   SUBMIT_INSCRIPTION_FORM,
 } from '../actions/inscription';
 import { actionToggleLoader } from '../actions/user';
@@ -21,23 +25,25 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
+  const {
+    nickname,
+    lastname,
+    firstname,
+    birthday,
+    picture,
+    email,
+    adress,
+    town,
+    zip,
+    description,
+    skills,
+    password,
+  } = store.getState().inscription;
+  const formData = new FormData();
+  formData.append('file', picture);
   switch (action.type) {
-    case SUBMIT_INSCRIPTION_FORM:
+    case SUBMIT_INSCRIPTION_FORM: {
       store.dispatch(actionToggleLoader());
-      const {
-        nickname,
-        lastname,
-        firstname,
-        birthday,
-        picture,
-        email,
-        adress,
-        town,
-        zip,
-        description,
-        skills,
-        password,
-      } = store.getState().inscription;
       const townToLowerCase = town.toLowerCase();
       const skillsIds = arrayIdsSkills(skills);
       axios
@@ -56,21 +62,27 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         })
         .then((response) => {
           if (response.status === 200 && picture !== '') {
-            const formData = new FormData();
-            formData.append('file', picture);
             axios
               .post(
                 `${urlAPI}api/user/upload/${response.data.newUserId}`,
                 formData
               )
               .then(() => {
-                store.dispatch(actionInscriptionSuccess());
+                store.dispatch(
+                  actionInscriptionSuccess(
+                    'Inscription réussie, vous pouvez maintenant vous connecter'
+                  )
+                );
               })
               .catch(() => {
                 store.dispatch(actionInscriptionError());
               });
           } else {
-            store.dispatch(actionInscriptionSuccess());
+            store.dispatch(
+              actionInscriptionSuccess(
+                'Inscription réussie, vous pouvez maintenant vous connecter'
+              )
+            );
           }
         })
         .catch(() => {
@@ -81,6 +93,77 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionToggleLoader());
         });
       return next(action);
+    }
+    case FETCH_PROFILE_USER_FOR_MODIFICATION: {
+      axios
+        .get(`${urlAPI}api/user/58`)
+        .then((response) => {
+          store.dispatch(actionSetInfoProfileInInputsState(response.data));
+        })
+        .catch(() => {
+          store.dispatch(
+            actionErrorMessageInscription(
+              'Problème lors de la récupération de vos informations, Merci de réessayer plus ultérieurement'
+            )
+          );
+        }); //! Id à mofifier
+      return next(action);
+    }
+    case EDIT_IN_DB_THIS_PROFILE_USER: {
+      store.dispatch(actionToggleLoader());
+      const token = localStorage.getItem('token_troc_services');
+      const skillsIds = arrayIdsSkills(skills);
+      const townToLowerCase = town.toLowerCase();
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const bodyParameters = {
+        email: email,
+        first_name: firstname,
+        last_name: lastname,
+        birth_date: birthday,
+        nickname: nickname.trim(),
+        biography: description,
+        address: adress,
+        skill: skillsIds,
+        city: townToLowerCase,
+        zip_code: zip,
+      };
+      axios
+        .put(`${urlAPI}api/user/58/edit`, bodyParameters, config)
+        .then((response) => {
+          if (response.status === 206 && picture !== '') {
+            axios
+              .post(`${urlAPI}api/user/upload/58`, formData)
+              .then(() => {
+                store.dispatch(
+                  actionInscriptionSuccess(
+                    'Les modifications de votre profil on étaient réalisées avec succès'
+                  )
+                );
+              })
+              .catch(() => {
+                store.dispatch(actionInscriptionError());
+              });
+          } else {
+            store.dispatch(
+              actionInscriptionSuccess(
+                'Les modifications de votre profil on étaient réalisées avec succès'
+              )
+            );
+          }
+        })
+        .catch(() => {
+          store.dispatch(actionInscriptionError());
+        })
+        .finally(() => {
+          store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
+          store.dispatch(actionToggleLoader());
+        });
+      return next(action);
+    }
     default:
       return next(action);
   }

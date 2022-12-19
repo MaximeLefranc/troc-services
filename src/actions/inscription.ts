@@ -1,5 +1,6 @@
 import { MultiValue } from 'react-select';
 import { Skills } from '../components/SkillsSelect';
+import { InscriptionState } from '../reducers/inscription';
 
 /*=====================================
 ============ACTIONS TYPES==============
@@ -14,6 +15,9 @@ export const INSCRIPTION_SUCCESS = 'INSCRIPTION_SUCCESS';
 export const INSCRIPTION_ERROR = 'INSCRIPTION_ERROR';
 export const FETCH_PROFILE_USER_FOR_MODIFICATION =
   'FETCH_PROFILE_USER_FOR_MODIFICATION';
+export const SET_INFO_PROFILE_IN_INPUTS_STATE =
+  'SET_INFO_PROFILE_IN_INPUTS_STATE';
+export const EDIT_IN_DB_THIS_PROFILE_USER = 'EDIT_IN_DB_THIS_PROFILE_USER';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -74,11 +78,13 @@ export function actionAddInscriptionSkills(skills: MultiValue<Skills>) {
 
 /**
  * Inscription success
+ * @param message content of message
  * @returns Object Action
  */
-export function actionInscriptionSuccess() {
+export function actionInscriptionSuccess(message: string) {
   return {
     type: INSCRIPTION_SUCCESS,
+    payload: message,
   };
 }
 
@@ -93,11 +99,33 @@ export function actionInscriptionError() {
 }
 
 /**
- * Fetch in DB
+ * Fetch in DB info of one user to be able to modify the profile
  * @returns Object Action
  */
 export function actionFetchProfileForModification() {
   return {
     type: FETCH_PROFILE_USER_FOR_MODIFICATION,
+  };
+}
+
+/**
+ * Save in inputs inscription state the user info, ready for modification
+ * @param data info of one member
+ * @returns Object Action
+ */
+export function actionSetInfoProfileInInputsState(data: InscriptionState) {
+  return {
+    type: SET_INFO_PROFILE_IN_INPUTS_STATE,
+    payload: data,
+  };
+}
+
+/**
+ * edit in DB this profile user
+ * @returns Object Action
+ */
+export function actionEditInDbThisProfileUser() {
+  return {
+    type: EDIT_IN_DB_THIS_PROFILE_USER,
   };
 }
