@@ -10,6 +10,7 @@ import NotFound404 from '../NotFound404';
 function AdvertDetail(): JSX.Element {
   const url = getUrlApi();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  const pseudo = useSelector((state: GlobalState) => state.user.pseudo);
   const { slug } = useParams();
   const advert = useSelector((state: GlobalState) =>
     findAdvert(state.advertisements.listOfAdverts, slug)
@@ -20,6 +21,7 @@ function AdvertDetail(): JSX.Element {
   if (typeof advert === 'string' || advert === undefined) {
     return <NotFound404 />;
   }
+  const isMineAdvert = advert.user.nickname === pseudo ? true : false;
   return (
     <section className="advert">
       <div className="advert__picture">
@@ -37,11 +39,19 @@ function AdvertDetail(): JSX.Element {
           />
         </Link>
       </div>
-      <Link to={`/annonces/${advert.id}/envoyer-message`}>
-        <button className="advert__button" type="button">
-          Echangeons nos services !
-        </button>
-      </Link>
+      {isMineAdvert ? (
+        <Link to={`/annonces/${advert.id}/modifier`}>
+          <button className="advert__button" type="button">
+            Modifier mon annonce
+          </button>
+        </Link>
+      ) : (
+        <Link to={`/annonces/${advert.id}/envoyer-message`}>
+          <button className="advert__button" type="button">
+            Echangeons nos services !
+          </button>
+        </Link>
+      )}
       <p className="advert__description">{advert.content}</p>
       <h3 className="advert__title__skills">Ce que je sais faire</h3>
       <div className="advert__skill">

@@ -5,9 +5,11 @@ import {
   ADD_SKILLS_IN_STATE,
   ADD_SKILLS_NEW_ADVERT,
   CHANGE_INPUT_VALUE_NEW_ADVERT,
+  SET_INFO_ADVERT_IN_INPUTS_STATE,
   SUBMIT_NEW_ADVERT_ERROR,
   TOGGLE_SUBMIT_SUCCESS,
 } from '../actions/advertisements';
+import { Category } from '../components/SkillsSelect';
 
 export interface AdvertsState {
   listOfAdverts: [];
@@ -76,6 +78,16 @@ const advertisementsReducer = (
         skills: [],
         message: '',
         submitSuccess: action.payload,
+      };
+    case SET_INFO_ADVERT_IN_INPUTS_STATE:
+      const skills = action.payload.skills.map((skill: Category) => {
+        return { value: skill.id, label: skill.name };
+      });
+      return {
+        ...state,
+        titleInput: action.payload.title,
+        descriptionInput: action.payload.content,
+        skills: skills,
       };
     default:
       return state;

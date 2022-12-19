@@ -59,7 +59,10 @@ function SkillsSelect(): JSX.Element {
 
   let defaultValue;
   let placeholder;
-  if (pathname === '/nouvelle-annonce') {
+  if (
+    pathname === '/nouvelle-annonce' ||
+    pathname.split('/')[1] === 'annonces'
+  ) {
     placeholder = 'Compétence nécéssaire *';
     defaultValue = skillsAdvert;
   } else {

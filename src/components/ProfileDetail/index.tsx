@@ -62,7 +62,7 @@ function ProfileDetail(): JSX.Element {
                 <img
                   className="profile-detail__adverts__picture"
                   src={`${url}/img/${advertisement.imageName}`}
-                ></img>
+                />
                 <h4 className="profile-detail__adverts__title">
                   {advertisement.title}
                 </h4>

@@ -1,19 +1,26 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import {
   actionAddMessage,
   actionChangeInputValueNewAdvert,
+  actionEditInDbThisAdvert,
+  actionFetchAdvertForModification,
   actionSubmitNewAdvert,
 } from '../../actions/advertisements';
 import { GlobalState } from '../../reducers';
+import { findAdvert } from '../../selectors/advertisements';
 import Field from '../Field';
 import SkillsSelect from '../SkillsSelect';
 import Spinner from '../Spinner';
 import './styles.scss';
 
 function LeaveAdvert(): JSX.Element {
+  const { slug } = useParams();
   const dispatch = useDispatch();
+  const advertToModify = useSelector((state: GlobalState) =>
+    findAdvert(state.advertisements.listOfAdverts, slug)
+  );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const submitOK = useSelector(
     (state: GlobalState) => state.advertisements.submitSuccess
@@ -33,6 +40,19 @@ function LeaveAdvert(): JSX.Element {
   const handleChangeField = (newValue: string | File, nameInput: string) => {
     dispatch(actionChangeInputValueNewAdvert(newValue, nameInput));
   };
+
+  let classNameInfo = 'leaveadvert__info';
+  if (message) {
+    classNameInfo = 'leaveadvert__info danger';
+  }
+
+  const isMineAdvert =
+    advertToModify &&
+    typeof advertToModify !== 'string' &&
+    advertToModify.user.nickname ===
+      localStorage.getItem('pseudo_troc_services');
+  localStorage.getItem('pseudo_troc_services');
+
   const handleSubmitNewAdvert = (evt: SyntheticEvent): void => {
     evt.preventDefault();
     if (skills.length === 0) {
@@ -40,14 +60,19 @@ function LeaveAdvert(): JSX.Element {
         actionAddMessage('Veuillez sélectionner au moins une compétence')
       );
     } else {
-      dispatch(actionSubmitNewAdvert());
+      if (isMineAdvert) {
+        dispatch(actionEditInDbThisAdvert(advertToModify.id));
+      } else {
+        dispatch(actionSubmitNewAdvert());
+      }
     }
   };
 
-  let classNameInfo = 'leaveadvert__info';
-  if (message) {
-    classNameInfo = 'leaveadvert__info danger';
-  }
+  useEffect(() => {
+    if (isMineAdvert) {
+      dispatch(actionFetchAdvertForModification(advertToModify.id));
+    }
+  }, [slug]);
 
   if (!localStorage.getItem('token_troc_services') || submitOK) {
     return <Navigate to="/accueil" replace />;
@@ -108,7 +133,7 @@ function LeaveAdvert(): JSX.Element {
           Après validation de l'équipe de modération, l'annonce sera en ligne
         </p>
         <button className="leaveadvert__form__button" type="submit">
-          Je valide mon annonce
+          {isMineAdvert ? 'Je modifie mon annonce' : 'Je valide mon annonce'}
         </button>
       </form>
     </section>
