@@ -36,7 +36,6 @@ export function findMembersBySkills(
 ): User[] | false {
   if (typeof searchedSlug === 'string') {
     const memberFiltered: User[] = [];
-    console.log('list = ', memberList);
     memberList.filter((memberElement: User) => {
       memberElement.skill.forEach((skill) => {
         if (skill.name === searchedSlug) {

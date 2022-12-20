@@ -10,6 +10,8 @@ export interface User {
   id: number;
   nickname: string;
   imageName: string;
+  city: string;
+  zip_code: string;
   advertisements: {
     id: number;
     title: string;
@@ -45,6 +47,8 @@ function ProfilesCards(): JSX.Element {
               title={user.nickname}
               description={user.biography}
               skills={user.skill}
+              city={user.city}
+              zipCode={user.zip_code}
             />
           </Link>
         ))}

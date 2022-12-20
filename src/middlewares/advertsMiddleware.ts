@@ -7,6 +7,7 @@ import {
   actionSetInfoAdvertInInputsState,
   actionSubmitNewAdvertError,
   actionToggleSubmitSuccess,
+  DELETE_ADVERT,
   EDIT_IN_DB_THIS_ADVERT,
   FETCH_ADVERTISEMENTS_SKILLS_AND_USERS,
   FETCH_ADVERT_FOR_MODIFICATION,
@@ -145,6 +146,34 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
         })
         .catch(() => {
           store.dispatch(actionSubmitNewAdvertError());
+        })
+        .finally(() => {
+          store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
+          store.dispatch(actionToggleLoader());
+        });
+      return next(action);
+    }
+    case DELETE_ADVERT: {
+      store.dispatch(actionToggleLoader());
+      const token = localStorage.getItem('token_troc_services');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      axios
+        .put(
+          `${urlAPI}api/advertisements/${action.payload}/edit`,
+          {
+            is_hidden: true,
+          },
+          config
+        )
+        .then(() => {
+          window.location.href = `${window.location.origin}/accueil`;
+        })
+        .catch((error) => {
+          console.error(error);
         })
         .finally(() => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());

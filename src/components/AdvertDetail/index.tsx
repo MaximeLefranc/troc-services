@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { GlobalState } from '../../reducers';
 import './styles.scss';
@@ -6,21 +6,30 @@ import { findAdvert } from '../../selectors/advertisements';
 import { getUrlApi } from '../../utils/utils';
 import Spinner from '../Spinner';
 import NotFound404 from '../NotFound404';
+import { actionDeleteAdvert } from '../../actions/advertisements';
 
 function AdvertDetail(): JSX.Element {
   const url = getUrlApi();
+  const dispatch = useDispatch();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const pseudo = useSelector((state: GlobalState) => state.user.pseudo);
   const { slug } = useParams();
   const advert = useSelector((state: GlobalState) =>
     findAdvert(state.advertisements.listOfAdverts, slug)
   );
+
   if (isLoading) {
     return <Spinner />;
   }
   if (typeof advert === 'string' || advert === undefined) {
     return <NotFound404 />;
   }
+
+  const handleDeleteAdvert = () => {
+    if (confirm('Voulez-vous vraiment supprimer votre annonce ?')) {
+      dispatch(actionDeleteAdvert(advert.id));
+    }
+  };
   const isMineAdvert = advert.user.nickname === pseudo ? true : false;
   return (
     <section className="advert">
@@ -53,7 +62,9 @@ function AdvertDetail(): JSX.Element {
         </Link>
       )}
       <p className="advert__description">{advert.content}</p>
-      <h3 className="advert__title__skills">Ce que je sais faire</h3>
+      <h3 className="advert__title__skills">
+        Ce que je peux faire en échange !
+      </h3>
       <div className="advert__skill">
         {advert.user.skill.map((skill) => (
           <p className="advert__skill__name" key={skill.name}>
@@ -61,6 +72,15 @@ function AdvertDetail(): JSX.Element {
           </p>
         ))}
       </div>
+      {isMineAdvert && (
+        <button
+          className="advert__delete"
+          onClick={handleDeleteAdvert}
+          type="button"
+        >
+          Supprimer mon annonce
+        </button>
+      )}
     </section>
   );
 }

@@ -13,12 +13,11 @@ function ProfileFiltered(): JSX.Element {
     (state: GlobalState) => state.user.listOfMembers
   );
 
-  console.log('Skills list : ', memberList);
   const memberListFiltered: User[] | false = findMembersBySkills(
     memberList,
     slug
   );
-  console.log('la liste des membre est : ', memberListFiltered);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -43,6 +42,8 @@ function ProfileFiltered(): JSX.Element {
               title={user.nickname}
               description={user.biography}
               skills={user.skill}
+              city={user.city}
+              zipCode={user.zip_code}
             />
           </Link>
         ))}
