@@ -11,6 +11,7 @@ export const AUTHENT_SUCCESS = 'AUTHENT_SUCCESS';
 export const AUTHENT_ERROR = 'AUTHENT_ERROR';
 export const HAVE_TOKEN_IN_LOCALSTORAGE = 'HAVE_TOKEN_IN_LOCALSTORAGE';
 export const LOG_OUT = 'LOG_OUT';
+export const DELETE_PROFILE = 'DELETE_PROFILE';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -129,5 +130,15 @@ export function actionSaveAllMemebersInState(listOfMembers: []) {
   return {
     type: SAVE_ALL_MEMBERS_IN_STATE,
     payload: listOfMembers,
+  };
+}
+
+/**
+ * Delete profile user in DB
+ * @returns Object Action
+ */
+export function actionDeleteProfile() {
+  return {
+    type: DELETE_PROFILE,
   };
 }

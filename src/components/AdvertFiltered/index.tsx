@@ -37,6 +37,8 @@ function AdvertFiltered() {
               title={advert.title}
               description={advert.content}
               skills={advert.skills}
+              city={advert.user.city}
+              zipCode={advert.user.zip_code}
             />
           </Link>
         ))}

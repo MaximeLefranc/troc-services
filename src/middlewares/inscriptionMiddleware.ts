@@ -61,7 +61,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           zip_code: zip,
         })
         .then((response) => {
-          if (response.status === 200 && picture !== '') {
+          if (response.status === 201 && picture !== '') {
             axios
               .post(
                 `${urlAPI}api/user/upload/${response.data.newUserId}`,

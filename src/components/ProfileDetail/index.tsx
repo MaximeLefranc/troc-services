@@ -1,5 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { actionDeleteProfile } from '../../actions/user';
 import { GlobalState } from '../../reducers';
 import { findMember } from '../../selectors/members';
 import { getUrlApi } from '../../utils/utils';
@@ -10,11 +11,17 @@ import './styles.scss';
 function ProfileDetail(): JSX.Element {
   const url = getUrlApi();
   const { slug } = useParams();
+  const dispatch = useDispatch();
   const pseudo = useSelector((state: GlobalState) => state.user.pseudo);
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const member = useSelector((state: GlobalState) =>
     findMember(state.user.listOfMembers, slug)
   );
+  const handleDeleteProfile = () => {
+    if (confirm('Voulez-vous vraiment supprimer votre profil ?')) {
+      dispatch(actionDeleteProfile());
+    }
+  };
   if (isLoading) {
     return <Spinner />;
   }
@@ -72,6 +79,15 @@ function ProfileDetail(): JSX.Element {
               </div>
             </Link>
           ))}
+        {isMineProfile && (
+          <button
+            className="profile-detail__delete"
+            onClick={handleDeleteProfile}
+            type="button"
+          >
+            Supprimer mon profil
+          </button>
+        )}
       </section>
     </section>
   );

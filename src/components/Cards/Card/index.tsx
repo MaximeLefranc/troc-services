@@ -5,9 +5,18 @@ interface CardProps {
   title: string;
   description: string;
   skills: { id: number; name: string }[];
+  city: string;
+  zipCode: string;
 }
 
-function Card({ image, title, description, skills }: CardProps): JSX.Element {
+function Card({
+  image,
+  title,
+  description,
+  skills,
+  city,
+  zipCode,
+}: CardProps): JSX.Element {
   const url = getUrlApi();
   return (
     <div className="card">
@@ -17,6 +26,8 @@ function Card({ image, title, description, skills }: CardProps): JSX.Element {
           src={`${url}/img/${image}`}
           alt="image advertisement"
         />
+        <p className="card__container__city">{city}</p>
+        <p className="card__container__code">{zipCode}</p>
       </picture>
       <div className="card__description">
         <h3 className="card__description__title">{title}</h3>

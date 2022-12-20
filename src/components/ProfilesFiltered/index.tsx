@@ -43,6 +43,8 @@ function ProfileFiltered(): JSX.Element {
               title={user.nickname}
               description={user.biography}
               skills={user.skill}
+              city={user.city}
+              zipCode={user.zip_code}
             />
           </Link>
         ))}

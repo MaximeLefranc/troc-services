@@ -72,7 +72,7 @@ function SkillsSelect(): JSX.Element {
 
   return (
     <Select
-      defaultValue={defaultValue}
+      value={defaultValue}
       isMulti
       name="colors"
       components={animatedComponents}

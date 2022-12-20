@@ -23,6 +23,8 @@ export interface Adverts {
     id: number;
     imageName: string;
     nickname: string;
+    city: string;
+    zip_code: string;
     skill: [
       {
         id: number;
@@ -64,6 +66,8 @@ function AdvertsCards(): JSX.Element {
               title={advert.title}
               description={advert.content}
               skills={advert.skills}
+              city={advert.user.city}
+              zipCode={advert.user.zip_code}
             />
           </Link>
         ))}

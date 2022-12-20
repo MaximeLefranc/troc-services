@@ -20,6 +20,7 @@ export const FETCH_ADVERT_FOR_MODIFICATION = 'FETCH_ADVERT_FOR_MODIFICATION';
 export const SET_INFO_ADVERT_IN_INPUTS_STATE =
   'SET_INFO_ADVERT_IN_INPUTS_STATE';
 export const EDIT_IN_DB_THIS_ADVERT = 'EDIT_IN_DB_THIS_ADVERT';
+export const DELETE_ADVERT = 'DELETE_ADVERT';
 
 /*=====================================
 ===========ACTIONS CREATORS============
@@ -166,5 +167,17 @@ export function actionEditInDbThisAdvert(idAdvert: number) {
   return {
     type: EDIT_IN_DB_THIS_ADVERT,
     payload: idAdvert,
+  };
+}
+
+/**
+ * Delete advert user in DB
+ * @param idAdvertToDelete Advert ID to hidden
+ * @returns Object Action
+ */
+export function actionDeleteAdvert(idAdvertToDelete: number) {
+  return {
+    type: DELETE_ADVERT,
+    payload: idAdvertToDelete,
   };
 }
