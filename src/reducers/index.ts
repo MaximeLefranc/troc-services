@@ -6,6 +6,7 @@ import inscriptionReducer, { InscriptionState } from './inscription';
 import advertisementsReducer, { AdvertsState } from './advertisements';
 import messagesReducer, { MessagesState } from './messages';
 import contactReducer, { ContactState } from './contact';
+import searchBarReducer, { SearchBar } from './searchBar';
 
 export interface GlobalState {
   contact: ContactState;
@@ -13,6 +14,7 @@ export interface GlobalState {
   user: UserState;
   inscription: InscriptionState;
   messages: MessagesState;
+  searchBar: SearchBar;
 }
 
 const rootReducer = combineReducers({
@@ -21,6 +23,7 @@ const rootReducer = combineReducers({
   inscription: inscriptionReducer,
   messages: messagesReducer,
   contact: contactReducer,
+  searchBar: searchBarReducer,
 });
 
 export default rootReducer;
