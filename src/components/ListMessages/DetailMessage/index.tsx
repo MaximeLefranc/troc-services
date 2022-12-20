@@ -1,10 +1,19 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { GlobalState } from '../../../reducers';
+import { findMessageById } from '../../../selectors/messages';
+import { getUrlApi } from '../../../utils/utils';
+import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import './styles.scss';
 
 function DetailMessage(): JSX.Element {
+  const urlAPI = getUrlApi();
+  const { slug } = useParams();
+  const message = useSelector((state: GlobalState) =>
+    findMessageById(state.messages.messagesUser, slug)
+  );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   if (!localStorage.getItem('token_troc_services')) {
     return <Navigate to="/accueil" replace />;
@@ -12,32 +21,26 @@ function DetailMessage(): JSX.Element {
   if (isLoading) {
     return <Spinner />;
   }
+  if (message === undefined || message === false) {
+    return <NotFound404 />;
+  }
+  useEffect(() => {
+    // dispatch action for is read = true
+  }, []);
   return (
     <section className="message">
-      <Link to={`/profils/[pseudo]`}>
+      <Link to={`/profils/${message[0].sender.nickname}`}>
         <img
           className="message__img"
-          src="https://static-cse.canva.com/blob/189288/article_canva_le_guide_pour_creer_de_superbes_photos_de_profil_9-1.jpg"
+          src={`${urlAPI}img/${message[0].sender.imageName}`}
         />
       </Link>
-      <p className="message__pseudo">Pseudo de l'auteur</p>
+      <p className="message__pseudo">{message[0].sender.nickname}</p>
       <h2 className="message__subject">Sujet du message</h2>
-      <p className="message__content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-        bibendum neque, eget ultrices dui bibendum a. Aenean ultricies accumsan
-        fringilla. Cras nibh ante, suscipit a bibendum finibus eget ligula.
-        Curabitur ultrices, urna a molestie condimentum, ligula dolor varius
-        enim, nec ullamcorper tellus quam in sapien. Sed lobortis libero nec
-        libero aliquam, vitae interdum ipsum tincidunt. Sed consectetur sed
-        velit eget gravida. Integer lacus urna, fermentum quis dictum at,
-        commodo mollis dui. Curabitur Curabitur Curabitur pretium elementum
-        mauris vel tincidunt. Aliquam vel nisl nec ipsum pharetra viverra non
-        Quisque ultricies egestas turpis, id tempor lectus gravida luctus luctus
-        nisl, id tempus velit. Sed egestas nulla in ipsum finibus lobortis.
-      </p>
-      <Link to={`/profils/[pseudo]/envoyer-message`}>
+      <p className="message__content">{message[0].content}</p>
+      <Link to={`/profils/${message[0].sender.id}/envoyer-message`}>
         <button type="button" className="message__button">
-          Répondre à pseudo
+          {`Répondre à ${message[0].sender.nickname}`}
         </button>
       </Link>
     </section>

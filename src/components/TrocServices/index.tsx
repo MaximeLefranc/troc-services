@@ -50,18 +50,19 @@ function TrocServices(): JSX.Element {
         <Route path="/profils/:slug" element={<ProfileDetail />} />
         <Route path="/profils/:slug/modifier" element={<InscriptionForm />} />
         <Route path="/profils/competence/:slug" element={<ProfileFiltered />} />
-        <Route path="/profils/messages" element={<ListMessages />} />
+        <Route path="/profils/messages/recus" element={<ListMessages />} />
+        <Route path="/profils/messages/envoyes" element={<ListMessages />} />
         <Route path="/profils/messages/:slug" element={<DetailMessage />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/:slug/modifier" element={<LeaveAdvert />} />
         <Route path="/annonces/categorie/:slug" element={<AdvertFiltered />} />
         <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
         <Route
-          path="/annonces/[id]/envoyer-message"
+          path="/annonces/:slug/envoyer-message"
           element={<FormMessage />}
         />
         <Route
-          path="/profils/[pseudo]/envoyer-message"
+          path="/profils/:slug/envoyer-message"
           element={<FormMessage />}
         />
         <Route path="/a-propos" element={<About />} />

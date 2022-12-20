@@ -37,13 +37,13 @@ function AdvertDetail(): JSX.Element {
         <h2 className="advert__picture__title">{advert.title}</h2>
         <img
           className="advert__picture__image"
-          src={`${url}/img/${advert.imageName}`}
+          src={`${url}img/${advert.imageName}`}
           alt="advert picture"
         />
         <Link to={`/profils/${advert.user.nickname}`}>
           <img
             className="advert__picture__profile"
-            src={`${url}/img/${advert.user.imageName}`}
+            src={`${url}img/${advert.user.imageName}`}
             alt="profile picture"
           />
         </Link>

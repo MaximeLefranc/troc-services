@@ -43,12 +43,13 @@ function AdvertsCards(): JSX.Element {
   const advertList = useSelector(
     (state: GlobalState) => state.advertisements.listOfAdverts
   );
-
   if (isLoading) {
     return <Spinner />;
   }
   if (advertList.length === 0) {
-    return <NotFound404 />;
+    setTimeout(() => {
+      return <NotFound404 />;
+    }, 10);
   }
   return (
     <section className="main">

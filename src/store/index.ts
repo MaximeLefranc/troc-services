@@ -4,11 +4,17 @@ import reducer from '../reducers/index';
 import authentMiddleware from '../middlewares/authentMiddleware';
 import inscriptionMiddleware from '../middlewares/inscriptionMiddleware';
 import advertsMiddleware from '../middlewares/advertsMiddleware';
+import messagesMiddleware from '../middlewares/messagesMiddleware';
 
 const composeEnhancers = composeWithDevTools;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(inscriptionMiddleware, authentMiddleware, advertsMiddleware)
+  applyMiddleware(
+    inscriptionMiddleware,
+    authentMiddleware,
+    advertsMiddleware,
+    messagesMiddleware
+  )
 );
 
 const store = createStore(reducer, enhancers);

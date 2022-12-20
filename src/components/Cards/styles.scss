@@ -40,13 +40,14 @@
     }
     &__city {
       position: absolute;
-      bottom: 10%;
+      bottom: 11%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 1rem;
-      background-color: vars.$font-transparent-card-color;
+      background-color: vars.$font-transparent-color;
       border-radius: .3rem;
-      color: vars.$font-color;
+      color: vars.$dark-color;
+      padding: .1rem;
       text-shadow: 1px 1px 2px vars.$dark-color;
     }
     &__code {
@@ -55,9 +56,10 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: .9rem;
-      background-color: vars.$font-transparent-card-color;
+      background-color: vars.$font-transparent-color;
       border-radius: .3rem;
-      color: vars.$font-color;
+      color: vars.$dark-color;
+      padding: .1rem;
       text-shadow: 1px 1px 2px vars.$dark-color;
     }
   }
@@ -136,17 +138,20 @@
         border-top-right-radius: 5px;
       }
       &__city {
-        bottom: 10%;
+        bottom: 11%;
         left: 5%;
         transform: none;
         font-size: 1.5rem;
+        border-bottom-left-radius: 0;
       }
       &__code {
         position: absolute;
-        bottom: 0;
+        bottom: 1%;
         left: 5%;
         transform: none;
         font-size: .9rem;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
       }
     }
     &__description {

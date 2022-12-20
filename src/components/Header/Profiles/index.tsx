@@ -14,7 +14,6 @@ function Profiles(): JSX.Element {
   const user: any = useSelector((state: GlobalState) =>
     findMember(state.user.listOfMembers, state.user.pseudo)
   );
-  console.log(user);
   const dispatch = useDispatch();
   const logOut = () => {
     dispatch(actionLogOut());
@@ -29,7 +28,7 @@ function Profiles(): JSX.Element {
   return (
     <div className="action">
       <div className="profile" onClick={menuToggle}>
-        <img className="profile__img" src={`${url}/img/${user.imageName}`} />
+        <img className="profile__img" src={`${url}img/${user.imageName}`} />
       </div>
       <div className="profiles__menu">
         <h3>
