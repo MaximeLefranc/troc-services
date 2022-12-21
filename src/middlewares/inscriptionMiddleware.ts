@@ -158,6 +158,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
                     'Les modifications de votre profil on étaient réalisées avec succès, merci de vous reconnecter'
                   )
                 );
+                window.location.href = `${window.location.origin}/accueil`;
               })
               .catch(() => {
                 store.dispatch(
@@ -172,6 +173,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
                 'Les modifications de votre profil on étaient réalisées avec succès, merci de vous reconnecter'
               )
             );
+            window.location.href = `${window.location.origin}/accueil`;
           }
         })
         .catch(() => {

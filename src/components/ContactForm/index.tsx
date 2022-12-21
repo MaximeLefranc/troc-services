@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   actionChangeInputValueContact,
@@ -43,6 +43,10 @@ function ContactForm() {
   const handleSendContactForm = (evt: SyntheticEvent): void => {
     evt.preventDefault();
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <section className="contact">

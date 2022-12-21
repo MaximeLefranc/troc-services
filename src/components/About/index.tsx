@@ -1,9 +1,13 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import maxPhoto from '../../assets/images/max-lefranc.svg';
 import nicoPhoto from '../../assets/images/nicolas-mahieux.png';
 import './styles.scss';
 
 function About(): JSX.Element {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section className="about">
       <div className="about__description">

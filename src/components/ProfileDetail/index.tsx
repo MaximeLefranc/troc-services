@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { actionDeleteProfile } from '../../actions/user';
@@ -22,6 +23,11 @@ function ProfileDetail(): JSX.Element {
       dispatch(actionDeleteProfile());
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (isLoading) {
     return <Spinner />;
   }

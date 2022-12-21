@@ -43,7 +43,8 @@ function ListMessages(): JSX.Element {
         sentBtnRef.current.focus();
       }
     }
-  });
+    window.scrollTo(0, 0);
+  }, []);
   if (!localStorage.getItem('token_troc_services')) {
     return <Navigate to="/accueil" replace />;
   }

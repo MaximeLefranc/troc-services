@@ -71,6 +71,10 @@ function LeaveAdvert(): JSX.Element {
     }
   }, [slug]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!localStorage.getItem('token_troc_services')) {
     return <Navigate to="/accueil" replace />;
   }

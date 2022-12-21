@@ -7,6 +7,7 @@ import { getUrlApi } from '../../utils/utils';
 import Spinner from '../Spinner';
 import NotFound404 from '../NotFound404';
 import { actionDeleteAdvert } from '../../actions/advertisements';
+import { useEffect } from 'react';
 
 function AdvertDetail(): JSX.Element {
   const url = getUrlApi();
@@ -17,6 +18,10 @@ function AdvertDetail(): JSX.Element {
   const advert = useSelector((state: GlobalState) =>
     findAdvert(state.advertisements.listOfAdverts, slug)
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (isLoading) {
     return <Spinner />;

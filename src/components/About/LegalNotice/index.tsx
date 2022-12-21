@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
 import './styles.scss';
 
 function LegalNotice(): JSX.Element {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section className="legalnotice">
       <h1 className="legalnotice__title--first">MENTIONS LEGALES :</h1>

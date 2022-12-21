@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { GlobalState } from '../../reducers';
@@ -14,6 +15,10 @@ function AdvertFiltered() {
   const advertList = useSelector((state: GlobalState) =>
     findAdvertsBySkills(state.advertisements.listOfAdverts, slug)
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (isLoading) {
     return <Spinner />;

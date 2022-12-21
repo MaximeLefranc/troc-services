@@ -38,7 +38,8 @@ function AdvertsCards(): JSX.Element {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actionToggleSubmitSuccess(false));
-  });
+    window.scrollTo(0, 0);
+  }, []);
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const advertList = useSelector(
     (state: GlobalState) => state.advertisements.listOfAdverts

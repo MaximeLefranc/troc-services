@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { GlobalState } from '../../../reducers';
@@ -27,6 +28,9 @@ function ProfilesCards(): JSX.Element {
     (state: GlobalState) => state.user.listOfMembers
   );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   if (isLoading) {
     return <Spinner />;
   }
