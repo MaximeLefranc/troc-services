@@ -53,7 +53,7 @@ function About(): JSX.Element {
         <Link className="about__links__link" to="/a-propos/contact/">
           Contact
         </Link>
-        <Link className="about__links__link" to="#">
+        <Link className="about__links__link" to="/a-propos/mentions-legales/">
           Mentions légales
         </Link>
       </div>

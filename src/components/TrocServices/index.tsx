@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
-import About from '../About/About';
+import About from '../About';
 import AdvertDetail from '../AdvertDetail';
 import AdvertsCards from '../Cards/AdvertsCards';
 import ProfilesCards from '../Cards/ProfilesCards';
@@ -25,6 +25,7 @@ import { actionFetchAdvertsementsSkillsAndUsers } from '../../actions/advertisem
 import LeaveAdvert from '../LeaveAdvert/LeaveAdvert';
 import AdvertFiltered from '../AdvertFiltered';
 import NotFound404 from '../NotFound404';
+import LegalNotice from '../About/LegalNotice';
 
 interface Location {
   pathname: string;
@@ -67,6 +68,7 @@ function TrocServices(): JSX.Element {
         />
         <Route path="/a-propos" element={<About />} />
         <Route path="/a-propos/contact/" element={<ContactForm />} />
+        <Route path="/a-propos/mentions-legales/" element={<LegalNotice />} />
         <Route path="*" element={<NotFound404 />} />
       </Routes>
       {!isWelcomePage && <Footer />}
