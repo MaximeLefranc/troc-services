@@ -72,7 +72,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
       };
 
       axios
-        .post(`${urlAPI}api/advertisements/add`, bodyParameters, config)
+        .post(`${urlAPI}api/advertisements/new`, bodyParameters, config)
         .then((response) => {
           if (response.status === 201 && picture !== '') {
             axios

@@ -47,7 +47,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
       const townToLowerCase = town.toLowerCase();
       const skillsIds = arrayIdsSkills(skills);
       axios
-        .post(`${urlAPI}api/user/register`, {
+        .post(`${urlAPI}api/user/new`, {
           email: email,
           password: password,
           first_name: firstname,
