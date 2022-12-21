@@ -28,7 +28,7 @@ export function actionChangeInputValueContact(
 }
 
 /**
- * Fetch POST to API the inscription form
+ * Fetch POST to API the contact form
  * @returns Object Action
  */
 export function actionSubmitContactForm() {
