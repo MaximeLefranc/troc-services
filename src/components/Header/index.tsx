@@ -3,13 +3,15 @@ import logo from '../../assets/logo/troc-services-logo.svg';
 import MobileNav from './MobileNav';
 import FormFilters from '../FormFilters';
 import NavBar from './NavBar';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Profiles from './Profiles';
 import { GlobalState } from '../../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionToggleLogInForm } from '../../actions/user';
 
 function Header(): JSX.Element {
+  const { pathname } = useLocation();
+  console.log(pathname.split('/'));
   const advertisements = useSelector(
     (state: GlobalState) => state.advertisements
   );
@@ -49,9 +51,16 @@ function Header(): JSX.Element {
         </button>
       )}
       <FormFilters />
-      <Link className="header__link--profils" to="/profils">
-        Membres
-      </Link>
+      {pathname.split('/')[1] === 'profils' ? (
+        <Link className="header__link--profils" to="/accueil">
+          Annonces
+        </Link>
+      ) : (
+        <Link className="header__link--profils" to="/profils">
+          Membres
+        </Link>
+      )}
+
       <Link
         className="header__links--advert"
         to={logged ? '/nouvelle-annonce' : '/inscription'}

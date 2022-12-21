@@ -44,10 +44,7 @@ function Profiles(): JSX.Element {
             <img src={logoUser} />
             <span className="profiles__menu__link--span">Mon profil</span>
           </Link>
-          <Link
-            to={`/profils/messages/${user.nickname}`}
-            className="profiles__menu--link"
-          >
+          <Link to={`/profils/messages/recus`} className="profiles__menu--link">
             <img src={logoEnvelopet} />
             <span className="profiles__menu__link--span">Mes messages</span>
           </Link>
