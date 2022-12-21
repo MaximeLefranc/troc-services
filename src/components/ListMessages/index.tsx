@@ -15,6 +15,7 @@ export interface MessageDetail {
   isHidden: boolean;
   sender: { id: number; nickname: string; imageName: string };
   receiver: { id: number; nickname: string; imageName: string };
+  object: string;
 }
 export interface MessagesInterface {
   sendOrReceived: string;
@@ -80,6 +81,7 @@ function ListMessages(): JSX.Element {
           messagesToShow !== false &&
           messagesToShow.messages.map((message: MessageDetail) => (
             <Message
+              object={message.object}
               isRead={message.isRead}
               image={message.sender.imageName}
               key={message.id}

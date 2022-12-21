@@ -58,11 +58,11 @@ function TrocServices(): JSX.Element {
         <Route path="/annonces/categorie/:slug" element={<AdvertFiltered />} />
         <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
         <Route
-          path="/annonces/:slug/envoyer-message"
+          path="/annonces/:idAnnonce/envoyer-message/:idProfile"
           element={<FormMessage />}
         />
         <Route
-          path="/profils/:slug/envoyer-message"
+          path="/profils/:idProfile/envoyer-message"
           element={<FormMessage />}
         />
         <Route path="/a-propos" element={<About />} />

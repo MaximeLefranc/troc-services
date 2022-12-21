@@ -55,7 +55,7 @@ function AdvertDetail(): JSX.Element {
           </button>
         </Link>
       ) : (
-        <Link to={`/annonces/${advert.id}/envoyer-message`}>
+        <Link to={`/annonces/${advert.id}/envoyer-message/${advert.user.id}`}>
           <button className="advert__button" type="button">
             Echangeons nos services !
           </button>

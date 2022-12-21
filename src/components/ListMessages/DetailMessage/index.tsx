@@ -1,32 +1,35 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import { actionMessageIsRead } from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
 import { findMessageById } from '../../../selectors/messages';
 import { getUrlApi } from '../../../utils/utils';
-import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import './styles.scss';
 
 function DetailMessage(): JSX.Element {
   const urlAPI = getUrlApi();
+  const dispatch = useDispatch();
   const { slug } = useParams();
   const message = useSelector((state: GlobalState) =>
     findMessageById(state.messages.messagesUser, slug)
   );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+  useEffect(() => {
+    if (typeof slug === 'string') {
+      dispatch(actionMessageIsRead(slug));
+    }
+  }, []);
   if (!localStorage.getItem('token_troc_services')) {
     return <Navigate to="/accueil" replace />;
   }
   if (isLoading) {
     return <Spinner />;
   }
-  if (message === undefined || message === false) {
-    return <NotFound404 />;
+  if (message === undefined || message === false || message.length === 0) {
+    return <Spinner />;
   }
-  useEffect(() => {
-    // dispatch action for is read = true
-  }, []);
   return (
     <section className="message">
       <Link to={`/profils/${message[0].sender.nickname}`}>

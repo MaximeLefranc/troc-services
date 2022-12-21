@@ -14,6 +14,7 @@ interface FieldPropsInscription {
   isTextArea?: boolean;
   valueInState?: string;
   onChange: (value: string | File, nameInput: string) => void;
+  disabled?: boolean;
 }
 
 function Field({
@@ -30,6 +31,7 @@ function Field({
   valueInState = '',
   onChange,
   isTextArea = false,
+  disabled = false,
 }: FieldPropsInscription): JSX.Element {
   const handleChangeValueInState = (evt: ChangeEvent): void => {
     if (name === 'picture') {
@@ -80,6 +82,7 @@ function Field({
         accept={accept}
         pattern={pattern}
         onChange={handleChangeValueInState}
+        disabled={disabled}
       />
     </label>
   );
