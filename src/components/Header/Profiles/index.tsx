@@ -9,9 +9,11 @@ import { GlobalState } from '../../../reducers';
 import { actionLogOut } from '../../../actions/user';
 import { findMember } from '../../../selectors/members';
 import { getUrlApi } from '../../../utils/utils';
+import { User } from '../../Cards/ProfilesCards';
+import Spinner from '../../Spinner';
 
 function Profiles(): JSX.Element {
-  const user: any = useSelector((state: GlobalState) =>
+  const user: User | false = useSelector((state: GlobalState) =>
     findMember(state.user.listOfMembers, state.user.pseudo)
   );
   const dispatch = useDispatch();
@@ -25,6 +27,9 @@ function Profiles(): JSX.Element {
     toggleProfile.classList.toggle('isActive');
     toggleMenu.classList.toggle('active');
   };
+  if (user === false) {
+    return <Spinner />;
+  }
   return (
     <div className="action">
       <div className="profile" onClick={menuToggle}>

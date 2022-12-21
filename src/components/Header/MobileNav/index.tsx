@@ -1,31 +1,20 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionToggleLogInForm } from '../../../actions/user';
-import { Advertisements } from '../NavBar';
+import { Category } from '../../SkillsSelect';
 import NavDropdown from '../NavBar/NavDropdown';
 import './styles.scss';
-
-export interface Category {
-  id: number;
-  name: string;
-  skills: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
-}
 
 function MobileNav({
   logo,
   isLogged,
-  advertisements,
+  listOfSkills,
   mobileScreen,
 }: {
   mobileScreen: boolean;
   logo: string;
   isLogged: boolean;
-  advertisements: Advertisements;
+  listOfSkills: Category[];
 }): JSX.Element {
   const dispatch = useDispatch();
   const handleToggleLogInForm = (): void => {
@@ -68,7 +57,7 @@ function MobileNav({
         <Link className="mobileNav__links--link" to="/profils">
           Profils
         </Link>
-        {advertisements.listOfSkills.map((category: Category) => (
+        {listOfSkills.map((category: Category) => (
           <NavDropdown
             category={category}
             key={category.id}

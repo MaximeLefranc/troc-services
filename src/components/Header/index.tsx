@@ -12,8 +12,8 @@ import { actionToggleLogInForm } from '../../actions/user';
 function Header(): JSX.Element {
   const { pathname } = useLocation();
   console.log(pathname.split('/'));
-  const advertisements = useSelector(
-    (state: GlobalState) => state.advertisements
+  const listOfSkills = useSelector(
+    (state: GlobalState) => state.advertisements.listOfSkills
   );
 
   const mobileScreen: boolean = window.matchMedia(
@@ -73,11 +73,11 @@ function Header(): JSX.Element {
         <MobileNav
           logo={logo}
           isLogged={logged}
-          advertisements={advertisements}
+          listOfSkills={listOfSkills}
           mobileScreen={mobileScreen}
         />
       ) : (
-        <NavBar advertisements={advertisements} mobileScreen={mobileScreen} />
+        <NavBar listOfSkills={listOfSkills} mobileScreen={mobileScreen} />
       )}
     </header>
   );

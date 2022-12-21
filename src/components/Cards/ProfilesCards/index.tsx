@@ -29,7 +29,9 @@ function ProfilesCards(): JSX.Element {
   if (isLoading) {
     return <Spinner />;
   } else if (usersFromSate.length === 0) {
-    return <NotFound404 />;
+    setTimeout(() => {
+      return <NotFound404 />;
+    });
   }
   return (
     <section className="main">
