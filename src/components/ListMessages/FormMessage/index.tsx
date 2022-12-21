@@ -1,53 +1,115 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { actionChangeInputValueMessage } from '../../../actions/messages';
+import { Navigate, useParams } from 'react-router-dom';
+import {
+  actionChangeInputValueMessage,
+  actionSendMessage,
+  actionSetTitleAdvertInSubjectState,
+} from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
+import { findAdvert } from '../../../selectors/advertisements';
+import { findMemberById } from '../../../selectors/members';
+import { getUrlApi } from '../../../utils/utils';
 import Field from '../../Field';
+import Spinner from '../../Spinner';
 import './styles.scss';
 
 function FormMessage(): JSX.Element {
+  const urlAPI = getUrlApi();
   const dispatch = useDispatch();
+  const { idProfile, idAnnonce } = useParams();
+
+  const member = useSelector((state: GlobalState) =>
+    findMemberById(state.user.listOfMembers, idProfile)
+  );
   const subject = useSelector((state: GlobalState) => state.messages.subject);
   const message = useSelector((state: GlobalState) => state.messages.message);
-  const recipientid = useSelector(
-    (state: GlobalState) => state.messages.recipientid
+  const listOfAdverts = useSelector(
+    (state: GlobalState) => state.advertisements.listOfAdverts
   );
+  const messageError = useSelector(
+    (state: GlobalState) => state.messages.messageError
+  );
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+
+  useEffect(() => {
+    if (idAnnonce) {
+      const advert = findAdvert(listOfAdverts, idAnnonce);
+      if (typeof advert !== 'string' && advert !== undefined) {
+        dispatch(
+          actionSetTitleAdvertInSubjectState(
+            `Réponse au sujet de votre annonce: ${advert.title}`
+          )
+        );
+      }
+    } else {
+      dispatch(actionSetTitleAdvertInSubjectState(''));
+    }
+  }, [listOfAdverts]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (!localStorage.getItem('token_troc_services')) {
+    return <Navigate to="/accueil" replace />;
+  }
+  if (member === false) {
+    return <Spinner />;
+  }
+
   const handleChangeField = (
     newValue: string | File,
     nameInput: string
   ): void => {
     dispatch(actionChangeInputValueMessage(newValue, nameInput));
   };
+
   const handleSendMessage = (evt: SyntheticEvent): void => {
     evt.preventDefault();
-    // dispatch action send a message
+    dispatch(actionSendMessage(member.id));
   };
-  if (!localStorage.getItem('token_troc_services')) {
-    return <Navigate to="/accueil" replace />;
-  }
+
   return (
     <section className="send-message">
-      <h2 className="send-message__title">Envoyer un message à</h2>
+      <h2 className="send-message__title">{`Envoyer un message à ${member.nickname}`}</h2>
       <img
         className="send-message__img"
-        src="https://static-cse.canva.com/blob/189288/article_canva_le_guide_pour_creer_de_superbes_photos_de_profil_9-1.jpg"
+        src={`${urlAPI}img/${member.imageName}`}
         alt="profile-photo"
       />
-      <p className="send-message__pseudo">Pseudo</p>
+      <p className="send-message__pseudo">{member.nickname}</p>
+      {messageError !== '' && (
+        <h2 className="send-message__title--message">{messageError}</h2>
+      )}
       <form className="send-message__form" onSubmit={handleSendMessage}>
-        <Field
-          label="Objet"
-          classNameLabel="send-message__form__label"
-          className="send-message__form__label__input"
-          required={true}
-          id="subject"
-          type="text"
-          name="subject"
-          placeholder="Sujet du message"
-          onChange={handleChangeField}
-          valueInState={subject}
-        />
+        {!idAnnonce ? (
+          <Field
+            label="Objet"
+            classNameLabel="send-message__form__label"
+            className="send-message__form__label__input"
+            required={true}
+            id="subject"
+            type="text"
+            name="subject"
+            placeholder="Sujet du message"
+            onChange={handleChangeField}
+            valueInState={subject}
+          />
+        ) : (
+          <Field
+            label="Objet"
+            classNameLabel="send-message__form__label"
+            className="send-message__form__label__input"
+            required={true}
+            id="subject"
+            type="text"
+            name="subject"
+            placeholder="Sujet du message"
+            onChange={handleChangeField}
+            valueInState={subject}
+            disabled={true}
+          />
+        )}
         <Field
           label="Message"
           classNameLabel="send-message__form__label"
@@ -59,18 +121,6 @@ function FormMessage(): JSX.Element {
           placeholder="Votre message ici"
           onChange={handleChangeField}
           valueInState={message}
-        />
-        <Field
-          label=""
-          classNameLabel="send-message__form__label__hidden"
-          type="hidden"
-          className="send-message__form__label__hidden__input"
-          required={true}
-          id="recipientid"
-          name="recipientid"
-          placeholder=""
-          onChange={handleChangeField}
-          valueInState={recipientid}
         />
         <button className="send-message__form__button" type="submit">
           Envoyer

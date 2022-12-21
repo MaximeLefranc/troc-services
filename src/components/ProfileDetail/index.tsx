@@ -35,7 +35,7 @@ function ProfileDetail(): JSX.Element {
       <section className="profile-detail">
         <img
           className="profile-detail__picture"
-          src={`${url}/img/${member.imageName}`}
+          src={`${url}img/${member.imageName}`}
           alt="profile picture of member"
         />
         <h2 className="profile-detail__pseudo">{member.nickname}</h2>
@@ -46,7 +46,7 @@ function ProfileDetail(): JSX.Element {
             </button>
           </Link>
         ) : (
-          <Link to={`/profils/${member.nickname}/envoyer-message`}>
+          <Link to={`/profils/${member.id}/envoyer-message`}>
             <button className="profile-detail__contact" type="button">
               Me contacter
             </button>
@@ -68,7 +68,7 @@ function ProfileDetail(): JSX.Element {
               <div key={advertisement.id} className="profile-detail__adverts">
                 <img
                   className="profile-detail__adverts__picture"
-                  src={`${url}/img/${advertisement.imageName}`}
+                  src={`${url}img/${advertisement.imageName}`}
                 />
                 <h4 className="profile-detail__adverts__title">
                   {advertisement.title}

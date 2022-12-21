@@ -9,6 +9,11 @@
     color: vars.$main-color;
     font-size: 1.3rem;
     margin-bottom: 1rem;
+    &--message {
+      color: rgba(206, 19, 19, 0.726);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
   }
   &__img {
     width: 8rem;
@@ -84,6 +89,9 @@
     border: 1px solid vars.$dark-color;
     &__title {
       font-size: 1.5rem;
+      &--message {
+        font-size: 1.5rem;
+      }
     }
     &__pseudo {
       font-size: 1.2rem;

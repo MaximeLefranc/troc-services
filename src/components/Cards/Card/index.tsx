@@ -23,7 +23,7 @@ function Card({
       <picture className="card__container">
         <img
           className="card__container__image"
-          src={`${url}/img/${image}`}
+          src={`${url}img/${image}`}
           alt="image advertisement"
         />
         <p className="card__container__city">{city}</p>

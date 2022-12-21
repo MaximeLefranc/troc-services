@@ -2,8 +2,8 @@ import { User } from '../components/Cards/ProfilesCards';
 import { Skills } from '../components/SkillsSelect';
 
 /**
- * Search in User state one memeber by this ID
- * @param listOfMembers Advertisements array in state
+ * Search in User state one memeber by this nickname
+ * @param listOfMembers members array in state
  * @param searchedSlug  pseudo of member to searched
  * @returns {Array | false} One member or false if doen't exist
  */
@@ -61,4 +61,28 @@ export function arrayIdsSkills(arrayOfSkills: Skills[]): number[] {
   const id: number[] = [];
   arrayOfSkills.map((skill: Skills) => id.push(skill.value));
   return id;
+}
+
+/**
+ * Search in User state one memeber by this ID
+ * @param listOfMembers members array in state
+ * @param searchedSlugId  id of member to searched
+ * @returns {Array | false} One member or false if doen't exist
+ */
+export function findMemberById(
+  listOfMembers: [],
+  searchedSlugId: string | undefined
+): User | false {
+  if (typeof searchedSlugId === 'string') {
+    const id = parseInt(searchedSlugId);
+    const member = listOfMembers.find(
+      (memberElement: User) => memberElement.id === id
+    );
+    if (member) {
+      return member;
+    } else {
+      return false;
+    }
+  }
+  return false;
 }
