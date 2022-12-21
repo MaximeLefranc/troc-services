@@ -3,7 +3,6 @@
 .messages {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding-bottom: 2rem;
   &__title {
     display: block;
@@ -17,7 +16,7 @@
     width: 100%;
     margin-bottom: 1rem;
     &--received {
-      width: 50%;
+      width: 100%;
       border: 1px solid vars.$main-color;
       font-family: vars.$main-font;
       height: 2rem;
@@ -36,7 +35,7 @@
       }
     }
     &--sent {
-      width: 50%;
+      width: 100%;
       border: 1px solid vars.$main-color;
       font-family: vars.$main-font;
       height: 2rem;
@@ -54,6 +53,9 @@
         color: vars.$font-color;
       }
     }
+    &__links {
+      width: 50%;
+    }
   }
   &__list {
     &__detail {
@@ -62,7 +64,7 @@
       border-radius: 2rem;
       padding: 1rem;
       height: 11rem;
-      margin-bottom: 1rem;
+      margin: 0 .5rem 1rem .5rem;
       &--img {
         float: left;
         width: 5rem;
@@ -103,6 +105,10 @@
   }
 }
 
+.messages__list__detail.notRead {
+  background-color: vars.$font-transparent-main-color;
+}
+
 @media screen and (min-width: 1300px) {
   .messages {
     margin: 1rem 15rem 1rem 15rem;
@@ -112,6 +118,11 @@
     &__title {
       font-size: 1.7rem;
       margin-bottom: 2rem;
+    }
+    &__list {
+      &__detail {
+        margin: 0 2rem 1rem 2rem;
+      }
     }
   }
 }

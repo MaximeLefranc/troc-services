@@ -1,120 +1,97 @@
-import iconDelete from './../../assets/icons/delete.svg';
 import { useSelector } from 'react-redux';
 import { GlobalState } from '../../reducers';
 import './styles.scss';
-import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
+import { MutableRefObject, useEffect, useRef } from 'react';
+import Message from './Message';
+import { SentOrReceivedMessages } from '../../selectors/messages';
+import { Link, Navigate, useLocation } from 'react-router-dom';
+
+export interface MessageDetail {
+  id: number;
+  content: string;
+  sentAt: string;
+  isRead: boolean;
+  isHidden: boolean;
+  sender: { id: number; nickname: string; imageName: string };
+  receiver: { id: number; nickname: string; imageName: string };
+  object: string;
+}
+export interface MessagesInterface {
+  sendOrReceived: string;
+  messages: MessageDetail[];
+}
 
 function ListMessages(): JSX.Element {
+  const { pathname } = useLocation();
+  const receivedBtnRef = useRef() as MutableRefObject<HTMLButtonElement>;
+  const sentBtnRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
-  const isLoggedIn = useSelector((state: GlobalState) => state.user.isLoggedIn);
+  const searchReceivedOrSentMessages =
+    pathname.split('/')[3] === 'recus' ? 'messagesReceived' : 'messagesSent';
+  const messagesToShow = useSelector((state: GlobalState) =>
+    SentOrReceivedMessages(
+      state.messages.messagesUser,
+      searchReceivedOrSentMessages
+    )
+  );
+  useEffect(() => {
+    if (receivedBtnRef.current && sentBtnRef.current) {
+      if (searchReceivedOrSentMessages === 'messagesReceived') {
+        receivedBtnRef.current.focus();
+      } else {
+        sentBtnRef.current.focus();
+      }
+    }
+  });
+  if (!localStorage.getItem('token_troc_services')) {
+    return <Navigate to="/accueil" replace />;
+  }
   if (isLoading) {
     return <Spinner />;
   }
-  // if (!isLoggedIn) {
-  //   return <div>Page 404</div>;
-  //   //! Si pas connecté, pas accès à cette page
-  // }
   return (
     <section className="messages">
       <h2 className="messages__title">Mes messages</h2>
       <div className="messages__button">
-        <button type="button" className="messages__button--received">
-          Reçus
-        </button>
-        <button type="button" className="messages__button--sent">
-          Envoyés
-        </button>
+        <Link to="/profils/messages/recus" className="messages__button__links">
+          <button
+            ref={receivedBtnRef}
+            type="button"
+            className="messages__button--received"
+          >
+            Reçus
+          </button>
+        </Link>
+        <Link
+          to="/profils/messages/envoyes"
+          className="messages__button__links"
+        >
+          <button
+            ref={sentBtnRef}
+            type="button"
+            className="messages__button--sent"
+          >
+            Envoyés
+          </button>
+        </Link>
       </div>
       <div className="messages__list">
-        <Link to={`/profils/messages/:slug`}>
-          <div className="messages__list__detail">
-            <img
-              src="https://static-cse.canva.com/blob/189288/article_canva_le_guide_pour_creer_de_superbes_photos_de_profil_9-1.jpg"
-              className="messages__list__detail--img"
-              alt="profile photo"
-            ></img>
-            <h3 className="messages__list__detail--title">Sujet du message</h3>
-            <h4 className="messages__list__detail--user">Pseudo</h4>
-            <p className="messages__list__detail--content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              feugiat bibendum neque, eget ultrices dui bibendum a. Aenean
-              ultricies accumsan fringilla. Cras nibh ante, suscipit a bibendum
-              finibus eget ligula. Curabitur ultrices, urna a molestie
-              condimentum, ligula dolor varius enim, nec ullamcorper tellus quam
-              in sapien. Sed lobortis libero nec libero aliquam, vitae interdum
-              ipsum tincidunt. Sed consectetur sed velit eget gravida. Integer
-              lacus urna, fermentum quis dictum at, commodo mollis dui.
-              Curabitur Curabitur Curabitur pretium elementum mauris vel
-              tincidunt. Aliquam vel nisl nec ipsum pharetra viverra non nisi.
-              Quisque ultricies egestas turpis, id tempor lectus gravida luctus
-              luctus nisl, id tempus velit. Sed egestas nulla in ipsum finibus
-              lobortis.
-            </p>
-            <button className="messages__list__detail--delete" type="button">
-              <img
-                src={iconDelete}
-                className="messages__list__detail--delete--img"
-              />
-            </button>
-          </div>
-        </Link>
-        <div className="messages__list__detail">
-          <img
-            src="https://static-cse.canva.com/blob/189288/article_canva_le_guide_pour_creer_de_superbes_photos_de_profil_9-1.jpg"
-            className="messages__list__detail--img"
-          ></img>
-          <h3 className="messages__list__detail--title">Sujet du message</h3>
-          <h4 className="messages__list__detail--user">Pseudo</h4>
-          <p className="messages__list__detail--content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            feugiat bibendum neque, eget ultrices dui bibendum a. Aenean
-            ultricies accumsan fringilla. Cras nibh ante, suscipit a bibendum a,
-            finibus eget ligula. Curabitur ultrices, urna a molestie
-            condimentum, ligula dolor varius enim, nec ullamcorper tellus quam
-            in sapien. Sed lobortis libero nec libero aliquam, vitae interdum
-            ipsum tincidunt. Sed consectetur sed velit eget gravida. Integer
-            lacus urna, fermentum quis dictum at, commodo mollis dui. Curabitur
-            pretium elementum mauris vel tincidunt. Aliquam vel nisl nec ipsum
-            pharetra viverra non a nisi. Quisque ultricies egestas turpis, id
-            tempor lectus gravida ut. Vivamus eu luctus nisl, id tempus velit.
-            Sed egestas nulla in ipsum finibus lobortis.
-          </p>
-          <button className="messages__list__detail--delete" type="button">
-            <img
-              src={iconDelete}
-              className="messages__list__detail--delete--img"
+        {messagesToShow !== undefined && messagesToShow !== false ? (
+          messagesToShow.messages.map((message: MessageDetail) => (
+            <Message
+              object={message.object}
+              isRead={message.isRead}
+              image={message.sender.imageName}
+              key={message.id}
+              id={message.id}
+              nickname={message.sender.nickname}
+              content={message.content}
             />
-          </button>
-        </div>
-        <div className="messages__list__detail">
-          <img
-            src="https://static-cse.canva.com/blob/189288/article_canva_le_guide_pour_creer_de_superbes_photos_de_profil_9-1.jpg"
-            className="messages__list__detail--img"
-          ></img>
-          <h3 className="messages__list__detail--title">Sujet du message</h3>
-          <h4 className="messages__list__detail--user">Pseudo</h4>
-          <p className="messages__list__detail--content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            feugiat bibendum neque, eget ultrices dui bibendum a. Aenean
-            ultricies accumsan fringilla. Cras nibh ante, suscipit a bibendum a,
-            finibus eget ligula. Curabitur ultrices, urna a molestie
-            condimentum, ligula dolor varius enim, nec ullamcorper tellus quam
-            in sapien. Sed lobortis libero nec libero aliquam, vitae interdum
-            ipsum tincidunt. Sed consectetur sed velit eget gravida. Integer
-            lacus urna, fermentum quis dictum at, commodo mollis dui. Curabitur
-            pretium elementum mauris vel tincidunt. Aliquam vel nisl nec ipsum
-            pharetra viverra non a nisi. Quisque ultricies egestas turpis, id
-            tempor lectus gravida ut. Vivamus eu luctus nisl, id tempus velit.
-            Sed egestas nulla in ipsum finibus lobortis.
-          </p>
-          <button className="messages__list__detail--delete" type="button">
-            <img
-              src={iconDelete}
-              className="messages__list__detail--delete--img"
-            />
-          </button>
-        </div>
+          ))
+        ) : (
+          <Spinner />
+        )}
       </div>
     </section>
   );

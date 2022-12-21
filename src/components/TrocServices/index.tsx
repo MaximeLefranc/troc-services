@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
-import About from '../About/About';
+import About from '../About';
 import AdvertDetail from '../AdvertDetail';
 import AdvertsCards from '../Cards/AdvertsCards';
 import ProfilesCards from '../Cards/ProfilesCards';
@@ -25,6 +25,7 @@ import { actionFetchAdvertsementsSkillsAndUsers } from '../../actions/advertisem
 import LeaveAdvert from '../LeaveAdvert/LeaveAdvert';
 import AdvertFiltered from '../AdvertFiltered';
 import NotFound404 from '../NotFound404';
+import LegalNotice from '../About/LegalNotice';
 
 interface Location {
   pathname: string;
@@ -50,22 +51,24 @@ function TrocServices(): JSX.Element {
         <Route path="/profils/:slug" element={<ProfileDetail />} />
         <Route path="/profils/:slug/modifier" element={<InscriptionForm />} />
         <Route path="/profils/competence/:slug" element={<ProfileFiltered />} />
-        <Route path="/profils/messages" element={<ListMessages />} />
+        <Route path="/profils/messages/recus" element={<ListMessages />} />
+        <Route path="/profils/messages/envoyes" element={<ListMessages />} />
         <Route path="/profils/messages/:slug" element={<DetailMessage />} />
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/:slug/modifier" element={<LeaveAdvert />} />
         <Route path="/annonces/categorie/:slug" element={<AdvertFiltered />} />
         <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
         <Route
-          path="/annonces/[id]/envoyer-message"
+          path="/annonces/:idAnnonce/envoyer-message/:idProfile"
           element={<FormMessage />}
         />
         <Route
-          path="/profils/[pseudo]/envoyer-message"
+          path="/profils/:idProfile/envoyer-message"
           element={<FormMessage />}
         />
         <Route path="/a-propos" element={<About />} />
         <Route path="/a-propos/contact/" element={<ContactForm />} />
+        <Route path="/a-propos/mentions-legales/" element={<LegalNotice />} />
         <Route path="*" element={<NotFound404 />} />
       </Routes>
       {!isWelcomePage && <Footer />}

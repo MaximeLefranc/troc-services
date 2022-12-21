@@ -19,7 +19,11 @@ function AdvertFiltered() {
     return <Spinner />;
   }
   if (!advertList) {
-    return <NotFound404 />;
+    return (
+      <NotFound404
+        message={`Pas d'annonce trouvée dans la catégorie ${slug}`}
+      />
+    );
   }
   return (
     <section className="main">

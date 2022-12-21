@@ -9,12 +9,13 @@ import { GlobalState } from '../../../reducers';
 import { actionLogOut } from '../../../actions/user';
 import { findMember } from '../../../selectors/members';
 import { getUrlApi } from '../../../utils/utils';
+import { User } from '../../Cards/ProfilesCards';
+import Spinner from '../../Spinner';
 
 function Profiles(): JSX.Element {
-  const user: any = useSelector((state: GlobalState) =>
+  const user: User | false = useSelector((state: GlobalState) =>
     findMember(state.user.listOfMembers, state.user.pseudo)
   );
-  console.log(user);
   const dispatch = useDispatch();
   const logOut = () => {
     dispatch(actionLogOut());
@@ -26,10 +27,13 @@ function Profiles(): JSX.Element {
     toggleProfile.classList.toggle('isActive');
     toggleMenu.classList.toggle('active');
   };
+  if (user === false) {
+    return <Spinner />;
+  }
   return (
     <div className="action">
       <div className="profile" onClick={menuToggle}>
-        <img className="profile__img" src={`${url}/img/${user.imageName}`} />
+        <img className="profile__img" src={`${url}img/${user.imageName}`} />
       </div>
       <div className="profiles__menu">
         <h3>
@@ -45,10 +49,7 @@ function Profiles(): JSX.Element {
             <img src={logoUser} />
             <span className="profiles__menu__link--span">Mon profil</span>
           </Link>
-          <Link
-            to={`/profils/messages/${user.nickname}`}
-            className="profiles__menu--link"
-          >
+          <Link to={`/profils/messages/recus`} className="profiles__menu--link">
             <img src={logoEnvelopet} />
             <span className="profiles__menu__link--span">Mes messages</span>
           </Link>

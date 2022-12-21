@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import image404 from './../../assets/gif/page-not-found.gif';
 import './styles.scss';
 
-function NotFound404() {
+function NotFound404({ message = '404 Page introuvable' }) {
   return (
     <section className="notFound">
-      <h1 className="notFound__title">404 Page introuvable</h1>
+      <h1 className="notFound__title">{message}</h1>
       <Link to="/accueil">
         <div className="notFound__container">
           <img

@@ -22,9 +22,6 @@ function LeaveAdvert(): JSX.Element {
     findAdvert(state.advertisements.listOfAdverts, slug)
   );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
-  const submitOK = useSelector(
-    (state: GlobalState) => state.advertisements.submitSuccess
-  );
   const message = useSelector(
     (state: GlobalState) => state.advertisements.message
   );
@@ -74,7 +71,7 @@ function LeaveAdvert(): JSX.Element {
     }
   }, [slug]);
 
-  if (!localStorage.getItem('token_troc_services') || submitOK) {
+  if (!localStorage.getItem('token_troc_services')) {
     return <Navigate to="/accueil" replace />;
   }
   if (isLoading) {

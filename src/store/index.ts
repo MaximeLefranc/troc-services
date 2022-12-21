@@ -5,6 +5,7 @@ import authentMiddleware from '../middlewares/authentMiddleware';
 import inscriptionMiddleware from '../middlewares/inscriptionMiddleware';
 import advertsMiddleware from '../middlewares/advertsMiddleware';
 import contactMiddleware from '../middlewares/contactMiddleware';
+import messagesMiddleware from '../middlewares/messagesMiddleware';
 
 const composeEnhancers = composeWithDevTools({ trace: true });
 
@@ -13,7 +14,8 @@ const enhancers = composeEnhancers(
     inscriptionMiddleware,
     authentMiddleware,
     advertsMiddleware,
-    contactMiddleware
+    contactMiddleware,
+    messagesMiddleware,
   )
 );
 

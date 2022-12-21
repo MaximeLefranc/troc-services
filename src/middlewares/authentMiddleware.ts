@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
+import { actionFetchAllMessagesForOneUser } from '../actions/messages';
 import {
   actionAuthentError,
   actionAuthentSuccess,
@@ -7,6 +8,7 @@ import {
   actionToggleLoader,
   DELETE_PROFILE,
   actionLogOut,
+  HAVE_TOKEN_IN_LOCALSTORAGE,
 } from '../actions/user';
 import { getUrlApi } from '../utils/utils';
 
@@ -32,6 +34,7 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
                 response.data.data.id
               )
             );
+            store.dispatch(actionFetchAllMessagesForOneUser());
           }
         })
         .catch((error) => {
@@ -48,6 +51,12 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionToggleLoader());
         });
+      return next(action);
+    }
+    case HAVE_TOKEN_IN_LOCALSTORAGE: {
+      if (localStorage.getItem('token_troc_services')) {
+        store.dispatch(actionFetchAllMessagesForOneUser());
+      }
       return next(action);
     }
     case DELETE_PROFILE: {

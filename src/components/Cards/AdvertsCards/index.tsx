@@ -43,7 +43,6 @@ function AdvertsCards(): JSX.Element {
   const advertList = useSelector(
     (state: GlobalState) => state.advertisements.listOfAdverts
   );
-
   if (isLoading) {
     return <Spinner />;
   }
