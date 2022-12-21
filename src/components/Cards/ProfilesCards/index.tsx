@@ -17,6 +17,7 @@ export interface User {
     title: string;
     content: string;
     imageName: string;
+    approved: boolean;
   }[];
   skill: { id: number; name: string }[];
 }
@@ -28,7 +29,8 @@ function ProfilesCards(): JSX.Element {
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   if (isLoading) {
     return <Spinner />;
-  } else if (usersFromSate.length === 0) {
+  }
+  if (usersFromSate.length === 0) {
     return <NotFound404 />;
   }
   return (

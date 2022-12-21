@@ -35,7 +35,7 @@ function ProfileDetail(): JSX.Element {
       <section className="profile-detail">
         <img
           className="profile-detail__picture"
-          src={`${url}/img/${member.imageName}`}
+          src={`${url}img/${member.imageName}`}
           alt="profile picture of member"
         />
         <h2 className="profile-detail__pseudo">{member.nickname}</h2>
@@ -46,7 +46,7 @@ function ProfileDetail(): JSX.Element {
             </button>
           </Link>
         ) : (
-          <Link to={`/profils/${member.nickname}/envoyer-message`}>
+          <Link to={`/profils/${member.id}/envoyer-message`}>
             <button className="profile-detail__contact" type="button">
               Me contacter
             </button>
@@ -63,22 +63,51 @@ function ProfileDetail(): JSX.Element {
         </div>
         {hasAdverts && <h3 className="profile-detail__title">Mes annonces</h3>}
         {hasAdverts &&
-          member.advertisements.map((advertisement) => (
-            <Link key={advertisement.id} to={`/annonces/${advertisement.id}`}>
-              <div key={advertisement.id} className="profile-detail__adverts">
-                <img
-                  className="profile-detail__adverts__picture"
-                  src={`${url}/img/${advertisement.imageName}`}
-                />
-                <h4 className="profile-detail__adverts__title">
-                  {advertisement.title}
-                </h4>
-                <p className="profile-detail__adverts__description">
-                  {advertisement.content}
-                </p>
-              </div>
-            </Link>
-          ))}
+          member.advertisements.map((advertisement) => {
+            console.log(advertisement);
+            if (advertisement.approved === true) {
+              return (
+                <Link
+                  key={advertisement.id}
+                  to={`/annonces/${advertisement.id}`}
+                >
+                  <div
+                    key={advertisement.id}
+                    className="profile-detail__adverts"
+                  >
+                    <img
+                      className="profile-detail__adverts__picture"
+                      src={`${url}img/${advertisement.imageName}`}
+                    />
+                    <h4 className="profile-detail__adverts__title">
+                      {advertisement.title}
+                    </h4>
+                    <p className="profile-detail__adverts__description">
+                      {advertisement.content}
+                    </p>
+                  </div>
+                </Link>
+              );
+            } else {
+              return (
+                <div key={advertisement.id} className="profile-detail__adverts">
+                  <img
+                    className="profile-detail__adverts__picture"
+                    src={`${url}img/${advertisement.imageName}`}
+                  />
+                  <h4 className="profile-detail__adverts__title">
+                    {advertisement.title}
+                  </h4>
+                  <p className="profile-detail__adverts__description">
+                    {advertisement.content}
+                  </p>
+                  <p className="profile-detail__adverts__description--approved">
+                    En attente de validation.
+                  </p>
+                </div>
+              );
+            }
+          })}
         {isMineProfile && (
           <button
             className="profile-detail__delete"

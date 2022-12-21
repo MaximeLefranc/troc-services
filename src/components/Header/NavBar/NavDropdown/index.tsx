@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Category } from './../index';
+import { Category } from '../../../SkillsSelect';
 import './styles.scss';
 
 export interface Skills {

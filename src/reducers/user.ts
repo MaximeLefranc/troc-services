@@ -84,6 +84,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
       localStorage.removeItem('token_troc_services');
       localStorage.removeItem('pseudo_troc_services');
       localStorage.removeItem('id_troc_services');
+      window.location.href = `${window.location.origin}/accueil`;
       return {
         ...state,
         isLoggedIn: false,

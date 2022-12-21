@@ -23,7 +23,11 @@ function ProfileFiltered(): JSX.Element {
     return <Spinner />;
   }
   if (memberListFiltered === false) {
-    return <NotFound404 />;
+    return (
+      <NotFound404
+        message={`Pas de membre trouvé avec la compétence ${slug}`}
+      />
+    );
   }
   return (
     <section className="main">

@@ -83,13 +83,11 @@ const inscriptionReducer = (
         password: '',
         passwordConfirmation: '',
         message: action.payload,
-        inscriptionCompleted: true,
       };
     case INSCRIPTION_ERROR:
       return {
         ...state,
         message: action.payload,
-        inscriptionCompleted: false,
       };
     case SET_INFO_PROFILE_IN_INPUTS_STATE:
       const skills = action.payload.skill.map((skill: Category) => {
