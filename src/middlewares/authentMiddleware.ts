@@ -53,11 +53,9 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
       return next(action);
     }
     case HAVE_TOKEN_IN_LOCALSTORAGE: {
-      store.dispatch(actionToggleLoader());
       if (localStorage.getItem('token_troc_services')) {
         store.dispatch(actionFetchAllMessagesForOneUser());
       }
-      store.dispatch(actionToggleLoader());
       return next(action);
     }
     case DELETE_PROFILE: {

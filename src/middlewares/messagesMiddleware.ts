@@ -24,7 +24,6 @@ const messagesMiddleware: Middleware = (store) => (next) => (action) => {
   };
   switch (action.type) {
     case FETCH_ALL_MESSAGES_FOR_ONE_USER: {
-      store.dispatch(actionToggleLoader());
       const requestMessagesReceived = axios.get(
         `${urlAPI}api/user/${id}/messages`,
         config
@@ -44,9 +43,6 @@ const messagesMiddleware: Middleware = (store) => (next) => (action) => {
         )
         .catch((error) => {
           console.error(error);
-        })
-        .finally(() => {
-          store.dispatch(actionToggleLoader());
         });
       return next(action);
     }

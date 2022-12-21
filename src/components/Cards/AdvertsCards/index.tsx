@@ -47,9 +47,7 @@ function AdvertsCards(): JSX.Element {
     return <Spinner />;
   }
   if (advertList.length === 0) {
-    setTimeout(() => {
-      return <NotFound404 />;
-    }, 10);
+    return <NotFound404 />;
   }
   return (
     <section className="main">

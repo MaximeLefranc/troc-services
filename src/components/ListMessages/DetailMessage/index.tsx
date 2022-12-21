@@ -5,6 +5,7 @@ import { actionMessageIsRead } from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
 import { findMessageById } from '../../../selectors/messages';
 import { getUrlApi } from '../../../utils/utils';
+import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import './styles.scss';
 
@@ -24,10 +25,10 @@ function DetailMessage(): JSX.Element {
   if (!localStorage.getItem('token_troc_services')) {
     return <Navigate to="/accueil" replace />;
   }
-  if (isLoading) {
-    return <Spinner />;
+  if (message === undefined || message === false) {
+    return <NotFound404 />;
   }
-  if (message === undefined || message === false || message.length === 0) {
+  if (isLoading || message.length === 0) {
     return <Spinner />;
   }
   return (

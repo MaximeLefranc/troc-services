@@ -77,8 +77,7 @@ function ListMessages(): JSX.Element {
         </Link>
       </div>
       <div className="messages__list">
-        {messagesToShow !== undefined &&
-          messagesToShow !== false &&
+        {messagesToShow !== undefined && messagesToShow !== false ? (
           messagesToShow.messages.map((message: MessageDetail) => (
             <Message
               object={message.object}
@@ -89,7 +88,10 @@ function ListMessages(): JSX.Element {
               nickname={message.sender.nickname}
               content={message.content}
             />
-          ))}
+          ))
+        ) : (
+          <Spinner />
+        )}
       </div>
     </section>
   );
