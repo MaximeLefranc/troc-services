@@ -4,16 +4,18 @@ import reducer from '../reducers/index';
 import authentMiddleware from '../middlewares/authentMiddleware';
 import inscriptionMiddleware from '../middlewares/inscriptionMiddleware';
 import advertsMiddleware from '../middlewares/advertsMiddleware';
+import contactMiddleware from '../middlewares/contactMiddleware';
 import messagesMiddleware from '../middlewares/messagesMiddleware';
 
-const composeEnhancers = composeWithDevTools;
+const composeEnhancers = composeWithDevTools({ trace: true });
 
 const enhancers = composeEnhancers(
   applyMiddleware(
     inscriptionMiddleware,
     authentMiddleware,
     advertsMiddleware,
-    messagesMiddleware
+    contactMiddleware,
+    messagesMiddleware,
   )
 );
 
