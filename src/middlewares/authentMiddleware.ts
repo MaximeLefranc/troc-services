@@ -16,6 +16,7 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_AUTHENT_USER: {
       store.dispatch(actionToggleLoader());
+      console.log('on ma apl');
       const { email, password } = store.getState().user;
       axios
         .post(`${urlAPI}api/login_check`, {

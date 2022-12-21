@@ -31,6 +31,7 @@ function ContactForm() {
   const handleSubmitContactForm = (evt: SyntheticEvent): void => {
     evt.preventDefault();
     dispatch(actionSubmitContactForm());
+    console.log('envoyer');
   };
 
   let classNameInfo = 'inscription__info';
@@ -39,10 +40,6 @@ function ContactForm() {
   } else if (messageSystem !== '' && !contactFormCompleted) {
     classNameInfo = 'inscription__info danger';
   }
-
-  const handleSendContactForm = (evt: SyntheticEvent): void => {
-    evt.preventDefault();
-  };
 
   return (
     <section className="contact">
@@ -109,12 +106,7 @@ function ContactForm() {
           onChange={changeField}
           isTextArea={true}
         />
-        <button
-          className="contact__form__button"
-          value="Send Email"
-          type="submit"
-          onClick={handleSendContactForm}
-        >
+        <button className="contact__form__button" type="submit">
           Envoyer
         </button>
       </form>

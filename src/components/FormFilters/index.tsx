@@ -2,8 +2,12 @@ import '../Welcome/styles.scss';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionChangeInputValueSearchBar } from '../../actions/searchBar';
+import {
+  findAdvertsBySearchBar,
+  findAdvertsBySkills,
+} from '../../selectors/advertisements';
 import { GlobalState } from '../../reducers';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, SyntheticEvent } from 'react';
 
 function FormFilters() {
   const dispatch = useDispatch();
@@ -19,13 +23,24 @@ function FormFilters() {
   const handleChangeValueInState = (evt: ChangeEvent): void => {
     const value = (evt.target as HTMLInputElement).value;
     const inputName = (evt.target as HTMLInputElement).name;
-    console.log(value, inputName);
     changeField(value, inputName);
   };
   const location = useLocation();
   const classNameVariant: string = location.pathname !== '/' ? 'header__' : '';
+  const listOfAdverts = useSelector(
+    (state: GlobalState) => state.advertisements.listOfAdverts
+  );
+  const handlerSubmitSearchBar = (evt: SyntheticEvent) => {
+    evt.preventDefault();
+    const advertList = findAdvertsBySearchBar(listOfAdverts, searchName);
+    console.log(advertList);
+    console.log(searchName);
+  };
   return (
-    <form className={`${classNameVariant}form`}>
+    <form
+      className={`${classNameVariant}form`}
+      onSubmit={handlerSubmitSearchBar}
+    >
       <input
         name="searchName"
         className={`${classNameVariant}form__input--service`}
@@ -40,7 +55,7 @@ function FormFilters() {
         placeholder="Où ..."
         onChange={handleChangeValueInState}
       />
-      <button className={`${classNameVariant}form__button`} type="button">
+      <button className={`${classNameVariant}form__button`} type="submit">
         Rechercher
       </button>
     </form>
