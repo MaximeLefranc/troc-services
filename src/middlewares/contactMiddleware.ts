@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { Middleware } from 'redux';
-import { SUBMIT_CONTACT_FORM } from '../actions/contact';
+import {
+  actionMessageSystem,
+  actionSubmitContactSuccess,
+  SUBMIT_CONTACT_FORM,
+} from '../actions/contact';
+import { actionToggleLoader } from '../actions/user';
 import { getUrlApi } from '../utils/utils';
 
 const urlAPI = getUrlApi();
@@ -8,7 +13,7 @@ const urlAPI = getUrlApi();
 const contactMiddleware: Middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SUBMIT_CONTACT_FORM: {
-      console.log('on ma apl');
+      store.dispatch(actionToggleLoader());
       const { lastname, firstname, subject, email, message } =
         store.getState().contact;
       const fullname = `${lastname} ${firstname}`;
@@ -20,10 +25,17 @@ const contactMiddleware: Middleware = (store) => (next) => (action) => {
           message: message,
         })
         .then((response) => {
-          console.log(response);
+          store.dispatch(actionMessageSystem(response.data));
+          store.dispatch(actionSubmitContactSuccess());
+          store.dispatch(actionToggleLoader());
         })
         .catch((error) => {
-          console.log(error);
+          store.dispatch(
+            actionMessageSystem(`oups.. une erreur c'est produite => ${error}`)
+          );
+        })
+        .finally(() => {
+          store.dispatch(actionToggleLoader());
         });
       return next(action);
     }

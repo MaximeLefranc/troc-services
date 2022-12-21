@@ -1,5 +1,9 @@
 import { AnyAction } from 'redux';
-import { CHANGE_INPUT_VALUE_CONTACT } from '../actions/contact';
+import {
+  CHANGE_INPUT_VALUE_CONTACT,
+  MESSAGE_SYSTEM,
+  SUBMIT_CONTACT_SUCCESS,
+} from '../actions/contact';
 
 export interface ContactState {
   lastname: string;
@@ -31,6 +35,16 @@ const contactReducer = (
       return {
         ...state,
         [action.payload.input]: action.payload.newValue,
+      };
+    case MESSAGE_SYSTEM:
+      return {
+        ...state,
+        messageSystem: action.payload,
+      };
+    case SUBMIT_CONTACT_SUCCESS:
+      return {
+        ...state,
+        contactFormCompleted: true,
       };
     default:
       return state;

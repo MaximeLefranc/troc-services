@@ -6,6 +6,7 @@ import {
 } from '../../actions/contact';
 import { GlobalState } from '../../reducers';
 import Field from '../Field';
+import Spinner from '../Spinner';
 import './styles.scss';
 
 function ContactForm() {
@@ -14,6 +15,7 @@ function ContactForm() {
     dispatch(actionChangeInputValueContact(value, nameInput));
   };
 
+  const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const lastName = useSelector((state: GlobalState) => state.contact.lastname);
   const firstName = useSelector(
     (state: GlobalState) => state.contact.firstname
@@ -34,7 +36,11 @@ function ContactForm() {
     console.log('envoyer');
   };
 
-  let classNameInfo = 'inscription__info';
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  let classNameInfo = '';
   if (messageSystem !== '' && contactFormCompleted) {
     classNameInfo = 'inscription__info success';
   } else if (messageSystem !== '' && !contactFormCompleted) {
@@ -45,11 +51,10 @@ function ContactForm() {
     <section className="contact">
       <script src="https://smtpjs.com/v3/smtp.js"></script>
       <p className="contact__title">Contactez-nous</p>
-      <p className={classNameInfo}>
-        {!messageSystem
-          ? "Les champs marqués d'une * sont obligatoire"
-          : messageSystem}
+      <p className="inscription__info">
+        Les champs marqués d'une * sont obligatoire
       </p>
+      <p className={classNameInfo}>{!messageSystem ? '' : messageSystem}</p>
       <form className="contact__form" onSubmit={handleSubmitContactForm}>
         <Field
           label="Prénom"
