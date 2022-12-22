@@ -52,6 +52,8 @@ function AdvertDetail(): JSX.Element {
             alt="profile picture"
           />
         </Link>
+        <p className="advert__picture__city">{advert.user.city}</p>
+        <p className="advert__picture__code">{advert.user.zip_code}</p>
       </div>
       {isMineAdvert ? (
         <Link to={`/annonces/${advert.id}/modifier`}>
