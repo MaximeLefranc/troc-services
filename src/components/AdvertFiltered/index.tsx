@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { GlobalState } from '../../reducers';
 import { findAdvertsBySkills } from '../../selectors/advertisements';
 import { Adverts } from '../Cards/AdvertsCards';
@@ -10,26 +10,50 @@ import './styles.scss';
 
 function AdvertFiltered() {
   const { slug } = useParams();
+  const { pathname } = useLocation();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const advertList = useSelector((state: GlobalState) =>
     findAdvertsBySkills(state.advertisements.listOfAdverts, slug)
+  );
+  const advertListFromSearchBar = useSelector(
+    (state: GlobalState) => state.searchBar.result
   );
 
   if (isLoading) {
     return <Spinner />;
   }
-  if (!advertList) {
-    return (
-      <NotFound404
-        message={`Pas d'annonce trouvée dans la catégorie ${slug}`}
-      />
-    );
+
+  let result;
+  if (pathname.split('/')[2] === 'filtre') {
+    result = advertListFromSearchBar;
+  } else {
+    result = advertList;
+  }
+
+  if (!result || result.length === 0) {
+    if (slug) {
+      return (
+        <NotFound404
+          message={`Pas d'annonce trouvée dans la catégorie ${slug}`}
+        />
+      );
+    } else {
+      return (
+        <NotFound404
+          message={`Pas d'annonce trouvée pour votre recherche... Try again`}
+        />
+      );
+    }
   }
   return (
     <section className="main">
-      <h2 className="main__title">Annonces pour {slug}</h2>
+      {slug ? (
+        <h2 className="main__title">Annonces pour {slug}</h2>
+      ) : (
+        <h2 className="main__title">Résultat de votre recherche :</h2>
+      )}
       <section className="cards">
-        {advertList.map((advert: Adverts) => (
+        {result.map((advert: Adverts) => (
           <Link
             key={advert.id}
             className="cards__link"

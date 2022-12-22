@@ -1,18 +1,30 @@
 import '../Welcome/styles.scss';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionChangeInputValueSearchBar } from '../../actions/searchBar';
-import { findAdvertsBySearchBar } from '../../selectors/advertisements';
+import {
+  actionChangeInputValueSearchBar,
+  actionSaveResultOfResearchAdverts,
+  actionSaveResultOfResearchMembers,
+} from '../../actions/searchBar';
 import { GlobalState } from '../../reducers';
 import { ChangeEvent, SyntheticEvent } from 'react';
+import { findAdvertsBySearchBar } from '../../selectors/advertisements';
+import { findMembersBySearchBar } from '../../selectors/members';
 
 function FormFilters() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const searchName = useSelector(
     (state: GlobalState) => state.searchBar.searchName
   );
   const searchZipCode = useSelector(
     (state: GlobalState) => state.searchBar.searchZipCode
+  );
+  const listOfAdverts = useSelector(
+    (state: GlobalState) => state.advertisements.listOfAdverts
+  );
+  const listOfMembers = useSelector(
+    (state: GlobalState) => state.user.listOfMembers
   );
   const changeField = (value: string, nameInput: string): void => {
     dispatch(actionChangeInputValueSearchBar(value, nameInput));
@@ -22,19 +34,35 @@ function FormFilters() {
     const inputName = (evt.target as HTMLInputElement).name;
     changeField(value, inputName);
   };
-  const location = useLocation();
-  const classNameVariant: string = location.pathname !== '/' ? 'header__' : '';
-  const listOfAdverts = useSelector(
-    (state: GlobalState) => state.advertisements.listOfAdverts
-  );
+  const { pathname } = useLocation();
+  const classNameVariant: string = pathname !== '/' ? 'header__' : '';
   const handlerSubmitSearchBar = (evt: SyntheticEvent) => {
     evt.preventDefault();
-    const advertList = findAdvertsBySearchBar(
+    if (pathname.split('/')[1] === 'profils') {
+      const membersFiltered = findMembersBySearchBar(
+        listOfMembers,
+        searchName,
+        searchZipCode
+      );
+      if (membersFiltered !== false) {
+        dispatch(actionSaveResultOfResearchMembers(membersFiltered));
+      } else {
+        dispatch(actionSaveResultOfResearchMembers([]));
+      }
+      return navigate('/profils/filtre/');
+    }
+    const advertFiltered = findAdvertsBySearchBar(
       listOfAdverts,
       searchName,
       searchZipCode
     );
-    console.log(advertList);
+    console.log(advertFiltered);
+    if (advertFiltered !== false) {
+      dispatch(actionSaveResultOfResearchAdverts(advertFiltered));
+    } else {
+      dispatch(actionSaveResultOfResearchAdverts([]));
+    }
+    return navigate('/annonces/filtre/');
   };
   return (
     <form

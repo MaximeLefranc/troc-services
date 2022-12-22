@@ -71,34 +71,41 @@ export function findAdvertsBySearchBar(
   ) {
     const advertFiltered: Adverts[] = [];
     const searchedSkillClean = strNoAccent(searchedSkill).toLowerCase().trim();
+
     listOfAdverts.filter((advertElement: Adverts) => {
-      advertElement.skills.forEach((skill) => {
-        const skillClean = strNoAccent(skill.name).toLowerCase().trim();
-        if (searchedSkill !== '' && searchedZipCode === '') {
-          if (skillClean == searchedSkillClean) {
+      if (searchedZipCode !== '' && searchedSkill === '') {
+        if (searchedZipCode === advertElement.user.zip_code.trim()) {
+          advertFiltered.push(advertElement);
+        }
+      }
+      if (searchedSkill !== '' && searchedZipCode === '') {
+        advertElement.skills.forEach((skill) => {
+          const skillClean = strNoAccent(skill.name).toLowerCase().trim();
+          if (skillClean === searchedSkillClean) {
             advertFiltered.push(advertElement);
           } else if (
-            skillClean.substr(0, 4) === searchedSkillClean.substr(0, 4)
+            skillClean.substr(0, 5) === searchedSkillClean.substr(0, 5)
           ) {
             advertFiltered.push(advertElement);
           }
-        } else if (searchedZipCode !== '' && searchedSkill === '') {
-          if (searchedZipCode === advertElement.user.zip_code) {
-            advertFiltered.push(advertElement);
-          }
-        } else {
+        });
+      }
+      if (searchedZipCode !== '' && searchedSkill !== '') {
+        advertElement.skills.forEach((skill) => {
+          const skillClean = strNoAccent(skill.name).toLowerCase().trim();
           if (
             skillClean === searchedSkillClean &&
-            searchedZipCode === advertElement.user.zip_code
+            searchedZipCode === advertElement.user.zip_code.trim()
           ) {
             advertFiltered.push(advertElement);
           } else if (
-            skillClean.substr(0, 4) === searchedSkillClean.substr(0, 4)
+            skillClean.substr(0, 5) === searchedSkillClean.substr(0, 5) &&
+            searchedZipCode === advertElement.user.zip_code.trim()
           ) {
             advertFiltered.push(advertElement);
           }
-        }
-      });
+        });
+      }
     });
     if (advertFiltered.length > 0) {
       return advertFiltered;
