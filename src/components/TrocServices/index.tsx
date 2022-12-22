@@ -48,6 +48,7 @@ function TrocServices(): JSX.Element {
         <Route path="/accueil" element={<AdvertsCards />} />
         <Route path="/inscription" element={<InscriptionForm />} />
         <Route path="/profils" element={<ProfilesCards />} />
+        <Route path="/profils/filtre/" element={<ProfileFiltered />} />
         <Route path="/profils/:slug" element={<ProfileDetail />} />
         <Route path="/profils/:slug/modifier" element={<InscriptionForm />} />
         <Route path="/profils/competence/:slug" element={<ProfileFiltered />} />
@@ -57,6 +58,7 @@ function TrocServices(): JSX.Element {
         <Route path="/annonces/:slug" element={<AdvertDetail />} />
         <Route path="/annonces/:slug/modifier" element={<LeaveAdvert />} />
         <Route path="/annonces/categorie/:slug" element={<AdvertFiltered />} />
+        <Route path="/annonces/filtre/" element={<AdvertFiltered />} />
         <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
         <Route
           path="/annonces/:idAnnonce/envoyer-message/:idProfile"

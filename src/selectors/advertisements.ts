@@ -1,4 +1,5 @@
 import { Adverts } from '../components/Cards/AdvertsCards';
+import { strNoAccent } from '../utils/utils';
 
 /**
  * Search in Advertissements state one advert by this ID
@@ -52,23 +53,59 @@ export function findAdvertsBySkills(
 }
 
 /**
- * Search in Advertissements state advert with this name Skills
+ * Search in Advertissements state advert
+ * with this name Skills and/or the zipCode
  * @param listOfAdverts Advertisements array in state
- * @param searchedSlug  Name(Skills) of advertisement to searched
+ * @param searchedSkill  Skill of advertisement to searched
+ * @param searchedZipCode  zipCode of advertisement to searched
  * @returns {Adverts[] | false} Array of advert or false if doen't exist
  */
 export function findAdvertsBySearchBar(
   listOfAdverts: [],
-  searchedSlug: string | undefined
+  searchedSkill: string | undefined,
+  searchedZipCode: string | undefined
 ): Adverts[] | false {
-  if (typeof searchedSlug === 'string') {
+  if (
+    typeof searchedSkill === 'string' &&
+    typeof searchedZipCode === 'string'
+  ) {
     const advertFiltered: Adverts[] = [];
+    const searchedSkillClean = strNoAccent(searchedSkill).toLowerCase().trim();
+
     listOfAdverts.filter((advertElement: Adverts) => {
-      advertElement.skills.forEach((skill) => {
-        if (skill.name === searchedSlug) {
+      if (searchedZipCode !== '' && searchedSkill === '') {
+        if (searchedZipCode === advertElement.user.zip_code.trim()) {
           advertFiltered.push(advertElement);
         }
-      });
+      }
+      if (searchedSkill !== '' && searchedZipCode === '') {
+        advertElement.skills.forEach((skill) => {
+          const skillClean = strNoAccent(skill.name).toLowerCase().trim();
+          if (skillClean === searchedSkillClean) {
+            advertFiltered.push(advertElement);
+          } else if (
+            skillClean.substr(0, 5) === searchedSkillClean.substr(0, 5)
+          ) {
+            advertFiltered.push(advertElement);
+          }
+        });
+      }
+      if (searchedZipCode !== '' && searchedSkill !== '') {
+        advertElement.skills.forEach((skill) => {
+          const skillClean = strNoAccent(skill.name).toLowerCase().trim();
+          if (
+            skillClean === searchedSkillClean &&
+            searchedZipCode === advertElement.user.zip_code.trim()
+          ) {
+            advertFiltered.push(advertElement);
+          } else if (
+            skillClean.substr(0, 5) === searchedSkillClean.substr(0, 5) &&
+            searchedZipCode === advertElement.user.zip_code.trim()
+          ) {
+            advertFiltered.push(advertElement);
+          }
+        });
+      }
     });
     if (advertFiltered.length > 0) {
       return advertFiltered;
