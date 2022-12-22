@@ -15,7 +15,7 @@ const enhancers = composeEnhancers(
     authentMiddleware,
     advertsMiddleware,
     contactMiddleware,
-    messagesMiddleware,
+    messagesMiddleware
   )
 );
 

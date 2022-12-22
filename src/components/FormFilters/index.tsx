@@ -2,10 +2,7 @@ import '../Welcome/styles.scss';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionChangeInputValueSearchBar } from '../../actions/searchBar';
-import {
-  findAdvertsBySearchBar,
-  findAdvertsBySkills,
-} from '../../selectors/advertisements';
+import { findAdvertsBySearchBar } from '../../selectors/advertisements';
 import { GlobalState } from '../../reducers';
 import { ChangeEvent, SyntheticEvent } from 'react';
 
@@ -32,9 +29,12 @@ function FormFilters() {
   );
   const handlerSubmitSearchBar = (evt: SyntheticEvent) => {
     evt.preventDefault();
-    const advertList = findAdvertsBySearchBar(listOfAdverts, searchName);
+    const advertList = findAdvertsBySearchBar(
+      listOfAdverts,
+      searchName,
+      searchZipCode
+    );
     console.log(advertList);
-    console.log(searchName);
   };
   return (
     <form
