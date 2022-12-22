@@ -24,8 +24,6 @@ export interface MessagesInterface {
 
 function ListMessages(): JSX.Element {
   const { pathname } = useLocation();
-  const receivedBtnRef = useRef() as MutableRefObject<HTMLButtonElement>;
-  const sentBtnRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const searchReceivedOrSentMessages =
     pathname.split('/')[3] === 'recus' ? 'messagesReceived' : 'messagesSent';
@@ -36,13 +34,6 @@ function ListMessages(): JSX.Element {
     )
   );
   useEffect(() => {
-    if (receivedBtnRef.current && sentBtnRef.current) {
-      if (searchReceivedOrSentMessages === 'messagesReceived') {
-        receivedBtnRef.current.focus();
-      } else {
-        sentBtnRef.current.focus();
-      }
-    }
     window.scrollTo(0, 0);
   }, []);
   if (!localStorage.getItem('token_troc_services')) {
@@ -56,11 +47,7 @@ function ListMessages(): JSX.Element {
       <h2 className="messages__title">Mes messages</h2>
       <div className="messages__button">
         <Link to="/profils/messages/recus" className="messages__button__links">
-          <button
-            ref={receivedBtnRef}
-            type="button"
-            className="messages__button--received"
-          >
+          <button type="button" className="messages__button--received">
             Reçus
           </button>
         </Link>
@@ -68,11 +55,7 @@ function ListMessages(): JSX.Element {
           to="/profils/messages/envoyes"
           className="messages__button__links"
         >
-          <button
-            ref={sentBtnRef}
-            type="button"
-            className="messages__button--sent"
-          >
+          <button type="button" className="messages__button--sent">
             Envoyés
           </button>
         </Link>
