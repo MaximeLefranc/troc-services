@@ -45,6 +45,8 @@ function ProfileDetail(): JSX.Element {
           alt="profile picture of member"
         />
         <h2 className="profile-detail__pseudo">{member.nickname}</h2>
+        <p className="profile-detail__city">{member.city}</p>
+        <p className="profile-detail__code">{member.zip_code}</p>
         {isMineProfile ? (
           <Link to={`/profils/${member.nickname}/modifier`}>
             <button className="profile-detail__contact" type="button">

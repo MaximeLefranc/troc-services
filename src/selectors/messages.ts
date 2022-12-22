@@ -43,3 +43,22 @@ export function findMessageById(
   }
   return false;
 }
+
+/**
+ * Ckeck in array messages if have messages not read
+ * @param listOfMessages Array of user messages on state
+ * @returns {boolean} true if has message not read and false if all messages are readed
+ */
+export function haveMessagesNotRead(listOfMessages: MessagesInterface[]) {
+  let result = false;
+  listOfMessages.forEach((message: MessagesInterface) => {
+    if (message.sendOrReceived === 'messagesReceived') {
+      message.messages.forEach((messageDetail: MessageDetail) => {
+        if (messageDetail.isRead === false) {
+          result = true;
+        }
+      });
+    }
+  });
+  return result;
+}

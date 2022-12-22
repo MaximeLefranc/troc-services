@@ -11,10 +11,15 @@ import { findMember } from '../../../selectors/members';
 import { getUrlApi } from '../../../utils/utils';
 import { User } from '../../Cards/ProfilesCards';
 import Spinner from '../../Spinner';
+import { useEffect } from 'react';
+import { haveMessagesNotRead } from '../../../selectors/messages';
 
 function Profiles(): JSX.Element {
   const user: User | false = useSelector((state: GlobalState) =>
     findMember(state.user.listOfMembers, state.user.pseudo)
+  );
+  const messages = useSelector(
+    (state: GlobalState) => state.messages.messagesUser
   );
   const dispatch = useDispatch();
   const logOut = () => {
@@ -27,12 +32,20 @@ function Profiles(): JSX.Element {
     toggleProfile.classList.toggle('isActive');
     toggleMenu.classList.toggle('active');
   };
+
+  const classNotificationImg = haveMessagesNotRead(messages)
+    ? 'profile notif'
+    : 'profile';
+  const classNotificationLi = haveMessagesNotRead(messages)
+    ? 'profiles__menu__link--span notif-li'
+    : 'profiles__menu__link--span';
+
   if (user === false) {
     return <Spinner />;
   }
   return (
     <div className="action">
-      <div className="profile" onClick={menuToggle}>
+      <div className={classNotificationImg} onClick={menuToggle}>
         <img className="profile__img" src={`${url}img/${user.imageName}`} />
       </div>
       <div className="profiles__menu">
@@ -51,7 +64,7 @@ function Profiles(): JSX.Element {
           </Link>
           <Link to={`/profils/messages/recus`} className="profiles__menu--link">
             <img src={logoEnvelopet} />
-            <span className="profiles__menu__link--span">Mes messages</span>
+            <span className={classNotificationLi}>Mes messages</span>
           </Link>
           <Link to={'#'} className="profiles__menu--link">
             <img src={logoLogout} />

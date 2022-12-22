@@ -8,6 +8,7 @@
   align-items: center;
   margin-top: 2rem;
   padding-bottom: 3rem;
+  
   &__picture {
     width: 8rem;
     height: 8rem;
@@ -20,14 +21,29 @@
     font-weight: 500;
     margin-bottom: 1rem;
   }
+  &__city {
+    font-size: 1.3rem;
+    padding: .5rem;  
+    background-color: vars.$font-transparent-card-color;
+    border-radius: .5rem;
+    margin-bottom: .2rem;
+  }
+  &__code {
+    font-size: 1rem;
+    padding: .5rem;
+    background-color: vars.$font-transparent-card-color;
+    margin-bottom: 1.5rem;
+    border-radius: .5rem;
+  }
   &__contact {
     background-color: vars.$main-color;
-    padding: .5rem;
-    width: 10rem;
+    padding: 1rem;
+    width: 10REM;
     color: vars.$font-color;
     border: none;
+    font-size: 1rem;
     border-radius: 8px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-family: vars.$main-font ;
     &:hover {
       background-color: transparent;
@@ -38,20 +54,22 @@
   &__description {
     text-align: center;
     font-size: 1.1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   &__title {
     font-size: 1.5rem;
     padding: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     color: vars.$dark-main-color;
     border-top: 1px solid vars.$dark-main-color;
     border-bottom: 1px solid vars.$dark-main-color;
+    width: 15rem;
+    text-align: center;
   }
   &__skills{
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     justify-content: center;
     align-items: center;
     &__skill {
@@ -130,19 +148,20 @@
       margin-bottom: 2rem;
     }
     &__contact {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       height: 3rem;
       width: 15rem;
       font-size: 1.2rem;
     }
     &__description {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
     &__title {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
+      width: 30rem;
     }
     &__skills {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
     &__adverts {
       margin-bottom: 1rem;
