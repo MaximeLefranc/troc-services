@@ -11,7 +11,6 @@ import { findMember } from '../../../selectors/members';
 import { getUrlApi } from '../../../utils/utils';
 import { User } from '../../Cards/ProfilesCards';
 import Spinner from '../../Spinner';
-import { useEffect } from 'react';
 import { haveMessagesNotRead } from '../../../selectors/messages';
 
 function Profiles(): JSX.Element {
