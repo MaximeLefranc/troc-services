@@ -3,15 +3,33 @@
 .action {
   position: fixed;
   z-index: 22;
-  width: 10%;
-  height: 5rem;
-  top: .5rem;
-  left: .5rem;
+  width: 3rem;
+  height: 3rem;
+  top: .8rem;
+  left: .8rem;
 }
 
-.profile__img {
+.notif::after {
+  content: '';
+  position:absolute;
+  top: .3rem;
+  min-width: .3rem;
+  min-height:.3rem;
+  padding:.3rem;
+  background-color:#bf1f1f;
+  border-radius: 50%;
+}
 
-  border-radius: 6rem;
+.notif-li::after {
+  content: '';
+  position:absolute;
+  left: 0.9rem;
+  top: 10.7rem;
+  min-width: .3rem;
+  min-height:.3rem;
+  padding:.3rem;
+  background-color:#bf1f1f;
+  border-radius: 50%;
 }
 
 .action .profile {
@@ -25,11 +43,10 @@
 }
 
 .action .profile img {
+  border-radius: 6rem;
   position: absolute;
-  top: .8rem;
-  left: .4rem;
   object-fit: cover;
-  width: 120%;
+  width: 100%;
 }
 
 .action .profiles__menu {
@@ -114,11 +131,12 @@
   box-shadow: .1em -.1em 1em vars.$dark-main-color, .2em .1em 1em vars.$dark-main-color;
 }
 
-// On mobile
 @media only screen and (min-width: 1200px) {
   .action {
-    left: -2em;
+    left: .5rem;
+    top: 1.5rem;
     position: relative;
+    width: 4rem;
   }
 
   .action .profiles__menu {
@@ -134,10 +152,7 @@
     box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
   }
 
-  .action .profile img {
-    width: 30%;
-    left: 13.4em;
-    top: .5em;
+  .notif::after {
+    right: 0.3rem;
   }
-
 }

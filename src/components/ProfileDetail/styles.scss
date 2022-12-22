@@ -63,6 +63,8 @@
     color: vars.$dark-main-color;
     border-top: 1px solid vars.$dark-main-color;
     border-bottom: 1px solid vars.$dark-main-color;
+    width: 15rem;
+    text-align: center;
   }
   &__skills{
     display: flex;
@@ -146,19 +148,20 @@
       margin-bottom: 2rem;
     }
     &__contact {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       height: 3rem;
       width: 15rem;
       font-size: 1.2rem;
     }
     &__description {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
     &__title {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
+      width: 30rem;
     }
     &__skills {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
     &__adverts {
       margin-bottom: 1rem;
