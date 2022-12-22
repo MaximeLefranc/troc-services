@@ -5,6 +5,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 2rem auto 2rem auto;
+  border-radius: .5rem;
   padding: 1rem 0 3rem 0;
   background-color: vars.$font-transparent-color;
 
@@ -89,7 +91,7 @@
 
   @media screen and (min-width: 1350px) {
     .contact {
-      margin: 2rem 10rem 0 10rem;
+      margin: 2rem 10rem 4rem 10rem;
       border: .1em solid vars.$main-color;
       padding: 2rem;
       border-radius: .5em;
@@ -103,7 +105,7 @@
         &__input {
           height: 2.5rem;
           font-size: 1rem;
-          width: 30%;
+          width: 50%;
           &.message {
             width: 50%;
           }
@@ -111,7 +113,7 @@
         &__button {
           margin-top: 4rem;
           margin-bottom: 3rem;
-          width: 50%;
+          width: 30%;
         }
       }
       &__info {
