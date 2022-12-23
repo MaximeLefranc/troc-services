@@ -80,6 +80,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
                 'Inscription réussie, vous pouvez maintenant vous connecter'
               )
             );
+            window.location.href = `${window.location.origin}/accueil`;
           }
         })
         .catch((error) => {

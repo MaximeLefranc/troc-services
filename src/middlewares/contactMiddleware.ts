@@ -27,7 +27,6 @@ const contactMiddleware: Middleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(actionMessageSystem(response.data));
           store.dispatch(actionSubmitContactSuccess());
-          store.dispatch(actionToggleLoader());
         })
         .catch((error) => {
           store.dispatch(
