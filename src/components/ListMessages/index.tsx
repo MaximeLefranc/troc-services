@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { GlobalState } from '../../reducers';
 import './styles.scss';
 import Spinner from '../Spinner';
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Message from './Message';
 import { SentOrReceivedMessages } from '../../selectors/messages';
 import { Link, Navigate, useLocation } from 'react-router-dom';
