@@ -2,10 +2,7 @@ import '../Welcome/styles.scss';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionChangeInputValueSearchBar } from '../../actions/searchBar';
-import {
-  findAdvertsBySearchBar,
-  findAdvertsBySkills,
-} from '../../selectors/advertisements';
+import { findAdvertsBySearchBar } from '../../selectors/advertisements';
 import { GlobalState } from '../../reducers';
 import { ChangeEvent, SyntheticEvent } from 'react';
 
@@ -52,7 +49,7 @@ function FormFilters() {
         name="searchZipCode"
         className={`${classNameVariant}form__input--zip`}
         value={searchZipCode}
-        placeholder="Où ..."
+        placeholder="Code postal"
         onChange={handleChangeValueInState}
       />
       <button className={`${classNameVariant}form__button`} type="submit">
