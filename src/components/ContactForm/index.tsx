@@ -11,9 +11,6 @@ import './styles.scss';
 
 function ContactForm() {
   const dispatch = useDispatch();
-  const changeField = (value: string | File, nameInput: string): void => {
-    dispatch(actionChangeInputValueContact(value, nameInput));
-  };
 
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const lastName = useSelector((state: GlobalState) => state.contact.lastname);
@@ -30,10 +27,12 @@ function ContactForm() {
     (state: GlobalState) => state.contact.contactFormCompleted
   );
 
+  const changeField = (value: string | File, nameInput: string): void => {
+    dispatch(actionChangeInputValueContact(value, nameInput));
+  };
   const handleSubmitContactForm = (evt: SyntheticEvent): void => {
     evt.preventDefault();
     dispatch(actionSubmitContactForm());
-    console.log('envoyer');
   };
 
   useEffect(() => {
@@ -46,16 +45,15 @@ function ContactForm() {
 
   let classNameInfo = '';
   if (messageSystem !== '' && contactFormCompleted) {
-    classNameInfo = 'inscription__info success';
+    classNameInfo = 'contact__info success';
   } else if (messageSystem !== '' && !contactFormCompleted) {
-    classNameInfo = 'inscription__info danger';
+    classNameInfo = 'contact__info danger';
   }
 
   return (
     <section className="contact">
-      <script src="https://smtpjs.com/v3/smtp.js"></script>
       <p className="contact__title">Contactez-nous</p>
-      <p className="inscription__info">
+      <p className="contact__info">
         Les champs marqués d'une * sont obligatoire
       </p>
       <p className={classNameInfo}>{!messageSystem ? '' : messageSystem}</p>
@@ -100,7 +98,7 @@ function ContactForm() {
           required={true}
           id="subject"
           name="subject"
-          placeholder="Ex: Problème d'upload d'image "
+          placeholder="Ex: Problème d'upload d'image"
           className="contact__form__input"
           onChange={changeField}
         />

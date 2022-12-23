@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Middleware } from 'redux';
 import {
   actionMessageSystem,
+  actionCleanContactForm,
   actionSubmitContactSuccess,
   SUBMIT_CONTACT_FORM,
 } from '../actions/contact';
@@ -18,7 +19,7 @@ const contactMiddleware: Middleware = (store) => (next) => (action) => {
         store.getState().contact;
       const fullname = `${lastname} ${firstname}`;
       axios
-        .post(`${urlAPI}api/contact`, {
+        .post(`${urlAPI}api/contac`, {
           fullName: fullname,
           userEmail: email,
           subject: subject,
@@ -28,13 +29,16 @@ const contactMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionMessageSystem(response.data));
           store.dispatch(actionSubmitContactSuccess());
         })
-        .catch((error) => {
+        .catch(() => {
           store.dispatch(
-            actionMessageSystem(`oups.. une erreur c'est produite => ${error}`)
+            actionMessageSystem(
+              `oups.. une erreur c'est produite, veuillez patienter puis réessayer`
+            )
           );
         })
         .finally(() => {
           store.dispatch(actionToggleLoader());
+          store.dispatch(actionCleanContactForm([]));
         });
       return next(action);
     }
