@@ -36,6 +36,10 @@ function ContactForm() {
     console.log('envoyer');
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -46,10 +50,6 @@ function ContactForm() {
   } else if (messageSystem !== '' && !contactFormCompleted) {
     classNameInfo = 'inscription__info danger';
   }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <section className="contact">
@@ -100,7 +100,7 @@ function ContactForm() {
           required={true}
           id="subject"
           name="subject"
-          placeholder="Ex: Problème d'uploade d'image "
+          placeholder="Ex: Problème d'upload d'image "
           className="contact__form__input"
           onChange={changeField}
         />

@@ -82,12 +82,15 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
               )
               .then(() => {
                 store.dispatch(actionToggleSubmitSuccess(true));
+                window.location.href = `${window.location.origin}/accueil`;
               })
               .catch(() => {
                 store.dispatch(actionSubmitNewAdvertError());
               });
+          } else {
+            store.dispatch(actionToggleSubmitSuccess(true));
+            window.location.href = `${window.location.origin}/accueil`;
           }
-          store.dispatch(actionToggleSubmitSuccess(true));
         })
         .catch(() => {
           store.dispatch(actionSubmitNewAdvertError());

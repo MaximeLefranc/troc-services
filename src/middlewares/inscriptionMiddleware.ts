@@ -14,7 +14,7 @@ import { actionLogOut, actionToggleLoader } from '../actions/user';
 import { arrayIdsSkills } from '../selectors/members';
 import { getUrlApi } from '../utils/utils';
 
-const urlAPI = getUrlApi;
+const urlAPI = getUrlApi();
 
 const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
   const {
