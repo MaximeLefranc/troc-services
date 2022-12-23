@@ -1,5 +1,6 @@
 import { User } from '../components/Cards/ProfilesCards';
 import { Skills } from '../components/SkillsSelect';
+import { strNoAccent } from '../utils/utils';
 
 /**
  * Search in User state one memeber by this nickname
@@ -24,12 +25,6 @@ export function findMember(
   return false;
 }
 
-/**
- * Search in Advertissements state advert with this name Skills
- * @param listOfAdverts Advertisements array in state
- * @param searchedSlug  Name(Skills) of advertisement to searched
- * @returns {User[] | false} Array of advert or false if doen't exist
- */
 export function findMembersBySkills(
   memberList: [],
   searchedSlug: string | undefined
@@ -80,6 +75,70 @@ export function findMemberById(
     );
     if (member) {
       return member;
+    } else {
+      return false;
+    }
+  }
+  return false;
+}
+
+/**
+ * Search all of members from searchbar
+ * with this name Skills and/or the zipCode
+ * @param listOfMembers Members array in state
+ * @param searchedSkill  Skill of advertisement to searched
+ * @param searchedZipCode  zipCode of advertisement to searched
+ * @returns {User[] | false} Array of advert or false if doen't exist
+ */
+export function findMembersBySearchBar(
+  listOfMembers: [],
+  searchedSkill: string | undefined,
+  searchedZipCode: string | undefined
+): User[] | false {
+  if (
+    typeof searchedSkill === 'string' &&
+    typeof searchedZipCode === 'string'
+  ) {
+    const membersFiltered: User[] = [];
+    const searchedSkillClean = strNoAccent(searchedSkill).toLowerCase().trim();
+
+    listOfMembers.filter((memberElement: User) => {
+      if (searchedZipCode !== '' && searchedSkill === '') {
+        if (searchedZipCode === memberElement.zip_code) {
+          membersFiltered.push(memberElement);
+        }
+      }
+      if (searchedSkill !== '' && searchedZipCode === '') {
+        memberElement.skill.forEach((skill) => {
+          const skillClean = strNoAccent(skill.name).toLowerCase().trim();
+          if (skillClean === searchedSkillClean) {
+            membersFiltered.push(memberElement);
+          } else if (
+            skillClean.substr(0, 5) === searchedSkillClean.substr(0, 5)
+          ) {
+            membersFiltered.push(memberElement);
+          }
+        });
+      }
+      if (searchedZipCode !== '' && searchedSkill !== '') {
+        memberElement.skill.forEach((skill) => {
+          const skillClean = strNoAccent(skill.name).toLowerCase().trim();
+          if (
+            skillClean === searchedSkillClean &&
+            searchedZipCode === memberElement.zip_code
+          ) {
+            membersFiltered.push(memberElement);
+          } else if (
+            skillClean.substr(0, 5) === searchedSkillClean.substr(0, 5) &&
+            searchedZipCode === memberElement.zip_code
+          ) {
+            membersFiltered.push(memberElement);
+          }
+        });
+      }
+    });
+    if (membersFiltered.length > 0) {
+      return membersFiltered;
     } else {
       return false;
     }
