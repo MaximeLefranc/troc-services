@@ -37,67 +37,44 @@ function ProfileDetail(): JSX.Element {
   const isMineProfile = member.nickname === pseudo ? true : false;
   const hasAdverts = member.advertisements.length > 0 ? true : false;
   return (
-    <section className="main">
-      <section className="profile-detail">
-        <img
-          className="profile-detail__picture"
-          src={`${url}img/${member.imageName}`}
-          alt="profile picture of member"
-        />
-        <h2 className="profile-detail__pseudo">{member.nickname}</h2>
-        <p className="profile-detail__city">{member.city}</p>
-        <p className="profile-detail__code">{member.zip_code}</p>
-        {isMineProfile ? (
-          <Link to={`/profils/${member.nickname}/modifier`}>
-            <button className="profile-detail__contact" type="button">
-              Modifier mon profil
-            </button>
-          </Link>
-        ) : (
-          <Link to={`/profils/${member.id}/envoyer-message`}>
-            <button className="profile-detail__contact" type="button">
-              Me contacter
-            </button>
-          </Link>
-        )}
-        <p className="profile-detail__description">{member.biography}</p>
-        <h3 className="profile-detail__title">Ce que je sais faire</h3>
-        <div className="profile-detail__skills">
-          {member.skill.map((skill) => (
-            <p key={skill.id} className="profile-detail__skills__skill">
-              {skill.name}
-            </p>
-          ))}
-        </div>
-        {hasAdverts && <h3 className="profile-detail__title">Mes annonces</h3>}
-        {hasAdverts &&
-          member.advertisements.map((advertisement) => {
-            console.log(advertisement);
-            if (advertisement.approved === true) {
-              return (
-                <Link
-                  key={advertisement.id}
-                  to={`/annonces/${advertisement.id}`}
-                >
-                  <div
-                    key={advertisement.id}
-                    className="profile-detail__adverts"
-                  >
-                    <img
-                      className="profile-detail__adverts__picture"
-                      src={`${url}img/${advertisement.imageName}`}
-                    />
-                    <h4 className="profile-detail__adverts__title">
-                      {advertisement.title}
-                    </h4>
-                    <p className="profile-detail__adverts__description">
-                      {advertisement.content}
-                    </p>
-                  </div>
-                </Link>
-              );
-            } else {
-              return (
+    <section className="profile-detail">
+      <img
+        className="profile-detail__picture"
+        src={`${url}img/${member.imageName}`}
+        alt="profile picture of member"
+      />
+      <h2 className="profile-detail__pseudo">{member.nickname}</h2>
+      <p className="profile-detail__city">{member.city}</p>
+      <p className="profile-detail__code">{member.zip_code}</p>
+      {isMineProfile ? (
+        <Link to={`/profils/${member.nickname}/modifier`}>
+          <button className="profile-detail__contact" type="button">
+            Modifier mon profil
+          </button>
+        </Link>
+      ) : (
+        <Link to={`/profils/${member.id}/envoyer-message`}>
+          <button className="profile-detail__contact" type="button">
+            Me contacter
+          </button>
+        </Link>
+      )}
+      <p className="profile-detail__description">{member.biography}</p>
+      <h3 className="profile-detail__title">Ce que je sais faire</h3>
+      <div className="profile-detail__skills">
+        {member.skill.map((skill) => (
+          <p key={skill.id} className="profile-detail__skills__skill">
+            {skill.name}
+          </p>
+        ))}
+      </div>
+      {hasAdverts && <h3 className="profile-detail__title">Mes annonces</h3>}
+      {hasAdverts &&
+        member.advertisements.map((advertisement) => {
+          console.log(advertisement);
+          if (advertisement.approved === true) {
+            return (
+              <Link key={advertisement.id} to={`/annonces/${advertisement.id}`}>
                 <div key={advertisement.id} className="profile-detail__adverts">
                   <img
                     className="profile-detail__adverts__picture"
@@ -109,23 +86,38 @@ function ProfileDetail(): JSX.Element {
                   <p className="profile-detail__adverts__description">
                     {advertisement.content}
                   </p>
-                  <p className="profile-detail__adverts__description--approved">
-                    En attente de validation.
-                  </p>
                 </div>
-              );
-            }
-          })}
-        {isMineProfile && (
-          <button
-            className="profile-detail__delete"
-            onClick={handleDeleteProfile}
-            type="button"
-          >
-            Supprimer mon profil
-          </button>
-        )}
-      </section>
+              </Link>
+            );
+          } else {
+            return (
+              <div key={advertisement.id} className="profile-detail__adverts">
+                <img
+                  className="profile-detail__adverts__picture"
+                  src={`${url}img/${advertisement.imageName}`}
+                />
+                <h4 className="profile-detail__adverts__title">
+                  {advertisement.title}
+                </h4>
+                <p className="profile-detail__adverts__description">
+                  {advertisement.content}
+                </p>
+                <p className="profile-detail__adverts__description--approved">
+                  En attente de validation.
+                </p>
+              </div>
+            );
+          }
+        })}
+      {isMineProfile && (
+        <button
+          className="profile-detail__delete"
+          onClick={handleDeleteProfile}
+          type="button"
+        >
+          Supprimer mon profil
+        </button>
+      )}
     </section>
   );
 }

@@ -4,12 +4,11 @@
 body {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 62.5%;
-  background-color: vars.$font-color;
+  background-color: #d2d2d2;
   color: vars.$dark-color;
   background-image: url('../assets/images/drop-paint-background.svg');
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: 350%;
   background-position: bottom -280% right 60%;
 }
 

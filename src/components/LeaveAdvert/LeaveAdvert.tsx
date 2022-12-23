@@ -21,6 +21,9 @@ function LeaveAdvert(): JSX.Element {
   const advertToModify = useSelector((state: GlobalState) =>
     findAdvert(state.advertisements.listOfAdverts, slug)
   );
+  const isSubmitSuccess = useSelector(
+    (state: GlobalState) => state.advertisements.submitSuccess
+  );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const message = useSelector(
     (state: GlobalState) => state.advertisements.message
@@ -39,7 +42,9 @@ function LeaveAdvert(): JSX.Element {
   };
 
   let classNameInfo = 'leaveadvert__info';
-  if (message) {
+  if (message && isSubmitSuccess) {
+    classNameInfo = 'leaveadvert__info success';
+  } else if (message && !isSubmitSuccess) {
     classNameInfo = 'leaveadvert__info danger';
   }
 

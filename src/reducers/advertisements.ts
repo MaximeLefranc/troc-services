@@ -76,8 +76,8 @@ const advertisementsReducer = (
         picture: '',
         descriptionInput: '',
         skills: [],
-        message: '',
-        submitSuccess: action.payload,
+        message: action.payload.message,
+        submitSuccess: action.payload.trueOrFalse,
       };
     case SET_INFO_ADVERT_IN_INPUTS_STATE:
       const skills = action.payload.skills.map((skill: Category) => {
