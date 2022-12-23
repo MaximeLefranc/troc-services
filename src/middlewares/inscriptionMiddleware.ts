@@ -142,6 +142,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           config
         )
         .then((response) => {
+          console.log(response);
           if (response.status === 206 && picture !== '') {
             axios
               .post(
@@ -188,6 +189,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
           store.dispatch(actionFetchAllMessagesForOneUser());
+          store.dispatch(actionLogOut());
           store.dispatch(actionToggleLoader());
         });
       return next(action);

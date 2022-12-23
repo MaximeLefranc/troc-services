@@ -3,7 +3,6 @@ import {
   CHANGE_INPUT_VALUE_CONTACT,
   MESSAGE_SYSTEM,
   SUBMIT_CONTACT_SUCCESS,
-  SAVE_SEND_CONTACT_FORM,
 } from '../actions/contact';
 
 export interface ContactState {
@@ -45,17 +44,12 @@ const contactReducer = (
     case SUBMIT_CONTACT_SUCCESS:
       return {
         ...state,
-        contactFormCompleted: true,
-      };
-    case SAVE_SEND_CONTACT_FORM:
-      return {
-        ...state,
         lastname: '',
         firstname: '',
         subject: '',
         email: '',
         message: '',
-        sendForm: action.payload,
+        contactFormCompleted: !state.contactFormCompleted,
       };
     default:
       return state;

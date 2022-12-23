@@ -42,7 +42,6 @@ export function actionSubmitContactForm() {
 
 /**
  * Submit Form Contact success
- * @param message content of message
  * @returns Object Action
  */
 export function actionSubmitContactSuccess() {
@@ -53,24 +52,12 @@ export function actionSubmitContactSuccess() {
 
 /**
  * Set a message system for state of contact
- * @param message error message to set in state
+ * @param messageSystem error message to set in state
  * @returns Object Action
  */
 export function actionMessageSystem(messageSystem: string) {
   return {
     type: MESSAGE_SYSTEM,
     payload: messageSystem,
-  };
-}
-
-/**
- * Send Empty array of contact form for clean the form
- * @param sendForm  Array of contact form
- * @returns Object Action
- */
-export function actionCleanContactForm(sendForm: []) {
-  return {
-    type: SAVE_SEND_CONTACT_FORM,
-    payload: sendForm,
   };
 }

@@ -2,7 +2,6 @@ import axios from 'axios';
 import { Middleware } from 'redux';
 import {
   actionMessageSystem,
-  actionCleanContactForm,
   actionSubmitContactSuccess,
   SUBMIT_CONTACT_FORM,
 } from '../actions/contact';
@@ -25,9 +24,17 @@ const contactMiddleware: Middleware = (store) => (next) => (action) => {
           subject: subject,
           message: message,
         })
-        .then((response) => {
-          store.dispatch(actionMessageSystem(response.data));
+        .then(() => {
+          store.dispatch(
+            actionMessageSystem(
+              'Votre message a bien été envoyé, un administrateur vous répondra dans les meilleurs délais'
+            )
+          );
           store.dispatch(actionSubmitContactSuccess());
+          setTimeout(() => {
+            store.dispatch(actionSubmitContactSuccess());
+            store.dispatch(actionMessageSystem(''));
+          }, 3000);
         })
         .catch(() => {
           store.dispatch(
@@ -35,10 +42,12 @@ const contactMiddleware: Middleware = (store) => (next) => (action) => {
               `oups.. une erreur c'est produite, veuillez patienter puis réessayer`
             )
           );
+          setTimeout(() => {
+            store.dispatch(actionMessageSystem(''));
+          }, 3000);
         })
         .finally(() => {
           store.dispatch(actionToggleLoader());
-          store.dispatch(actionCleanContactForm([]));
         });
       return next(action);
     }
