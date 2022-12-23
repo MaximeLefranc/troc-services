@@ -12,17 +12,9 @@ import {
 } from '../actions/inscription';
 import { actionLogOut, actionToggleLoader } from '../actions/user';
 import { arrayIdsSkills } from '../selectors/members';
+import { getUrlApi } from '../utils/utils';
 
-let urlAPI: string;
-if (process.env.NODE_ENV === 'development') {
-  if (process.env.REACT_APP_API_URL_DEV) {
-    urlAPI = process.env.REACT_APP_API_URL_DEV;
-  }
-} else if (process.env.NODE_ENV === 'production') {
-  if (process.env.REACT_APP_API_URL_PROD) {
-    urlAPI = process.env.REACT_APP_API_URL_PROD; //! mettre la bonne url de PORD dans le fichier .env
-  }
-}
+const urlAPI = getUrlApi;
 
 const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
   const {
