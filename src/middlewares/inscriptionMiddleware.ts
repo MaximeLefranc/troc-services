@@ -10,6 +10,7 @@ import {
   FETCH_PROFILE_USER_FOR_MODIFICATION,
   SUBMIT_INSCRIPTION_FORM,
 } from '../actions/inscription';
+import { actionFetchAllMessagesForOneUser } from '../actions/messages';
 import { actionLogOut, actionToggleLoader } from '../actions/user';
 import { arrayIdsSkills } from '../selectors/members';
 import { getUrlApi } from '../utils/utils';
@@ -152,10 +153,12 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
               .then(() => {
                 store.dispatch(
                   actionInscriptionSuccess(
-                    'Les modifications de votre profil on étaient réalisées avec succès, merci de vous reconnecter'
+                    'Les modifications de votre profil on étaient réalisées avec succès.'
                   )
                 );
-                window.location.href = `${window.location.origin}/accueil`;
+                setTimeout(() => {
+                  window.location.href = `${window.location.origin}/accueil`;
+                }, 2000);
               })
               .catch(() => {
                 store.dispatch(
@@ -167,10 +170,12 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           } else {
             store.dispatch(
               actionInscriptionSuccess(
-                'Les modifications de votre profil on étaient réalisées avec succès, merci de vous reconnecter'
+                'Les modifications de votre profil on étaient réalisées avec succès.'
               )
             );
-            window.location.href = `${window.location.origin}/accueil`;
+            setTimeout(() => {
+              window.location.href = `${window.location.origin}/accueil`;
+            }, 2000);
           }
         })
         .catch(() => {
@@ -182,8 +187,8 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         })
         .finally(() => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
+          store.dispatch(actionFetchAllMessagesForOneUser());
           store.dispatch(actionToggleLoader());
-          store.dispatch(actionLogOut());
         });
       return next(action);
     }

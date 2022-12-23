@@ -4,7 +4,7 @@
 body {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 62.5%;
-  background-color: #d2d2d2;
+  background-color: vars.$background-color;
   color: vars.$dark-color;
   background-image: url('../assets/images/drop-paint-background.svg');
   background-attachment: fixed;

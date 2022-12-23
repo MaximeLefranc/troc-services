@@ -101,24 +101,18 @@ export function findMembersBySearchBar(
   ) {
     const membersFiltered: User[] = [];
     const searchedSkillClean = strNoAccent(searchedSkill).toLowerCase().trim();
+    const searchedZipCodeClean = searchedZipCode.trim();
 
     listOfMembers.filter((memberElement: User) => {
       if (searchedZipCode !== '' && searchedSkill === '') {
-        if (searchedZipCode === memberElement.zip_code) {
+        if (searchedZipCodeClean === memberElement.zip_code.trim()) {
           membersFiltered.push(memberElement);
         }
       }
       if (searchedSkill !== '' && searchedZipCode === '') {
         memberElement.skill.forEach((skill) => {
           const skillClean = strNoAccent(skill.name).toLowerCase().trim();
-          console.log(
-            skillClean.replace("'", '') + searchedSkillClean.replace("'", '')
-          );
-          if (skillClean === searchedSkillClean) {
-            membersFiltered.push(memberElement);
-          } else if (
-            skillClean.substr(0, 5) === searchedSkillClean.substr(0, 5)
-          ) {
+          if (skillClean === searchedSkillClean.replace("'", '')) {
             membersFiltered.push(memberElement);
           }
         });
@@ -127,13 +121,8 @@ export function findMembersBySearchBar(
         memberElement.skill.forEach((skill) => {
           const skillClean = strNoAccent(skill.name).toLowerCase().trim();
           if (
-            skillClean === searchedSkillClean &&
-            searchedZipCode === memberElement.zip_code
-          ) {
-            membersFiltered.push(memberElement);
-          } else if (
-            skillClean.substr(0, 5) === searchedSkillClean.substr(0, 5) &&
-            searchedZipCode === memberElement.zip_code
+            skillClean === searchedSkillClean.replace("'", '') &&
+            searchedZipCodeClean === memberElement.zip_code.trim()
           ) {
             membersFiltered.push(memberElement);
           }
