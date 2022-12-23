@@ -22,12 +22,12 @@
   }
   &__subject {
     font-size: 1.2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
   }
   &__content {
     font-size: 1.1rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   &__button {
     padding: 1rem;
@@ -47,9 +47,9 @@
 
 @media screen and (min-width: 1300px) {
   .message {
-    margin: 1rem 15rem 1rem 15rem;
-    padding: 5rem;
     border: 1px solid vars.$dark-color;
-    border-radius: 1rem;
+    padding: 2rem 10rem 2rem 10rem;
+    margin: 1rem 25rem 9rem 25rem;
+    border-radius: 8px;
   }
 }

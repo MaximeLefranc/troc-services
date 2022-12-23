@@ -41,7 +41,7 @@ function DetailMessage(): JSX.Element {
         />
       </Link>
       <p className="message__pseudo">{message[0].sender.nickname}</p>
-      <h2 className="message__subject">Sujet du message</h2>
+      <h2 className="message__subject">{message[0].object}</h2>
       <p className="message__content">{message[0].content}</p>
       <Link to={`/profils/${message[0].sender.id}/envoyer-message`}>
         <button type="button" className="message__button">
