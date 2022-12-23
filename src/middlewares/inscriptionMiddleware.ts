@@ -65,7 +65,9 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
                     'Inscription réussie, vous pouvez maintenant vous connecter'
                   )
                 );
-                window.location.href = `${window.location.origin}/accueil`;
+                setTimeout(() => {
+                  window.location.href = `${window.location.origin}/accueil`;
+                }, 2000);
               })
               .catch(() => {
                 store.dispatch(
@@ -80,7 +82,9 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
                 'Inscription réussie, vous pouvez maintenant vous connecter'
               )
             );
-            window.location.href = `${window.location.origin}/accueil`;
+            setTimeout(() => {
+              window.location.href = `${window.location.origin}/accueil`;
+            }, 2000);
           }
         })
         .catch((error) => {

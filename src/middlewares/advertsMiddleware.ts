@@ -81,15 +81,26 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
                 formData
               )
               .then(() => {
-                store.dispatch(actionToggleSubmitSuccess(true));
-                window.location.href = `${window.location.origin}/accueil`;
+                store.dispatch(
+                  actionToggleSubmitSuccess(
+                    true,
+                    'Annonce déposée avec succès.'
+                  )
+                );
+                setTimeout(() => {
+                  window.location.href = `${window.location.origin}/accueil`;
+                }, 2000);
               })
               .catch(() => {
                 store.dispatch(actionSubmitNewAdvertError());
               });
           } else {
-            store.dispatch(actionToggleSubmitSuccess(true));
-            window.location.href = `${window.location.origin}/accueil`;
+            store.dispatch(
+              actionToggleSubmitSuccess(true, 'Annonce déposée avec succès.')
+            );
+            setTimeout(() => {
+              window.location.href = `${window.location.origin}/accueil`;
+            }, 2000);
           }
         })
         .catch(() => {

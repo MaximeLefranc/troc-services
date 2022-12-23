@@ -125,12 +125,16 @@ export function actionSubmitNewAdvertError() {
 /**
  * Advert submit success can navigate from home
  * @param trueOrFalse true for redirect, false after
+ * @param message Success message
  * @returns Object action
  */
-export function actionToggleSubmitSuccess(trueOrFalse: boolean) {
+export function actionToggleSubmitSuccess(trueOrFalse: boolean, message = '') {
   return {
     type: TOGGLE_SUBMIT_SUCCESS,
-    payload: trueOrFalse,
+    payload: {
+      trueOrFalse: trueOrFalse,
+      message: message,
+    },
   };
 }
 

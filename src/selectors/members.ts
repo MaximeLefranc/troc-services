@@ -111,6 +111,9 @@ export function findMembersBySearchBar(
       if (searchedSkill !== '' && searchedZipCode === '') {
         memberElement.skill.forEach((skill) => {
           const skillClean = strNoAccent(skill.name).toLowerCase().trim();
+          console.log(
+            skillClean.replace("'", '') + searchedSkillClean.replace("'", '')
+          );
           if (skillClean === searchedSkillClean) {
             membersFiltered.push(memberElement);
           } else if (

@@ -8,6 +8,7 @@
   align-items: center;
   margin-top: 2rem;
   padding-bottom: 3rem;
+  background-color: vars.$font-transparent-color;
   
   &__picture {
     width: 8rem;
@@ -135,10 +136,10 @@
 
 @media screen and (min-width: 1300px) {
   .profile-detail {
-    padding: 5rem 10rem;
-    border: 1px solid vars.$dark-main-color;
-    border-radius: 5px;
-    margin: 2rem 2rem;
+    border: 1px solid vars.$dark-color;
+    padding: 2rem 10rem 0 10rem;
+    margin: 1rem 25rem 9rem 25rem;
+    border-radius: 8px;
     &__picture {
       margin-bottom: 2rem;
       height: 12rem;

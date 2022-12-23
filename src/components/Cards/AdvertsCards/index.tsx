@@ -37,7 +37,7 @@ export interface Adverts {
 function AdvertsCards(): JSX.Element {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actionToggleSubmitSuccess(false));
+    dispatch(actionToggleSubmitSuccess(false, ''));
     window.scrollTo(0, 0);
   }, []);
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
