@@ -53,19 +53,22 @@
   position: absolute;
   top: 12em;
   padding: 1em 2em;
-  background: vars.$soft-color;
+  background-color: vars.$font-color;
   width: 20em;
   box-sizing: 0 .5em 2.5em rgba(0, 0, 0, 0.1);
   border-radius: 1.5em;
   transition: 0.5s;
   visibility: hidden;
   opacity: 0;
+  transition: opacity .2s;
 }
 
 .action .profiles__menu.active {
-  top: 80px;
+  top: 4rem;
+  left: -.3rem;
   visibility: visible;
   opacity: 1;
+  transition: opacity .2s;
 }
 
 .action .profiles__menu::before {
@@ -84,13 +87,13 @@
   font-size: 18px;
   padding: 20px 0;
   font-weight: 500;
-  color: #fff;
+  color: vars.$main-color;
   line-height: 1.5em;
 }
 
 .action .profiles__menu h3 span {
   font-size: 14px;
-  color: #fff;
+  color: vars.$main-color;
   font-weight: 300;
 }
 
@@ -116,7 +119,7 @@
 .action .profiles__menu .profiles__menu__links .profiles__menu--link .profiles__menu__link--span {
   display: inline-block;
   text-decoration: none;
-  color: #fff;
+  color: vars.$main-color;
   font-weight: 500;
   transition: 0.5s;
   font-size: large;
@@ -139,8 +142,17 @@
     width: 4rem;
   }
 
+  .action .profiles__menu.active {
+    top: 5rem;
+    left: -8rem;
+  }
+
   .action .profiles__menu {
-    right: -1em;
+    left: -8rem;
+    top: 10rem;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
   }
 
   .action .profiles__menu::before {

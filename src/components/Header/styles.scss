@@ -27,11 +27,11 @@
 .header__btn--subscribe,
 .header__link--profils,
 .header__btn--advert {
-  color: vars.$font-color;
-  background-color: vars.$main-color;
+  color: vars.$main-color;
+  background-color: vars.$background-color;
   font-family: vars.$main-font;
-  border-radius: .2em;
-  border: none;
+  border-radius: .5em;
+  border: 1px solid vars.$main-color;
 
   &:active {
     transform: scale(0.95);
@@ -41,6 +41,9 @@
 
   &:hover {
     box-shadow: .1em .1em .5em black;
+    background-color: vars.$main-color;
+    color: vars.$background-color;
+    border: 1px solid vars.$background-color;
   }
 }
 
@@ -85,6 +88,7 @@
   }
 
   &__input--zip {
+    font-size: 1rem;
     font-family: vars.$main-font;
     border: none;
     background-color: vars.$background-color;
@@ -137,8 +141,26 @@
     margin-right: 0%;
   }
 
-  .header__link--profils,
-  .header__link--subscribe {
+  .header__btn--subscribe,
+  .header__btn--advert {
+    color: vars.$font-color;
+    background-color: vars.$main-color;
+    font-family: vars.$main-font;
+    border-radius: .2em;
+    border: none;
+  
+    &:active {
+      transform: scale(0.95);
+      color: vars.$main-color;
+      background-color: vars.$font-color;
+    }
+  
+    &:hover {
+      box-shadow: .1em .1em .5em black;
+    }
+  }
+
+  .header__link--profils {
     display: none;
   }
 

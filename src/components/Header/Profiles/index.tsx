@@ -12,8 +12,12 @@ import { getUrlApi } from '../../../utils/utils';
 import { User } from '../../Cards/ProfilesCards';
 import Spinner from '../../Spinner';
 import { haveMessagesNotRead } from '../../../selectors/messages';
+import { MutableRefObject, useRef } from 'react';
 
 function Profiles(): JSX.Element {
+  const url = getUrlApi();
+  const refMenu = useRef() as MutableRefObject<HTMLDivElement>;
+  const refImg = useRef() as MutableRefObject<HTMLDivElement>;
   const user: User | false = useSelector((state: GlobalState) =>
     findMember(state.user.listOfMembers, state.user.pseudo)
   );
@@ -24,12 +28,13 @@ function Profiles(): JSX.Element {
   const logOut = () => {
     dispatch(actionLogOut());
   };
-  const url = getUrlApi();
-  const menuToggle = () => {
-    const toggleMenu: any = document.querySelector('.profiles__menu');
-    const toggleProfile: any = document.querySelector('.profile img');
-    toggleProfile.classList.toggle('isActive');
-    toggleMenu.classList.toggle('active');
+  const menuToggleShow = () => {
+    refImg.current.classList.toggle('isActive');
+    refMenu.current.classList.toggle('active');
+  };
+  const menuToggleHide = () => {
+    refImg.current.classList.remove('isActive');
+    refMenu.current.classList.remove('active');
   };
 
   const classNotificationImg = haveMessagesNotRead(messages)
@@ -44,10 +49,18 @@ function Profiles(): JSX.Element {
   }
   return (
     <div className="action">
-      <div className={classNotificationImg} onClick={menuToggle}>
+      <div
+        className={classNotificationImg}
+        onClick={menuToggleShow}
+        ref={refImg}
+      >
         <img className="profile__img" src={`${url}img/${user.imageName}`} />
       </div>
-      <div className="profiles__menu">
+      <div
+        className="profiles__menu"
+        ref={refMenu}
+        onMouseLeave={menuToggleHide}
+      >
         <h3>
           {user.nickname}
           <br />
