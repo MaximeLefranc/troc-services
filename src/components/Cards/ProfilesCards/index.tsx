@@ -18,6 +18,7 @@ export interface User {
     title: string;
     content: string;
     imageName: string;
+    isHidden: boolean;
     approved: boolean;
   }[];
   skill: { id: number; name: string }[];

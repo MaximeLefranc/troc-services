@@ -71,8 +71,7 @@ function ProfileDetail(): JSX.Element {
       {hasAdverts && <h3 className="profile-detail__title">Mes annonces</h3>}
       {hasAdverts &&
         member.advertisements.map((advertisement) => {
-          console.log(advertisement);
-          if (advertisement.approved === true) {
+          if (advertisement.approved && !advertisement.isHidden) {
             return (
               <Link key={advertisement.id} to={`/annonces/${advertisement.id}`}>
                 <div key={advertisement.id} className="profile-detail__adverts">
@@ -89,7 +88,7 @@ function ProfileDetail(): JSX.Element {
                 </div>
               </Link>
             );
-          } else {
+          } else if (!advertisement.approved && !advertisement.isHidden) {
             return (
               <div key={advertisement.id} className="profile-detail__adverts">
                 <img
