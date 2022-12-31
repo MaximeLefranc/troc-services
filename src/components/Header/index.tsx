@@ -16,10 +16,6 @@ function Header(): JSX.Element {
     (state: GlobalState) => state.advertisements.listOfSkills
   );
 
-  const mobileScreen: boolean = window.matchMedia(
-    '(max-width: 1200px)'
-  ).matches;
-
   const dispatch = useDispatch();
   const handleToggleLogInForm = (): void => {
     dispatch(actionToggleLogInForm());
@@ -31,13 +27,9 @@ function Header(): JSX.Element {
 
   return (
     <header className="header">
-      {mobileScreen ? (
-        ''
-      ) : (
-        <Link className="Nav__logo--link" to="/accueil">
-          <img src={logo} className="Nav__logo" alt="logo troc'services" />
-        </Link>
-      )}
+      <Link className="Nav__logo--link" to="/accueil">
+        <img src={logo} className="Nav__logo" alt="logo troc'services" />
+      </Link>
       {logged ? (
         <Profiles />
       ) : (
@@ -69,16 +61,8 @@ function Header(): JSX.Element {
           {logged ? 'Déposez votre annonce' : 'Inscription'}
         </button>
       </Link>
-      {mobileScreen ? (
-        <MobileNav
-          logo={logo}
-          isLogged={logged}
-          listOfSkills={listOfSkills}
-          mobileScreen={mobileScreen}
-        />
-      ) : (
-        <NavBar listOfSkills={listOfSkills} mobileScreen={mobileScreen} />
-      )}
+      <MobileNav logo={logo} isLogged={logged} listOfSkills={listOfSkills} />
+      <NavBar listOfSkills={listOfSkills} />
     </header>
   );
 }

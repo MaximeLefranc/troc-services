@@ -1,12 +1,11 @@
 @use './../../styles/vars';
 
 .Nav__logo {
-  width: 13em;
-  margin-left: 3em;
+  display: none;
 }
 
 .Nav__logo--link {
-  width: 90%;
+  display: none;
 }
 
 .header {
@@ -27,11 +26,11 @@
 .header__btn--subscribe,
 .header__link--profils,
 .header__btn--advert {
-  color: vars.$font-color;
-  background-color: vars.$main-color;
+  color: vars.$main-color;
+  background-color: vars.$background-color;
   font-family: vars.$main-font;
-  border-radius: .2em;
-  border: none;
+  border-radius: .5em;
+  border: 1px solid vars.$main-color;
 
   &:active {
     transform: scale(0.95);
@@ -41,6 +40,9 @@
 
   &:hover {
     box-shadow: .1em .1em .5em black;
+    background-color: vars.$main-color;
+    color: vars.$background-color;
+    border: 1px solid vars.$background-color;
   }
 }
 
@@ -85,6 +87,7 @@
   }
 
   &__input--zip {
+    font-size: 1rem;
     font-family: vars.$main-font;
     border: none;
     background-color: vars.$background-color;
@@ -127,6 +130,16 @@
     background-repeat: no-repeat;
     background-position: 0rem -12em;
   }
+  .Nav__logo {
+    display: block;
+    width: 13em;
+    margin-left: 3em;
+  }
+  
+  .Nav__logo--link {
+    display: block;
+    width: 90%;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -137,8 +150,26 @@
     margin-right: 0%;
   }
 
-  .header__link--profils,
-  .header__link--subscribe {
+  .header__btn--subscribe,
+  .header__btn--advert {
+    color: vars.$font-color;
+    background-color: vars.$main-color;
+    font-family: vars.$main-font;
+    border-radius: .2em;
+    border: none;
+  
+    &:active {
+      transform: scale(0.95);
+      color: vars.$main-color;
+      background-color: vars.$font-color;
+    }
+  
+    &:hover {
+      box-shadow: .1em .1em .5em black;
+    }
+  }
+
+  .header__link--profils {
     display: none;
   }
 

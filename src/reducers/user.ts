@@ -6,6 +6,7 @@ import {
   HAVE_TOKEN_IN_LOCALSTORAGE,
   LOG_OUT,
   SAVE_ALL_MEMBERS_IN_STATE,
+  TOGGLE_BURGER_MENU,
   TOGGLE_LOADER,
   TOGGLE_LOGIN_FORM,
 } from '../actions/user';
@@ -18,6 +19,7 @@ export interface UserState {
   isLoggedIn: boolean;
   pseudo: string;
   messageAuthent: string;
+  burgerMenuIsOpen: boolean;
   listOfMembers: [];
 }
 
@@ -29,6 +31,7 @@ export const initialState: UserState = {
   isLoggedIn: false,
   pseudo: '',
   messageAuthent: '',
+  burgerMenuIsOpen: false,
   listOfMembers: [],
 };
 
@@ -94,6 +97,11 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
       return {
         ...state,
         listOfMembers: action.payload,
+      };
+    case TOGGLE_BURGER_MENU:
+      return {
+        ...state,
+        burgerMenuIsOpen: !state.burgerMenuIsOpen,
       };
     default:
       return state;

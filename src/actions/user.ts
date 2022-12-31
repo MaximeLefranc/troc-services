@@ -5,6 +5,7 @@
 export const TOGGLE_LOGIN_FORM = 'TOGGLE_LOGIN_FORM';
 export const CHANGE_INPUT_VALUE_CONNECTION = 'CHANGE_INPUT_VALUE_CONNECTION';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
+export const TOGGLE_BURGER_MENU = 'TOGGLE_BURGER_MENU';
 export const SAVE_ALL_MEMBERS_IN_STATE = 'SAVE_ALL_MEMBERS_IN_STATE';
 export const FETCH_AUTHENT_USER = 'FETCH_AUTHENT_USER';
 export const AUTHENT_SUCCESS = 'AUTHENT_SUCCESS';
@@ -54,6 +55,16 @@ export function actionChangeInputValueConnection(
 export function actionToggleLoader() {
   return {
     type: TOGGLE_LOADER,
+  };
+}
+
+/**
+ * Open or close burger menu on mobiles devices
+ * @returns Object action
+ */
+export function actionToggleBurgerMenu() {
+  return {
+    type: TOGGLE_BURGER_MENU,
   };
 }
 

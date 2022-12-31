@@ -8,6 +8,7 @@
   align-items: center;
   margin-top: 2rem;
   padding-bottom: 3rem;
+  border-radius: .5rem;
   background-color: vars.$font-transparent-color;
   
   &__picture {
@@ -15,7 +16,7 @@
     height: 8rem;
     border-radius: 50%;
     box-shadow: 2px 2px 4px vars.$dark-color;
-    margin-bottom: 1rem;
+    margin: 1rem auto;
   }
   &__pseudo {
     font-size: 1.6rem;

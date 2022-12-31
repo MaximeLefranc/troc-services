@@ -89,7 +89,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
                 );
                 setTimeout(() => {
                   window.location.href = `${window.location.origin}/accueil`;
-                }, 2000);
+                }, 1000);
               })
               .catch(() => {
                 store.dispatch(actionSubmitNewAdvertError());
@@ -100,7 +100,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
             );
             setTimeout(() => {
               window.location.href = `${window.location.origin}/accueil`;
-            }, 2000);
+            }, 1000);
           }
         })
         .catch(() => {
@@ -131,6 +131,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
     case EDIT_IN_DB_THIS_ADVERT: {
       store.dispatch(actionToggleLoader());
+      const pseudo = localStorage.getItem('pseudo_troc_services');
       const token = localStorage.getItem('token_troc_services');
       const config = {
         headers: {
@@ -151,11 +152,26 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
                 formData
               )
               .then(() => {
-                store.dispatch(actionToggleSubmitSuccess(true));
+                store.dispatch(
+                  actionToggleSubmitSuccess(
+                    true,
+                    'Annonce modifiée avec succès.'
+                  )
+                );
+                setTimeout(() => {
+                  window.location.href = `${window.location.origin}/profils/${pseudo}`;
+                }, 1000);
               })
               .catch(() => {
                 store.dispatch(actionSubmitNewAdvertError());
               });
+          } else {
+            store.dispatch(
+              actionToggleSubmitSuccess(true, 'Annonce modifiée avec succès.')
+            );
+            setTimeout(() => {
+              window.location.href = `${window.location.origin}/profils/${pseudo}`;
+            }, 1000);
           }
         })
         .catch(() => {
