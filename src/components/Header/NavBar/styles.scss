@@ -11,4 +11,13 @@
   font-size: large;
 }
 
+.topNav {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .topNav {
+    display: block;
+  }
+}
 

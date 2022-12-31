@@ -1,12 +1,11 @@
 @use './../../styles/vars';
 
 .Nav__logo {
-  width: 13em;
-  margin-left: 3em;
+  display: none;
 }
 
 .Nav__logo--link {
-  width: 90%;
+  display: none;
 }
 
 .header {
@@ -130,6 +129,16 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0rem -12em;
+  }
+  .Nav__logo {
+    display: block;
+    width: 13em;
+    margin-left: 3em;
+  }
+  
+  .Nav__logo--link {
+    display: block;
+    width: 90%;
   }
 }
 

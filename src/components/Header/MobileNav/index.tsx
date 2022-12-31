@@ -9,9 +9,7 @@ function MobileNav({
   logo,
   isLogged,
   listOfSkills,
-  mobileScreen,
 }: {
-  mobileScreen: boolean;
   logo: string;
   isLogged: boolean;
   listOfSkills: Category[];
@@ -50,7 +48,7 @@ function MobileNav({
           ''
         ) : (
           <Link className="mobileNav__links--link" to="/inscription">
-            Inscritpion
+            Inscription
           </Link>
         )}
 
@@ -58,11 +56,7 @@ function MobileNav({
           Profils
         </Link>
         {listOfSkills.map((category: Category) => (
-          <NavDropdown
-            category={category}
-            key={category.id}
-            mobileScreen={mobileScreen}
-          />
+          <NavDropdown category={category} key={category.id} />
         ))}
       </div>
     </div>
