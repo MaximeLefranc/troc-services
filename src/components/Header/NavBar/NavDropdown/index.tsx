@@ -7,7 +7,12 @@ export interface Skills {
   name: string;
 }
 
-function NavDropdown({ category }: { category: Category }): JSX.Element {
+interface NavDropdownProps {
+  category: Category;
+  onClick?: () => void;
+}
+
+function NavDropdown({ category, onClick }: NavDropdownProps): JSX.Element {
   const { pathname } = useLocation();
   const link =
     pathname.split('/')[1] === 'profils'
@@ -24,6 +29,7 @@ function NavDropdown({ category }: { category: Category }): JSX.Element {
             className={`nav__dropdown--link`}
             key={skills.id}
             to={`${link}${skills.name}`}
+            onClick={onClick}
           >
             {skills.name}
           </Link>

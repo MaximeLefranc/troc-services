@@ -27,28 +27,15 @@
 .mobileNav__links {
   font-size: large;
   list-style-type: none;
-  padding: 0;
-  display: block;
-  margin: 0 auto;
   position: absolute;
-  top: 0;
-  margin-top: 5rem;
+  top: 5rem;
   left: 0;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  overflow: auto;
+  max-height: 0;
+  transition: max-height 0.3s;
+  overflow: hidden;
 }
-
-.mobileNav__links>.mobileNav__links--link{
-  margin: 0 1rem;
-  overflow: auto;
-}
-
 
 .mobileNav__links-button-container {
-  display: none;
   height: 100%;
   width: 3em;
   cursor: pointer;
@@ -71,9 +58,6 @@
   width: 3em;
   transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
   border-radius: .2em;
-}
-
-.mobileNav__links-button::before {
   content: '';
   margin-top: -.8em;
 }
@@ -101,19 +85,19 @@
   display: flex;
 }
 
-#mobileNav__links-toggle~.mobileNav__links .mobileNav__links--link{
-  height: 0;
+#mobileNav__links-toggle~ .mobileNav__links .mobileNav__links--link{
   margin: 0;
   padding: 0;
   border: 0;
-  transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-#mobileNav__links-toggle:checked~.mobileNav__links .mobileNav__links--link{
+.mobileNav__links--link{
+  display: flex;
+  align-items: center;
   border: .1em solid vars.$main-color;
   height: 3em;
-  padding: 1.4em .5em;
   transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  padding: 1.4em .5em;
   background-color: vars.$main-color;
   &:hover{
     background-color: vars.$font-color;
@@ -122,19 +106,13 @@
   }
 }
 
-#mobileNav__links-toggle~.mobileNav__links .nav__dropdown{
-  height: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: rgba(255, 255, 255, 0);
+#mobileNav__links-toggle:checked~.mobileNav__links, .nav__dropdown{
+  background-color: vars.$main-color;
+  max-height: 100vh;
+  overflow: auto;
+  transition: max-height 0.3s;
 }
 
-#mobileNav__links-toggle:checked~.mobileNav__links .nav__dropdown{
-  border: .1em solid vars.$main-color;
-  background-color: vars.$main-color;
-  height: 100%;
-}
 
 .mobileNav__links>.mobileNav__links--link {
   display: flex;
