@@ -64,6 +64,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
     }
     case SUBMIT_NEW_ADVERT: {
       store.dispatch(actionToggleLoader());
+      const pseudo = localStorage.getItem('pseudo_troc_services');
       const token = localStorage.getItem('token_troc_services');
       const config = {
         headers: {
@@ -88,7 +89,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
                   )
                 );
                 setTimeout(() => {
-                  window.location.href = `${window.location.origin}/accueil`;
+                  window.location.href = `${window.location.origin}/profils/${pseudo}`;
                 }, 1000);
               })
               .catch(() => {
@@ -99,7 +100,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
               actionToggleSubmitSuccess(true, 'Annonce déposée avec succès.')
             );
             setTimeout(() => {
-              window.location.href = `${window.location.origin}/accueil`;
+              window.location.href = `${window.location.origin}/profils/${pseudo}`;
             }, 1000);
           }
         })

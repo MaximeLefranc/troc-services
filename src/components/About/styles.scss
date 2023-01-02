@@ -68,12 +68,12 @@
   }
 }
 
-@media screen and (min-width: 1350px) {
+@media screen and (min-width: 1200px) {
   .about {
-    margin: 2rem 10rem 5rem 10rem;
-    border: 1px solid vars.$main-color;
-    padding: 2rem;
-    border-radius: 5px;
+    margin: 1rem 15rem 3rem 15rem;
+    padding: 2rem 5rem 2rem 5rem;
+    border: 1px solid vars.$dark-color;
+    border-radius: 1rem;
     &__description {
       &__title {
         padding-bottom: 1.5rem;

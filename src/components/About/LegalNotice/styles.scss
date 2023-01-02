@@ -2,7 +2,7 @@
 
 .legalnotice {
   padding: .5rem;
-  background-color: vars.$font-transparent-card-color;
+  background-color: vars.$font-transparent-color;
   margin: 1rem .5rem 2rem .5rem;
   border-radius: .5rem;
   line-height: 1.2rem;
@@ -27,10 +27,11 @@
   }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1200px) {
   .legalnotice {
-    padding: 2rem 10rem 2rem 10rem;
-    margin: 3rem 25rem 9rem 25rem;
+    margin: 1rem 15rem 3rem 15rem;
+    padding: 2rem 5rem 2rem 5rem;
     border: 1px solid vars.$dark-color;
+    border-radius: 1rem;
   }
 }

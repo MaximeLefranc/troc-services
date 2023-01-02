@@ -12,8 +12,9 @@
   background-color: vars.$font-transparent-color;
   
   &__picture {
-    width: 8rem;
-    height: 8rem;
+    max-width: 10rem;
+    min-height: 10rem;
+    max-height: 10rem;
     border-radius: 50%;
     box-shadow: 2px 2px 4px vars.$dark-color;
     margin: 1rem auto;
@@ -135,7 +136,7 @@
   }
 }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1200px) {
   .profile-detail {
     margin: 1rem 15rem 1rem 15rem;
     padding: 2rem 5rem 2rem 5rem;
@@ -143,8 +144,10 @@
     border-radius: 1rem;
     &__picture {
       margin-bottom: 2rem;
-      height: 12rem;
-      width: 12rem;
+      min-height: 12rem;
+      max-height: 12rem;
+      max-width: 12rem;
+      border-radius: 40%;
     }
     &__pseudo {
       margin-bottom: 2rem;

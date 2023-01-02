@@ -8,6 +8,7 @@ import {
   actionFetchAdvertForModification,
   actionSubmitNewAdvert,
 } from '../../actions/advertisements';
+import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import { GlobalState } from '../../reducers';
 import { findAdvert } from '../../selectors/advertisements';
 import Field from '../Field';
@@ -77,6 +78,9 @@ function LeaveAdvert(): JSX.Element {
   }, [slug]);
 
   useEffect(() => {
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
 

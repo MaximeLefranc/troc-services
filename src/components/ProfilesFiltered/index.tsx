@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import { GlobalState } from '../../reducers';
 import { findMembersBySkills } from '../../selectors/members';
 import Card from '../Cards/Card';
@@ -9,6 +10,7 @@ import NotFound404 from '../NotFound404';
 import Spinner from '../Spinner';
 
 function ProfileFiltered(): JSX.Element {
+  const dispatch = useDispatch();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const { slug } = useParams();
   const { pathname } = useLocation();
@@ -24,6 +26,9 @@ function ProfileFiltered(): JSX.Element {
   );
 
   useEffect(() => {
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
 

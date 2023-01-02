@@ -4,6 +4,7 @@ import {
   actionChangeInputValueContact,
   actionSubmitContactForm,
 } from '../../actions/contact';
+import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import { GlobalState } from '../../reducers';
 import Field from '../Field';
 import Spinner from '../Spinner';
@@ -36,6 +37,9 @@ function ContactForm() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
 
