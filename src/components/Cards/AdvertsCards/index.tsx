@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionToggleSubmitSuccess } from '../../../actions/advertisements';
+import { actionFetchAllMessagesForOneUser } from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
 import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
@@ -38,6 +39,9 @@ function AdvertsCards(): JSX.Element {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actionToggleSubmitSuccess(false, ''));
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);

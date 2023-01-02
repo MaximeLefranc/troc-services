@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import { actionDeleteProfile } from '../../actions/user';
 import { GlobalState } from '../../reducers';
 import { findMember } from '../../selectors/members';
@@ -25,6 +26,9 @@ function ProfileDetail(): JSX.Element {
   };
 
   useEffect(() => {
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
 

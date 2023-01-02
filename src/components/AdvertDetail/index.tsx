@@ -8,6 +8,7 @@ import Spinner from '../Spinner';
 import NotFound404 from '../NotFound404';
 import { actionDeleteAdvert } from '../../actions/advertisements';
 import { useEffect } from 'react';
+import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 
 function AdvertDetail(): JSX.Element {
   const url = getUrlApi();
@@ -20,6 +21,9 @@ function AdvertDetail(): JSX.Element {
   );
 
   useEffect(() => {
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
 

@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  background-color: vars.$font-transparent-color;
   &__title {
     color: vars.$main-color;
     font-size: 1.3rem;
@@ -40,6 +41,7 @@
         height: 2rem;
         width: 100%;
         border: none;
+        padding: .5rem;
         background-color: vars.$font-card-color;
         font-family: vars.$main-font;
         border-radius: .5rem;
@@ -48,6 +50,7 @@
           border: 1px solid vars.$main-color;
         }
         &-text-area {
+          padding: .5rem;
           border-radius: .5rem;
           margin-top: .5rem;
           width: 100%;
@@ -84,9 +87,10 @@
 
 @media screen and (min-width: 1300px) {
   .send-message {
-    margin: 2rem 20rem 5rem 20rem;
-    border-radius: .5rem;
+    margin: 1rem 15rem 3rem 15rem;
+    padding: 2rem 5rem 2rem 5rem;
     border: 1px solid vars.$dark-color;
+    border-radius: 1rem;
     &__title {
       font-size: 1.5rem;
       &--message {

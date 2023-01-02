@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import { GlobalState } from '../../reducers';
 import { findAdvertsBySkills } from '../../selectors/advertisements';
 import { Adverts } from '../Cards/AdvertsCards';
@@ -10,6 +11,7 @@ import Spinner from '../Spinner';
 import './styles.scss';
 
 function AdvertFiltered() {
+  const dispatch = useDispatch();
   const { slug } = useParams();
   const { pathname } = useLocation();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
@@ -21,6 +23,9 @@ function AdvertFiltered() {
   );
 
   useEffect(() => {
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
 

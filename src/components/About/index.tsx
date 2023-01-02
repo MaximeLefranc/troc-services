@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import maxPhoto from '../../assets/images/max-lefranc.svg';
 import nicoPhoto from '../../assets/images/nicolas-mahieux.png';
 import nouhaPhoto from '../../assets/images/nouha.jpg';
@@ -8,7 +10,11 @@ import thomasPhoto from '../../assets/images/thomas.jpg';
 import './styles.scss';
 
 function About(): JSX.Element {
+  const dispatch = useDispatch();
   useEffect(() => {
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
   return (

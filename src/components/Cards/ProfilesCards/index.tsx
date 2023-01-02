@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actionFetchAllMessagesForOneUser } from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
 import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
@@ -24,11 +25,15 @@ export interface User {
 }
 
 function ProfilesCards(): JSX.Element {
+  const dispatch = useDispatch();
   const usersFromSate = useSelector(
     (state: GlobalState) => state.user.listOfMembers
   );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   useEffect(() => {
+    if (localStorage.getItem('token_troc_services')) {
+      dispatch(actionFetchAllMessagesForOneUser());
+    }
     window.scrollTo(0, 0);
   }, []);
   if (isLoading) {

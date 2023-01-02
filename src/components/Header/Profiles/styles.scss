@@ -46,7 +46,9 @@
   border-radius: 6rem;
   position: absolute;
   object-fit: cover;
-  width: 100%;
+  max-width: 3rem;
+  max-height: 3rem;
+  // width: 100%;
 }
 
 .action .profiles__menu {
@@ -145,6 +147,11 @@
   .action .profiles__menu.active {
     top: 5rem;
     left: -8rem;
+  }
+
+  .action .profile img {
+    max-width: 4rem;
+    max-height: 4rem;
   }
 
   .action .profiles__menu {
