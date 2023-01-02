@@ -18,7 +18,7 @@ const contactMiddleware: Middleware = (store) => (next) => (action) => {
         store.getState().contact;
       const fullname = `${lastname} ${firstname}`;
       axios
-        .post(`${urlAPI}api/contac`, {
+        .post(`${urlAPI}api/contact`, {
           fullName: fullname,
           userEmail: email,
           subject: subject,
