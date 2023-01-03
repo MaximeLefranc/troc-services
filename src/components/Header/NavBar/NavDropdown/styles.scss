@@ -77,7 +77,7 @@
   }
 
   .nav__dropdown--link {
-    background-color: vars.$font-transparent-card-color;
+    background-color: vars.$font-transparent-color;
     color: vars.$main-color;
     padding: .8rem 0;
   }
@@ -91,14 +91,17 @@
   
   .nav__dropdown--content {
     position: absolute;
-    background-color: vars.$dark-main-color;
+    background-color: vars.$font-transparent-card-color;
     width: calc(100% / 8);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
   }
   
   .nav__dropdown--content .nav__dropdown--link:hover {
-    background-color: vars.$font-color;
+    background-color: vars.$main-color;
+    color: vars.$background-color;
   }
   
   .nav__dropdown:hover .nav__dropdown--content {
