@@ -87,6 +87,12 @@
       object-fit: cover;
     }
     &__links {
+      backdrop-filter: blur(5px);
+      border: 1px solid transparent;
+      margin: 0;
+      padding: 1rem 0 1.5rem 0;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
       position: absolute;
       bottom: 0;
       flex-direction: row;
@@ -94,17 +100,23 @@
       width: 50%;
       left: 25%;
       font-size: 1.5rem;
-      color: vars.$font-color;      
+      color: vars.$background-color;      
     }
   }
   .presentation {
+    backdrop-filter: blur(5px);
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    width: 80%;
     position: absolute;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    top: 40%;
+    padding: 2rem;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, 0%);
     font-size: 1.7rem;
     color: vars.$font-color;
     text-shadow: 2px 2px 3px vars.$dark-color;
+    margin: 0 auto 3rem auto;
   }
   .form {
     position: absolute;
