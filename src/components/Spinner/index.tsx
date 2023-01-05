@@ -1,4 +1,4 @@
-// == Import
+// ---- Styles Import ----
 import './styles.scss';
 
 function Spinner(): JSX.Element {

@@ -1,6 +1,12 @@
+// ---- React Import ----
 import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
+import { variantsDetail } from '../../utils/framerMotionVariants';
+
+// ---- Action Import ----
 import {
   actionChangeInputValueInscription,
   actionEditInDbThisProfileUser,
@@ -8,13 +14,20 @@ import {
   actionFetchProfileForModification,
   actionSubmitInscriptionForm,
 } from '../../actions/inscription';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
+
+// ---- Utils Import ----
 import { checkPassword } from '../../utils/utils';
+
+// ---- Components Import ----
 import SkillsSelect from '../SkillsSelect';
 import Spinner from '../Spinner';
 import Field from '../Field';
+
+// ---- Styles Import ----
 import './styles.scss';
-import { variantsDetail } from '../../utils/framerMotionVariants';
 
 function InscriptionForm(): JSX.Element {
   const dispatch = useDispatch();
@@ -46,8 +59,8 @@ function InscriptionForm(): JSX.Element {
     (state: GlobalState) => state.inscription.passwordConfirmation
   );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
-  const inscriptionCompleted = useSelector(
-    (state: GlobalState) => state.inscription.inscriptionCompleted
+  const inscriptionError = useSelector(
+    (state: GlobalState) => state.inscription.inscriptionError
   );
   const message = useSelector(
     (state: GlobalState) => state.inscription.message
@@ -79,9 +92,9 @@ function InscriptionForm(): JSX.Element {
   };
 
   let classNameInfo = 'inscription__info';
-  if (message !== '' && inscriptionCompleted) {
+  if (message !== '' && !inscriptionError) {
     classNameInfo = 'inscription__info success';
-  } else if (message !== '' && !inscriptionCompleted) {
+  } else if (message !== '' && inscriptionError) {
     classNameInfo = 'inscription__info danger';
   }
 
@@ -90,10 +103,6 @@ function InscriptionForm(): JSX.Element {
       dispatch(actionFetchProfileForModification());
     }
   }, [isLoggedIn]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   if (isLoading) {
     return <Spinner />;

@@ -1,24 +1,20 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+// ---- React Import ----
 import { Link } from 'react-router-dom';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
-import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+import { variantsSimple } from '../../utils/framerMotionVariants';
+
+// ---- Images Import ----
 import maxPhoto from '../../assets/images/max-lefranc.svg';
 import nicoPhoto from '../../assets/images/nicolas-mahieux.png';
 import nouhaPhoto from '../../assets/images/nouha.jpg';
 import thomasPhoto from '../../assets/images/thomas.jpg';
 
+// ---- Styles Import ----
 import './styles.scss';
-import { variantsSimple } from '../../utils/framerMotionVariants';
 
 function About(): JSX.Element {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <motion.section
       className="about"

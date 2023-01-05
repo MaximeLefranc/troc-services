@@ -1,19 +1,27 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// ---- React Import ----
+import { useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
-import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+import { variantsCards } from '../../utils/framerMotionVariants';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
-import { findAdvertsBySkills } from '../../selectors/advertisements';
 import { Adverts } from '../Cards/AdvertsCards';
+
+// ---- Selector Import ----
+import { findAdvertsBySkills } from '../../selectors/advertisements';
+
+// ---- Components Import ----
 import Card from '../Cards/Card';
 import NotFound404 from '../NotFound404';
 import Spinner from '../Spinner';
+
+// ---- Styles Import ----
 import './styles.scss';
-import { variantsCards } from '../../utils/framerMotionVariants';
 
 function AdvertFiltered() {
-  const dispatch = useDispatch();
   const { slug } = useParams();
   const { pathname } = useLocation();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
@@ -24,17 +32,11 @@ function AdvertFiltered() {
     (state: GlobalState) => state.searchBar.result
   );
 
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
-
   if (isLoading) {
     return <Spinner />;
   }
 
+  // Changes the expected result depending on the location
   let result;
   if (pathname.split('/')[2] === 'filtre') {
     result = advertListFromSearchBar;

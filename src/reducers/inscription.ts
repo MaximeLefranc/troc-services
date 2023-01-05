@@ -24,7 +24,7 @@ export interface InscriptionState {
   password: string;
   passwordConfirmation: string;
   message: string;
-  inscriptionCompleted: boolean;
+  inscriptionError: boolean;
 }
 
 export const initialState: InscriptionState = {
@@ -42,7 +42,7 @@ export const initialState: InscriptionState = {
   password: '',
   passwordConfirmation: '',
   message: '',
-  inscriptionCompleted: false,
+  inscriptionError: false,
 };
 
 const inscriptionReducer = (
@@ -88,6 +88,7 @@ const inscriptionReducer = (
       return {
         ...state,
         message: action.payload,
+        inscriptionError: true,
       };
     case SET_INFO_PROFILE_IN_INPUTS_STATE:
       const skills = action.payload.skill.map((skill: Category) => {

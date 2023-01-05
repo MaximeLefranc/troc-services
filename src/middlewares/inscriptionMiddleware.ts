@@ -88,7 +88,6 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log(error);
           store.dispatch(actionInscriptionError(error.response.data));
         })
         .finally(() => {
@@ -141,7 +140,6 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           config
         )
         .then((response) => {
-          console.log(response);
           if (response.status === 206 && picture !== '') {
             axios
               .post(

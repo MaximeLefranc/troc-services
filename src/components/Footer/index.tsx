@@ -1,4 +1,7 @@
+// ---- React Import ----
 import { Link } from 'react-router-dom';
+
+// ---- Styles Import ----
 import './styles.scss';
 
 function Footer(): JSX.Element {

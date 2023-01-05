@@ -1,15 +1,28 @@
-import { useEffect } from 'react';
+// ---- React Import ----
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
 import { variantsDetail } from '../../utils/framerMotionVariants';
-import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+
+// ---- Actions Import ----
 import { actionDeleteProfile } from '../../actions/user';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
+
+// ---- Selector Import ----
 import { findMember } from '../../selectors/members';
+
+// ---- Utils Import ----
 import { getUrlApi } from '../../utils/utils';
+
+// ---- Components Import ----
 import NotFound404 from '../NotFound404';
 import Spinner from '../Spinner';
+
+// ---- Styles Import ----
 import './styles.scss';
 
 function ProfileDetail(): JSX.Element {
@@ -26,13 +39,6 @@ function ProfileDetail(): JSX.Element {
       dispatch(actionDeleteProfile());
     }
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
 
   if (isLoading) {
     return <Spinner />;

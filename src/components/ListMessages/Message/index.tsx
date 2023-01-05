@@ -1,7 +1,14 @@
-import iconDelete from './../../../assets/icons/delete.svg';
+// ---- React Import ----
 import { Link, useLocation } from 'react-router-dom';
-import { getUrlApi } from '../../../utils/utils';
 import { useDispatch } from 'react-redux';
+
+// ---- Image Import ----
+import iconDelete from './../../../assets/icons/delete.svg';
+
+// ---- Utils Import ----
+import { getUrlApi } from '../../../utils/utils';
+
+// ---- Action Import ----
 import { actionDeleteMessage } from '../../../actions/messages';
 
 interface MessagePops {
@@ -23,14 +30,15 @@ function Message({
 }: MessagePops) {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  console.log(pathname.split('/'));
   const isNotReadClassName =
     !isRead && pathname.split('/')[3] === 'recus'
       ? 'messages__list__detail notRead'
       : 'messages__list__detail';
   const urlAPI = getUrlApi();
   const handleDeleteMessage = () => {
-    dispatch(actionDeleteMessage(id));
+    if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+      dispatch(actionDeleteMessage(id));
+    }
   };
   return (
     <div className={isNotReadClassName}>

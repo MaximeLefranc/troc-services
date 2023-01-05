@@ -1,16 +1,29 @@
+// ---- React Import ----
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
-import './styles.scss';
+
+// ---- Selectors Import ----
 import { findAdvert } from '../../selectors/advertisements';
+
+// ---- Utils Import ----
 import { getUrlApi } from '../../utils/utils';
-import Spinner from '../Spinner';
-import NotFound404 from '../NotFound404';
-import { actionDeleteAdvert } from '../../actions/advertisements';
-import { useEffect } from 'react';
-import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
 import { variantsDetail } from '../../utils/framerMotionVariants';
+
+// ---- Actions Import ----
+import { actionDeleteAdvert } from '../../actions/advertisements';
+
+// ---- Components Import ----
+import Spinner from '../Spinner';
+import NotFound404 from '../NotFound404';
+
+// ---- styles Import ----
+import './styles.scss';
 
 function AdvertDetail(): JSX.Element {
   const url = getUrlApi();
@@ -21,13 +34,6 @@ function AdvertDetail(): JSX.Element {
   const advert = useSelector((state: GlobalState) =>
     findAdvert(state.advertisements.listOfAdverts, slug)
   );
-
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
 
   if (isLoading) {
     return <Spinner />;

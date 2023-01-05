@@ -1,15 +1,30 @@
+// ---- React Import ----
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, useParams } from 'react-router-dom';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
+import { variantsDetail } from '../../../utils/framerMotionVariants';
+
+// ---- Action Import ----
 import { actionMessageIsRead } from '../../../actions/messages';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../../reducers';
+
+// ---- Selector Import ----
 import { findMessageById } from '../../../selectors/messages';
+
+// ---- Utils Import ----
 import { getUrlApi } from '../../../utils/utils';
+
+// ---- Components Import ----
 import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
+
+// ---- Styles Import ----
 import './styles.scss';
-import { variantsDetail } from '../../../utils/framerMotionVariants';
 
 function DetailMessage(): JSX.Element {
   const urlAPI = getUrlApi();
@@ -19,12 +34,15 @@ function DetailMessage(): JSX.Element {
     findMessageById(state.messages.messagesUser, slug)
   );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
+
   useEffect(() => {
-    if (typeof slug === 'string') {
-      dispatch(actionMessageIsRead(slug));
+    if (message !== undefined && message !== false && !message[0].isRead) {
+      if (typeof slug === 'string') {
+        dispatch(actionMessageIsRead(slug));
+      }
     }
-    window.scrollTo(0, 0);
   }, []);
+
   if (!localStorage.getItem('token_troc_services')) {
     return <Navigate to="/accueil" replace />;
   }
@@ -34,6 +52,7 @@ function DetailMessage(): JSX.Element {
   if (isLoading || message.length === 0) {
     return <Spinner />;
   }
+
   return (
     <motion.section
       className="message"

@@ -1,5 +1,10 @@
+// ---- React Import ----
 import { Link, useLocation } from 'react-router-dom';
+
+// ---- TypeScript Import ----
 import { Category } from '../../../SkillsSelect';
+
+// ---- Styles Import ----
 import './styles.scss';
 
 export interface Skills {

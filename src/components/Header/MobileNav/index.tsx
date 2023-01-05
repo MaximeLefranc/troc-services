@@ -1,12 +1,21 @@
+// ---- React Import ----
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+// ---- Action Import ----
 import {
   actionToggleBurgerMenu,
   actionToggleLogInForm,
 } from '../../../actions/user';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../../reducers';
 import { Category } from '../../SkillsSelect';
+
+// ---- Components Import ----
 import NavDropdown from '../NavBar/NavDropdown';
+
+// ---- Styles Import ----
 import './styles.scss';
 
 function MobileNav({

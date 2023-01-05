@@ -1,7 +1,13 @@
+// ---- React Import ----
 import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
+
+// ---- Framer-motion Import ----
 import { motion } from 'framer-motion';
+import { variantsDetail } from '../../utils/framerMotionVariants';
+
+// ---- Actions Import ----
 import {
   actionAddMessage,
   actionChangeInputValueNewAdvert,
@@ -9,14 +15,20 @@ import {
   actionFetchAdvertForModification,
   actionSubmitNewAdvert,
 } from '../../actions/advertisements';
-import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
+
+// ---- Selector Import ----
 import { findAdvert } from '../../selectors/advertisements';
+
+// ---- Components Import ----
 import Field from '../Field';
 import SkillsSelect from '../SkillsSelect';
 import Spinner from '../Spinner';
+
+// ---- Styles Import ----
 import './styles.scss';
-import { variantsDetail } from '../../utils/framerMotionVariants';
 
 function LeaveAdvert(): JSX.Element {
   const { slug } = useParams();
@@ -56,7 +68,6 @@ function LeaveAdvert(): JSX.Element {
     typeof advertToModify !== 'string' &&
     advertToModify.user.nickname ===
       localStorage.getItem('pseudo_troc_services');
-  localStorage.getItem('pseudo_troc_services');
 
   const handleSubmitNewAdvert = (evt: SyntheticEvent): void => {
     evt.preventDefault();
@@ -79,15 +90,8 @@ function LeaveAdvert(): JSX.Element {
     }
   }, [slug]);
 
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
-
   if (!localStorage.getItem('token_troc_services')) {
-    return <Navigate to="/accueil" replace />;
+    return <Navigate to="/inscription" replace />;
   }
   if (isLoading) {
     return <Spinner />;

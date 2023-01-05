@@ -1,18 +1,24 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// ---- React Import ----
+import { useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
-import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
-import { GlobalState } from '../../reducers';
-import { findMembersBySkills } from '../../selectors/members';
-import Card from '../Cards/Card';
-import { User } from '../Cards/ProfilesCards';
-import NotFound404 from '../NotFound404';
-import Spinner from '../Spinner';
 import { variantsCards } from '../../utils/framerMotionVariants';
 
+// ---- TypeScript Import ----
+import { GlobalState } from '../../reducers';
+import { User } from '../Cards/ProfilesCards';
+
+// ---- Selector Import ----
+import { findMembersBySkills } from '../../selectors/members';
+
+// ---- Components Import ----
+import Card from '../Cards/Card';
+import NotFound404 from '../NotFound404';
+import Spinner from '../Spinner';
+
 function ProfileFiltered(): JSX.Element {
-  const dispatch = useDispatch();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const { slug } = useParams();
   const { pathname } = useLocation();
@@ -26,13 +32,6 @@ function ProfileFiltered(): JSX.Element {
     memberList,
     slug
   );
-
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
 
   if (isLoading) {
     return <Spinner />;

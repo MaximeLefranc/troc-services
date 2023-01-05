@@ -1,8 +1,15 @@
+// ---- React Import ----
 import { Link } from 'react-router-dom';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
-import image404 from './../../assets/gif/page-not-found.gif';
-import './styles.scss';
 import { variantsNotFound } from '../../utils/framerMotionVariants';
+
+// ---- Image Import ----
+import image404 from './../../assets/gif/page-not-found.gif';
+
+// ---- Styles Import ----
+import './styles.scss';
 
 function NotFound404({ message = '404 Page introuvable' }) {
   return (
