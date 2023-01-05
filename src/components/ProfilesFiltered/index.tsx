@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import { GlobalState } from '../../reducers';
 import { findMembersBySkills } from '../../selectors/members';
@@ -8,6 +9,7 @@ import Card from '../Cards/Card';
 import { User } from '../Cards/ProfilesCards';
 import NotFound404 from '../NotFound404';
 import Spinner from '../Spinner';
+import { variantsCards } from '../../utils/framerMotionVariants';
 
 function ProfileFiltered(): JSX.Element {
   const dispatch = useDispatch();
@@ -69,7 +71,13 @@ function ProfileFiltered(): JSX.Element {
           Voici nos membres qui correspondent à votre recherche :
         </h2>
       )}
-      <section className="cards">
+      <motion.section
+        className="cards"
+        initial="hide"
+        animate="show"
+        exit="hide"
+        variants={variantsCards}
+      >
         {result.map((user: User) => (
           <Link
             key={user.id}
@@ -87,7 +95,7 @@ function ProfileFiltered(): JSX.Element {
             />
           </Link>
         ))}
-      </section>
+      </motion.section>
     </section>
   );
 }

@@ -1,12 +1,20 @@
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import './styles.scss';
+import { variantsSimple } from '../../../utils/framerMotionVariants';
 
 function LegalNotice(): JSX.Element {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <section className="legalnotice">
+    <motion.section
+      className="legalnotice"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsSimple}
+    >
       <h1 className="legalnotice__title--first">MENTIONS LEGALES :</h1>
       <p className="legalnotice__description">
         Conformément aux dispositions des articles 6-III et 19 de la Loi n°
@@ -151,7 +159,7 @@ function LegalNotice(): JSX.Element {
         1er juillet 1998 transposant la directive 96/9 du 11 mars 1996 relative
         à la protection juridique des bases de données.
       </p>
-    </section>
+    </motion.section>
   );
 }
 

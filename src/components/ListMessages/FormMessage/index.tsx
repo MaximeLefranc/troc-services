@@ -1,6 +1,7 @@
 import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import {
   actionChangeInputValueMessage,
   actionSendMessage,
@@ -13,6 +14,7 @@ import { getUrlApi } from '../../../utils/utils';
 import Field from '../../Field';
 import Spinner from '../../Spinner';
 import './styles.scss';
+import { variantsCards } from '../../../utils/framerMotionVariants';
 
 function FormMessage(): JSX.Element {
   const urlAPI = getUrlApi();
@@ -55,7 +57,7 @@ function FormMessage(): JSX.Element {
     return <Spinner />;
   }
   if (!localStorage.getItem('token_troc_services')) {
-    return <Navigate to="/accueil" replace />;
+    return <Navigate to="/inscription" replace />;
   }
   if (member === false) {
     return <Spinner />;
@@ -74,7 +76,13 @@ function FormMessage(): JSX.Element {
   };
 
   return (
-    <section className="send-message">
+    <motion.section
+      className="send-message"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsCards}
+    >
       <h2 className="send-message__title">{`Envoyer un message à ${member.nickname}`}</h2>
       <img
         className="send-message__img"
@@ -130,7 +138,7 @@ function FormMessage(): JSX.Element {
           Envoyer
         </button>
       </form>
-    </section>
+    </motion.section>
   );
 }
 

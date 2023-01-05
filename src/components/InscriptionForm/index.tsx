@@ -1,5 +1,6 @@
 import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import {
   actionChangeInputValueInscription,
   actionEditInDbThisProfileUser,
@@ -13,6 +14,7 @@ import SkillsSelect from '../SkillsSelect';
 import Spinner from '../Spinner';
 import Field from '../Field';
 import './styles.scss';
+import { variantsDetail } from '../../utils/framerMotionVariants';
 
 function InscriptionForm(): JSX.Element {
   const dispatch = useDispatch();
@@ -97,7 +99,13 @@ function InscriptionForm(): JSX.Element {
     return <Spinner />;
   }
   return (
-    <section className="inscription">
+    <motion.section
+      className="inscription"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsDetail}
+    >
       <p className={classNameInfo}>
         {!message ? "Les champs marqués d'une * sont obligatoire" : message}
       </p>
@@ -249,7 +257,7 @@ function InscriptionForm(): JSX.Element {
           {isLoggedIn ? 'Modifier mon profil' : 'Inscription'}
         </button>
       </form>
-    </section>
+    </motion.section>
   );
 }
 

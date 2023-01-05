@@ -18,3 +18,9 @@ body {
     background-size: 150%;
   }
 }
+
+@media screen and (min-width: 800px) {
+  body {
+    overflow-x: hidden;
+  }
+}

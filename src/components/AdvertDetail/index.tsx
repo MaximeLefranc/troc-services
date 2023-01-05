@@ -9,6 +9,8 @@ import NotFound404 from '../NotFound404';
 import { actionDeleteAdvert } from '../../actions/advertisements';
 import { useEffect } from 'react';
 import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+import { motion } from 'framer-motion';
+import { variantsDetail } from '../../utils/framerMotionVariants';
 
 function AdvertDetail(): JSX.Element {
   const url = getUrlApi();
@@ -40,8 +42,15 @@ function AdvertDetail(): JSX.Element {
     }
   };
   const isMineAdvert = advert.user.nickname === pseudo ? true : false;
+
   return (
-    <section className="advert">
+    <motion.section
+      className="advert"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsDetail}
+    >
       <div className="advert__picture">
         <h2 className="advert__picture__title">{advert.title}</h2>
         <img
@@ -92,7 +101,7 @@ function AdvertDetail(): JSX.Element {
           Supprimer mon annonce
         </button>
       )}
-    </section>
+    </motion.section>
   );
 }
 

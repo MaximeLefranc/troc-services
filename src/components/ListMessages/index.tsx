@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import { GlobalState } from '../../reducers';
 import './styles.scss';
 import Spinner from '../Spinner';
@@ -7,6 +8,7 @@ import Message from './Message';
 import { SentOrReceivedMessages } from '../../selectors/messages';
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+import { variantsSimple } from '../../utils/framerMotionVariants';
 
 export interface MessageDetail {
   id: number;
@@ -42,13 +44,19 @@ function ListMessages(): JSX.Element {
     window.scrollTo(0, 0);
   }, []);
   if (!localStorage.getItem('token_troc_services')) {
-    return <Navigate to="/accueil" replace />;
+    return <Navigate to="/inscription" replace />;
   }
   if (isLoading) {
     return <Spinner />;
   }
   return (
-    <section className="messages">
+    <motion.section
+      className="messages"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsSimple}
+    >
       <h2 className="messages__title">Mes messages</h2>
       <div className="messages__button">
         <Link to="/profils/messages/recus" className="messages__button__links">
@@ -82,7 +90,7 @@ function ListMessages(): JSX.Element {
           <Spinner />
         )}
       </div>
-    </section>
+    </motion.section>
   );
 }
 

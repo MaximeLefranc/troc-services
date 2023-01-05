@@ -1,5 +1,6 @@
 import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import {
   actionChangeInputValueContact,
   actionSubmitContactForm,
@@ -9,6 +10,7 @@ import { GlobalState } from '../../reducers';
 import Field from '../Field';
 import Spinner from '../Spinner';
 import './styles.scss';
+import { variantsDetail } from '../../utils/framerMotionVariants';
 
 function ContactForm() {
   const dispatch = useDispatch();
@@ -55,7 +57,13 @@ function ContactForm() {
   }
 
   return (
-    <section className="contact">
+    <motion.section
+      className="contact"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsDetail}
+    >
       <p className="contact__title">Contactez-nous</p>
       <p className="contact__info">
         Les champs marqués d'une * sont obligatoire
@@ -121,7 +129,7 @@ function ContactForm() {
           Envoyer
         </button>
       </form>
-    </section>
+    </motion.section>
   );
 }
 

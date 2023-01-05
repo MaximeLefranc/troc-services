@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { actionToggleSubmitSuccess } from '../../../actions/advertisements';
 import { actionFetchAllMessagesForOneUser } from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
@@ -8,6 +9,7 @@ import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import Card from '../Card';
 import './../styles.scss';
+import { variantsCards } from '../../../utils/framerMotionVariants';
 
 export interface Adverts {
   id: number;
@@ -57,7 +59,13 @@ function AdvertsCards(): JSX.Element {
   return (
     <section className="main">
       <h2 className="main__title">Les dernières annonces</h2>
-      <section className="cards">
+      <motion.section
+        className="cards"
+        initial="hide"
+        animate="show"
+        exit="hide"
+        variants={variantsCards}
+      >
         {advertList.map((advert: Adverts) => (
           <Link
             key={advert.id}
@@ -75,7 +83,7 @@ function AdvertsCards(): JSX.Element {
             />
           </Link>
         ))}
-      </section>
+      </motion.section>
     </section>
   );
 }

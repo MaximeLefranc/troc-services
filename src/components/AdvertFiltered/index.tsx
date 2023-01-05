@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import { GlobalState } from '../../reducers';
 import { findAdvertsBySkills } from '../../selectors/advertisements';
@@ -9,6 +10,7 @@ import Card from '../Cards/Card';
 import NotFound404 from '../NotFound404';
 import Spinner from '../Spinner';
 import './styles.scss';
+import { variantsCards } from '../../utils/framerMotionVariants';
 
 function AdvertFiltered() {
   const dispatch = useDispatch();
@@ -62,7 +64,13 @@ function AdvertFiltered() {
       ) : (
         <h2 className="main__title">Résultat de votre recherche :</h2>
       )}
-      <section className="cards">
+      <motion.section
+        className="cards"
+        initial="hide"
+        animate="show"
+        exit="hide"
+        variants={variantsCards}
+      >
         {result.map((advert: Adverts) => (
           <Link
             key={advert.id}
@@ -80,7 +88,7 @@ function AdvertFiltered() {
             />
           </Link>
         ))}
-      </section>
+      </motion.section>
     </section>
   );
 }
