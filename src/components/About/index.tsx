@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import maxPhoto from '../../assets/images/max-lefranc.svg';
 import nicoPhoto from '../../assets/images/nicolas-mahieux.png';
@@ -8,6 +9,7 @@ import nouhaPhoto from '../../assets/images/nouha.jpg';
 import thomasPhoto from '../../assets/images/thomas.jpg';
 
 import './styles.scss';
+import { variantsSimple } from '../../utils/framerMotionVariants';
 
 function About(): JSX.Element {
   const dispatch = useDispatch();
@@ -18,7 +20,13 @@ function About(): JSX.Element {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <section className="about">
+    <motion.section
+      className="about"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsSimple}
+    >
       <div className="about__description">
         <h2 className="about__description__title">Histoire</h2>
         <p className="about__description__history">
@@ -70,7 +78,7 @@ function About(): JSX.Element {
           Mentions légales
         </Link>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

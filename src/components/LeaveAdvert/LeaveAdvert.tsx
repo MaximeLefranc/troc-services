@@ -1,6 +1,7 @@
 import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import {
   actionAddMessage,
   actionChangeInputValueNewAdvert,
@@ -15,6 +16,7 @@ import Field from '../Field';
 import SkillsSelect from '../SkillsSelect';
 import Spinner from '../Spinner';
 import './styles.scss';
+import { variantsDetail } from '../../utils/framerMotionVariants';
 
 function LeaveAdvert(): JSX.Element {
   const { slug } = useParams();
@@ -91,7 +93,13 @@ function LeaveAdvert(): JSX.Element {
     return <Spinner />;
   }
   return (
-    <section className="leaveadvert">
+    <motion.section
+      className="leaveadvert"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsDetail}
+    >
       <p className={classNameInfo}>
         {!message ? "Les champs marqués d'une * sont obligatoire" : message}
       </p>
@@ -146,7 +154,7 @@ function LeaveAdvert(): JSX.Element {
           {isMineAdvert ? 'Je modifie mon annonce' : 'Je valide mon annonce'}
         </button>
       </form>
-    </section>
+    </motion.section>
   );
 }
 

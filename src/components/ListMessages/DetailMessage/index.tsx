@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { actionMessageIsRead } from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
 import { findMessageById } from '../../../selectors/messages';
@@ -8,6 +9,7 @@ import { getUrlApi } from '../../../utils/utils';
 import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import './styles.scss';
+import { variantsDetail } from '../../../utils/framerMotionVariants';
 
 function DetailMessage(): JSX.Element {
   const urlAPI = getUrlApi();
@@ -33,7 +35,13 @@ function DetailMessage(): JSX.Element {
     return <Spinner />;
   }
   return (
-    <section className="message">
+    <motion.section
+      className="message"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsDetail}
+    >
       <Link to={`/profils/${message[0].sender.nickname}`}>
         <img
           className="message__img"
@@ -48,7 +56,7 @@ function DetailMessage(): JSX.Element {
           {`Répondre à ${message[0].sender.nickname}`}
         </button>
       </Link>
-    </section>
+    </motion.section>
   );
 }
 

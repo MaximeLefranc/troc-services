@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import image404 from './../../assets/gif/page-not-found.gif';
 import './styles.scss';
+import { variantsNotFound } from '../../utils/framerMotionVariants';
 
 function NotFound404({ message = '404 Page introuvable' }) {
   return (
-    <section className="notFound">
+    <motion.section
+      className="notFound"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsNotFound}
+    >
       <h1 className="notFound__title">{message}</h1>
       <Link to="/accueil">
         <div className="notFound__container">
@@ -19,7 +27,7 @@ function NotFound404({ message = '404 Page introuvable' }) {
         Après des recherches interminables, nous n'avons pas trouvé la page
         demandé ...
       </p>
-    </section>
+    </motion.section>
   );
 }
 

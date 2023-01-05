@@ -1,8 +1,10 @@
+import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionFetchAllMessagesForOneUser } from '../../../actions/messages';
 import { GlobalState } from '../../../reducers';
+import { variantsCards } from '../../../utils/framerMotionVariants';
 import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import Card from '../Card';
@@ -46,7 +48,13 @@ function ProfilesCards(): JSX.Element {
   return (
     <section className="main">
       <h2 className="main__title">Les derniers membres</h2>
-      <section className="cards">
+      <motion.section
+        className="cards"
+        initial="hide"
+        animate="show"
+        exit="hide"
+        variants={variantsCards}
+      >
         {usersFromSate.map((user: User) => (
           <Link
             key={user.id}
@@ -64,7 +72,7 @@ function ProfilesCards(): JSX.Element {
             />
           </Link>
         ))}
-      </section>
+      </motion.section>
     </section>
   );
 }

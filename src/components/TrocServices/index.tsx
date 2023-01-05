@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import About from '../About';
 import AdvertDetail from '../AdvertDetail';
@@ -27,14 +28,10 @@ import AdvertFiltered from '../AdvertFiltered';
 import NotFound404 from '../NotFound404';
 import LegalNotice from '../About/LegalNotice';
 
-interface Location {
-  pathname: string;
-}
-
 function TrocServices(): JSX.Element {
   const dispatch = useDispatch();
-  const { pathname } = useLocation() as Location;
-  const isWelcomePage: boolean = pathname === '/';
+  const location = useLocation();
+  const isWelcomePage: boolean = location.pathname === '/';
   useEffect(() => {
     dispatch(actionFetchAdvertsementsSkillsAndUsers());
     dispatch(actionHaveTokenInLocalstorage());
@@ -43,36 +40,44 @@ function TrocServices(): JSX.Element {
     <div className="TrocServices">
       <LogInForm />
       {!isWelcomePage && <Header />}
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/accueil" element={<AdvertsCards />} />
-        <Route path="/inscription" element={<InscriptionForm />} />
-        <Route path="/profils" element={<ProfilesCards />} />
-        <Route path="/profils/filtre/" element={<ProfileFiltered />} />
-        <Route path="/profils/:slug" element={<ProfileDetail />} />
-        <Route path="/profils/:slug/modifier" element={<InscriptionForm />} />
-        <Route path="/profils/competence/:slug" element={<ProfileFiltered />} />
-        <Route path="/profils/messages/recus" element={<ListMessages />} />
-        <Route path="/profils/messages/envoyes" element={<ListMessages />} />
-        <Route path="/profils/messages/:slug" element={<DetailMessage />} />
-        <Route path="/annonces/:slug" element={<AdvertDetail />} />
-        <Route path="/annonces/:slug/modifier" element={<LeaveAdvert />} />
-        <Route path="/annonces/categorie/:slug" element={<AdvertFiltered />} />
-        <Route path="/annonces/filtre/" element={<AdvertFiltered />} />
-        <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
-        <Route
-          path="/annonces/:idAnnonce/envoyer-message/:idProfile"
-          element={<FormMessage />}
-        />
-        <Route
-          path="/profils/:idProfile/envoyer-message"
-          element={<FormMessage />}
-        />
-        <Route path="/a-propos" element={<About />} />
-        <Route path="/a-propos/contact/" element={<ContactForm />} />
-        <Route path="/a-propos/mentions-legales/" element={<LegalNotice />} />
-        <Route path="*" element={<NotFound404 />} />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/accueil" element={<AdvertsCards />} />
+          <Route path="/inscription" element={<InscriptionForm />} />
+          <Route path="/profils" element={<ProfilesCards />} />
+          <Route path="/profils/filtre/" element={<ProfileFiltered />} />
+          <Route path="/profils/:slug" element={<ProfileDetail />} />
+          <Route path="/profils/:slug/modifier" element={<InscriptionForm />} />
+          <Route
+            path="/profils/competence/:slug"
+            element={<ProfileFiltered />}
+          />
+          <Route path="/profils/messages/recus" element={<ListMessages />} />
+          <Route path="/profils/messages/envoyes" element={<ListMessages />} />
+          <Route path="/profils/messages/:slug" element={<DetailMessage />} />
+          <Route path="/annonces/:slug" element={<AdvertDetail />} />
+          <Route path="/annonces/:slug/modifier" element={<LeaveAdvert />} />
+          <Route
+            path="/annonces/categorie/:slug"
+            element={<AdvertFiltered />}
+          />
+          <Route path="/annonces/filtre/" element={<AdvertFiltered />} />
+          <Route path="/nouvelle-annonce" element={<LeaveAdvert />} />
+          <Route
+            path="/annonces/:idAnnonce/envoyer-message/:idProfile"
+            element={<FormMessage />}
+          />
+          <Route
+            path="/profils/:idProfile/envoyer-message"
+            element={<FormMessage />}
+          />
+          <Route path="/a-propos" element={<About />} />
+          <Route path="/a-propos/contact/" element={<ContactForm />} />
+          <Route path="/a-propos/mentions-legales/" element={<LegalNotice />} />
+          <Route path="*" element={<NotFound404 />} />
+        </Routes>
+      </AnimatePresence>
       {!isWelcomePage && <Footer />}
     </div>
   );

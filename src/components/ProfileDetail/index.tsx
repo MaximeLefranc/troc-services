@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { variantsDetail } from '../../utils/framerMotionVariants';
 import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
 import { actionDeleteProfile } from '../../actions/user';
 import { GlobalState } from '../../reducers';
@@ -41,7 +43,13 @@ function ProfileDetail(): JSX.Element {
   const isMineProfile = member.nickname === pseudo ? true : false;
   const hasAdverts = member.advertisements.length > 0 ? true : false;
   return (
-    <section className="profile-detail">
+    <motion.section
+      className="profile-detail"
+      initial="hide"
+      animate="show"
+      exit="hide"
+      variants={variantsDetail}
+    >
       <img
         className="profile-detail__picture"
         src={`${url}img/${member.imageName}`}
@@ -121,7 +129,7 @@ function ProfileDetail(): JSX.Element {
           Supprimer mon profil
         </button>
       )}
-    </section>
+    </motion.section>
   );
 }
 
