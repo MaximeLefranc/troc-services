@@ -75,9 +75,10 @@
   .welcome {
     &__logo {
       position: absolute;
-      width: 12%;
-      top: 0;
-      left: 0;
+      width: 20%;
+      top: -9%;
+      left: 50%;
+      transform: translate(-50%, 0);
     }
     &__video {
       position: relative;
