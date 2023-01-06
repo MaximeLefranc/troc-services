@@ -25,7 +25,7 @@ import { findMemberById } from '../../../selectors/members';
 import { getUrlApi } from '../../../utils/utils';
 
 // ---- Components Import ----
-import Field from '../../Field';
+import Field from '../../InscriptionForm/Field';
 import Spinner from '../../Spinner';
 
 // ---- Styles Import ----

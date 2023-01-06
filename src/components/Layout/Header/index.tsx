@@ -3,17 +3,17 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // ---- Logo Import ----
-import logo from '../../assets/logo/troc-services-logo.svg';
+import logo from '../../../assets/logo/troc-services-logo.svg';
 
 // ---- TypeScript Import ----
-import { GlobalState } from '../../reducers';
+import { GlobalState } from '../../../reducers';
 
 // ---- Action Import ----
-import { actionToggleLogInForm } from '../../actions/user';
+import { actionToggleLogInForm } from '../../../actions/user';
 
 // ---- Components Import ----
 import MobileNav from './MobileNav';
-import FormFilters from '../FormFilters';
+import FormFilters from '../../FormFilters';
 import NavBar from './NavBar';
 import Profiles from './Profiles';
 

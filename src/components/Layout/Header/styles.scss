@@ -1,4 +1,4 @@
-@use './../../styles/vars';
+@use './../../../styles/vars';
 
 .Nav__logo {
   display: none;
@@ -124,7 +124,7 @@
 
 @media only screen and (min-width: 1200px) {
   .header {
-    background-image: url('./../../assets/images/roselyn-tirado-GDWmu0bFfS4-unsplash.png');
+    background-image: url('./../../../assets/images/roselyn-tirado-GDWmu0bFfS4-unsplash.png');
     background-size: 100%;
     background-size: cover;
     background-repeat: no-repeat;

@@ -23,7 +23,7 @@ import { GlobalState } from '../../reducers';
 import { findAdvert } from '../../selectors/advertisements';
 
 // ---- Components Import ----
-import Field from '../Field';
+import Field from '../InscriptionForm/Field';
 import SkillsSelect from '../SkillsSelect';
 import Spinner from '../Spinner';
 
