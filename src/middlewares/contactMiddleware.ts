@@ -1,22 +1,33 @@
+// ---- Axios Import ----
 import axios from 'axios';
+
+// ---- TypeScript Import ----
 import { Middleware } from 'redux';
+
+// ---- Action Import ----
 import {
   actionMessageSystem,
   actionSubmitContactSuccess,
   SUBMIT_CONTACT_FORM,
 } from '../actions/contact';
+
+// ---- Action Import ----
 import { actionToggleLoader } from '../actions/user';
+
+// ---- Utils Import ----
 import { getUrlApi } from '../utils/utils';
 
-const urlAPI = getUrlApi();
-
 const contactMiddleware: Middleware = (store) => (next) => (action) => {
+  const urlAPI = getUrlApi();
+
   switch (action.type) {
     case SUBMIT_CONTACT_FORM: {
       store.dispatch(actionToggleLoader());
+
       const { lastname, firstname, subject, email, message } =
         store.getState().contact;
       const fullname = `${lastname} ${firstname}`;
+
       axios
         .post(`${urlAPI}api/contact`, {
           fullName: fullname,
@@ -49,8 +60,10 @@ const contactMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     default:
       return next(action);
   }

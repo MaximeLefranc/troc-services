@@ -45,6 +45,7 @@ function FormFilters() {
   };
   const { pathname } = useLocation();
   const classNameVariant: string = pathname !== '/' ? 'header__' : '';
+
   const handlerSubmitSearchBar = (evt: SyntheticEvent) => {
     evt.preventDefault();
     if (pathname.split('/')[1] === 'profils') {

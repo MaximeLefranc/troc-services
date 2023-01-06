@@ -1,7 +1,8 @@
+// ---- Redux Import ----
 import { combineReducers } from 'redux';
 
+// ---- TypeScript Import ----
 import userReducer, { UserState } from './user';
-
 import inscriptionReducer, { InscriptionState } from './inscription';
 import advertisementsReducer, { AdvertsState } from './advertisements';
 import messagesReducer, { MessagesState } from './messages';

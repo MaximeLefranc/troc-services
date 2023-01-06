@@ -1,6 +1,13 @@
+// ---- Redux Import ----
 import { legacy_createStore as createStore, applyMiddleware } from 'redux';
+
+// ---- Redux dev-tool Import ----
 import { composeWithDevTools } from 'redux-devtools-extension';
+
+// ---- Reducer Import ----
 import reducer from '../reducers/index';
+
+// ---- Middlewares Import ----
 import authentMiddleware from '../middlewares/authentMiddleware';
 import inscriptionMiddleware from '../middlewares/inscriptionMiddleware';
 import advertsMiddleware from '../middlewares/advertsMiddleware';

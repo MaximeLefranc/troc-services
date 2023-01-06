@@ -1,5 +1,10 @@
+// ---- Axios Import ----
 import axios from 'axios';
+
+// ---- TypeScript Import ----
 import { Middleware } from 'redux';
+
+// ---- Action Import ----
 import {
   actionErrorMessageSent,
   actionFetchAllMessagesForOneUser,
@@ -11,10 +16,13 @@ import {
   SEND_MESSAGE,
 } from '../actions/messages';
 import { actionToggleLoader } from '../actions/user';
+
+// ---- Utils Import ----
 import { getUrlApi } from '../utils/utils';
 
 const messagesMiddleware: Middleware = (store) => (next) => (action) => {
   const urlAPI = getUrlApi();
+
   const id = localStorage.getItem('id_troc_services');
   const token = localStorage.getItem('token_troc_services');
   const config = {
@@ -22,6 +30,7 @@ const messagesMiddleware: Middleware = (store) => (next) => (action) => {
       Authorization: `Bearer ${token}`,
     },
   };
+
   switch (action.type) {
     case FETCH_ALL_MESSAGES_FOR_ONE_USER: {
       const requestMessagesReceived = axios.get(
@@ -32,6 +41,7 @@ const messagesMiddleware: Middleware = (store) => (next) => (action) => {
         `${urlAPI}api/user/${id}/messages/sent`,
         config
       );
+
       axios
         .all([requestMessagesReceived, requestMessagesSent])
         .then(
@@ -44,10 +54,13 @@ const messagesMiddleware: Middleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.error(error);
         });
+
       return next(action);
     }
+
     case DELETE_MESSAGE: {
       store.dispatch(actionToggleLoader());
+
       axios
         .put(
           `${urlAPI}api/messages/${action.payload}/delete`,
@@ -65,12 +78,16 @@ const messagesMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     case SEND_MESSAGE: {
       store.dispatch(actionToggleLoader());
+
       const { subject, message } = store.getState().messages;
       const idSender = localStorage.getItem('id_troc_services');
+
       axios
         .post(
           `${urlAPI}api/user/${idSender}/messages/send`,
@@ -96,10 +113,13 @@ const messagesMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     case MESSAGE_IS_READ: {
       store.dispatch(actionToggleLoader());
+
       axios
         .put(
           `${urlAPI}api/messages/${action.payload}/edit`,
@@ -117,8 +137,10 @@ const messagesMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     default:
       return next(action);
   }

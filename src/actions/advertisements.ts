@@ -1,4 +1,7 @@
+// ---- React-Select Import ----
 import { MultiValue } from 'react-select';
+
+// ---- TypeScript Import ----
 import { Adverts } from '../components/Cards/AdvertsCards';
 import { Skills } from '../components/SkillsSelect';
 
