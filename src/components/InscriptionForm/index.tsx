@@ -24,7 +24,7 @@ import { checkPassword } from '../../utils/utils';
 // ---- Components Import ----
 import SkillsSelect from '../SkillsSelect';
 import Spinner from '../Spinner';
-import Field from '../Field';
+import Field from './Field';
 
 // ---- Styles Import ----
 import './styles.scss';

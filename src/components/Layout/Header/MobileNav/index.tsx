@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import {
   actionToggleBurgerMenu,
   actionToggleLogInForm,
-} from '../../../actions/user';
+} from '../../../../actions/user';
 
 // ---- TypeScript Import ----
-import { GlobalState } from '../../../reducers';
-import { Category } from '../../SkillsSelect';
+import { GlobalState } from '../../../../reducers';
+import { Category } from '../../../SkillsSelect';
 
 // ---- Components Import ----
 import NavDropdown from '../NavBar/NavDropdown';

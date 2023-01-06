@@ -146,3 +146,29 @@ export function findMembersBySearchBar(
   }
   return false;
 }
+
+/**
+ * Check if this member are an admin.
+ * @param pseudo Pseudo of member connected
+ * @param listOfMembers List of member from user state
+ * @returns {boolean} true or false
+ */
+export function isHeAdmin(
+  pseudo: string | null,
+  listOfMembers: User[]
+): boolean {
+  if (typeof pseudo === 'string') {
+    const member = listOfMembers.find(
+      (memberElement: User) => pseudo === memberElement.nickname
+    );
+    if (member !== undefined) {
+      const admin = member.roles.find((role) => role === 'ROLE_ADMIN');
+      if (admin) {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+  return false;
+}

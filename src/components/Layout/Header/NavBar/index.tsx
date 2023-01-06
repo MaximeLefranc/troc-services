@@ -1,5 +1,5 @@
 // ---- TypeScript Import ----
-import { Category } from '../../SkillsSelect';
+import { Category } from '../../../SkillsSelect';
 
 // ---- Component Import ----
 import NavDropdown from './NavDropdown';

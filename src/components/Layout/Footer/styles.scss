@@ -1,6 +1,9 @@
-@use './../../styles/vars';
+@use './../../../styles/vars';
 
 .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: vars.$font-transparent-color;
   position: fixed;
   bottom: 0;
@@ -8,13 +11,14 @@
   width: 100vw;
   height: 2.5em;
   &__link {
+    width: 15%;
+    // margin: 0 2rem;
     display: block;
     text-align: center;
     color: vars.$main-color;
-    font-size: 1.3em;
-    padding-top: .4em;
+    font-size: 1rem;
     &:hover {
-      color: vars.$font-color;
+      color: vars.$dark-color;
     }
   }
 }
@@ -23,8 +27,7 @@
   .footer {
     height: 4em;
     &__link {
-      font-size: 1.5em;
-      padding-top: .7em;
+      font-size: 1.1rem;
     }
   }
 }

@@ -3,27 +3,27 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // ---- Images Import ----
-import logoUser from './../../../assets/icons/user.png';
-import logoEnvelopet from './../../../assets/icons/envelope.png';
-import logoLogout from './../../../assets/icons/log-out.png';
+import logoUser from './../../../../assets/icons/user.png';
+import logoEnvelopet from './../../../../assets/icons/envelope.png';
+import logoLogout from './../../../../assets/icons/log-out.png';
 
 // ---- TypeScript Import ----
-import { GlobalState } from '../../../reducers';
+import { GlobalState } from '../../../../reducers';
 import { MutableRefObject, useRef } from 'react';
-import { User } from '../../Cards/ProfilesCards';
+import { User } from '../../../Cards/ProfilesCards';
 
 // ---- Action Import ----
-import { actionLogOut } from '../../../actions/user';
+import { actionLogOut } from '../../../../actions/user';
 
 // ---- Selector Import ----
-import { findMember } from '../../../selectors/members';
-import { haveMessagesNotRead } from '../../../selectors/messages';
+import { findMember } from '../../../../selectors/members';
+import { haveMessagesNotRead } from '../../../../selectors/messages';
 
 // ---- Utils Import ----
-import { getUrlApi } from '../../../utils/utils';
+import { getUrlApi } from '../../../../utils/utils';
 
 // ---- Component Import ----
-import Spinner from '../../Spinner';
+import Spinner from '../../../Spinner';
 
 // ---- Styles Import ----
 import './styles.scss';

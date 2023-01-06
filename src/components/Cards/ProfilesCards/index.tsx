@@ -21,6 +21,7 @@ export interface User {
   imageName: string;
   city: string;
   zip_code: string;
+  roles: string[];
   advertisements: {
     id: number;
     title: string;

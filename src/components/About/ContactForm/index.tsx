@@ -4,20 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
-import { variantsDetail } from '../../utils/framerMotionVariants';
+import { variantsDetail } from '../../../utils/framerMotionVariants';
 
 // ---- Action Import ----
 import {
   actionChangeInputValueContact,
   actionSubmitContactForm,
-} from '../../actions/contact';
+} from '../../../actions/contact';
 
 // ---- TypeScript Import ----
-import { GlobalState } from '../../reducers';
+import { GlobalState } from '../../../reducers';
 
 // ---- Components Import ----
-import Field from '../Field';
-import Spinner from '../Spinner';
+import Field from '../../InscriptionForm/Field';
+import Spinner from '../../Spinner';
 
 // ---- Styles Import ----
 import './styles.scss';
