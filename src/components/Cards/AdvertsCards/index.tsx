@@ -1,15 +1,25 @@
+// ---- React Import ----
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
+import { variantsCards } from '../../../utils/framerMotionVariants';
+
+// ---- Action Import ----
 import { actionToggleSubmitSuccess } from '../../../actions/advertisements';
-import { actionFetchAllMessagesForOneUser } from '../../../actions/messages';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../../reducers';
+
+// ---- Components Import ----
 import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import Card from '../Card';
+
+// ---- Styles Import ----
 import './../styles.scss';
-import { variantsCards } from '../../../utils/framerMotionVariants';
 
 export interface Adverts {
   id: number;
@@ -41,10 +51,6 @@ function AdvertsCards(): JSX.Element {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actionToggleSubmitSuccess(false, ''));
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
   }, []);
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const advertList = useSelector(

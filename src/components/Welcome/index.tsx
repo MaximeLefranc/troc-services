@@ -1,12 +1,25 @@
+// ---- React Import ----
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+// ---- Action Import ----
 import { actionLogOut, actionToggleLogInForm } from '../../actions/user';
+
+// ---- Vidéo Import ----
 import backgroundVideo from './../../assets/video/trocservices.mp4';
+
+// ---- Logo Import ----
 import logo from './../../assets/logo/troc-services-sansBG.svg';
+
+// ---- Components Import ----
 import FormFilters from '../FormFilters';
 import Presentation from './Presentation';
-import './styles.scss';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
+
+// ---- Styles Import ----
+import './styles.scss';
 
 function Welcome() {
   const dispatch = useDispatch();

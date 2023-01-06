@@ -1,4 +1,8 @@
+// ---- TypeScript Import ----
 import { AnyAction } from 'redux';
+import { Category } from '../components/SkillsSelect';
+
+// ---- Actions Import ----
 import {
   ADD_ADVERTS_IN_STATE,
   ADD_MESSAGE,
@@ -9,7 +13,6 @@ import {
   SUBMIT_NEW_ADVERT_ERROR,
   TOGGLE_SUBMIT_SUCCESS,
 } from '../actions/advertisements';
-import { Category } from '../components/SkillsSelect';
 
 export interface AdvertsState {
   listOfAdverts: [];
@@ -79,7 +82,7 @@ const advertisementsReducer = (
         message: action.payload.message,
         submitSuccess: action.payload.trueOrFalse,
       };
-    case SET_INFO_ADVERT_IN_INPUTS_STATE:
+    case SET_INFO_ADVERT_IN_INPUTS_STATE: {
       const skills = action.payload.skills.map((skill: Category) => {
         return { value: skill.id, label: skill.name };
       });
@@ -89,6 +92,7 @@ const advertisementsReducer = (
         descriptionInput: action.payload.content,
         skills: skills,
       };
+    }
     default:
       return state;
   }

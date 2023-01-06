@@ -1,5 +1,10 @@
+// ---- Axios Import ----
 import axios from 'axios';
+
+// ---- TypeScript Import ----
 import { Middleware } from 'redux';
+
+// ---- Action Import ----
 import {
   actionAddAdvertsInState,
   actionAddSkillsInState,
@@ -17,12 +22,15 @@ import {
   actionSaveAllMemebersInState,
   actionToggleLoader,
 } from '../actions/user';
+
+// ---- Selector Import ----
 import { arrayIdsSkills } from '../selectors/members';
+
+// ---- Utils Import ----
 import { getUrlApi } from '../utils/utils';
 
-const urlAPI = getUrlApi();
-
 const advertsMiddleware: Middleware = (store) => (next) => (action) => {
+  const urlAPI = getUrlApi();
   const { titleInput, picture, descriptionInput, skills } =
     store.getState().advertisements;
   const skillsIds = arrayIdsSkills(skills);
@@ -34,6 +42,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
   };
   const formData = new FormData();
   formData.append('file', picture);
+
   switch (action.type) {
     case FETCH_ADVERTISEMENTS_SKILLS_AND_USERS: {
       store.dispatch(actionToggleLoader());
@@ -60,10 +69,13 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     case SUBMIT_NEW_ADVERT: {
       store.dispatch(actionToggleLoader());
+
       const pseudo = localStorage.getItem('pseudo_troc_services');
       const token = localStorage.getItem('token_troc_services');
       const config = {
@@ -111,10 +123,13 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     case FETCH_ADVERT_FOR_MODIFICATION: {
       store.dispatch(actionToggleLoader());
+
       axios
         .get(`${urlAPI}api/advertisements/${action.payload}`)
         .then((response) => {
@@ -128,10 +143,13 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
         .finally(() => {
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     case EDIT_IN_DB_THIS_ADVERT: {
       store.dispatch(actionToggleLoader());
+
       const pseudo = localStorage.getItem('pseudo_troc_services');
       const token = localStorage.getItem('token_troc_services');
       const config = {
@@ -139,6 +157,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
           Authorization: `Bearer ${token}`,
         },
       };
+
       axios
         .put(
           `${urlAPI}api/advertisements/${action.payload}/edit`,
@@ -182,16 +201,20 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     case DELETE_ADVERT: {
       store.dispatch(actionToggleLoader());
+
       const token = localStorage.getItem('token_troc_services');
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
+
       axios
         .put(
           `${urlAPI}api/advertisements/${action.payload}/edit`,
@@ -210,8 +233,10 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     default:
       return next(action);
   }

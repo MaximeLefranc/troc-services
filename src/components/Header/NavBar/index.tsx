@@ -1,5 +1,10 @@
+// ---- TypeScript Import ----
 import { Category } from '../../SkillsSelect';
+
+// ---- Component Import ----
 import NavDropdown from './NavDropdown';
+
+// ---- Styles Import ----
 import './styles.scss';
 
 interface NavBarProps {

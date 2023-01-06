@@ -1,5 +1,10 @@
+// ---- React-Select Import ----
 import { MultiValue } from 'react-select';
+
+// ---- TypeScript Import ----
 import { Skills } from '../components/SkillsSelect';
+
+// ---- Reducer Import ----
 import { InscriptionState } from '../reducers/inscription';
 
 /*=====================================

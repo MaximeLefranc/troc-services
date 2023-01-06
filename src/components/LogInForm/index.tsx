@@ -1,12 +1,21 @@
-import { SyntheticEvent } from 'react';
+// ---- React Import ----
 import { useDispatch, useSelector } from 'react-redux';
+
+// ---- TypeScript Import ----
+import { SyntheticEvent } from 'react';
+import { GlobalState } from '../../reducers';
+
+// ---- Action Import ----
 import {
   actionChangeInputValueConnection,
   actionFetchAuthentUser,
   actionToggleLogInForm,
 } from '../../actions/user';
-import { GlobalState } from '../../reducers';
+
+// ---- Component Import ----
 import FieldLogIn from './FieldLogIn';
+
+// ---- Styles Import ----
 import './styles.scss';
 
 function LogInForm(): JSX.Element {

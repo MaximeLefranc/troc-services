@@ -1,16 +1,26 @@
-import { SyntheticEvent, useEffect } from 'react';
+// ---- React Import ----
+import { SyntheticEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
+import { variantsDetail } from '../../utils/framerMotionVariants';
+
+// ---- Action Import ----
 import {
   actionChangeInputValueContact,
   actionSubmitContactForm,
 } from '../../actions/contact';
-import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
+
+// ---- Components Import ----
 import Field from '../Field';
 import Spinner from '../Spinner';
+
+// ---- Styles Import ----
 import './styles.scss';
-import { variantsDetail } from '../../utils/framerMotionVariants';
 
 function ContactForm() {
   const dispatch = useDispatch();
@@ -37,13 +47,6 @@ function ContactForm() {
     evt.preventDefault();
     dispatch(actionSubmitContactForm());
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
 
   if (isLoading) {
     return <Spinner />;

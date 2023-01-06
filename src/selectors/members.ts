@@ -1,9 +1,12 @@
+// ---- Typecript Import ----
 import { User } from '../components/Cards/ProfilesCards';
 import { Skills } from '../components/SkillsSelect';
+
+// ---- Utils Import ----
 import { strNoAccent } from '../utils/utils';
 
 /**
- * Search in User state one memeber by this nickname
+ * Search in User state one member by this nickname
  * @param listOfMembers members array in state
  * @param searchedSlug  pseudo of member to searched
  * @returns {Array | false} One member or false if doen't exist
@@ -25,6 +28,12 @@ export function findMember(
   return false;
 }
 
+/**
+ * Search in User state one member with this name skill
+ * @param memberList Members array in state
+ * @param searchedSlug Name(Skills) of member to searched
+ * @returns @returns {User[] | false} Array of members or false if doen't exist
+ */
 export function findMembersBySkills(
   memberList: [],
   searchedSlug: string | undefined
@@ -59,7 +68,7 @@ export function arrayIdsSkills(arrayOfSkills: Skills[]): number[] {
 }
 
 /**
- * Search in User state one memeber by this ID
+ * Search in User state one member by this ID
  * @param listOfMembers members array in state
  * @param searchedSlugId  id of member to searched
  * @returns {Array | false} One member or false if doen't exist

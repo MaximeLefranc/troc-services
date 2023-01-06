@@ -1,5 +1,10 @@
+// ---- Axios Import ----
 import axios from 'axios';
+
+// ---- TypeScript Import ----
 import { Middleware } from 'redux';
+
+// ---- Actions Import ----
 import { actionFetchAdvertsementsSkillsAndUsers } from '../actions/advertisements';
 import {
   actionErrorMessageInscription,
@@ -11,12 +16,16 @@ import {
   SUBMIT_INSCRIPTION_FORM,
 } from '../actions/inscription';
 import { actionLogOut, actionToggleLoader } from '../actions/user';
+
+// ---- Selector Import ----
 import { arrayIdsSkills } from '../selectors/members';
+
+// ---- Utils Import ----
 import { getUrlApi } from '../utils/utils';
 
-const urlAPI = getUrlApi();
-
 const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
+  const urlAPI = getUrlApi();
+
   const {
     nickname,
     lastname,
@@ -33,11 +42,14 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
   } = store.getState().inscription;
   const formData = new FormData();
   formData.append('file', picture);
+
   switch (action.type) {
     case SUBMIT_INSCRIPTION_FORM: {
       store.dispatch(actionToggleLoader());
+
       const townToLowerCase = town.toLowerCase();
       const skillsIds = arrayIdsSkills(skills);
+
       axios
         .post(`${urlAPI}api/user/new`, {
           email: email,
@@ -88,15 +100,16 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log(error);
           store.dispatch(actionInscriptionError(error.response.data));
         })
         .finally(() => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     case FETCH_PROFILE_USER_FOR_MODIFICATION: {
       axios
         .get(`${urlAPI}api/user/${localStorage.getItem('id_troc_services')}`)
@@ -110,10 +123,13 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
             )
           );
         });
+
       return next(action);
     }
+
     case EDIT_IN_DB_THIS_PROFILE_USER: {
       store.dispatch(actionToggleLoader());
+
       const token = localStorage.getItem('token_troc_services');
       const skillsIds = arrayIdsSkills(skills);
       const townToLowerCase = town.toLowerCase();
@@ -134,6 +150,7 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
         city: townToLowerCase,
         zip_code: zip,
       };
+
       axios
         .put(
           `${urlAPI}api/user/${localStorage.getItem('id_troc_services')}/edit`,
@@ -141,7 +158,6 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           config
         )
         .then((response) => {
-          console.log(response);
           if (response.status === 206 && picture !== '') {
             axios
               .post(
@@ -191,8 +207,10 @@ const inscriptionMiddleware: Middleware = (store) => (next) => (action) => {
           store.dispatch(actionFetchAdvertsementsSkillsAndUsers());
           store.dispatch(actionToggleLoader());
         });
+
       return next(action);
     }
+
     default:
       return next(action);
   }

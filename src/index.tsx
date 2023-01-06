@@ -1,10 +1,21 @@
+// ---- React DOM Import ----
 import ReactDOM from 'react-dom/client';
-import './styles/index.scss';
+
+// ---- Component Import ----
 import TrocServices from './components/TrocServices/index';
+
+// ---- Test performance Import ----
 import reportWebVitals from './reportWebVitals';
+
+// ---- React Rooter DOM Import ----
 import { BrowserRouter } from 'react-router-dom';
+
+// ---- Redux Import ----
 import { Provider } from 'react-redux';
 import store from './store/index';
+
+// ---- Styles Import ----
+import './styles/index.scss';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

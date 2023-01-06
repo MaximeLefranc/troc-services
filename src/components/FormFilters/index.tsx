@@ -1,15 +1,24 @@
-import '../Welcome/styles.scss';
+// ---- React Import ----
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+// ---- Action Import ----
 import {
   actionChangeInputValueSearchBar,
   actionSaveResultOfResearchAdverts,
   actionSaveResultOfResearchMembers,
 } from '../../actions/searchBar';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
 import { ChangeEvent, SyntheticEvent } from 'react';
+
+// ---- Components Import ----
 import { findAdvertsBySearchBar } from '../../selectors/advertisements';
 import { findMembersBySearchBar } from '../../selectors/members';
+
+// ---- Styles Import ----
+import '../Welcome/styles.scss';
 
 function FormFilters() {
   const dispatch = useDispatch();
@@ -36,6 +45,7 @@ function FormFilters() {
   };
   const { pathname } = useLocation();
   const classNameVariant: string = pathname !== '/' ? 'header__' : '';
+
   const handlerSubmitSearchBar = (evt: SyntheticEvent) => {
     evt.preventDefault();
     if (pathname.split('/')[1] === 'profils') {
@@ -56,7 +66,6 @@ function FormFilters() {
       searchName,
       searchZipCode
     );
-    console.log(advertFiltered);
     if (advertFiltered !== false) {
       dispatch(actionSaveResultOfResearchAdverts(advertFiltered));
     } else {

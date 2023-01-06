@@ -1,17 +1,27 @@
-import './styles.scss';
+// ---- React Import ----
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+// ---- Logo Import ----
 import logo from '../../assets/logo/troc-services-logo.svg';
+
+// ---- TypeScript Import ----
+import { GlobalState } from '../../reducers';
+
+// ---- Action Import ----
+import { actionToggleLogInForm } from '../../actions/user';
+
+// ---- Components Import ----
 import MobileNav from './MobileNav';
 import FormFilters from '../FormFilters';
 import NavBar from './NavBar';
-import { Link, useLocation } from 'react-router-dom';
 import Profiles from './Profiles';
-import { GlobalState } from '../../reducers';
-import { useDispatch, useSelector } from 'react-redux';
-import { actionToggleLogInForm } from '../../actions/user';
+
+// ---- Styles Import ----
+import './styles.scss';
 
 function Header(): JSX.Element {
   const { pathname } = useLocation();
-  console.log(pathname.split('/'));
   const listOfSkills = useSelector(
     (state: GlobalState) => state.advertisements.listOfSkills
   );
@@ -22,8 +32,6 @@ function Header(): JSX.Element {
   };
 
   const logged = useSelector((state: GlobalState) => state.user.isLoggedIn);
-
-  /* mettre le logo en 1er et en dessous le button deposer l'annonce puis la nav*/
 
   return (
     <header className="header">

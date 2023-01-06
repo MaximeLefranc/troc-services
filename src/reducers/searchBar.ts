@@ -1,4 +1,7 @@
+// ---- TypeScript Import ----
 import { AnyAction } from 'redux';
+
+// ---- Actions Import ----
 import {
   CHANGE_INPUT_VALUE_SEARCHBAR,
   SAVE_RESULT_OF_RESEARCH_ADVERTS,

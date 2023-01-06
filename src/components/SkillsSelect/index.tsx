@@ -1,10 +1,19 @@
+// ---- React Import ----
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+
+// ---- React-select Import ----
 import Select, { MultiValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
+
+// ---- Actions Import ----
 import { actionAddSkillsNewAdvert } from '../../actions/advertisements';
 import { actionAddInscriptionSkills } from '../../actions/inscription';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../reducers';
+
+// ---- Styles Import ----
 import './../InscriptionForm/styles.scss';
 
 export interface Category {

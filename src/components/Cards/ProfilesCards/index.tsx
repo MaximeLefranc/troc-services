@@ -1,10 +1,15 @@
-import { motion } from 'framer-motion';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// ---- React Import ----
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { actionFetchAllMessagesForOneUser } from '../../../actions/messages';
-import { GlobalState } from '../../../reducers';
+
+// ---- Framer-Motion Import ----
+import { motion } from 'framer-motion';
 import { variantsCards } from '../../../utils/framerMotionVariants';
+
+// ---- TypeScript Import ----
+import { GlobalState } from '../../../reducers';
+
+// ---- Components Import ----
 import NotFound404 from '../../NotFound404';
 import Spinner from '../../Spinner';
 import Card from '../Card';
@@ -28,17 +33,10 @@ export interface User {
 }
 
 function ProfilesCards(): JSX.Element {
-  const dispatch = useDispatch();
   const usersFromSate = useSelector(
     (state: GlobalState) => state.user.listOfMembers
   );
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
   if (isLoading) {
     return <Spinner />;
   }

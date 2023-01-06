@@ -1,4 +1,7 @@
+// ---- TypeScript Import ----
 import { AnyAction } from 'redux';
+
+// ---- Actions Import ----
 import {
   AUTHENT_ERROR,
   AUTHENT_SUCCESS,
@@ -53,7 +56,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         ...state,
         isLoading: !state.isLoading,
       };
-    case AUTHENT_SUCCESS:
+    case AUTHENT_SUCCESS: {
       localStorage.setItem('token_troc_services', action.payload.token);
       localStorage.setItem('pseudo_troc_services', action.payload.pseudo);
       localStorage.setItem('id_troc_services', action.payload.id);
@@ -65,12 +68,13 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         isLoggedIn: true,
         pseudo: action.payload.pseudo,
       };
+    }
     case AUTHENT_ERROR:
       return {
         ...state,
         messageAuthent: action.payload,
       };
-    case HAVE_TOKEN_IN_LOCALSTORAGE:
+    case HAVE_TOKEN_IN_LOCALSTORAGE: {
       if (localStorage.getItem('token_troc_services')) {
         return {
           ...state,
@@ -83,7 +87,8 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
           isLoggedIn: false,
         };
       }
-    case LOG_OUT:
+    }
+    case LOG_OUT: {
       localStorage.removeItem('token_troc_services');
       localStorage.removeItem('pseudo_troc_services');
       localStorage.removeItem('id_troc_services');
@@ -93,6 +98,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         isLoggedIn: false,
         pseudo: '',
       };
+    }
     case SAVE_ALL_MEMBERS_IN_STATE:
       return {
         ...state,

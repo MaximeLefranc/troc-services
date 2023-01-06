@@ -1,4 +1,7 @@
+// ---- TypeScript Import ----
 import { AnyAction } from 'redux';
+
+// ---- Actions Import ----
 import {
   CHANGE_INPUT_VALUE_MESSAGE,
   ERROR_MESSAGE_SENT,

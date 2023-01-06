@@ -1,14 +1,23 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
-import { GlobalState } from '../../reducers';
-import './styles.scss';
-import Spinner from '../Spinner';
-import { useEffect } from 'react';
-import Message from './Message';
-import { SentOrReceivedMessages } from '../../selectors/messages';
+// ---- React Import ----
+import { useSelector } from 'react-redux';
 import { Link, Navigate, useLocation } from 'react-router-dom';
-import { actionFetchAllMessagesForOneUser } from '../../actions/messages';
+
+// ---- Framer-Motion Import ----
+import { motion } from 'framer-motion';
 import { variantsSimple } from '../../utils/framerMotionVariants';
+
+// ---- TypeScript Import ----
+import { GlobalState } from '../../reducers';
+
+// ---- Selector Import ----
+import { SentOrReceivedMessages } from '../../selectors/messages';
+
+// ---- Components Import ----
+import Spinner from '../Spinner';
+import Message from './Message';
+
+// ---- Styles Import ----
+import './styles.scss';
 
 export interface MessageDetail {
   id: number;
@@ -26,7 +35,6 @@ export interface MessagesInterface {
 }
 
 function ListMessages(): JSX.Element {
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
   const searchReceivedOrSentMessages =
@@ -37,12 +45,6 @@ function ListMessages(): JSX.Element {
       searchReceivedOrSentMessages
     )
   );
-  useEffect(() => {
-    if (localStorage.getItem('token_troc_services')) {
-      dispatch(actionFetchAllMessagesForOneUser());
-    }
-    window.scrollTo(0, 0);
-  }, []);
   if (!localStorage.getItem('token_troc_services')) {
     return <Navigate to="/inscription" replace />;
   }

@@ -1,18 +1,32 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import './styles.scss';
+// ---- React Import ----
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+// ---- Images Import ----
 import logoUser from './../../../assets/icons/user.png';
 import logoEnvelopet from './../../../assets/icons/envelope.png';
 import logoLogout from './../../../assets/icons/log-out.png';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../../reducers';
-import { actionLogOut } from '../../../actions/user';
-import { findMember } from '../../../selectors/members';
-import { getUrlApi } from '../../../utils/utils';
-import { User } from '../../Cards/ProfilesCards';
-import Spinner from '../../Spinner';
-import { haveMessagesNotRead } from '../../../selectors/messages';
 import { MutableRefObject, useRef } from 'react';
+import { User } from '../../Cards/ProfilesCards';
+
+// ---- Action Import ----
+import { actionLogOut } from '../../../actions/user';
+
+// ---- Selector Import ----
+import { findMember } from '../../../selectors/members';
+import { haveMessagesNotRead } from '../../../selectors/messages';
+
+// ---- Utils Import ----
+import { getUrlApi } from '../../../utils/utils';
+
+// ---- Component Import ----
+import Spinner from '../../Spinner';
+
+// ---- Styles Import ----
+import './styles.scss';
 
 function Profiles(): JSX.Element {
   const url = getUrlApi();

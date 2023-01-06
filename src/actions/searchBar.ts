@@ -1,3 +1,4 @@
+// ---- TypeScript Import ----
 import { Adverts } from '../components/Cards/AdvertsCards';
 import { User } from '../components/Cards/ProfilesCards';
 

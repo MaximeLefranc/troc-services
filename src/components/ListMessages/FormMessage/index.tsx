@@ -1,20 +1,35 @@
+// ---- React Import ----
 import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
+
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
+import { variantsCards } from '../../../utils/framerMotionVariants';
+
+// ---- Action Import ----
 import {
   actionChangeInputValueMessage,
   actionSendMessage,
   actionSetTitleAdvertInSubjectState,
 } from '../../../actions/messages';
+
+// ---- TypeScript Import ----
 import { GlobalState } from '../../../reducers';
+
+// ---- Selectors Import ----
 import { findAdvert } from '../../../selectors/advertisements';
 import { findMemberById } from '../../../selectors/members';
+
+// ---- Utils Import ----
 import { getUrlApi } from '../../../utils/utils';
+
+// ---- Components Import ----
 import Field from '../../Field';
 import Spinner from '../../Spinner';
+
+// ---- Styles Import ----
 import './styles.scss';
-import { variantsCards } from '../../../utils/framerMotionVariants';
 
 function FormMessage(): JSX.Element {
   const urlAPI = getUrlApi();
@@ -48,10 +63,6 @@ function FormMessage(): JSX.Element {
       dispatch(actionSetTitleAdvertInSubjectState(''));
     }
   }, [listOfAdverts]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   if (isLoading) {
     return <Spinner />;

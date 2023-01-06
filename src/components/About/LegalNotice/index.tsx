@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
+// ---- Framer-Motion Import ----
 import { motion } from 'framer-motion';
-import './styles.scss';
 import { variantsSimple } from '../../../utils/framerMotionVariants';
 
+// ---- Styles Import ----
+import './styles.scss';
+
 function LegalNotice(): JSX.Element {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <motion.section
       className="legalnotice"

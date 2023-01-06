@@ -1,4 +1,7 @@
+// ---- Typecript Import ----
 import { Adverts } from '../components/Cards/AdvertsCards';
+
+// ---- Utils Import ----
 import { strNoAccent } from '../utils/utils';
 
 /**
@@ -12,6 +15,7 @@ export function findAdvert(
   searchedSlug: string | undefined
 ): Adverts | string | void {
   let advertFiltered: Adverts[] | undefined = [];
+
   if (typeof searchedSlug === 'string') {
     const id = parseInt(searchedSlug);
     advertFiltered = listOfAdverts.find(
@@ -25,7 +29,7 @@ export function findAdvert(
 }
 
 /**
- * Search in Advertissements state advert with this name Skills
+ * Search in Advertissements state one advert with this name Skills
  * @param listOfAdverts Advertisements array in state
  * @param searchedSlug  Name(Skills) of advertisement to searched
  * @returns {Adverts[] | false} Array of advert or false if doen't exist
@@ -53,8 +57,7 @@ export function findAdvertsBySkills(
 }
 
 /**
- * Search in Advertissements state advert
- * with this name Skills and/or the zipCode
+ * Search in Advertissements state advert with this name Skills and/or the zipCode
  * @param listOfAdverts Advertisements array in state
  * @param searchedSkill  Skill of advertisement to searched
  * @param searchedZipCode  zipCode of advertisement to searched
@@ -72,7 +75,7 @@ export function findAdvertsBySearchBar(
     const advertFiltered: Adverts[] = [];
     const searchedSkillClean = strNoAccent(searchedSkill).toLowerCase().trim();
     const searchedZipCodeClean = searchedZipCode.trim();
-
+    console.log(searchedSkill, searchedSkillClean);
     listOfAdverts.filter((advertElement: Adverts) => {
       if (searchedZipCode !== '' && searchedSkill === '') {
         if (searchedZipCodeClean === advertElement.user.zip_code.trim()) {

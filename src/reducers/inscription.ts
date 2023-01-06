@@ -1,4 +1,8 @@
+// ---- TypeScript Import ----
 import { AnyAction } from 'redux';
+import { Category } from '../components/SkillsSelect';
+
+// ---- Actions Import ----
 import {
   ADD_INSCRIPTION_SKILLS_IN_STATE,
   CHANGE_INPUT_VALUE_INSCRIPTION,
@@ -7,7 +11,6 @@ import {
   INSCRIPTION_SUCCESS,
   SET_INFO_PROFILE_IN_INPUTS_STATE,
 } from '../actions/inscription';
-import { Category } from '../components/SkillsSelect';
 
 export interface InscriptionState {
   nickname: string;
@@ -24,7 +27,7 @@ export interface InscriptionState {
   password: string;
   passwordConfirmation: string;
   message: string;
-  inscriptionCompleted: boolean;
+  inscriptionError: boolean;
 }
 
 export const initialState: InscriptionState = {
@@ -42,7 +45,7 @@ export const initialState: InscriptionState = {
   password: '',
   passwordConfirmation: '',
   message: '',
-  inscriptionCompleted: false,
+  inscriptionError: false,
 };
 
 const inscriptionReducer = (
@@ -88,8 +91,9 @@ const inscriptionReducer = (
       return {
         ...state,
         message: action.payload,
+        inscriptionError: true,
       };
-    case SET_INFO_PROFILE_IN_INPUTS_STATE:
+    case SET_INFO_PROFILE_IN_INPUTS_STATE: {
       const skills = action.payload.skill.map((skill: Category) => {
         return { value: skill.id, label: skill.name };
       });
@@ -106,6 +110,7 @@ const inscriptionReducer = (
         description: action.payload.biography,
         skills: skills,
       };
+    }
     default:
       return state;
   }
