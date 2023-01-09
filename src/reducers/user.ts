@@ -14,6 +14,9 @@ import {
   TOGGLE_LOGIN_FORM,
 } from '../actions/user';
 
+// ---- Selector Import ----
+import { isHeAdmin } from '../selectors/members';
+
 export interface UserState {
   isLoading: boolean;
   modalLogInForm: boolean;
@@ -24,6 +27,7 @@ export interface UserState {
   messageAuthent: string;
   burgerMenuIsOpen: boolean;
   listOfMembers: [];
+  admin: boolean;
 }
 
 export const initialState: UserState = {
@@ -36,6 +40,7 @@ export const initialState: UserState = {
   messageAuthent: '',
   burgerMenuIsOpen: false,
   listOfMembers: [],
+  admin: false,
 };
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
@@ -57,9 +62,11 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         isLoading: !state.isLoading,
       };
     case AUTHENT_SUCCESS: {
+      const isAdmin = isHeAdmin(action.payload.roles);
       localStorage.setItem('token_troc_services', action.payload.token);
       localStorage.setItem('pseudo_troc_services', action.payload.pseudo);
       localStorage.setItem('id_troc_services', action.payload.id);
+      localStorage.setItem('admin_troc_services', JSON.stringify(isAdmin));
       return {
         ...state,
         modalLogInForm: false,
@@ -67,6 +74,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
         password: '',
         isLoggedIn: true,
         pseudo: action.payload.pseudo,
+        admin: isAdmin,
       };
     }
     case AUTHENT_ERROR:
@@ -80,6 +88,10 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
           ...state,
           isLoggedIn: true,
           pseudo: localStorage.getItem('pseudo_troc_services'),
+          admin:
+            localStorage.getItem('admin_troc_services') === 'true'
+              ? true
+              : false,
         };
       } else {
         return {
@@ -92,6 +104,7 @@ const userReducer = (state: UserState = initialState, action: AnyAction) => {
       localStorage.removeItem('token_troc_services');
       localStorage.removeItem('pseudo_troc_services');
       localStorage.removeItem('id_troc_services');
+      localStorage.removeItem('admin_troc_services');
       window.location.href = `${window.location.origin}/accueil`;
       return {
         ...state,

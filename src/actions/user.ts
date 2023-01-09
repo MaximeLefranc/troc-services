@@ -88,7 +88,8 @@ export function actionFetchAuthentUser() {
 export function actionAuthentSuccess(
   pseudo: string,
   token: string,
-  id: number
+  id: number,
+  roles: []
 ) {
   return {
     type: AUTHENT_SUCCESS,
@@ -96,6 +97,7 @@ export function actionAuthentSuccess(
       pseudo: pseudo,
       token: token,
       id: id,
+      roles: roles,
     },
   };
 }
