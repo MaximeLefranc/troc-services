@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 // ---- TypeScript Import ----
 import { GlobalState } from '../../../reducers';
 
-// ---- Selector Import ----
-import { isHeAdmin } from '../../../selectors/members';
-
 // ---- Utils Import ----
 import { getUrlApi } from '../../../utils/utils';
 
@@ -16,9 +13,7 @@ import './styles.scss';
 
 function Footer(): JSX.Element {
   const urlAPI = getUrlApi();
-  const admin = useSelector((state: GlobalState) =>
-    isHeAdmin(state.user.pseudo, state.user.listOfMembers)
-  );
+  const admin = useSelector((state: GlobalState) => state.user.admin);
   return (
     <div className="footer">
       {admin && (

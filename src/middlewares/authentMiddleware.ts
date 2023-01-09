@@ -39,7 +39,8 @@ const authentMiddleware: Middleware = (store) => (next) => (action) => {
               actionAuthentSuccess(
                 response.data.data.pseudo,
                 response.data.token,
-                response.data.data.id
+                response.data.data.id,
+                response.data.data.roles
               )
             );
             store.dispatch(actionFetchAllMessagesForOneUser());

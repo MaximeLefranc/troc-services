@@ -11,6 +11,7 @@
   background-color: vars.$font-transparent-color;
   border: 1px solid vars.$main-color;
   &__title {
+    text-align: center;
     color: vars.$main-color;
     font-size: 2rem;
     font-weight: bolder;
