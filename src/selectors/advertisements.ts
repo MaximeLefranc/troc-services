@@ -11,14 +11,12 @@ import { strNoAccent } from '../utils/utils';
  * @returns {Array | false} One advert or false if doen't exist
  */
 export function findAdvert(
-  listOfAdverts: [],
+  listOfAdverts: Adverts[],
   searchedSlug: string | undefined
 ): Adverts | string | void {
-  let advertFiltered: Adverts[] | undefined = [];
-
   if (typeof searchedSlug === 'string') {
     const id = parseInt(searchedSlug);
-    advertFiltered = listOfAdverts.find(
+    const advertFiltered = listOfAdverts.find(
       (advertElement: Adverts) => advertElement.id === id
     );
     if (typeof advertFiltered === 'undefined') {
@@ -35,7 +33,7 @@ export function findAdvert(
  * @returns {Adverts[] | false} Array of advert or false if doen't exist
  */
 export function findAdvertsBySkills(
-  listOfAdverts: [],
+  listOfAdverts: Adverts[],
   searchedSlug: string | undefined
 ): Adverts[] | false {
   if (typeof searchedSlug === 'string') {
@@ -64,7 +62,7 @@ export function findAdvertsBySkills(
  * @returns {Adverts[] | false} Array of advert or false if doen't exist
  */
 export function findAdvertsBySearchBar(
-  listOfAdverts: [],
+  listOfAdverts: Adverts[],
   searchedSkill: string | undefined,
   searchedZipCode: string | undefined
 ): Adverts[] | false {
@@ -75,7 +73,6 @@ export function findAdvertsBySearchBar(
     const advertFiltered: Adverts[] = [];
     const searchedSkillClean = strNoAccent(searchedSkill).toLowerCase().trim();
     const searchedZipCodeClean = searchedZipCode.trim();
-    console.log(searchedSkill, searchedSkillClean);
     listOfAdverts.filter((advertElement: Adverts) => {
       if (searchedZipCode !== '' && searchedSkill === '') {
         if (searchedZipCodeClean === advertElement.user.zip_code.trim()) {

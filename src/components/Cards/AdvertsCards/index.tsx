@@ -26,24 +26,20 @@ export interface Adverts {
   imageName: string;
   title: string;
   content: string;
-  skills: [
-    {
-      id: number;
-      name: string;
-    }
-  ];
+  skills: {
+    id: number;
+    name: string;
+  }[];
   user: {
     id: number;
     imageName: string;
     nickname: string;
     city: string;
     zip_code: string;
-    skill: [
-      {
-        id: number;
-        name: string;
-      }
-    ];
+    skill: {
+      id: number;
+      name: string;
+    }[];
   };
 }
 

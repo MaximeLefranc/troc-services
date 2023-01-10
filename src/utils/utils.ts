@@ -1,4 +1,4 @@
-function isStrongPassword(password: string): boolean {
+export function isStrongPassword(password: string): boolean {
   const regex = new RegExp(
     '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
   );
