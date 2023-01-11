@@ -12,7 +12,7 @@ import { strNoAccent } from '../utils/utils';
  * @returns {Array | false} One member or false if doen't exist
  */
 export function findMember(
-  listOfMembers: [],
+  listOfMembers: User[],
   searchedSlug: string | undefined
 ): User | false {
   if (typeof searchedSlug === 'string') {
@@ -35,7 +35,7 @@ export function findMember(
  * @returns @returns {User[] | false} Array of members or false if doen't exist
  */
 export function findMembersBySkills(
-  memberList: [],
+  memberList: User[],
   searchedSlug: string | undefined
 ): User[] | false {
   if (typeof searchedSlug === 'string') {
@@ -74,7 +74,7 @@ export function arrayIdsSkills(arrayOfSkills: Skills[]): number[] {
  * @returns {Array | false} One member or false if doen't exist
  */
 export function findMemberById(
-  listOfMembers: [],
+  listOfMembers: User[],
   searchedSlugId: string | undefined
 ): User | false {
   if (typeof searchedSlugId === 'string') {
@@ -100,7 +100,7 @@ export function findMemberById(
  * @returns {User[] | false} Array of advert or false if doen't exist
  */
 export function findMembersBySearchBar(
-  listOfMembers: [],
+  listOfMembers: User[],
   searchedSkill: string | undefined,
   searchedZipCode: string | undefined
 ): User[] | false {
@@ -152,7 +152,7 @@ export function findMembersBySearchBar(
  * @param roles Array of role user
  * @returns {boolean} true or false
  */
-export function isHeAdmin(roles: []): boolean {
+export function isHeAdmin(roles: string[]): boolean {
   const admin = roles.find((role) => role === 'ROLE_ADMIN');
   if (admin) {
     return true;

@@ -220,7 +220,7 @@ const advertId3: Adverts = {
    =============== TESTS ==================
    ======================================= */
 
-describe('Find one advert by this ID', () => {
+describe('Test function findAdvert: Find one advert by this ID', () => {
   test('called with a wrong slug should return string', () => {
     expect(findAdvert(advertsArray, 'unknown id slug')).toBe('not found');
   });
@@ -232,7 +232,7 @@ describe('Find one advert by this ID', () => {
   });
 });
 
-describe('Find array of adverts by skill name', () => {
+describe('Test function findAdvertsBySkills: Find array of adverts by skill name', () => {
   test('called with a skill name not present in advertsArray, should return false', () => {
     expect(findAdvertsBySkills(advertsArray, 'Informatique')).toBeFalsy();
   });
@@ -247,7 +247,7 @@ describe('Find array of adverts by skill name', () => {
   });
 });
 
-describe('Find array of adverts by search bar', () => {
+describe('Test function findAdvertsBySearchBar: Find array of adverts by search bar', () => {
   test('called with no present zip code or advert skill name, should return false', () => {
     expect(findAdvertsBySearchBar(advertsArray, '', '40000')).toBeFalsy();
     expect(findAdvertsBySearchBar(advertsArray, 'Plomberie', '')).toBeFalsy();
