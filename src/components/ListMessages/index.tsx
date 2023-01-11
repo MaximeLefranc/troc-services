@@ -10,7 +10,7 @@ import { variantsSimple } from '../../utils/framerMotionVariants';
 import { GlobalState } from '../../reducers';
 
 // ---- Selector Import ----
-import { SentOrReceivedMessages } from '../../selectors/messages';
+import { sentOrReceivedMessages } from '../../selectors/messages';
 
 // ---- Components Import ----
 import Spinner from '../Spinner';
@@ -40,7 +40,7 @@ function ListMessages(): JSX.Element {
   const searchReceivedOrSentMessages =
     pathname.split('/')[3] === 'recus' ? 'messagesReceived' : 'messagesSent';
   const messagesToShow = useSelector((state: GlobalState) =>
-    SentOrReceivedMessages(
+    sentOrReceivedMessages(
       state.messages.messagesUser,
       searchReceivedOrSentMessages
     )

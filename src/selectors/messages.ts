@@ -7,8 +7,8 @@ import { MessageDetail, MessagesInterface } from '../components/ListMessages';
  * @param typeMessages type messages searched (received or sent)
  * @returns {MessagesInterface | false}
  */
-export function SentOrReceivedMessages(
-  messagesList: { sendOrReceived: string; messages: [] }[],
+export function sentOrReceivedMessages(
+  messagesList: MessagesInterface[],
   typeMessages: string
 ): MessagesInterface | false {
   const messagesToShow = messagesList.find(
@@ -27,7 +27,7 @@ export function SentOrReceivedMessages(
  * @returns {MessageDetail[] | false}
  */
 export function findMessageById(
-  listOfMessages: [],
+  listOfMessages: MessagesInterface[],
   idMessage: string | undefined
 ): MessageDetail[] | false {
   if (typeof idMessage === 'string') {
@@ -50,7 +50,9 @@ export function findMessageById(
  * @param listOfMessages Array of user messages on state
  * @returns {boolean} true if has message not read and false if all messages are readed
  */
-export function haveMessagesNotRead(listOfMessages: MessagesInterface[]) {
+export function haveMessagesNotRead(
+  listOfMessages: MessagesInterface[]
+): boolean {
   let result = false;
   listOfMessages.forEach((message: MessagesInterface) => {
     if (message.sendOrReceived === 'messagesReceived') {

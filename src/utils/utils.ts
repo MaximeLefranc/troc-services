@@ -42,8 +42,8 @@ export function getUrlApi(): string {
  * @returns clean string without any special character
  */
 export function strNoAccent(a: string) {
-  const b = 'áàâäãåçéèêëíïîìñóòôöõúùûüýÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝ';
-  const c = 'aaaaaaceeeeiiiinooooouuuuyAAAAAACEEEEIIIINOOOOOUUUUY';
+  const b = 'áàâäãåçéèêëēíïîìīñóòôöōúùûüýÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝ';
+  const c = 'aaaaaaceeeeeiiiiinooooouuuuyAAAAAACEEEEIIIINOOOOOUUUUY';
   let d = '';
   for (let i = 0, j = a.length; i < j; i++) {
     const e = a.substr(i, 1);

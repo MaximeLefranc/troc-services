@@ -42,6 +42,8 @@ describe('Test function getUrlApi()', () => {
 
 describe('Test Function strNoAccent()', () => {
   test('Must sterilize string', () => {
-    expect(strNoAccent('éàèîïç')).toBe('eaeiic');
+    expect(
+      strNoAccent('áàâäãåçéèêëēíïîìīñóòôöōúùûüýÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝ')
+    ).toBe('aaaaaaceeeeeiiiiinooooouuuuyAAAAAACEEEEIIIINOOOOOUUUUY');
   });
 });
