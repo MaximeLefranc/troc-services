@@ -7,10 +7,11 @@
   align-content: center;
   align-items: center;
   margin-top: 2rem;
+  margin-bottom: 3rem;
   padding-bottom: 3rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   background-color: vars.$font-transparent-color;
-  
+
   &__picture {
     max-width: 10rem;
     min-height: 10rem;
@@ -26,28 +27,28 @@
   }
   &__city {
     font-size: 1.3rem;
-    padding: .5rem;  
+    padding: 0.5rem;
     background-color: vars.$font-transparent-card-color;
-    border-radius: .5rem;
-    margin-bottom: .2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.2rem;
   }
   &__code {
     font-size: 1rem;
-    padding: .5rem;
+    padding: 0.5rem;
     background-color: vars.$font-transparent-card-color;
     margin-bottom: 1.5rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
   &__contact {
     background-color: vars.$main-color;
     padding: 1rem;
-    width: 10REM;
+    width: 10rem;
     color: vars.$font-color;
     border: none;
     font-size: 1rem;
     border-radius: 8px;
     margin-bottom: 2rem;
-    font-family: vars.$main-font ;
+    font-family: vars.$main-font;
     &:hover {
       background-color: transparent;
       color: vars.$main-color;
@@ -69,16 +70,16 @@
     width: 15rem;
     text-align: center;
   }
-  &__skills{
+  &__skills {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 2rem;
     justify-content: center;
     align-items: center;
     &__skill {
-      padding: .5rem;
+      padding: 0.5rem;
       background-color: vars.$main-color;
-      margin: .1rem;
+      margin: 0.1rem;
       font-size: 1.1rem;
       border-radius: 5px;
       color: vars.$font-color;
@@ -87,9 +88,9 @@
   &__adverts {
     position: relative;
     border: 1px solid vars.$dark-main-color;
-    padding: .5rem;
+    padding: 0.5rem;
     width: 24rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     box-shadow: 1px 1px 3px vars.$dark-color;
     border-radius: 5px;
     background-color: vars.$font-transparent-color;
@@ -99,37 +100,38 @@
       float: left;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
-      margin-right: .5rem;
-      
+      margin-right: 0.5rem;
     }
     &__title {
       font-size: 1.1rem;
-      margin-bottom: .5rem;
+      height: 1.1rem;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
     }
     &__description {
       font-size: 1rem;
-      height: calc(6.5rem - (1.1rem + .5rem));
+      height: calc(6.5rem - (1.1rem + 0.5rem));
       overflow: hidden;
       &--approved {
         position: absolute;
         right: 2%;
         top: 50%;
-        font-size: .9rem;
+        font-size: 0.9rem;
         background-color: rgba(255, 0, 0, 0.767);
         color: vars.$font-color;
-        padding: .3rem;
-        border-radius: .5rem;
+        padding: 0.3rem;
+        border-radius: 0.5rem;
       }
     }
   }
   &__delete {
     margin-top: 2rem;
-    padding: .7rem;
+    padding: 0.7rem;
     color: vars.$font-color;
     font-family: vars.$main-font;
     background-color: rgba(255, 0, 0, 0.767);
     border: none;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     &:hover {
       background-color: vars.$main-color;
     }
@@ -138,7 +140,7 @@
 
 @media screen and (min-width: 1200px) {
   .profile-detail {
-    margin: 1rem 15rem 1rem 15rem;
+    margin: 1rem 15rem 3rem 15rem;
     padding: 2rem 5rem 2rem 5rem;
     border: 1px solid vars.$dark-color;
     border-radius: 1rem;

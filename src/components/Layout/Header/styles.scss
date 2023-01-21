@@ -1,4 +1,4 @@
-@use './../../../styles/vars';
+@use "./../../../styles/vars";
 
 .Nav__logo {
   display: none;
@@ -14,36 +14,8 @@
   justify-content: space-around;
 }
 
-.topHeader {
-  display: flex;
-  flex-flow: wrap;
-}
-
 .topNav {
   width: 100%;
-}
-
-.header__btn--subscribe,
-.header__link--profils,
-.header__btn--advert {
-  color: vars.$main-color;
-  background-color: vars.$background-color;
-  font-family: vars.$main-font;
-  border-radius: .5em;
-  border: 1px solid vars.$main-color;
-
-  &:active {
-    transform: scale(0.95);
-    color: vars.$main-color;
-    background-color: vars.$font-color;
-  }
-
-  &:hover {
-    box-shadow: .1em .1em .5em black;
-    background-color: vars.$main-color;
-    color: vars.$background-color;
-    border: 1px solid vars.$background-color;
-  }
 }
 
 .header__btn--subscribe {
@@ -51,27 +23,21 @@
   max-height: 3em;
   margin-top: 1%;
 }
-
 .header__link--profils {
-  display: block;
-  align-self: center;
-  width: 6.5%;
-  padding: .5rem;
-  text-align: center;
-  font-size: 1rem;  
+  display: none;
 }
-
-
 
 .header__form {
   height: 4.5em;
-  width: 75%;
+  width: 100%;
+  margin-top: 5rem;
   display: flex;
   font-family: vars.$main-font;
 
   &__input--service {
-    border-top-left-radius: .5em;
-    border-bottom-left-radius: .5em;
+    width: 50%;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
     background-color: vars.$background-color;
     font-family: vars.$main-font;
     font-size: 1rem;
@@ -79,7 +45,7 @@
 
     &:hover,
     &:focus {
-      box-shadow: .9em .0em 0.8em rgb(97, 97, 97);
+      box-shadow: 0.9em 0em 0.8em rgb(97, 97, 97);
     }
     &::placeholder {
       color: vars.$main-color;
@@ -87,6 +53,7 @@
   }
 
   &__input--zip {
+    width: 30%;
     font-size: 1rem;
     font-family: vars.$main-font;
     border: none;
@@ -94,7 +61,7 @@
 
     &:hover,
     &:focus {
-      box-shadow: .9em .0em 0.8em rgb(97, 97, 97);
+      box-shadow: 0.9em 0em 0.8em rgb(97, 97, 97);
     }
     &::placeholder {
       color: vars.$main-color;
@@ -102,12 +69,11 @@
   }
 
   &__button {
-    border: .1em solid vars.$main-color;
+    width: 25%;
+    border: 0.1em solid vars.$main-color;
     color: vars.$font-color;
     background-color: vars.$main-color;
     font-family: vars.$main-font;
-    border-top-right-radius: .5em;
-    border-bottom-right-radius: .5em;
   }
 }
 
@@ -118,80 +84,129 @@
 }
 
 .header__links--advert {
-  width: 13.5%;
-  margin-bottom: .2%;
+  width: 100%;
+  margin-bottom: 0.2%;
+}
+
+.header__btn--subscribe,
+.header__btn--advert {
+  width: 100%;
+  color: vars.$font-color;
+  background-color: vars.$main-color;
+  font-family: vars.$main-font;
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+  border: none;
+
+  &:active {
+    transform: scale(0.95);
+    color: vars.$main-color;
+    background-color: vars.$font-color;
+  }
+
+  &:hover {
+    box-shadow: 0.1em 0.1em 0.5em black;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
+  .topHeader {
+    display: flex;
+    flex-flow: wrap;
+  }
   .header {
-    background-image: url('./../../../assets/images/roselyn-tirado-GDWmu0bFfS4-unsplash.png');
-    background-size: 100%;
+    background-image: url("./../../../assets/images/roselyn-tirado-GDWmu0bFfS4-unsplash.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0rem -12em;
+    align-items: center;
   }
   .Nav__logo {
     display: block;
     width: 13em;
-    margin-left: 3em;
   }
-  
+
   .Nav__logo--link {
     display: block;
     width: 90%;
+    flex-grow: 1;
+    margin-left: 1rem;
   }
-}
+  .header__form {
+    flex-grow: 1;
+    width: 20%;
+    margin-top: 0;
+    margin-left: 1rem;
 
-@media only screen and (max-width: 1200px) {
+    &__input--service {
+      width: 20%;
+    }
 
-  .header__links--advert {
-    width: 100%;
-    height: 4.5em;
-    margin-right: 0%;
+    &__input--zip {
+      width: 10%;
+    }
+
+    &__button {
+      border-top-right-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+      width: 10%;
+    }
+  }
+  .header__link--profils {
+    display: block;
+    align-self: center;
+    width: 6.5%;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1rem;
   }
 
   .header__btn--subscribe,
+  .header__link--profils,
   .header__btn--advert {
-    color: vars.$font-color;
-    background-color: vars.$main-color;
+    color: vars.$main-color;
+    background-color: vars.$background-color;
     font-family: vars.$main-font;
-    border-radius: .2em;
-    border: none;
-  
+    border-radius: 0.5em;
+    border: 1px solid vars.$main-color;
+
     &:active {
       transform: scale(0.95);
       color: vars.$main-color;
       background-color: vars.$font-color;
     }
-  
+
     &:hover {
-      box-shadow: .1em .1em .5em black;
+      box-shadow: 0.1em 0.1em 0.5em black;
+      background-color: vars.$main-color;
+      color: vars.$background-color;
+      border: 1px solid vars.$background-color;
     }
   }
-
-  .header__link--profils {
-    display: none;
+  .header__btn--subscribe {
+    height: 3rem;
+    margin-bottom: 4rem;
+    margin-right: 1rem;
+    width: auto;
   }
-
-  .header__form {
-    width: 100%;
-    margin-top: 5rem;
-
-    &__input--service {
-      width: 50%;
-    }
-
-    &__input--zip {
-      width: 25%;
-    }
-
-    &__button {
-      width: 25%;
-    }
-
+  .header__btn--advert {
+    width: 95%;
   }
-
-  .topHeader {
-    display: block;
+  .header__links--advert {
+    width: 13.5%;
   }
 }
+
+// @media only screen and (min-width: 1200px) {
+//   .header__links--advert {
+//     width: 100%;
+//     height: 4.5em;
+//     margin-right: 0%;
+//   }
+
+//
+
+//   .topHeader {
+//     display: block;
+//   }
+// }

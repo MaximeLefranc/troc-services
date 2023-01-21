@@ -1,7 +1,8 @@
-@use './../../../styles/vars';
+@use "./../../../styles/vars";
 
 .footer {
   display: flex;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
   background-color: vars.$font-transparent-color;
@@ -11,7 +12,6 @@
   width: 100vw;
   height: 2.5em;
   &__link {
-    width: 15%;
     // margin: 0 2rem;
     display: block;
     text-align: center;

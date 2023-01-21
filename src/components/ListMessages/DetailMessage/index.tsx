@@ -36,7 +36,12 @@ function DetailMessage(): JSX.Element {
   const isLoading = useSelector((state: GlobalState) => state.user.isLoading);
 
   useEffect(() => {
-    if (message !== undefined && message !== false && !message[0].isRead) {
+    if (
+      message !== undefined &&
+      message !== false &&
+      message[0] !== undefined &&
+      !message[0].isRead
+    ) {
       if (typeof slug === 'string') {
         dispatch(actionMessageIsRead(slug));
       }

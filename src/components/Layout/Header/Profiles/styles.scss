@@ -1,34 +1,34 @@
-@use './../../../../styles/vars';
+@use "./../../../../styles/vars";
 
 .action {
   position: fixed;
   z-index: 22;
   width: 3rem;
   height: 3rem;
-  top: .8rem;
-  left: .8rem;
+  top: 0.8rem;
+  left: 0.8rem;
 }
 
 .notif::after {
-  content: '';
-  position:absolute;
-  top: .3rem;
-  min-width: .3rem;
-  min-height:.3rem;
-  padding:.3rem;
-  background-color:#bf1f1f;
+  content: "";
+  position: absolute;
+  top: 0.3rem;
+  min-width: 0.3rem;
+  min-height: 0.3rem;
+  padding: 0.3rem;
+  background-color: #bf1f1f;
   border-radius: 50%;
 }
 
 .notif-li::after {
-  content: '';
-  position:absolute;
+  content: "";
+  position: absolute;
   left: 0.9rem;
   top: 10.7rem;
-  min-width: .3rem;
-  min-height:.3rem;
-  padding:.3rem;
-  background-color:#bf1f1f;
+  min-width: 0.3rem;
+  min-height: 0.3rem;
+  padding: 0.3rem;
+  background-color: #bf1f1f;
   border-radius: 50%;
 }
 
@@ -57,20 +57,20 @@
   padding: 1em 2em;
   background-color: vars.$font-color;
   width: 20em;
-  box-sizing: 0 .5em 2.5em rgba(0, 0, 0, 0.1);
+  box-sizing: 0 0.5em 2.5em rgba(0, 0, 0, 0.1);
   border-radius: 1.5em;
   transition: 0.5s;
   visibility: hidden;
   opacity: 0;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .action .profiles__menu.active {
   top: 4rem;
-  left: -.3rem;
+  left: -0.3rem;
   visibility: visible;
   opacity: 1;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .action .profiles__menu::before {
@@ -118,7 +118,11 @@
   opacity: 1;
 }
 
-.action .profiles__menu .profiles__menu__links .profiles__menu--link .profiles__menu__link--span {
+.action
+  .profiles__menu
+  .profiles__menu__links
+  .profiles__menu--link
+  .profiles__menu__link--span {
   display: inline-block;
   text-decoration: none;
   color: vars.$main-color;
@@ -127,19 +131,24 @@
   font-size: large;
 }
 
-.action .profiles__menu .profiles__menu__links .profiles__menu--link:hover .profiles__menu__link--span {
+.action
+  .profiles__menu
+  .profiles__menu__links
+  .profiles__menu--link:hover
+  .profiles__menu__link--span {
   color: vars.$dark-main-color;
 }
 
 .isActive {
-  transform: scale(1.10);
-  box-shadow: .1em -.1em 1em vars.$dark-main-color, .2em .1em 1em vars.$dark-main-color;
+  transform: scale(1.1);
+  box-shadow: 0.1em -0.1em 1em vars.$dark-main-color,
+    0.2em 0.1em 1em vars.$dark-main-color;
 }
 
 @media only screen and (min-width: 1200px) {
   .action {
-    left: .5rem;
-    top: 1.5rem;
+    left: -1rem;
+    top: -2rem;
     position: relative;
     width: 4rem;
   }
@@ -169,8 +178,9 @@
   }
 
   .profile:hover {
-    transform: scale(1.10);
-    box-shadow: .3em -.3em .3em vars.$main-color, .3em .3em .3em vars.$main-color;
+    transform: scale(1.1);
+    box-shadow: 0.3em -0.3em 0.3em vars.$main-color,
+      0.3em 0.3em 0.3em vars.$main-color;
   }
 
   .notif::after {
