@@ -1,4 +1,4 @@
-@use './../../styles/vars';
+@use "./../../styles/vars";
 
 .welcome {
   height: 100vh;
@@ -22,40 +22,40 @@
     font-size: 1rem;
   }
 }
- .presentation {
+.presentation {
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1rem;
   display: block;
   margin: 0 auto 7rem auto;
   text-align: center;
- }
+}
 
- .form {
+.form {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   &__input--service {
     width: 70%;
     padding: 0.5rem;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     border: none;
     border-top: 1px solid vars.$main-color;
     border-bottom: 1px solid vars.$main-color;
     border-left: 1px solid vars.$main-color;
-    border-bottom-left-radius: .5rem;
-    border-top-left-radius: .5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
     height: 3rem;
   }
   &__input--zip {
     width: 30%;
     padding: 0.5rem;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     border: none;
     border-top: 1px solid vars.$main-color;
     border-bottom: 1px solid vars.$main-color;
     border-right: 1px solid vars.$main-color;
-    border-bottom-right-radius: .5rem;
-    border-top-right-radius: .5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
     height: 3rem;
   }
   &__button {
@@ -67,16 +67,16 @@
     border: none;
     border-radius: 5px;
     background-color: vars.$main-color;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
   }
- }
+}
 
- @media screen and (min-width: 800px) {
+@media screen and (min-width: 800px) {
   .welcome {
     &__logo {
       position: absolute;
-      width: 20%;
-      top: -9%;
+      width: 18%;
+      top: -8%;
       left: 50%;
       transform: translate(-50%, 0);
     }
@@ -101,7 +101,7 @@
       width: 50%;
       left: 25%;
       font-size: 1.5rem;
-      color: vars.$background-color;      
+      color: vars.$background-color;
     }
   }
   .presentation {
@@ -110,8 +110,8 @@
     border-radius: 1rem;
     width: 80%;
     position: absolute;
-    padding: 2rem;
-    top: 15%;
+    padding: 1rem;
+    top: 17%;
     left: 50%;
     transform: translate(-50%, 0%);
     font-size: 1.7rem;
@@ -131,5 +131,4 @@
       height: 2.5rem;
     }
   }
-
- }
+}
