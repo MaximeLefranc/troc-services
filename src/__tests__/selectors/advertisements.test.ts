@@ -148,7 +148,7 @@ const advertId1: Adverts = {
   },
 };
 
-const advertId2 = {
+const advertId2: Adverts = {
   id: 2,
   imageName: 'test.jpg',
   title: 'Title test',
@@ -228,7 +228,7 @@ describe('Test function findAdvert: Find one advert by this ID', () => {
     expect(findAdvert(advertsArray, '1')).toStrictEqual(advertId1);
   });
   test('called with an invalid type slug, should return VOID', () => {
-    return expect(findAdvert(advertsArray, undefined)).toBe(void 0);
+    expect(findAdvert(advertsArray, undefined)).toBe(void 0);
   });
 });
 
@@ -243,12 +243,12 @@ describe('Test function findAdvertsBySkills: Find array of adverts by skill name
     ]);
   });
   test('called with an invalid type slug, should return false', () => {
-    return expect(findAdvertsBySkills(advertsArray, undefined)).toBeFalsy();
+    expect(findAdvertsBySkills(advertsArray, undefined)).toBeFalsy();
   });
 });
 
 describe('Test function findAdvertsBySearchBar: Find array of adverts by search bar', () => {
-  test('called with no present zip code or advert skill name, should return false', () => {
+  test('called with no present zip code or advert skill name in advertsArray, should return false', () => {
     expect(findAdvertsBySearchBar(advertsArray, '', '40000')).toBeFalsy();
     expect(findAdvertsBySearchBar(advertsArray, 'Plomberie', '')).toBeFalsy();
     expect(

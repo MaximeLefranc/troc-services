@@ -191,7 +191,7 @@ describe('Test function findMember(): Find a member by this nickname', () => {
     expect(findMember(arrayMembers, 'Max')).toStrictEqual(member1);
   });
   test('called with an invalid type slug, should return false', () => {
-    return expect(findMember(arrayMembers, undefined)).toBeFalsy();
+    expect(findMember(arrayMembers, undefined)).toBeFalsy();
   });
 });
 

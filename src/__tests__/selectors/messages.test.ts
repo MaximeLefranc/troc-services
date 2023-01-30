@@ -222,6 +222,6 @@ describe('Test function haveMessagesNotRead(): Search in messages array user, if
     expect(haveMessagesNotRead(messagesUser)).toBeTruthy();
   });
   test('Called with a message array that no contains unread messages, should return false', () => {
-    expect(haveMessagesNotRead(messagesUserRead)).toBeFalsy();
+    return expect(haveMessagesNotRead(messagesUserRead)).toBeFalsy();
   });
 });
