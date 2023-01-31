@@ -106,7 +106,11 @@ function ProfileDetail(): JSX.Element {
                 </div>
               </Link>
             );
-          } else if (!advertisement.approved && !advertisement.isHidden) {
+          } else if (
+            !advertisement.approved &&
+            !advertisement.isHidden &&
+            isMineProfile
+          ) {
             return (
               <div key={advertisement.id} className="profile-detail__adverts">
                 <img
