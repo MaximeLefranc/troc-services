@@ -17,11 +17,7 @@ function Footer(): JSX.Element {
   return (
     <div className="footer">
       {admin && (
-        <a
-          className="footer__link"
-          href={`${urlAPI}backoffice/home`}
-          target="_blank"
-        >
+        <a className="footer__link" href={urlAPI} target="_blank">
           Back-Office
         </a>
       )}
