@@ -49,7 +49,7 @@ const advertsMiddleware: Middleware = (store) => (next) => (action) => {
 
       const requestAdverts = axios.get(`${urlAPI}api/advertisements`);
       const requestSkills = axios.get(`${urlAPI}api/categories`);
-      const requestMembers = axios.get(`${urlAPI}api/user`);
+      const requestMembers = axios.get(`${urlAPI}api/user/`);
 
       axios
         .all([requestAdverts, requestSkills, requestMembers])
