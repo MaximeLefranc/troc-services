@@ -27,7 +27,7 @@ function About(): JSX.Element {
         <h2 className="about__description__title">Histoire</h2>
         <p className="about__description__history">
           Troc'Services, tout droit sortie de l'esprit de 4 développeurs, est un
-          site communautaire d'échanger de services le tout sans avoir besoin
+          site communautaire d'échanges de services le tout sans avoir besoin
           d'un centime. Vous avez besoin d'un service ? postez simplement votre
           annonce et laissez les autres membres entrer en contact avec vous !
         </p>
