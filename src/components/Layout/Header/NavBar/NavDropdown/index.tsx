@@ -1,5 +1,6 @@
 // ---- React Import ----
 import { Link, useLocation } from 'react-router-dom';
+import { strNoAccent } from '../../../../../utils/utils';
 
 // ---- TypeScript Import ----
 import { Category } from '../../../../SkillsSelect';
@@ -33,7 +34,7 @@ function NavDropdown({ category, onClick }: NavDropdownProps): JSX.Element {
           <Link
             className={`nav__dropdown--link`}
             key={skills.id}
-            to={`${link}${skills.name}`}
+            to={`${link}${skills.name.toLowerCase()}`}
             onClick={onClick}
           >
             {skills.name}

@@ -56,7 +56,7 @@ function AdvertsCards(): JSX.Element {
     return <Spinner />;
   }
   if (advertList.length === 0) {
-    return <NotFound404 />;
+    return <NotFound404 is404={true} />;
   }
   return (
     <section className="main">

@@ -1,4 +1,4 @@
-@use "./../../styles/vars";
+@use './../../styles/vars';
 
 .messages {
   display: flex;
@@ -66,6 +66,7 @@
       padding: 1rem;
       height: 11rem;
       margin: 0 0.5rem 1rem 0.5rem;
+      box-shadow: 1px 1px 5px vars.$dark-color;
       &--img {
         float: left;
         width: 5rem;
@@ -119,6 +120,7 @@
     padding: 2rem 5rem 2rem 5rem;
     border: 1px solid vars.$dark-color;
     border-radius: 1rem;
+    box-shadow: 1px 1px 5px vars.$dark-color;
     &__title {
       font-size: 1.7rem;
       margin-bottom: 2rem;
@@ -126,6 +128,12 @@
     &__list {
       &__detail {
         margin: 0 2rem 1rem 2rem;
+        &--title {
+          font-size: 1.3rem;
+        }
+        &--content {
+          font-size: 1.1rem;
+        }
         &--title,
         &--use,
         &--content {

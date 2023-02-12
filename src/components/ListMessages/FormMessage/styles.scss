@@ -21,7 +21,7 @@
     height: 8rem;
     border-radius: 50%;
     box-shadow: 2px 2px 3px vars.$main-color;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   &__pseudo {
     font-size: 1rem;
@@ -35,30 +35,30 @@
       width: 150%;
       text-align: center;
       margin-bottom: 1rem;
-      font-size: .8rem;
+      font-size: 0.8rem;
       &__input {
-        margin-top: .5rem;
+        margin-top: 0.5rem;
         height: 2rem;
         width: 100%;
         border: none;
-        padding: .5rem;
+        padding: 0.5rem;
         background-color: vars.$font-card-color;
         font-family: vars.$main-font;
-        border-radius: .5rem;
-        font-size: .9rem;
+        border-radius: 0.5rem;
+        font-size: 0.9rem;
         &:focus {
           border: 1px solid vars.$main-color;
         }
         &-text-area {
-          padding: .5rem;
-          border-radius: .5rem;
-          margin-top: .5rem;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          margin-top: 0.5rem;
           width: 100%;
           resize: none;
           border: none;
           background-color: vars.$font-card-color;
           font-family: vars.$main-font;
-          font-size: .9rem;
+          font-size: 0.9rem;
           &:focus {
             outline: none;
             border: 1px solid vars.$main-color;
@@ -66,13 +66,12 @@
           }
         }
       }
-
     }
     &__button {
       padding: 1rem;
       border: none;
       background-color: vars.$main-color;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       color: vars.$font-color;
       font-family: vars.$main-font;
       font-size: 1rem;
@@ -91,6 +90,7 @@
     padding: 2rem 5rem 2rem 5rem;
     border: 1px solid vars.$dark-color;
     border-radius: 1rem;
+    box-shadow: 1px 1px 5px vars.$dark-color;
     &__title {
       font-size: 1.5rem;
       &--message {
@@ -111,7 +111,6 @@
             font-size: 1rem;
           }
         }
-  
       }
     }
   }

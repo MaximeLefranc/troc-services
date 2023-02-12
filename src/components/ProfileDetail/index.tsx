@@ -48,6 +48,8 @@ function ProfileDetail(): JSX.Element {
   }
   const isMineProfile = member.nickname === pseudo ? true : false;
   const hasAdverts = member.advertisements.length > 0 ? true : false;
+  const cityWithLetterUpperCase =
+    member.city.charAt(0).toUpperCase() + member.city.slice(1);
   return (
     <motion.section
       className="profile-detail"
@@ -62,7 +64,7 @@ function ProfileDetail(): JSX.Element {
         alt="profile picture of member"
       />
       <h2 className="profile-detail__pseudo">{member.nickname}</h2>
-      <p className="profile-detail__city">{member.city}</p>
+      <p className="profile-detail__city">{cityWithLetterUpperCase}</p>
       <p className="profile-detail__code">{member.zip_code}</p>
       {isMineProfile ? (
         <Link to={`/profils/${member.nickname}/modifier`}>
@@ -91,7 +93,11 @@ function ProfileDetail(): JSX.Element {
         member.advertisements.map((advertisement) => {
           if (advertisement.approved && !advertisement.isHidden) {
             return (
-              <Link key={advertisement.id} to={`/annonces/${advertisement.id}`}>
+              <Link
+                key={advertisement.id}
+                to={`/annonces/${advertisement.id}`}
+                className="profile-detail__link"
+              >
                 <div key={advertisement.id} className="profile-detail__adverts">
                   <img
                     className="profile-detail__adverts__picture"

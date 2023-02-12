@@ -42,7 +42,7 @@ function ProfilesCards(): JSX.Element {
     return <Spinner />;
   }
   if (usersFromSate.length === 0) {
-    return <NotFound404 />;
+    return <NotFound404 is404={true} />;
   }
   return (
     <section className="main">

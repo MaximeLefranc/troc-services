@@ -6,8 +6,8 @@
   align-items: center;
   justify-content: center;
   padding: 1rem 0 3rem 0;
-  margin: 1rem 0 1rem 0 ;
-  border-radius: .5rem;
+  margin: 1rem 0 1rem 0;
+  border-radius: 0.5rem;
   background-color: vars.$font-transparent-color;
   &__description {
     &__title {
@@ -16,8 +16,8 @@
       display: block;
       font-size: 1.6rem;
       color: vars.$main-color;
-      margin:0 auto 2rem auto;
-      padding-bottom: .5rem;
+      margin: 0 auto 2rem auto;
+      padding-bottom: 0.5rem;
       border-bottom: 1px solid vars.$dark-main-color;
     }
     &__history {
@@ -33,7 +33,7 @@
       text-align: center;
       font-size: 1.2rem;
       margin: 1rem;
-      padding: .5rem;
+      padding: 0.5rem;
       border: 1px solid vars.$main-color;
       border-radius: 5px;
       color: vars.$main-color;
@@ -74,6 +74,7 @@
     padding: 2rem 5rem 2rem 5rem;
     border: 1px solid vars.$dark-color;
     border-radius: 1rem;
+    box-shadow: 1px 1px 5px vars.$dark-color;
     &__description {
       &__title {
         padding-bottom: 1.5rem;
@@ -93,4 +94,3 @@
     }
   }
 }
-

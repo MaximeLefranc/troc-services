@@ -1,21 +1,20 @@
 @use './../../styles/vars';
 
 .login__form {
-  position:fixed;
+  position: fixed;
   z-index: 30;
   background-color: vars.$font-color;
   right: -50rem;
-  transition: right .4s;
+  transition: right 0.4s;
   top: 0%;
   height: 22rem;
   width: 100%;
-  margin: 0 0 1rem .3rem;
+  margin: 0 0 1rem 0.3rem;
   border-top: 1px solid vars.$main-color;
   border-bottom: 1px solid vars.$main-color;
   border-left: 1px solid vars.$main-color;
-  border-bottom-left-radius: .5rem;
-  border-bottom-right-radius: .5rem;
-  
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 
   &__close {
     float: right;
@@ -23,7 +22,7 @@
     background-color: vars.$main-color;
     border: none;
     border-radius: 2px;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     margin-bottom: 1rem;
     height: 3rem;
     width: 3rem;
@@ -39,7 +38,7 @@
   }
 
   &__message {
-    margin: .3em 1em;
+    margin: 0.3em 1em;
   }
 
   &__logged {
@@ -52,17 +51,17 @@
     font-size: 1rem;
     color: #fff;
     background-color: vars.$main-color;
-    border-radius: .3em;
+    border-radius: 0.3em;
     border: 0;
     width: 10rem;
-    padding: .7em;
+    padding: 0.7em;
     height: 3.5em;
     margin-top: 1rem;
     font-family: vars.$main-font;
   }
   &--open {
     right: 0;
-    transform: right .4s;
+    transform: right 0.4s;
   }
   &__message {
     color: red;
@@ -73,7 +72,7 @@
 }
 
 .field {
-  margin: .3em .3em 1rem 0;
+  margin: 0.3em 0.3em 1rem 0;
   position: relative;
 
   &__input {
@@ -81,7 +80,7 @@
     padding: 1rem;
     font-size: 1rem;
     border: 1px solid #ddd;
-    border-radius: .3em;
+    border-radius: 0.3em;
     height: 4em;
     font-family: vars.$main-font;
 
@@ -96,27 +95,25 @@
   &__label {
     display: none;
     position: absolute;
-    top: .2rem;
-    left: .7rem;
+    top: 0.2rem;
+    left: 0.7rem;
     color: #999;
     text-transform: uppercase;
-    animation: labelSlideUpAndShow .3s;
-    font-size: .6rem;
+    animation: labelSlideUpAndShow 0.3s;
+    font-size: 0.6rem;
   }
-
 
   &--has-content {
     .field__label {
       display: block;
     }
     .field__input {
-      padding: 1.4em .7em .4em;
+      padding: 1.4em 0.7em 0.4em;
     }
   }
 }
 
-
-@keyframes labelSlideUpAndShow{
+@keyframes labelSlideUpAndShow {
   0% {
     transform: translateY(1em);
     opacity: 0;
@@ -132,8 +129,8 @@
     width: 47.6rem;
     top: 0;
     height: 3.3rem;
-    border-bottom-left-radius: .5rem;
-    border-top-left-radius: .5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
     border-bottom-right-radius: 0rem;
     &__element {
       flex-direction: row;
@@ -148,16 +145,16 @@
       height: 2.5rem;
       font-size: 1rem;
       padding: 0%;
-      margin-bottom: .9rem;
+      margin-bottom: 0.9rem;
     }
     &__close {
       height: 2.5rem;
-      margin-top: .3rem;
+      margin-top: 0.3rem;
       width: 2.5;
       border-radius: 0;
     }
     &__message {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       font-size: 1.3rem;
       text-shadow: 1px 1px 1px vars.$font-color;
     }

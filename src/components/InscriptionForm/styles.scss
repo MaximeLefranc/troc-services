@@ -8,20 +8,20 @@
   background-color: vars.$font-transparent-color;
   &__info {
     color: vars.$main-color;
-    font-size: .8rem;
+    font-size: 0.8rem;
     &.success {
       color: rgba(0, 128, 0, 0.699);
       text-align: center;
       font-size: 1.5rem;
       margin: 2rem auto;
-     }
-    
-     &.danger {
+    }
+
+    &.danger {
       color: rgba(255, 0, 0, 0.699);
       text-align: center;
       font-size: 1.5rem;
       margin: 2rem auto;
-     }
+    }
   }
   &__form {
     display: flex;
@@ -44,13 +44,13 @@
       border: 1px solid vars.$font-card-color;
       border-radius: 5px;
       height: 3rem;
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       &:focus {
         border: 1px solid vars.$main-color;
       }
       &.description {
         height: 10rem;
-        padding: .5rem;
+        padding: 0.5rem;
         resize: none;
         &:focus {
           outline: none;
@@ -78,27 +78,28 @@
     }
   }
 }
- .label-photo {
+.label-photo {
   background-color: vars.$main-color;
   color: vars.$font-color;
   border-radius: 5px;
   padding: 1rem;
- }
- .select {
+}
+.select {
   &__skills {
     margin-top: 2rem;
     width: 20rem;
     font-size: 1rem;
   }
- }
- .css-t3ipsp-control {
-  border-color: vars.$main-color !important ; 
+}
+.css-t3ipsp-control {
+  border-color: vars.$main-color !important ;
   box-shadow: 0 0 0 1px vars.$main-color !important;
- }
+}
 
- @media screen and (min-width: 1300px) {
+@media screen and (min-width: 1300px) {
   .inscription {
     margin: 2rem 20rem 5rem 20rem;
+    box-shadow: 1px 1px 5px vars.$dark-color;
     &__form {
       &__label {
         margin-top: 3rem;
@@ -120,7 +121,7 @@
   }
   .label-photo {
     width: 50%;
-    padding: .7rem;
+    padding: 0.7rem;
   }
   .select {
     &__skills {
@@ -128,5 +129,5 @@
       width: 70%;
       font-size: 1.1rem;
     }
-   }
- }
+  }
+}

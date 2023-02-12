@@ -48,6 +48,8 @@ function AdvertDetail(): JSX.Element {
     }
   };
   const isMineAdvert = advert.user.nickname === pseudo ? true : false;
+  const city =
+    advert.user.city.charAt(0).toUpperCase() + advert.user.city.slice(1);
 
   return (
     <motion.section
@@ -71,7 +73,7 @@ function AdvertDetail(): JSX.Element {
             alt="profile picture"
           />
         </Link>
-        <p className="advert__picture__city">{advert.user.city}</p>
+        <p className="advert__picture__city">{city}</p>
         <p className="advert__picture__code">{advert.user.zip_code}</p>
       </div>
       {isMineAdvert ? (

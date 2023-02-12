@@ -85,7 +85,7 @@ function TrocServices(): JSX.Element {
           <Route path="/a-propos" element={<About />} />
           <Route path="/a-propos/contact/" element={<ContactForm />} />
           <Route path="/a-propos/mentions-legales/" element={<LegalNotice />} />
-          <Route path="*" element={<NotFound404 />} />
+          <Route path="*" element={<NotFound404 is404={true} />} />
         </Routes>
       </AnimatePresence>
       {!isWelcomePage && <Footer />}

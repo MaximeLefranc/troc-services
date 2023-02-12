@@ -22,7 +22,7 @@
     &__input__checkbox {
       width: 2rem;
       height: 2rem;
-      margin-right: .5rem;
+      margin-right: 0.5rem;
     }
     &__caution {
       color: vars.$main-color;
@@ -37,7 +37,7 @@
       background-color: vars.$main-color;
       color: vars.$font-color;
       border: none;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       &:hover {
         border: 1px solid vars.$main-color;
         background-color: vars.$font-color;
@@ -47,26 +47,27 @@
   }
   &__info {
     color: vars.$main-color;
-    font-size: .8rem;
+    font-size: 0.8rem;
     &.success {
       color: rgba(0, 128, 0, 0.699);
       text-align: center;
       font-size: 1.5rem;
       margin: 2rem auto;
-     }
-    
-     &.danger {
+    }
+
+    &.danger {
       color: rgba(255, 0, 0, 0.699);
       text-align: center;
       font-size: 1.5rem;
       margin: 2rem auto;
-     }
+    }
   }
 }
 
 @media screen and (min-width: 1300px) {
   .leaveadvert {
     margin: 2rem 20rem 5rem 20rem;
+    box-shadow: 1px 1px 5px vars.$dark-color;
     &__form {
       &__label {
         font-size: 1.1rem;

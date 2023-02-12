@@ -134,23 +134,24 @@
     margin-left: 1rem;
   }
   .header__form {
+    height: 2.5rem;
     flex-grow: 1;
     width: 20%;
     margin-top: 0;
     margin-left: 1rem;
 
     &__input--service {
-      width: 20%;
+      width: 15%;
     }
 
     &__input--zip {
-      width: 10%;
+      width: 8%;
     }
 
     &__button {
       border-top-right-radius: 0.5em;
       border-bottom-right-radius: 0.5em;
-      width: 10%;
+      width: 8%;
     }
   }
   .header__link--profils {
@@ -192,6 +193,7 @@
     width: auto;
   }
   .header__btn--advert {
+    min-height: 2.9rem;
     width: 95%;
   }
   .header__links--advert {

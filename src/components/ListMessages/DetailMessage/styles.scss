@@ -9,13 +9,14 @@
   padding: 1rem 1rem 4rem 1rem;
   border-radius: 1rem;
   &__img {
-    width: 7rem;margin: 2rem 20rem 5rem 20rem;
-    border-radius: .5rem;
+    width: 7rem;
+    margin: 2rem 20rem 5rem 20rem;
+    border-radius: 0.5rem;
     border: 1px solid vars.$dark-color;
     height: 7rem;
     border-radius: 50%;
     box-shadow: 2px 2px 3px vars.$main-color;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   &__pseudo {
     font-size: 1rem;
@@ -24,16 +25,26 @@
   }
   &__subject {
     font-size: 1.2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    border: 1px solid vars.$main-color;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: vars.$font-transparent-card-color;
   }
   &__content {
+    display: block;
+    width: 90%;
     font-size: 1.1rem;
     text-align: center;
     margin-bottom: 3rem;
+    border-top: 1px solid vars.$main-color;
+    border-bottom: 1px solid vars.$main-color;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   &__button {
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     border: none;
     color: vars.$font-color;
     background-color: vars.$main-color;
@@ -50,8 +61,25 @@
 @media screen and (min-width: 1200px) {
   .message {
     margin: 1rem 15rem 3rem 15rem;
-    padding: 2rem 5rem 2rem 5rem;
+    padding: 2rem 8rem 2rem 8rem;
     border: 1px solid vars.$dark-color;
     border-radius: 1rem;
+    box-shadow: 1px 1px 5px vars.$dark-color;
+    &__img {
+      width: 9rem;
+      height: 9rem;
+    }
+    &__pseudo {
+      font-size: 1.1rem;
+    }
+    &__subject {
+      font-size: 1.5rem;
+    }
+    &__content {
+      font-size: 1.3rem;
+    }
+    &__button {
+      font-size: 1.2rem;
+    }
   }
 }

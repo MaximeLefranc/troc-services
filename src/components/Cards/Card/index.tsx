@@ -19,6 +19,7 @@ function Card({
   zipCode,
 }: CardProps): JSX.Element {
   const url = getUrlApi();
+  const cityWithLetterUpperCase = city.charAt(0).toUpperCase() + city.slice(1);
   return (
     <div className="card">
       <picture className="card__container">
@@ -27,7 +28,7 @@ function Card({
           src={`${url}img/${image}`}
           alt="image advertisement"
         />
-        <p className="card__container__city">{city}</p>
+        <p className="card__container__city">{cityWithLetterUpperCase}</p>
         <p className="card__container__code">{zipCode}</p>
       </picture>
       <div className="card__description">

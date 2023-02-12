@@ -40,7 +40,7 @@ export function findAdvertsBySkills(
     const advertFiltered: Adverts[] = [];
     listOfAdverts.filter((advertElement: Adverts) => {
       advertElement.skills.forEach((skill) => {
-        if (skill.name === searchedSlug) {
+        if (skill.name.toLowerCase() === searchedSlug) {
           advertFiltered.push(advertElement);
         }
       });

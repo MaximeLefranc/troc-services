@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { variantsSimple } from '../../utils/framerMotionVariants';
 
+// ---- Component Import ----
+import DevImage from './DevImage/DevImage';
+
 // ---- Images Import ----
 import maxPhoto from '../../assets/images/max-lefranc.svg';
 import nicoPhoto from '../../assets/images/nicolas-mahieux.png';
@@ -33,38 +36,10 @@ function About(): JSX.Element {
         </p>
       </div>
       <div className="team">
-        <div className="team__member">
-          <h3 className="team__member__name">Maxime Lefranc</h3>
-          <img
-            className="team__member__picture"
-            src={maxPhoto}
-            alt="picture of dev"
-          ></img>
-        </div>
-        <div className="team__member">
-          <h3 className="team__member__name">Thomas Lepine</h3>
-          <img
-            className="team__member__picture"
-            src={thomasPhoto}
-            alt="picture of dev"
-          ></img>
-        </div>
-        <div className="team__member">
-          <h3 className="team__member__name">Nouha Lamri</h3>
-          <img
-            className="team__member__picture"
-            src={nouhaPhoto}
-            alt="picture of dev"
-          ></img>
-        </div>
-        <div className="team__member">
-          <h3 className="team__member__name">Nicolas Mahieu</h3>
-          <img
-            className="team__member__picture"
-            src={nicoPhoto}
-            alt="picture of dev"
-          ></img>
-        </div>
+        <DevImage name="Maxime Lefranc" image={maxPhoto} />
+        <DevImage name="Thomas Lepine" image={thomasPhoto} />
+        <DevImage name="Nouha Lamri" image={nouhaPhoto} />
+        <DevImage name="Nicolas Mahieux" image={nicoPhoto} />
       </div>
       <div className="about__links">
         <Link className="about__links__link" to="/a-propos/contact/">
