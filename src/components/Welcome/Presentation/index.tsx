@@ -1,7 +1,7 @@
 function Presentation() {
   return (
     <p className="presentation">
-      Troc'Services est un site communautaire d'echange de services entre
+      Troc'Services est un site communautaire d'échange de services entre
       particuliers.
       <br />
       Ce site vous permettra, un fois inscrit, de poster des annonces et
