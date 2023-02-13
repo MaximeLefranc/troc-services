@@ -1,11 +1,11 @@
 @use './../../styles/vars';
 
 .main {
-  padding: 0 .5rem 2rem .5rem;
+  padding: 0 0.5rem 2rem 0.5rem;
   &__title {
     font-size: 1.5rem;
     margin-top: 1rem;
-    padding-left: .7rem;
+    padding-left: 0.7rem;
     color: vars.$main-color;
   }
 }
@@ -29,7 +29,7 @@
   &__container {
     width: 30%;
     height: 6.5rem;
-    margin-bottom: .3rem;
+    margin-bottom: 0.3rem;
     position: relative;
     &__image {
       width: 100%;
@@ -45,9 +45,9 @@
       transform: translate(-50%, -50%);
       font-size: 1rem;
       background-color: vars.$font-transparent-color;
-      border-radius: .3rem;
+      border-radius: 0.3rem;
       color: vars.$dark-color;
-      padding: .1rem;
+      padding: 0.1rem;
       text-shadow: 1px 1px 2px vars.$dark-color;
     }
     &__code {
@@ -55,29 +55,29 @@
       bottom: -5%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: .9rem;
+      font-size: 0.9rem;
       background-color: vars.$font-transparent-color;
-      border-radius: .3rem;
+      border-radius: 0.3rem;
       color: vars.$dark-color;
-      padding: .1rem;
+      padding: 0.1rem;
       text-shadow: 1px 1px 2px vars.$dark-color;
     }
   }
   &__description {
     width: 70%;
-    padding: .5rem;
-    height: 6rem;   
+    padding: 0.5rem;
+    height: 6rem;
     &__title {
       font-size: 1.2rem;
-      margin-bottom: .2rem;
+      margin-bottom: 0.2rem;
       height: 1.15rem;
       overflow: hidden;
       color: vars.$dark-main-color;
     }
     &__resume {
       max-height: 4.7rem;
-      font-size: .8rem;
-      overflow: hidden
+      font-size: 0.8rem;
+      overflow: hidden;
     }
   }
   &__skills {
@@ -87,13 +87,13 @@
     justify-content: center;
     &__skill {
       text-align: center;
-      font-size: .8rem;
-      margin: 0rem .3rem .3rem .3rem;
+      font-size: 0.8rem;
+      margin: 0rem 0.3rem 0.3rem 0.3rem;
       display: block;
       background-color: vars.$main-color;
-      color: vars.$font-color ;
+      color: vars.$font-color;
       border-radius: 5px;
-      padding: .2rem;
+      padding: 0.2rem;
     }
   }
 }
@@ -135,6 +135,7 @@
         // filter: brightness(85%);
         width: 100%;
         height: 12rem;
+        object-fit: cover;
         border-bottom-left-radius: 0;
         border-top-right-radius: 5px;
       }
@@ -152,7 +153,7 @@
         bottom: 0;
         left: 5%;
         transform: none;
-        font-size: .9rem;
+        font-size: 0.9rem;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         color: vars.$background-color;
@@ -170,7 +171,7 @@
         text-align: center;
         top: 1%;
         left: 50%;
-        transform: translate(-50%,0%);
+        transform: translate(-50%, 0%);
         color: vars.$font-color;
         text-shadow: 2px 2px 2px vars.$dark-color;
         font-size: 1.2rem;
@@ -180,24 +181,24 @@
         font-size: 1rem;
         text-align: center;
         max-height: 4.9rem;
-        
       }
     }
     &__skills {
       min-height: 2.8rem;
       max-height: 2.8rem;
       overflow: hidden;
-      margin-bottom: .9rem;
+      margin-bottom: 0.9rem;
       align-content: flex-end;
       &__skill {
-        margin: .1rem .2rem;
+        margin: 0.1rem 0.2rem;
       }
     }
   }
 }
 
 @keyframes wiggle {
-  0%, 7% {
+  0%,
+  7% {
     transform: rotateZ(0);
   }
   15% {
@@ -215,7 +216,8 @@
   35% {
     transform: rotateZ(-4deg);
   }
-  40%, 100% {
+  40%,
+  100% {
     transform: rotateZ(0);
   }
 }
