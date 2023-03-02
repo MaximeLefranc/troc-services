@@ -2,7 +2,7 @@
 import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 
 // ---- Redux dev-tool Import ----
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 // ---- Reducer Import ----
 import reducer from '../reducers/index';
